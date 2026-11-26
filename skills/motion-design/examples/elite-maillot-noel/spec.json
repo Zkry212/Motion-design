@@ -21,16 +21,19 @@
   "language": "fr"
  },
  "audio": {
-  "voice": "assets/voice.mp3",
-  "voiceAt": 1.0,
   "music": "assets/music.wav",
-  "musicGain": -21,
+  "musicGain": -17,
   "duck": true,
   "sfx": [
    {
     "at": 0.05,
     "src": "assets/sfx/pop-1.wav",
     "gain": -13
+   },
+   {
+    "at": 0.08,
+    "src": "assets/sfx/pop-9.wav",
+    "gain": -9
    },
    {
     "at": 0.18,
@@ -61,6 +64,11 @@
     "at": 0.42,
     "src": "assets/sfx/pop-6.wav",
     "gain": -13
+   },
+   {
+    "at": 0.42,
+    "src": "assets/sfx/thud.wav",
+    "gain": -12
    },
    {
     "at": 0.5,
@@ -357,8 +365,14 @@
    },
    "headlines": [
     {
+     "text": "4 maillots pour *59,97 €* ?",
+     "at": 0.08,
+     "out": 1.75,
+     "stagger": 0.09
+    },
+    {
      "text": "Noël *approche.*",
-     "at": 1.85,
+     "at": 1.9,
      "out": 3.4
     },
     {
