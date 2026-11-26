@@ -311,7 +311,8 @@
       <div class="st"><div class="s1"><span class="side"></span>Confirmer avec le bouton latéral</div><div class="s2"><svg viewBox="0 0 40 40"><g fill="none" stroke="#0a84ff" stroke-width="2.4" stroke-linecap="round"><path d="M4 12V7a3 3 0 0 1 3-3h5M28 4h5a3 3 0 0 1 3 3v5M36 28v5a3 3 0 0 1-3 3h-5M12 36H7a3 3 0 0 1-3-3v-5"/><path d="M14 14v3M26 14v3M20 15v7h-2M15 27q5 4 10 0"/></g></svg>Face ID</div><div class="s3"><span class="spin"></span></div><div class="s4"><span class="ok">✓</span>Terminé</div></div>`);
     const dbl = h('div', 'dbl', scr, '<span>Double-cliquer<br>pour payer</span><i></i>');
     const apS = [...ap.querySelectorAll('.st > div')], spin = ap.querySelector('.spin'), okc = ap.querySelector('.ok');
-    const app = h('div', 'app', vp);
+    const useStore = s.screens === 'store';
+    const app = h('div', 'app', vp); if (!useStore) app.style.display = 'none';
     const cartIco = '<svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.7"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>';
     const ST = s.store;
     const scHome = h('div', 'scrn', app, `<div class="hd2"><span class="ic2"><svg viewBox="0 0 24 24" stroke="#111" stroke-width="1.7"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><img src="${IMG('img/logo.svg')}"><span class="ic2">${cartIco}<span class="bdg">0</span></span></div>
@@ -483,13 +484,13 @@
       kb.style.opacity = 1 - prog(t, tapHit + .05, .25); bar.style.opacity = 1 - prog(t, tapHit + .05, .25);
       // shared element: the result card expands into the site, the site rises into place
       const x1 = prog(t, tapHit + .03, .42, E.outQuint);
-      if (t > tapHit + .03 && t < B.open + .75) {
+      if (useStore && t > tapHit + .03 && t < B.open + .75) {
         const R0 = [26, 54, 52, 52, 12], R1 = [0, 0, SW, VH, 0];
         const rr = R0.map((v0, j) => lerp(v0, R1[j], x1));
         xp.style.display = ''; Object.assign(xp.style, { left: rr[0] + 'px', top: rr[1] + 'px', width: rr[2] + 'px', height: rr[3] + 'px', borderRadius: rr[4] + 'px', opacity: 1 });
       } else xp.style.display = 'none';
       srch.style.display = t < B.open + .2 ? '' : 'none'; srch.style.opacity = 1 - prog(t, tapHit + .2, .3); saf.style.opacity = prog(t, tapHit + .25, .3);
-      const rise = prog(t, B.open + .1, .6, E.outQuint); L.home.d.style.opacity = t > B.open + .1 ? 1 : 0; L.home.d.style.transform = `translateY(${(1 - rise) * VH}px)`;
+      const homeAt = useStore ? B.open + .1 : B.phone + .05; const rise = prog(t, homeAt, .6, E.outQuint); L.home.d.style.opacity = t > homeAt ? 1 : 0; L.home.d.style.transform = `translateY(${(1 - rise) * VH}px)`;
       const hr = prog(t, B.open + .1, .7, E.outQuint);
       url.textContent = 'elite-maillot.fr';
       pg.style.width = prog(t, tapHit + .1, .9, E.out) * 100 + '%'; pg.style.opacity = t > tapHit + .1 && t < tapHit + 1.1 ? 1 : 0;
@@ -505,7 +506,7 @@
       // the cart fills live: 1 -> 2 -> 3 -> 4 jerseys (real drawer states), quick UI updates, no cut
       [['c2', B.four - .6], ['c3', B.four - .3], ['c4', B.four]].forEach(([k, at]) => { const q = prog(t, at, .14); L[k].d.style.opacity = q; L[k].im.style.transform = `translateY(${(1 - q) * 10}px)`; });
       const tp = at => clamp((t - at + .2) / .2) * (1 - clamp((t - at - .15) / .25));
-      const t1 = tp(tapHit), t2 = tp(tapCard), t3 = tp(tapAtc), t4 = tp(B.pay), m = Math.max(t1, t2, t3, t4);
+      const t1 = useStore ? tp(tapHit) : 0, t2 = tp(tapCard), t3 = tp(tapAtc), t4 = tp(B.pay), m = Math.max(t1, t2, t3, t4);
       const pt = t1 === m ? [195, SB + 80] : t2 === m ? [287, SB + 557] : t3 === m ? [195, SB + 494] : [195, SB + 615];
       tap.style.opacity = m; tap.style.left = pt[0] + 'px'; tap.style.top = pt[1] + 'px'; tap.style.transform = `scale(${lerp(1.5, .85, m)})`;
       // Apple Pay: checkout tap, sheet slides up, double-click hint, Face ID, spinner, Terminé
@@ -521,7 +522,7 @@
       const dk2 = win(t, B.pay + .7, B.pay + 1.75, .25, .2); dbl.style.opacity = dk2;
       dbl.lastChild.style.transform = `scaleY(${1 + Math.max(0, Math.sin((t - B.pay) * 9)) * .25})`; dbl.style.transform = `translateX(${(1 - prog(t, B.pay + .7, .35, E.outQuint)) * 40}px)`;
       const ro = win(t, B.four + .25, B.pay - .1, .3, .2);
-      ring.style.opacity = ro; Object.assign(ring.style, { left: '16px', top: SB + 326 + 'px', width: '358px', height: '62px', transform: `scale(${lerp(1.2, 1, ro)})` });
+      ring.style.opacity = ro; Object.assign(ring.style, useStore ? { left: '16px', top: SB + 326 + 'px', width: '358px', height: '62px' } : { left: '228px', top: SB + 254 + 'px', width: '150px', height: '78px' }, { transform: `scale(${lerp(1.2, 1, ro)})` });
 
       // the Christmas list gets ticked off in the finale
       remRows.forEach((r2, i) => { const on = t > B.bento + .55 + i * .25; const cb = r2.querySelector('.cb'); cb.classList.toggle('on', on); cb.textContent = on ? '✓' : ''; r2.style.opacity = on ? .55 : 1; });
@@ -544,6 +545,7 @@
       [...dots.children].forEach((d, i) => { const ph2 = ((t - B.end) * 2.6 - i * .18) % 1; d.style.transform = `translateY(${-Math.max(0, Math.sin(ph2 * Math.PI)) * 26}px) scale(${1 + Math.max(0, Math.sin(ph2 * Math.PI)) * .15})`; });
       // ----- redrawn store: opens with a cascade, scrolls, tap on the Barça card, product page, size, add, cart fills, Apple Pay
       srch.style.display = 'none'; saf.style.opacity = 1;
+      if (useStore) {
       const T0 = B.phone + .05, tCard = B.choose + 1.0, tSize = B.add - .2, tAdd = B.add + 1.0;
       promo.style.opacity = prog(t, T0 + .15, .3); promo.style.transform = `translateY(${(1 - prog(t, T0 + .15, .5, E.outQuint)) * 24}px)`;
       pcs.forEach((pc, i) => { const k = prog(t, T0 + .3 + i * .08, .5, E.back); pc.style.opacity = clamp(k * 2); pc.style.transform = `translateY(${(1 - k) * 40}px) scale(${lerp(.92, 1, k)})`; });
@@ -565,6 +567,7 @@
       const q1 = tp2(tCard), q2 = tp2(tSize), q3 = tp2(tAdd), q4 = tp2(B.pay), mq = Math.max(q1, q2, q3, q4);
       const ptq = q1 === mq ? [100, SB + 54 + 14 + 70 + 34 + 250 + 84 - 230 + 84] : q2 === mq ? [104, SB + 300 + 16 + 120 + 30] : q3 === mq ? [195, SB + VH - 42] : [195, SB + VH - 42];
       tap.style.opacity = mq; tap.style.left = ptq[0] + 'px'; tap.style.top = ptq[1] + 'px'; tap.style.transform = `scale(${lerp(1.5, .85, mq)})`;
+      }
 
       // logo reveal: a clean light veil, ÉLITE letters pop one by one, MAILLOT rises letter by letter, then the offer and the URL
       const L0 = B.end + 1.62;
