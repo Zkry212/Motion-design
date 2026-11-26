@@ -1,0 +1,6 @@
+{
+  "name": "motion-design-engine",
+  "private": true,
+  "type": "module",
+  "optionalDependencies": { "playwright-core": "1.63.0" }
+}

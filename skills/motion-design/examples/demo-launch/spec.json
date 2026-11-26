@@ -1,0 +1,31 @@
+{
+  "name": "demo-launch",
+  "width": 1920, "height": 1080, "fps": 30, "duration": 17,
+  "accent": "#ff7a3d", "accent2": "#ffb36b", "bg": "#07070a",
+  "voice": { "id": "REPLACE_WITH_VOICE_ID", "model": "eleven_multilingual_v2", "stability": 0.45, "similarity": 0.8, "style": 0.3, "speed": 1.0, "language": "fr" },
+  "words": "assets/voice.words.json",
+  "audio": {
+    "voice": "assets/voice.mp3", "voiceAt": 0.4,
+    "music": "assets/music.mp3", "musicGain": -12, "duck": true,
+    "sfx": [
+      { "at": 0.0,  "src": "riser", "endAt": 2.6, "gain": -14 },
+      { "at": 2.6,  "src": "zhhh", "peak": true, "gain": -8 },
+      { "at": 6.9,  "src": "click", "gain": -10 },
+      { "at": 9.2,  "src": "click", "gain": -10 },
+      { "at": 11.2, "src": "tick", "gain": -14 },
+      { "at": 13.4, "src": "impact-boom", "peak": true, "gain": -9 },
+      { "at": 13.4, "src": "sub", "gain": -8 }
+    ]
+  },
+  "scenes": [
+    { "type": "orb",    "at": 0.0,  "dur": 2.8, "from": 28, "to": 70 },
+    { "type": "title",  "at": 0.2,  "dur": 1.3, "text": "Ce qui prenait des jours", "y": 40 },
+    { "type": "title",  "at": 1.5,  "dur": 1.3, "text": "prend *une phrase.*", "y": 40 },
+    { "type": "flash",  "at": 2.45, "dur": 0.4, "max": 0.5 },
+    { "type": "prompt", "at": 2.7,  "dur": 4.8, "hello": "Bonjour, Robi", "text": "Une pub de 15 s pour mon appli", "chip": "Vidéo", "model": "Lumen 2", "typeAt": 3.4, "cps": 22, "clickAt": 6.9 },
+    { "type": "pills",  "at": 7.5,  "dur": 2.3, "items": ["Pub", "Démo", "Lancement", "Tutoriel", "Teaser"], "pick": 2, "clickAt": 9.2 },
+    { "type": "stat",   "at": 9.8,  "dur": 3.0, "label": "Temps de production", "value": 30, "unit": " s", "bars": [0.9, 0.75, 0.6, 0.5, 0.3, 0.12], "hi": 5 },
+    { "type": "flash",  "at": 12.85, "dur": 0.5, "max": 0.7 },
+    { "type": "logo",   "at": 13.1, "dur": 3.9, "name": "Lumen", "tagline": "Zéro tournage. Juste une phrase." }
+  ]
+}

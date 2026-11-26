@@ -1,0 +1,4 @@
+Ce qui prenait des jours… <break time="0.3s" /> prend une phrase.
+Décrivez votre idée. <break time="0.4s" /> Choisissez le format.
+Votre vidéo est prête en trente secondes.
+<break time="0.5s" /> Lumen. <break time="0.3s" /> Zéro tournage.

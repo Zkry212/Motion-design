@@ -5,3 +5,7 @@ skills/short-editing/.runtime/
 skills/short-editing/assets/music/*.mp3
 skills/short-editing/assets/icons/*.png
 skills/short-editing/assets/icons/glyph/
+# motion-design: renders and secrets stay local (the demo preview is kept)
+skills/motion-design/examples/*/output/*
+!skills/motion-design/examples/demo-launch/output/demo-launch.mp4
+.env
