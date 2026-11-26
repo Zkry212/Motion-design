@@ -68,6 +68,11 @@
     "gain": -13
    },
    {
+    "at": 1.0,
+    "src": "assets/sfx/whoosh-med.wav",
+    "gain": -10
+   },
+   {
     "at": 1.12,
     "src": "assets/sfx/pop-8.wav",
     "gain": -13
@@ -76,11 +81,6 @@
     "at": 1.24,
     "src": "assets/sfx/pop-9.wav",
     "gain": -13
-   },
-   {
-    "at": 1.0,
-    "src": "assets/sfx/whoosh-med.wav",
-    "gain": -10
    },
    {
     "at": 2.35,
@@ -123,14 +123,14 @@
     "gain": -13
    },
    {
-    "at": 7.4,
-    "src": "assets/sfx/thud.wav",
-    "gain": -13
-   },
-   {
     "at": 7.3,
     "src": "assets/sfx/key.wav",
     "gain": -15
+   },
+   {
+    "at": 7.4,
+    "src": "assets/sfx/thud.wav",
+    "gain": -13
    },
    {
     "at": 7.411,
@@ -218,9 +218,19 @@
     "gain": -12
    },
    {
+    "at": 12.7,
+    "src": "assets/sfx/pop-5.wav",
+    "gain": -12
+   },
+   {
     "at": 12.9,
     "src": "assets/sfx/tap.wav",
     "gain": -11
+   },
+   {
+    "at": 13.0,
+    "src": "assets/sfx/pop-6.wav",
+    "gain": -12
    },
    {
     "at": 13.05,
@@ -230,7 +240,7 @@
    {
     "at": 13.3,
     "src": "assets/sfx/pop-7.wav",
-    "gain": -11
+    "gain": -12
    },
    {
     "at": 13.4,

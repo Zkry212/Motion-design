@@ -49,18 +49,25 @@
   .t2 .chat .typing i { width: 10px; height: 10px; border-radius:50%; background: rgba(255,255,255,.7); display:block; }
 
   /* phone (lives in the world) */
-  .t2 .iph { position:absolute; left:${PX}px; top:${PY}px; width:${PWW}px; height:${PHH}px; border-radius: 64px; background:#0b0b0d; padding: 14px; box-sizing:border-box;
-     box-shadow: 0 0 0 2px #b9bcc3, 0 0 0 4px #e6e8ec, 0 0 0 5px #a9adb5, 0 46px 80px rgba(30,34,50,.34), 0 12px 24px rgba(30,34,50,.2); }
-  .t2 .scr { position:relative; width:${SW}px; height:${SH}px; border-radius: 52px; overflow:hidden; background:#fff; }
+  .t2 .iph { position:absolute; left:${PX}px; top:${PY}px; width:${PWW}px; height:${PHH}px; border-radius: 68px; padding: 4px; box-sizing:border-box;
+     background: linear-gradient(150deg, #f4f5f7 0%, #a8acb3 18%, #e7e8eb 34%, #8a8e95 52%, #d9dbdf 70%, #9a9ea5 86%, #eceef1 100%);
+     box-shadow: inset 0 0 0 1px rgba(255,255,255,.7), inset 0 0 2px 1px rgba(0,0,0,.25), 0 60px 90px rgba(30,34,50,.30), 0 18px 30px rgba(30,34,50,.18), 0 2px 4px rgba(30,34,50,.2); }
+  .t2 .bez { width:100%; height:100%; border-radius: 64px; background:#050506; padding: 10px; box-sizing:border-box; box-shadow: inset 0 0 0 1.5px #1c1c1f; }
+  .t2 .btn { position:absolute; width: 5px; border-radius: 3px; background: linear-gradient(90deg,#7c8087,#e3e5e8 45%,#8d9198); }
+  .t2 .scr { position:relative; width:${SW}px; height:${SH}px; border-radius: 54px; overflow:hidden; background:#fff; }
+  .t2 .glare { position:absolute; inset:0; z-index: 45; pointer-events:none; border-radius: 54px; background: linear-gradient(118deg, rgba(255,255,255,.16) 0%, rgba(255,255,255,.05) 22%, rgba(255,255,255,0) 38%); mix-blend-mode: screen; }
   .t2 .off { position:absolute; inset:0; background:#050506; z-index: 40; }
   .t2 .isl { position:absolute; top: 11px; left:50%; width: 120px; height: 34px; margin-left:-60px; border-radius: 20px; background:#000; z-index: 41; }
-  .t2 .stat { position:absolute; top:0; left:0; right:0; height:${SB}px; background:#fff; display:flex; justify-content:space-between; align-items:center; padding: 4px 34px 0; font-size: 16px; font-weight: 600; z-index: 25; }
+  .t2 .stat { position:absolute; top:0; left:0; right:0; height:${SB}px; background:#fff; display:flex; justify-content:space-between; align-items:center; padding: 6px 30px 0 40px; font-size: 16.5px; font-weight: 650; letter-spacing: -.01em; z-index: 25; }
+  .t2 .stat .ic { display:flex; align-items:center; gap: 5px; } .t2 .stat svg { display:block; }
   .t2 .stat .bat { width: 26px; height: 12px; border: 1.5px solid #000; border-radius: 4px; position:relative; } .t2 .stat .bat i { position:absolute; inset: 1.5px; right: 5px; background:#000; border-radius: 2px; }
   .t2 .vp { position:absolute; top:${SB}px; left:0; width:${SW}px; height:${VH}px; overflow:hidden; background:#fff; }
   .t2 .layer { position:absolute; inset:0; }
   .t2 .layer > img { position:absolute; left:0; top:0; width:${SW}px; display:block; }
-  .t2 .saf { position:absolute; left:0; right:0; bottom:0; height:${SAF}px; background: rgba(248,248,250,.97); border-top: 1px solid #e3e3e6; z-index: 25; }
-  .t2 .saf .url { position:absolute; left: 16px; right: 16px; top: 9px; height: 38px; border-radius: 12px; background:#e9e9ec; display:flex; align-items:center; justify-content:center; font-size: 15px; color:#222; overflow:hidden; }
+  .t2 .saf { position:absolute; left:0; right:0; bottom:0; height:${SAF}px; background: linear-gradient(180deg, rgba(255,255,255,0), rgba(255,255,255,.9) 30%); z-index: 25; }
+  .t2 .saf .url { position:absolute; left: 14px; right: 14px; top: 8px; height: 44px; border-radius: 22px; background: rgba(255,255,255,.96); box-shadow: 0 2px 10px rgba(0,0,0,.12), 0 0 0 .5px rgba(0,0,0,.08); display:flex; align-items:center; justify-content:center; font-size: 15.5px; color:#111; overflow:hidden; gap: 6px; }
+  .t2 .saf .aa { position:absolute; left: 16px; font-size: 13px; font-weight: 600; color:#111; } .t2 .saf .aa b { font-size: 17px; }
+  .t2 .saf .rl { position:absolute; right: 16px; width: 16px; height: 16px; }
   .t2 .saf .pg { position:absolute; left:0; bottom:0; height: 3px; background:#0a84ff; }
   .t2 .saf .home { position:absolute; bottom: 7px; left:50%; width: 130px; height: 5px; margin-left:-65px; border-radius: 3px; background:#111; }
   .t2 .tap { position:absolute; width: 46px; height: 46px; margin:-23px; border-radius:50%; background: rgba(90,90,100,.3); border: 1.5px solid rgba(255,255,255,.85); z-index: 28; }
@@ -189,11 +196,19 @@
     const rateEl = BTl[0].el.querySelector('.rate'), totEl = BTl[3].el.querySelector('.tot'), lis = [...BTl[5].el.querySelectorAll('li')];
 
     // ---------- the phone (in the world)
-    const iph = h('div', 'iph', cam), scr = h('div', 'scr', iph);
-    h('div', 'isl', scr); h('div', 'stat', scr, '<span>20:41</span><span class="bat"><i></i></span>');
+    const iph = h('div', 'iph', cam), bez = h('div', 'bez', iph), scr = h('div', 'scr', bez);
+    [['left', -3, 150, 30], ['left', -3, 215, 56], ['left', -3, 285, 56], ['right', -3, 240, 92]].forEach(([side, o, top, hh]) => { const b2 = h('div', 'btn', iph); b2.style[side] = o + 'px'; b2.style.top = top + 'px'; b2.style.height = hh + 'px'; });
+    h('div', 'glare', scr);
+    h('div', 'isl', scr); h('div', 'stat', scr, `<span>20:41</span><span class="ic"><svg width="18" height="12" viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><svg width="16" height="12" viewBox="0 0 16 12"><path d="M8 11.6l2.3-2.6a3.2 3.2 0 0 0-4.6 0zM8 4.6c1.9 0 3.6.8 4.8 2l1.4-1.6A8.4 8.4 0 0 0 8 2.4 8.4 8.4 0 0 0 1.8 5l1.4 1.6A6.5 6.5 0 0 1 8 4.6z" /><path d="M8 0C4.8 0 1.9 1.3 0 3.4l1.1 1.2A9.8 9.8 0 0 1 8 1.8c2.7 0 5.2 1.1 6.9 2.8L16 3.4A11.6 11.6 0 0 0 8 0z"/></svg><svg width="27" height="13" viewBox="0 0 27 13"><rect x=".5" y=".5" width="23" height="12" rx="3.5" fill="none" stroke="#000" opacity=".4"/><rect x="2" y="2" width="17" height="9" rx="2"/><rect x="24.5" y="4.3" width="1.6" height="4.4" rx=".8" opacity=".45"/></svg></span>`);
     const vp = h('div', 'vp', scr), L = {};
     const lay = (k, src) => { const d = h('div', 'layer', vp), im = h('img', '', d); im.src = IMG('site/' + src); L[k] = { d, im }; };
-    lay('home', 'home-scroll.jpg'); lay('pp', 'product-top.jpg'); lay('pps', 'product-size.jpg'); lay('c1', 'cart-1.jpg'); lay('c4', 'cart-4.jpg');
+    // real scroll recordings of the site (frame sequences) + real cart states
+    const seqLay = (k, dir, n) => { const d = h('div', 'layer', vp); const ims = Array.from({ length: n }, (_, i) => { const im = h('img', '', d); im.src = IMG(`site/seq/${dir}/${String(i).padStart(3, '0')}.jpg`); im.style.opacity = 0; return im; }); L[k] = { d, ims, n }; };
+    const showSeq = (k, f, blur = 0) => { const S2 = L[k], i0 = Math.round(clamp(f, 0, S2.n - 1)); S2.ims.forEach((im, i) => { im.style.opacity = i === i0 ? 1 : 0; }); S2.d.style.filter = blur > .4 ? `blur(0) url(#vb${k})` : 'none'; if (S2.fb) S2.fb.setAttribute('stdDeviation', `0 ${blur.toFixed(2)}`); };
+    seqLay('home', 'home', 45); seqLay('pp', 'pp', 24);
+    R.insertAdjacentHTML('beforeend', `<svg width="0" height="0" style="position:absolute"><filter id="vbhome" x="0" y="-5%" width="100%" height="110%"><feGaussianBlur stdDeviation="0 0" edgeMode="duplicate"/></filter><filter id="vbpp" x="0" y="-5%" width="100%" height="110%"><feGaussianBlur stdDeviation="0 0" edgeMode="duplicate"/></filter></svg>`);
+    L.home.fb = R.querySelector('#vbhome feGaussianBlur'); L.pp.fb = R.querySelector('#vbpp feGaussianBlur');
+    lay('pps', 'product-M.jpg'); lay('c1', 'cart-1.jpg'); lay('c2', 'cart-2.jpg'); lay('c3', 'cart-3.jpg'); lay('c4', 'cart-4.jpg');
     const query = s.query || 'elite maillot';
     const srch = h('div', 'srch', vp, `<h2>Rechercher</h2><div class="fld">🔍 <span class="tx"></span><span class="caret"></span><span class="ph">Rechercher ou saisir un site</span></div>
       <div class="hint">SUGGESTIONS</div><div class="sug"><div><span class="ico" style="background:#ff9f0a">★</span>Maillots de foot pas chers</div><div><span class="ico" style="background:#34c759">⌁</span>Livraison rapide</div><div><span class="ico" style="background:#5e5ce6">✓</span>Les mieux notés</div></div>
@@ -203,7 +218,7 @@
     const keys = {}; kb.querySelectorAll('.k[data-c]').forEach(k => { keys[k.dataset.c] = k; });
     const tx = srch.querySelector('.tx'), ph = srch.querySelector('.ph'), sugBox = srch.querySelector('.sug'), hint = srch.querySelector('.hint'), hitc = srch.querySelector('.hitc');
     const xp = h('div', 'xp', vp, `<img src="${IMG('site/hero.jpg')}">`);
-    const saf = h('div', 'saf', scr, `<div class="url"><span class="u">🔍 Rechercher</span><i class="pg"></i></div><div class="home"></div>`);
+    const saf = h('div', 'saf', scr, `<div class="url"><span class="aa">A<b>A</b></span><span class="u">🔍 Rechercher</span><svg class="rl" viewBox="0 0 16 16"><path d="M13.5 8A5.5 5.5 0 1 1 11.8 4" fill="none" stroke="#111" stroke-width="1.6" stroke-linecap="round"/><path d="M12.6 1.2v3.6H9" fill="none" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><i class="pg"></i></div><div class="home"></div>`);
     const url = saf.querySelector('.u'), pg = saf.querySelector('.pg');
     const dim = h('div', 'dim', scr);
     const ap = h('div', 'ap', scr, `<div class="hd"><span class="mer">É</span><b>Élite Maillot</b><span class="x">✕</span></div>
@@ -257,8 +272,18 @@
       [B.end, [140, 10, .78, 0, 0]],
       [s.duration, [140, 30, .74, 0, 0]],
     ];
+    const spline = (t, K, tension = .62) => {
+      const n = K.length; if (t <= K[0][0]) return K[0][1].slice(); if (t >= K[n - 1][0]) return K[n - 1][1].slice();
+      let i = 0; while (K[i + 1][0] < t) i++;
+      const P = j => { const v = K[Math.max(0, Math.min(n - 1, j))][1].slice(); v[2] = Math.log(v[2]); return v; }, Tt = j => K[Math.max(0, Math.min(n - 1, j))][0];
+      const p0 = P(i), p1 = P(i + 1), t0 = Tt(i), t1 = Tt(i + 1), h2 = t1 - t0, u = (t - t0) / h2;
+      const tan = j => { const a = P(j - 1), b = P(j + 1), dt = Tt(j + 1) - Tt(j - 1) || 1; return a.map((x, q) => (j <= 0 || j >= n - 1) ? 0 : (b[q] - x) / dt * tension); };
+      const m0 = tan(i), m1 = tan(i + 1), u2 = u * u, u3 = u2 * u;
+      const out = p0.map((x, q) => (2 * u3 - 3 * u2 + 1) * x + (u3 - 2 * u2 + u) * h2 * m0[q] + (-2 * u3 + 3 * u2) * p1[q] + (u3 - u2) * h2 * m1[q]);
+      out[2] = Math.exp(out[2]); return out;
+    };
     const camAt = t => {
-      const c = kf(t, CAM);
+      const c = spline(t, CAM);
       // a living camera: tiny handheld drift on top of the path (never fully still)
       return [c[0] + Math.sin(t * .9) * 4 / c[2], c[1] + Math.cos(t * .7) * 4 / c[2], c[2] * (1 + Math.sin(t * .5) * .004), c[3] + Math.sin(t * .6) * .25, c[4]];
     };
@@ -347,16 +372,19 @@
       srch.style.display = t < B.open + .2 ? '' : 'none';
       L.home.d.style.opacity = prog(t, B.open + .05, .3);
       const hr = prog(t, B.open + .1, .7, E.outQuint);
-      url.textContent = t < tapHit + .1 ? '🔍 Rechercher' : '🔒 elite-maillot.fr';
+      url.textContent = t < tapHit + .1 ? '🔍 Rechercher' : 'elite-maillot.fr';
       pg.style.width = prog(t, tapHit + .1, .9, E.out) * 100 + '%'; pg.style.opacity = t > tapHit + .1 && t < tapHit + 1.1 ? 1 : 0;
       const scrollY = kf(t, [[B.choose, 0], [B.choose + 1.3, 1650, sexy]]);
-      L.home.im.style.transform = `translateY(${-scrollY}px)`;
+      const scrollPrev = kf(t - 1 / 30, [[B.choose, 0], [B.choose + 1.3, 1650, sexy]]);
+      showSeq('home', scrollY / 1650 * 44, Math.min(4, Math.abs(scrollY - scrollPrev) * .05));
       const tapCard = B.choose + 1.5, tapAtc = B.add + 1.0;
       const ppIn = prog(t, tapCard + .1, .45, E.outQuint); L.pp.d.style.transform = `translateX(${(1 - ppIn) * 100}%)`; L.pp.d.style.opacity = t > tapCard ? 1 : 0;
-      L.pp.im.style.transform = `translateY(${-kf(t, [[B.add, 0], [tapAtc - .4, 650]])}px)`;
-      L.pps.d.style.display = t > tapAtc - .45 ? '' : 'none'; L.pps.d.style.opacity = prog(t, tapAtc - .45, .12);
+      const ppY = q => kf(q, [[B.add - .1, 0], [tapAtc - .45, 650, sexy]]);
+      showSeq('pp', ppY(t) / 650 * 23, Math.min(4, Math.abs(ppY(t) - ppY(t - 1 / 30)) * .05));
+      L.pps.d.style.display = t > tapAtc - .45 ? '' : 'none'; L.pps.d.style.opacity = prog(t, tapAtc - .42, .1);
       const c1 = prog(t, tapAtc + .2, .45, E.outQuint); L.c1.d.style.transform = `translateX(${(1 - c1) * 100}%)`; L.c1.d.style.opacity = t > tapAtc + .15 ? 1 : 0;
-      const c4 = prog(t, B.four, .35); L.c4.d.style.opacity = c4; L.c4.im.style.transform = `translateY(${(1 - c4) * 30}px)`;
+      // the cart fills live: 1 -> 2 -> 3 -> 4 jerseys (real drawer states), quick UI updates, no cut
+      [['c2', B.four - .6], ['c3', B.four - .3], ['c4', B.four]].forEach(([k, at]) => { const q = prog(t, at, .14); L[k].d.style.opacity = q; L[k].im.style.transform = `translateY(${(1 - q) * 10}px)`; });
       const tp = at => clamp((t - at + .2) / .2) * (1 - clamp((t - at - .15) / .25));
       const t1 = tp(tapHit), t2 = tp(tapCard), t3 = tp(tapAtc), t4 = tp(B.pay), m = Math.max(t1, t2, t3, t4);
       const pt = t1 === m ? [200, SB + 165] : t2 === m ? [287, SB + 557] : t3 === m ? [195, SB + 494] : [195, SB + 615];
