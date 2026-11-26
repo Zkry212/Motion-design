@@ -3,7 +3,7 @@
  "width": 1080,
  "height": 1920,
  "fps": 30,
- "duration": 22.3,
+ "duration": 32.3,
  "bg": "#050506",
  "bgCss": "#050506",
  "glow": false,
@@ -16,105 +16,14 @@
   "music": "assets/meuda-track.wav",
   "musicGain": 1,
   "duck": false,
-  "sfx": [
-   {
-    "at": 1.84,
-    "src": "assets/sfx/whoosh-short.wav",
-    "gain": -19
-   },
-   {
-    "at": 2.29,
-    "src": "assets/sfx/key.wav",
-    "gain": -17
-   },
-   {
-    "at": 2.53,
-    "src": "assets/sfx/key.wav",
-    "gain": -17
-   },
-   {
-    "at": 2.77,
-    "src": "assets/sfx/key.wav",
-    "gain": -17
-   },
-   {
-    "at": 3.01,
-    "src": "assets/sfx/key.wav",
-    "gain": -17
-   },
-   {
-    "at": 3.25,
-    "src": "assets/sfx/key.wav",
-    "gain": -17
-   },
-   {
-    "at": 3.76,
-    "src": "assets/sfx/whoosh-short.wav",
-    "gain": -19
-   },
-   {
-    "at": 5.5,
-    "src": "assets/sfx/tap.wav",
-    "gain": -12
-   },
-   {
-    "at": 5.68,
-    "src": "assets/sfx/whoosh-short.wav",
-    "gain": -19
-   },
-   {
-    "at": 17.2,
-    "src": "assets/sfx/whoosh-short.wav",
-    "gain": -19
-   },
-   {
-    "at": 18.94,
-    "src": "assets/sfx/pop-1.wav",
-    "gain": -20
-   },
-   {
-    "at": 19.18,
-    "src": "assets/sfx/pop-2.wav",
-    "gain": -20
-   },
-   {
-    "at": 19.42,
-    "src": "assets/sfx/pop-3.wav",
-    "gain": -20
-   },
-   {
-    "at": 19.66,
-    "src": "assets/sfx/pop-4.wav",
-    "gain": -20
-   },
-   {
-    "at": 19.9,
-    "src": "assets/sfx/pop-5.wav",
-    "gain": -20
-   },
-   {
-    "at": 20.14,
-    "src": "assets/sfx/pop-6.wav",
-    "gain": -20
-   },
-   {
-    "at": 20.38,
-    "src": "assets/sfx/pop-7.wav",
-    "gain": -20
-   },
-   {
-    "at": 20.62,
-    "src": "assets/sfx/pop-8.wav",
-    "gain": -20
-   }
-  ]
+  "sfx": []
  },
  "scenes": [
   {
    "type": "meuda2",
    "at": 0,
-   "dur": 22.3,
-   "duration": 22.3,
+   "dur": 32.3,
+   "duration": 32.3,
    "bpm": 125,
    "beatOffset": 0.216,
    "beats": {
@@ -123,8 +32,8 @@
     "album": 4.06,
     "play": 5.5,
     "np": 5.98,
-    "out": 17.5,
-    "end": 17.5
+    "out": 27.1,
+    "end": 27.1
    },
    "trackStart": 5.98,
    "trackLen": 161

@@ -160,22 +160,21 @@
     const BAR = 4 * 60 / (s.bpm || 125);
     // calm camera: soft eased moves, no whips; long slow drifts on the Now Playing screen
     const io = E.inOut, N = B.np, S = (B.out - B.np - .7) / 4;
+    // fixed 3D angle: no side-to-side swing, only slow push-ins between screens
+    const A = [-16, 8, 0];
     const CAM = [
-      [0, [0, 0, 1.06, 0, 0, 0], io],
+      [0, [0, 0, 1.03, 0, 0, 0], io],
       [B.search - .35, [0, 0, 1.0, 0, 0, 0], io],
-      [B.search, [0, 120, 1.02, -22, 10, 2]],
-      [B.album - .35, [0, 100, 1.0, -16, 8, 1], io],
-      [B.album, [0, 0, .9, 24, 8, -2]],
-      [B.play - .4, [0, 0, .96, 16, 6, -1], io],
-      [B.play, [0, -150, 1.02, 6, 4, 0]],
-      [N - .1, [0, -150, 1.02, 6, 4, 0], io],
-      [N + .6, [0, 0, .84, -26, 10, 2], io],
-      [N + .6 + S, [0, -200, 1.04, 22, 8, -2], io],
-      [N + .6 + S * 2, [0, 180, 1.02, -22, 12, 2], io],
-      [N + .6 + S * 3, [0, 0, .88, 24, 6, -1], io],
-      [B.out - .1, [0, 40, .94, 8, 4, 0], io],
+      [B.search, [0, 120, 1.0, ...A]],
+      [B.album - .35, [0, 110, 1.02, ...A], io],
+      [B.album, [0, 0, .92, ...A]],
+      [B.play - .4, [0, 0, .95, ...A], io],
+      [B.play, [0, -150, 1.0, ...A]],
+      [N - .1, [0, -150, 1.0, ...A], io],
+      [N + .6, [0, 0, .86, ...A], io],
+      [B.out - .1, [0, 0, .96, ...A], io],
       [B.out + .4, [0, 0, .74, 0, 0, 0]],
-      [s.duration, [0, 0, .76, 0, 0, 0]],
+      [s.duration, [0, 0, .75, 0, 0, 0]],
     ];
     const camAt = t => kf(t, CAM);
     const camCss = c => `translate(${c[0]}px, ${c[1]}px) scale(${c[2]}) rotateY(${c[3]}deg) rotateX(${c[4]}deg) rotateZ(${c[5]}deg)`;
@@ -188,7 +187,7 @@
       const bxy = Math.min(5, Math.max(0, v - 8) * .12), horiz = Math.abs(c[3] - p[3]) * 14 + Math.abs(c[0] - p[0]), vert = Math.abs(c[4] - p[4]) * 14 + Math.abs(c[1] - p[1]);
       const tot = horiz + vert + 1e-6, eb = 0;
       if (bxy + eb > .4) { mbg.setAttribute('stdDeviation', `${(bxy * (.3 + horiz / tot) + eb).toFixed(2)} ${(bxy * (.3 + vert / tot) + eb).toFixed(2)}`); stage.style.filter = 'url(#zmb)'; } else stage.style.filter = 'none';
-      const bt = beat(t);
+      const bt = 0; // nothing pulses with the music
       FL.forEach((f, i) => { f.style.transform = `translate(${Math.sin(t * .7 + i * 2) * 140}px, ${Math.cos(t * .55 + i) * 120}px) scale(${1 + Math.sin(t * .9 + i) * .15 + bt * .08 * (t > B.np ? 1 : 0)}) rotate(${t * 12 + i * 40}deg)`; f.style.opacity = .55 + .25 * Math.sin(t * .8 + i); });
       const show = (el, a, b) => {
         const w2 = el._w || el, ki = a < 0 ? 1 : prog(t, a, .38, E.outQuint), ko = prog(t, b - .22, .22, k => k * k * k), k = Math.min(ki, 1 - ko);
@@ -222,8 +221,8 @@
       // 5. now playing: art pulses on the beat, glowing waveform, time runs
       show(np, B.np, B.out);
       const nk = prog(t, B.np - .05, .6, E.outQuint); np.style.transform = `translateZ(${(1 - nk) * -200}px)`;
-      npBg.style.transform = `scale(${1.1 + bt * .05}) rotate(${t * 4}deg)`;
-      wv.forEach((b2, i) => { b2.style.height = (14 + 130 * Math.abs(Math.sin(t * 6 + i * .55) * Math.cos(t * 2.3 + i * .21)) * (.45 + bt * .55)) + 'px'; });
+      npBg.style.transform = 'scale(1.1)';
+      const pg = clamp((t - B.np + (s.trackStart || 0)) / (s.trackLen || 161)); wv.forEach((b2, i) => { b2.style.height = (20 + 110 * Math.abs(Math.sin(i * 1.7) * Math.cos(i * .37))) + 'px'; const on = i / wv.length < pg; b2.style.background = on ? '#fa2d48' : 'rgba(255,255,255,.28)'; b2.style.boxShadow = 'none'; });
       const el = Math.max(0, t - B.np + (s.trackStart || 0)), fm = x => `${Math.floor(x / 60)}:${String(Math.floor(x % 60)).padStart(2, '0')}`; t1.textContent = fm(el); t2.textContent = '-' + fm(Math.max(0, (s.trackLen || 161) - el));
       LG.sheen(ctl, t * .3);
       pop.style.transform = `${np.style.transform || ''} translateZ(150px) scale(${1 + bt * .03})`;
