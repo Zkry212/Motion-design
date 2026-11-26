@@ -1,8 +1,9 @@
 Noël… dans trois semaines. <break time="0.4s" />
 Et ils veulent tous un maillot. <break time="0.4s" />
-Vous ouvrez Élite Maillot. <break time="0.3s" /> Vous choisissez. <break time="0.3s" />
-Barça. <break time="0.3s" /> France. <break time="0.3s" /> Real. <break time="0.5s" />
+Tout est sur Élite Maillot. <break time="0.3s" />
+Vous choisissez… en deux clics. <break time="1.2s" />
+Barça. <break time="0.3s" /> France. <break time="0.3s" /> Real. <break time="0.4s" />
 Le quatrième… est offert. <break time="0.3s" />
-Livré chez vous. <break time="0.5s" />
+Et la livraison aussi. <break time="0.5s" />
 Toute la famille, servie. <break time="0.8s" />
 Élite Maillot.
