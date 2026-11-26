@@ -85,6 +85,38 @@
   .t2 .kb .k.wide { width: 86px; font-size: 16px; background:#abb0ba; } .t2 .kb .k.sp { width: 180px; font-size: 16px; } .t2 .kb .k.go { width: 86px; background:#0a84ff; color:#fff; font-size: 16px; }
   .t2 .kb .k.on::after { content: attr(data-c); position:absolute; bottom: 36px; left: -8px; width: 49px; height: 56px; border-radius: 10px; background:#fff; box-shadow: 0 2px 6px rgba(0,0,0,.25); display:grid; place-items:center; font-size: 30px; }
 
+  /* iOS widgets */
+  .t2 .ical { position:absolute; inset:0; padding: 28px 32px; }
+  .t2 .ical .d { font-size: 28px; font-weight: 800; letter-spacing:.04em; color:#ff3b30; }
+  .t2 .ical .n { font-size: 150px; font-weight: 400; line-height: 1; letter-spacing:-.05em; color:#111; }
+  .t2 .ical .ev { display:flex; align-items:center; gap: 10px; font-size: 22px; font-weight: 600; color:#333; margin-top: 10px; } .t2 .ical .ev i { width: 6px; height: 34px; border-radius: 3px; background:#34c759; display:block; }
+  .t2 .wx { position:absolute; inset:0; padding: 28px 32px; color:#fff; background: linear-gradient(180deg,#2f6db5,#5b9be0); }
+  .t2 .wx .c { font-size: 26px; font-weight: 700; } .t2 .wx .c span { font-size: 16px; }
+  .t2 .wx .tmp { font-size: 110px; font-weight: 300; line-height: 1; letter-spacing:-.04em; }
+  .t2 .wx .ic { font-size: 30px; margin-top: 4px; } .t2 .wx .dsc { font-size: 24px; font-weight: 600; } .t2 .wx .hb { font-size: 22px; opacity: .9; }
+  .t2 .imsg { position:absolute; left: -60px; top: -1000px; width: 720px; height: 150px; box-sizing:border-box; border-radius: 44px; padding: 24px 28px; display:flex; gap: 20px; align-items:flex-start;
+     background: rgba(246,246,248,.86); backdrop-filter: blur(20px); box-shadow: 0 24px 60px rgba(30,34,50,.22), 0 1px 0 rgba(255,255,255,.9) inset; transform-origin: 50% 0; }
+  .t2 .imsg .mi { width: 70px; height: 70px; border-radius: 17px; background: linear-gradient(180deg,#67f27b,#1ac447); display:grid; place-items:center; flex:none; } .t2 .imsg .mi svg { width: 46px; }
+  .t2 .imsg .bd { flex:1; min-width:0; } .t2 .imsg .top { display:flex; justify-content:space-between; align-items:baseline; }
+  .t2 .imsg b { font-size: 29px; color:#111; } .t2 .imsg small { font-size: 22px; color:#8a8a8e; }
+  .t2 .imsg p { margin: 4px 0 0; font-size: 28px; color:#1c1c1e; white-space: nowrap; overflow:hidden; text-overflow: ellipsis; }
+  /* Apple Pay */
+  .t2 .dim { position:absolute; inset:0; background: rgba(0,0,0,.58); z-index: 34; }
+  .t2 .ap { position:absolute; left: 6px; right: 6px; bottom: 6px; height: 490px; border-radius: 40px; background:#fff; z-index: 35; padding: 18px 20px; box-sizing:border-box; box-shadow: 0 -10px 40px rgba(0,0,0,.25); }
+  .t2 .ap .hd { display:flex; justify-content:space-between; align-items:center; margin-bottom: 10px; } .t2 .ap .hd b { font-size: 22px; } .t2 .ap .x { width: 30px; height: 30px; border-radius: 50%; background:#eee; display:grid; place-items:center; font-size: 14px; color:#666; }
+  .t2 .ap .row { display:flex; align-items:center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #eee; } .t2 .ap .row b { display:block; font-size: 15px; } .t2 .ap .row small { font-size: 13px; color:#8a8a8e; }
+  .t2 .ap .row > div { flex:1; } .t2 .ap .chev { color:#c7c7cc; font-size: 22px; }
+  .t2 .ap .card { width: 52px; height: 34px; border-radius: 6px; background: linear-gradient(135deg,#1c3d6e,#0c1a33); position:relative; } .t2 .ap .card i { position:absolute; right: 5px; bottom: 3px; font-size: 9px; font-weight: 900; font-style: italic; color:#fff; }
+  .t2 .ap .ico { width: 52px; text-align:center; font-size: 22px; }
+  .t2 .ap .sum { padding: 10px 0 6px; font-size: 14px; color:#3a3a3c; } .t2 .ap .sum div { display:flex; justify-content:space-between; padding: 3px 0; } .t2 .ap .sum .off3 { color:#12a3ad; font-weight: 700; }
+  .t2 .ap .tot { display:flex; justify-content:space-between; align-items:baseline; border-top: 1px solid #eee; padding-top: 10px; } .t2 .ap .tot small { font-size: 12px; color:#8a8a8e; font-weight: 600; } .t2 .ap .tot b { font-size: 26px; }
+  .t2 .ap .st { position:relative; height: 110px; margin-top: 10px; } .t2 .ap .st > div { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap: 8px; font-size: 14px; color:#3a3a3c; }
+  .t2 .ap .side { width: 22px; height: 40px; border: 2px solid #0a84ff; border-radius: 6px; display:block; } .t2 .ap .s2 svg { width: 54px; }
+  .t2 .ap .spin { width: 46px; height: 46px; border-radius: 50%; border: 3.5px solid #e5e5ea; border-top-color: #0a84ff; display:block; }
+  .t2 .ap .ok { width: 52px; height: 52px; border-radius: 50%; border: 3.5px solid #0a84ff; color:#0a84ff; display:grid; place-items:center; font-size: 28px; font-weight: 700; }
+  .t2 .dbl { position:absolute; right: 0; top: 205px; z-index: 36; display:flex; align-items:center; gap: 10px; color:#fff; font-size: 15px; font-weight: 600; text-align:right; line-height: 1.2; text-shadow: 0 1px 6px rgba(0,0,0,.4); }
+  .t2 .dbl i { width: 6px; height: 70px; border-radius: 3px; background:#fff; display:block; }
+  .t2 .bt .okp { width: 64px; height: 64px; border-radius: 50%; background: var(--tq); color:#08343a; display:grid; place-items:center; font-size: 36px; font-weight: 800; margin: 10px 0; }
   /* bento tiles (world) */
   .t2 .bt .in { position:absolute; inset:0; padding: 26px 28px; display:flex; flex-direction:column; justify-content:center; }
   .t2 .bt .big { font-size: 80px; font-weight: 700; letter-spacing:-.045em; line-height:1; font-variant-numeric: tabular-nums; }
@@ -119,11 +151,11 @@
       const r = { el, d: o.d ?? (.15 + T.length * .035), from: o.from || [((T.length * 37) % 7 - 3) * 160, ((T.length * 53) % 5 - 2) * 200], bento: o.bento, wallNear: o.near, ...o };
       T.push(r); return r;
     };
-    const clockSvg = `<svg class="clock" viewBox="0 0 200 200"><circle cx="100" cy="100" r="97" fill="#fff"/>${Array.from({ length: 60 }, (_, i) => i % 5 ? `<line x1="100" y1="7" x2="100" y2="11" stroke="#bbb" stroke-width="1" transform="rotate(${i * 6} 100 100)"/>` : '').join('')}${Array.from({ length: 12 }, (_, i) => `<text x="${100 + 74 * Math.sin(i * Math.PI / 6)}" y="${108 - 74 * Math.cos(i * Math.PI / 6)}" font-size="22" font-family="Inter" font-weight="500" text-anchor="middle" fill="#222">${i || 12}</text>`).join('')}<line class="hh" x1="100" y1="100" x2="100" y2="52" stroke="#111" stroke-width="7" stroke-linecap="round"/><line class="mm" x1="100" y1="100" x2="100" y2="28" stroke="#111" stroke-width="5" stroke-linecap="round"/><line class="ss" x1="100" y1="114" x2="100" y2="24" stroke="#12b5c0" stroke-width="2.5"/><circle cx="100" cy="100" r="6" fill="#12b5c0"/></svg>`;
+    const clockSvg = `<svg class="clock" viewBox="0 0 200 200"><circle cx="100" cy="100" r="97" fill="#fff"/>${Array.from({ length: 60 }, (_, i) => i % 5 ? `<line x1="100" y1="7" x2="100" y2="11" stroke="#bbb" stroke-width="1" transform="rotate(${i * 6} 100 100)"/>` : '').join('')}${Array.from({ length: 12 }, (_, i) => `<text x="${100 + 74 * Math.sin(i * Math.PI / 6)}" y="${108 - 74 * Math.cos(i * Math.PI / 6)}" font-size="22" font-family="Inter" font-weight="500" text-anchor="middle" fill="#222">${i || 12}</text>`).join('')}<line class="hh" x1="100" y1="100" x2="100" y2="52" stroke="#111" stroke-width="7" stroke-linecap="round"/><line class="mm" x1="100" y1="100" x2="100" y2="28" stroke="#111" stroke-width="5" stroke-linecap="round"/><line class="ss" x1="100" y1="114" x2="100" y2="24" stroke="#ff9500" stroke-width="2.5"/><circle cx="100" cy="100" r="6" fill="#ff9500"/></svg>`;
     const tClock = tile(-520, -1000, -100, -580, 0, clockSvg, { d: .3 });
-    const tChat = tile(-60, -1000, 660, -700, 1, `<div class="chat"><div class="hd"><div class="av"><span style="background:#a50044">F</span><span style="background:#1b3a8a">P</span><span style="background:#e9e9e9;color:#111">L</span></div>La famille<small>maintenant</small></div><div class="msgs"></div></div>`, { d: .38 });
-    tile(-60, -660, 280, -320, 1, `<div class="cal"><div class="d">JEUDI</div><div class="n">3</div><div class="m">décembre</div></div>`, { d: .45 });
-    tile(320, -660, 660, -320, 0, `<div class="cd"><small>NOËL DANS</small><b>21 j</b><i>aucun cadeau trouvé</i></div>`, { d: .52 });
+    tile(-60, -1000, 660, -700, 0, '', { d: .38 });
+    tile(-60, -660, 280, -320, 0, `<div class="ical"><div class="d">JEUDI</div><div class="n">3</div><div class="ev"><i></i>Noël dans 21 jours</div></div>`, { d: .45 });
+    tile(320, -660, 660, -320, 0, `<div class="wx"><div class="c">Paris <span>➤</span></div><div class="tmp">2°</div><div class="ic">❄️</div><div class="dsc">Neige</div><div class="hb">H:4° B:-1°</div></div>`, { d: .52 });
     tile(-520, -540, -100, -320, 0, '', { d: .6 });
     // around the phone (hidden for the bento)
     tile(-520, -280, -100, 300, 1, '', { near: 1 }); tile(-520, 340, -100, 815, 0, '', { near: 1 });
@@ -134,13 +166,14 @@
      [840, -280, 1260, 260, 1], [840, 300, 1260, 815, 0], [-520, 855, -100, 1275, 1], [-60, 855, 360, 1275, 0], [400, 855, 820, 1275, 1], [860, 855, 1280, 1275, 0], [-980, 1040, -560, 1440, 1]]
       .forEach(([a, b, c, d, k]) => tile(a, b, c, d, k, '', { near: (Math.abs((a + c) / 2 - 140) < 900 && (b + d) / 2 > -400) ? 2 : 0 }));
     const hands = { h: tClock.el.querySelector('.hh'), m: tClock.el.querySelector('.mm'), s: tClock.el.querySelector('.ss') };
-    const msgs = tChat.el.querySelector('.msgs');
-    const M = s.chat.map(m => { const row = h('div', 'row' + (m.me ? ' r' : ''), msgs, `<span class="typing"><i></i><i></i><i></i></span><span class="b">${esc(m.text)}</span>`); return { row, ty: row.querySelector('.typing'), b: row.querySelector('.b'), ...m }; });
+    // iMessage notifications (iOS banners) stacking over the desk
+    const msgIcon = '<span class="mi"><svg viewBox="0 0 24 24"><path fill="#fff" d="M12 3.2C6.6 3.2 2.3 6.8 2.3 11.2c0 2.5 1.4 4.7 3.6 6.2-.2 1.3-.8 2.6-1.8 3.5 1.9 0 3.6-.7 4.8-1.7 1 .3 2 .4 3.1.4 5.4 0 9.7-3.6 9.7-8.2S17.4 3.2 12 3.2z"/></svg></span>';
+    const M = s.notifs.map(m => ({ el: h('div', 'imsg', cam, `${msgIcon}<div class="bd"><div class="top"><b>${esc(m.from)}</b><small>maintenant</small></div><p>${esc(m.text)}</p></div>`), ...m }));
 
     // ---------- bento tiles (world, around the phone; they fly in at the end)
     const BTl = [
       tile(-380, 0, -100, 270, 0, `<div class="in"><small>Trustpilot</small><div class="big rate">4,1</div><div class="stars">★★★★★</div><small>avis clients</small></div>`, { cls: 'bt', bento: 0 }),
-      tile(-380, 300, -100, 545, 1, `<div class="in"><span style="font-size:42px">🚚</span><b>Livraison offerte</b><small>dès 2 maillots</small></div>`, { cls: 'bt', bento: 1 }),
+      tile(-380, 300, -100, 545, 1, `<div class="in"><b style="font-size:34px">Apple Pay</b><div class="okp">✓</div><small>Paiement accepté</small></div>`, { cls: 'bt', bento: 1 }),
       tile(-380, 575, -100, 815, 0, `<div class="jt" style="background-image:url(${IMG('img/barca.png')})"></div>`, { cls: 'bt', bento: 2 }),
       tile(380, 0, 660, 270, 1, `<div class="in"><small>Total · 4 maillots</small><div class="big tq tot">59,97€</div><s>79,96€</s></div>`, { cls: 'bt', bento: 3 }),
       tile(380, 300, 660, 545, 0, `<div class="jt" style="background-image:url(${IMG('img/france.png')})"></div>`, { cls: 'bt', bento: 4 }),
@@ -165,6 +198,15 @@
     const xp = h('div', 'xp', vp, `<img src="${IMG('img/logo.png')}">`);
     const saf = h('div', 'saf', scr, `<div class="url"><span class="u">🔍 Rechercher</span><i class="pg"></i></div><div class="home"></div>`);
     const url = saf.querySelector('.u'), pg = saf.querySelector('.pg');
+    const dim = h('div', 'dim', scr);
+    const ap = h('div', 'ap', scr, `<div class="hd"><b>Apple Pay</b><span class="x">✕</span></div>
+      <div class="row"><span class="card"><i>VISA</i></span><div><b>Carte bancaire</b><small>•••• 4021</small></div><span class="chev">›</span></div>
+      <div class="row"><span class="ico">🏠</span><div><b>Livraison</b><small>Domicile · offerte</small></div><span class="chev">›</span></div>
+      <div class="sum"><div><span>Sous-total (4 maillots)</span><span>79,96 €</span></div><div class="off3"><span>3 achetés = 1 offert</span><span>−19,99 €</span></div><div><span>Livraison</span><span>Offerte</span></div></div>
+      <div class="tot"><small>PAYER ÉLITE MAILLOT</small><b>59,97 €</b></div>
+      <div class="st"><div class="s1"><span class="side"></span>Confirmer avec le bouton latéral</div><div class="s2"><svg viewBox="0 0 40 40"><g fill="none" stroke="#0a84ff" stroke-width="2.4" stroke-linecap="round"><path d="M4 12V7a3 3 0 0 1 3-3h5M28 4h5a3 3 0 0 1 3 3v5M36 28v5a3 3 0 0 1-3 3h-5M12 36H7a3 3 0 0 1-3-3v-5"/><path d="M14 14v3M26 14v3M20 15v7h-2M15 27q5 4 10 0"/></g></svg>Face ID</div><div class="s3"><span class="spin"></span></div><div class="s4"><span class="ok">✓</span>Terminé</div></div>`);
+    const dbl = h('div', 'dbl', scr, '<span>Double-cliquer<br>pour payer</span><i></i>');
+    const apS = [...ap.querySelectorAll('.st > div')], spin = ap.querySelector('.spin'), okc = ap.querySelector('.ok');
     const tap = h('div', 'tap', scr), ring = h('div', 'ring', scr), off = h('div', 'off', scr);
 
     // ---------- overlays
@@ -196,7 +238,11 @@
       [B.add + 1.6, [140, FCY, FZ, .3, 0]],
       [B.zoom - .15, [140, FCY + 10, FZ * 1.03, 0, 0], sexy],
       [B.zoom + .55, [city[0], city[1], 3.4, -7, 10]],
-      [B.bento - .55, [city[0] - 8, city[1] + 6, 3.6, -8.5, 11], sexy],
+      [B.pay - .55, [city[0] - 8, city[1] + 6, 3.6, -8.5, 11], sexy],
+      [B.pay - .05, [140, FCY + 6, FZ * 1.02, 0, 0]],
+      [B.pay + .35, [140, FCY + 4, FZ * 1.03, .3, 0], sexy],
+      [B.pay + .95, [SX + 205, SY + 440, 2.45, 6, 9]],
+      [B.bento - .55, [SX + 195, SY + 455, 2.6, 7.5, 10], sexy],
       [B.bento + .45, [140, 0, .8, 0, 0]],
       [B.end, [140, 10, .78, 0, 0]],
       [s.duration, [140, 30, .74, 0, 0]],
@@ -240,12 +286,13 @@
       hands.m.setAttribute('transform', `rotate(${(mins % 60) * 6} 100 100)`); hands.h.setAttribute('transform', `rotate(${(mins / 60 % 12) * 30} 100 100)`);
       hands.s.setAttribute('transform', `rotate(${(t * 360 / 60 * 6 + mins * 30) % 360} 100 100)`);
       // chat: typing dots, then the message
+      // iMessage banners: drop in from the top, older ones slide down and shrink (iOS stack)
       M.forEach((m, i) => {
-        const shown = t >= m.at - .55; m.row.style.display = shown ? '' : 'none'; if (!shown) return;
-        const typing = t < m.at, k = prog(t, m.at, .35, E.back), kin = prog(t, m.at - .55, .3, E.back);
-        m.ty.style.display = typing ? '' : 'none'; m.b.style.display = typing ? 'none' : '';
-        m.row.style.transform = `scale(${typing ? lerp(.6, 1, kin) : lerp(.85, 1, k)})`; m.row.style.transformOrigin = m.me ? 'right center' : 'left center';
-        [...m.ty.children].forEach((d, j) => { d.style.transform = `translateY(${Math.sin(t * 12 - j * .9) * 3}px)`; d.style.opacity = .5 + .5 * Math.sin(t * 12 - j * .9); });
+        const k = prog(t, m.at, .5, E.back); if (t < m.at - .02) { m.el.style.display = 'none'; return; } m.el.style.display = '';
+        const newer = M.filter(o => o.at > m.at && t >= o.at).map(o => prog(t, o.at, .45, E.outQuint)).reduce((a2, v2) => a2 + v2, 0);
+        m.el.style.opacity = clamp(k * 2) * (1 - prog(t, B.phone + .2, .5));
+        m.el.style.transform = `translateY(${(1 - k) * -120 + newer * 165}px) translateZ(40px) scale(${lerp(.9, 1, clamp(k)) * (1 - newer * .04)})`;
+        m.el.style.zIndex = 50 + i;
       });
 
       // ----- in the phone
@@ -276,10 +323,20 @@
       const c1 = prog(t, tapAtc + .2, .45, E.outQuint); L.c1.d.style.transform = `translateX(${(1 - c1) * 100}%)`; L.c1.d.style.opacity = t > tapAtc + .15 ? 1 : 0;
       const c4 = prog(t, B.four, .35); L.c4.d.style.opacity = c4; L.c4.im.style.transform = `translateY(${(1 - c4) * 30}px)`;
       const tp = at => clamp((t - at + .2) / .2) * (1 - clamp((t - at - .15) / .25));
-      const t1 = tp(tapHit), t2 = tp(tapCard), t3 = tp(tapAtc), m = Math.max(t1, t2, t3);
-      const pt = t1 === m ? [200, SB + 165] : t2 === m ? [287, SB + 557] : [195, SB + 494];
+      const t1 = tp(tapHit), t2 = tp(tapCard), t3 = tp(tapAtc), t4 = tp(B.pay), m = Math.max(t1, t2, t3, t4);
+      const pt = t1 === m ? [200, SB + 165] : t2 === m ? [287, SB + 557] : t3 === m ? [195, SB + 494] : [195, SB + 615];
       tap.style.opacity = m; tap.style.left = pt[0] + 'px'; tap.style.top = pt[1] + 'px'; tap.style.transform = `scale(${lerp(1.5, .85, m)})`;
-      const ro = win(t, B.zoom + .6, B.bento - .55, .3, .2);
+      // Apple Pay: checkout tap, sheet slides up, double-click hint, Face ID, spinner, Terminé
+      const tPay = tp(B.pay);
+      const sk = prog(t, B.pay + .15, .5, E.outQuint), sOut = prog(t, B.bento - .3, .3);
+      ap.style.transform = `translateY(${(1 - sk) * 110}%)`; ap.style.opacity = t > B.pay + .1 ? 1 - sOut : 0;
+      dim.style.opacity = sk * (1 - sOut) * (t > B.pay ? 1 : 0);
+      const st = t < B.pay + 1.7 ? 0 : t < B.pay + 2.2 ? 1 : t < B.pay + 2.6 ? 2 : 3;
+      apS.forEach((el, i) => { el.style.opacity = i === st ? prog(t, [0, B.pay + 1.7, B.pay + 2.2, B.pay + 2.6][i], .15) : 0; });
+      spin.style.transform = `rotate(${t * 720}deg)`; okc.style.transform = `scale(${lerp(.4, 1, prog(t, B.pay + 2.6, .35, E.back))})`;
+      const dk2 = win(t, B.pay + .7, B.pay + 1.75, .25, .2); dbl.style.opacity = dk2;
+      dbl.lastChild.style.transform = `scaleY(${1 + Math.max(0, Math.sin((t - B.pay) * 9)) * .25})`; dbl.style.transform = `translateX(${(1 - prog(t, B.pay + .7, .35, E.outQuint)) * 40}px)`;
+      const ro = win(t, B.zoom + .6, B.pay - .6, .3, .2);
       ring.style.opacity = ro; Object.assign(ring.style, { left: '228px', top: SB + 254 + 'px', width: '150px', height: '78px', transform: `scale(${lerp(1.2, 1, ro)})` });
 
       // bento counters

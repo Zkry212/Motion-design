@@ -3,7 +3,7 @@
  "width": 1080,
  "height": 1920,
  "fps": 30,
- "duration": 25,
+ "duration": 28,
  "accent": "#5ce1e6",
  "accent2": "#a8f1f3",
  "bg": "#e9eaee",
@@ -43,19 +43,19 @@
     "gain": -15
    },
    {
-    "at": 4.5,
+    "at": 4.4,
     "src": "tick",
-    "gain": -15
+    "gain": -13
    },
    {
-    "at": 5.05,
+    "at": 4.95,
     "src": "tick",
-    "gain": -15
+    "gain": -13
    },
    {
-    "at": 5.6,
+    "at": 5.5,
     "src": "tick",
-    "gain": -15
+    "gain": -13
    },
    {
     "at": 6.2,
@@ -88,24 +88,44 @@
     "gain": -15
    },
    {
-    "at": 18.1,
+    "at": 17.9,
+    "src": "click",
+    "gain": -12
+   },
+   {
+    "at": 18.4,
+    "src": "whoosh",
+    "gain": -16
+   },
+   {
+    "at": 19.6,
+    "src": "tick",
+    "gain": -12
+   },
+   {
+    "at": 20.5,
+    "src": "pop-back",
+    "gain": -9
+   },
+   {
+    "at": 20.9,
     "src": "whoosh",
     "gain": -14
    },
    {
-    "at": 18.9,
+    "at": 21.7,
     "src": "riser",
-    "endAt": 21.3,
+    "endAt": 24.0,
     "gain": -18
    },
    {
-    "at": 22.6,
+    "at": 25.3,
     "src": "impact-boom",
     "peak": true,
     "gain": -10
    },
    {
-    "at": 22.6,
+    "at": 25.3,
     "src": "sub",
     "gain": -9
    }
@@ -115,8 +135,8 @@
   {
    "type": "tc2",
    "at": 0,
-   "dur": 25,
-   "duration": 25,
+   "dur": 28,
+   "duration": 28,
    "query": "elite maillot",
    "tagline": "Maillots de foot · 3 achetés = 1 offert",
    "beats": {
@@ -128,24 +148,10 @@
     "add": 13.6,
     "four": 15.3,
     "zoom": 15.5,
-    "bento": 18.2,
-    "end": 21.3
+    "pay": 17.9,
+    "bento": 21.0,
+    "end": 24.0
    },
-   "chat": [
-    {
-     "text": "On offre quoi à Noël ?",
-     "at": 4.5
-    },
-    {
-     "text": "Un maillot de foot !!",
-     "at": 5.05
-    },
-    {
-     "text": "Je m'en occupe 👌",
-     "at": 5.6,
-     "me": true
-    }
-   ],
    "headlines": [
     {
      "text": "Noël, dans *3 semaines.*",
@@ -180,13 +186,35 @@
     {
      "text": "Le 4ème est *offert.*",
      "at": 15.35,
-     "out": 18.0
+     "out": 17.75
+    },
+    {
+     "text": "Vous payez *avec Apple Pay.*",
+     "at": 17.95,
+     "out": 20.8
     },
     {
      "text": "*4 maillots,* 3 payés.",
-     "at": 18.5,
-     "out": 21.2,
+     "at": 21.3,
+     "out": 23.9,
      "y": 830
+    }
+   ],
+   "notifs": [
+    {
+     "from": "Maman",
+     "text": "On offre quoi aux garçons pour Noël ?",
+     "at": 4.4
+    },
+    {
+     "from": "Frérot",
+     "text": "Le maillot du Barça stp 🙏",
+     "at": 4.95
+    },
+    {
+     "from": "Papa",
+     "text": "Moi celui de la France 😄",
+     "at": 5.5
     }
    ]
   }
