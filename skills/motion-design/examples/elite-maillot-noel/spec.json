@@ -3,7 +3,7 @@
  "width": 1080,
  "height": 1920,
  "fps": 30,
- "duration": 25.5,
+ "duration": 26.3,
  "accent": "#5ce1e6",
  "accent2": "#a8f1f3",
  "bg": "#e9eaee",
@@ -333,7 +333,7 @@
     "gain": -16
    },
    {
-    "at": 23.6,
+    "at": 23.55,
     "src": "assets/sfx/logo-sting.wav",
     "gain": -5
    }
@@ -343,8 +343,8 @@
   {
    "type": "tc2",
    "at": 0,
-   "dur": 25.5,
-   "duration": 25.5,
+   "dur": 26.3,
+   "duration": 26.3,
    "query": "elite maillot",
    "tagline": "Maillots de foot · 3 achetés = 1 offert",
    "beats": {

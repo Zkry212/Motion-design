@@ -116,7 +116,7 @@
   .t2 .dim { position:absolute; inset:0; background: rgba(0,0,0,.58); z-index: 34; }
   .t2 .ap { position:absolute; left: 10px; right: 10px; bottom: 10px; height: 405px; border-radius: 38px; background:#fff; z-index: 35; padding: 20px 22px; box-sizing:border-box; box-shadow: 0 -6px 30px rgba(0,0,0,.25); }
   .t2 .ap .hd { display:flex; align-items:center; gap: 12px; margin-bottom: 14px; } .t2 .ap .hd b { font-size: 21px; flex:1; letter-spacing:-.01em; }
-  .t2 .ap .mer { width: 38px; height: 38px; border-radius: 10px; background:#111; display:grid; place-items:center; color:#5ce1e6; font: 400 28px 'Instrument Serif', serif; }
+  .t2 .ap .mer { width: 38px; height: 38px; border-radius: 10px; background:#fff; border: 1px solid #e3e3e6; display:grid; place-items:center; overflow:hidden; }
   .t2 .ap .x { width: 30px; height: 30px; border-radius: 50%; background:#ececef; display:grid; place-items:center; font-size: 14px; color:#666; }
   .t2 .ap .row { display:flex; align-items:center; gap: 14px; padding: 10px 0 14px; border-bottom: 1px solid #ececec; } .t2 .ap .row b { display:block; font-size: 17px; } .t2 .ap .row small { font-size: 14px; color:#8a8a8e; }
   .t2 .ap .row > div { flex:1; } .t2 .ap .chev { color:#c7c7cc; font-size: 24px; }
@@ -146,9 +146,12 @@
   .t2 .fog { position:absolute; left:0; right:0; top:0; height: 360px; background: linear-gradient(180deg, rgba(243,244,247,.96) 0%, rgba(243,244,247,.85) 50%, rgba(243,244,247,0) 100%); z-index: 9; }
   .t2 .dots { position:absolute; left:50%; top: 50%; display:flex; gap: 20px; transform: translate(-50%,-50%); z-index: 20; }
   .t2 .dots i { width: 28px; height: 28px; border-radius: 50%; background: var(--ink); display:block; }
+  .t2 .veil { position:absolute; inset:0; z-index: 19; background: radial-gradient(70% 45% at 50% 47%, rgba(250,251,252,.97) 0%, rgba(246,247,249,.9) 45%, rgba(240,241,244,.55) 100%); }
   .t2 .end { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; z-index: 21; }
-  .t2 .end img { width: 660px; }
-  .t2 .end .tg { margin-top: 28px; font-size: 32px; color:#5d626c; font-weight: 500; height: 40px; }
+  .t2 .end svg.emlogo { width: 860px; overflow: visible; filter: drop-shadow(0 18px 30px rgba(18,120,130,.18)); }
+  .t2 .end .tg { margin-top: 44px; font-size: 38px; color:#2b2e35; font-weight: 600; letter-spacing: -.015em; } .t2 .end .tg span { color: var(--ink); }
+  .t2 .end .urlp { margin-top: 26px; padding: 16px 32px; border-radius: 40px; background:#14161c; color:#fff; font-size: 28px; font-weight: 600; letter-spacing:.01em; }
+  .t2 .ap .mer img { width: 30px; }
   `;
 
   SCENES.tc2 = (s, root) => {
@@ -221,7 +224,7 @@
     const saf = h('div', 'saf', scr, `<div class="url"><span class="aa">A<b>A</b></span><span class="u">🔍 Rechercher</span><svg class="rl" viewBox="0 0 16 16"><path d="M13.5 8A5.5 5.5 0 1 1 11.8 4" fill="none" stroke="#111" stroke-width="1.6" stroke-linecap="round"/><path d="M12.6 1.2v3.6H9" fill="none" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><i class="pg"></i></div><div class="home"></div>`);
     const url = saf.querySelector('.u'), pg = saf.querySelector('.pg');
     const dim = h('div', 'dim', scr);
-    const ap = h('div', 'ap', scr, `<div class="hd"><span class="mer">É</span><b>Élite Maillot</b><span class="x">✕</span></div>
+    const ap = h('div', 'ap', scr, `<div class="hd"><span class="mer"><img src="${IMG('img/logo.svg')}"></span><b>Élite Maillot</b><span class="x">✕</span></div>
       <div class="row"><span class="card"><i class="chip"></i></span><div><b>Carte bancaire</b><small>•••• 4021</small></div><span class="chev">›</span></div>
       <div class="lbl">COMMANDE</div><div class="val">4 maillots · 3 achetés = <em>1 offert</em></div><div class="val sub">Total 59,97 € · Livraison offerte</div>
       <div class="st"><div class="s1"><span class="side"></span>Confirmer avec le bouton latéral</div><div class="s2"><svg viewBox="0 0 40 40"><g fill="none" stroke="#0a84ff" stroke-width="2.4" stroke-linecap="round"><path d="M4 12V7a3 3 0 0 1 3-3h5M28 4h5a3 3 0 0 1 3 3v5M36 28v5a3 3 0 0 1-3 3h-5M12 36H7a3 3 0 0 1-3-3v-5"/><path d="M14 14v3M26 14v3M20 15v7h-2M15 27q5 4 10 0"/></g></svg>Face ID</div><div class="s3"><span class="spin"></span></div><div class="s4"><span class="ok">✓</span>Terminé</div></div>`);
@@ -232,12 +235,20 @@
     // ---------- overlays
     const HL = s.headlines.map(x => { const w = wordsEl(R, x.text, ''); w.box.className = 'hl'; if (x.y) w.box.style.top = x.y + 'px'; return { w, ...x }; });
     const dots = h('div', 'dots', R, '<i></i><i></i><i></i>');
-    const end = h('div', 'end', R, `<img src="${IMG('img/logo.png')}"><div class="tg"></div>`);
+    // the real logo, vectorised (assets/img/logo.svg): ÉLITE and MAILLOT split into letters for the reveal
+    const veil = h('div', 'veil', R);
+    const xhr = new XMLHttpRequest(); xhr.open('GET', IMG('img/logo.svg'), false); xhr.send();
+    const doc = new DOMParser().parseFromString(xhr.responseText, 'image/svg+xml'), vb = doc.documentElement.getAttribute('viewBox');
+    const splitLetters = (d, cuts) => { const groups = cuts.map(() => []).concat([[]]); d.split(/(?=M)/).forEach(sp => { const xs = (sp.match(/-?\d+\.?\d*/g) || []).map(Number).filter((_, i) => i % 2 === 0); const cx = xs.reduce((a2, b2) => a2 + b2, 0) / (xs.length || 1); let g = cuts.findIndex(c => cx < c); if (g < 0) g = cuts.length; groups[g].push(sp); }); return groups.filter(g2 => g2.length).map(g2 => g2.join(' ')); };
+    const eL = splitLetters(doc.getElementById('elite').getAttribute('d'), [691, 928, 1042, 1304]), mL = splitLetters(doc.getElementById('maillot').getAttribute('d'), [882, 993, 1042, 1122, 1198, 1304]);
+    const end = h('div', 'end', R, `<svg class="emlogo" viewBox="${vb}">${eL.map(d => `<path class="le" fill="#5ce1e6" fill-rule="evenodd" d="${d}"/>`).join('')}${mL.map(d => `<path class="lm" fill="#111" fill-rule="evenodd" d="${d}"/>`).join('')}</svg><div class="tg">3 achetés = <span>1 offert</span></div><div class="urlp">elite-maillot.fr</div>`);
+    const LE = [...end.querySelectorAll('.le')], LM = [...end.querySelectorAll('.lm')], endTg2 = end.querySelector('.tg'), endPill = end.querySelector('.urlp'), logoSvg = end.querySelector('svg');
+    [...LE, ...LM].forEach(pth => { pth.style.transformBox = 'fill-box'; pth.style.transformOrigin = '50% 100%'; });
     const pill = h('div', 'pill', R, esc(s.pill || 'Un maillot pour Noël ?'));
     const svgNS = 'http://www.w3.org/2000/svg';
     R.insertAdjacentHTML('beforeend', `<svg width="0" height="0" style="position:absolute"><filter id="mbf" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB"><feGaussianBlur id="mbg" stdDeviation="0 0" edgeMode="duplicate"/></filter></svg>`);
     const mbg = R.querySelector('#mbg');
-    const endImg = end.querySelector('img'), endTg = end.querySelector('.tg'), tagline = s.tagline || '';
+    const tagline = s.tagline || '';
 
     // ---------- camera path [cx, cy, zoom, rotZ, tiltX]; third slot of a key = easing of the move that starts there
     const phoneTop = 430, FZ = 1.82, FCY = PY + (960 - phoneTop) / FZ;      // frontal: phone top at y=430
@@ -416,8 +427,15 @@
       // end: bouncing dots, the logo, the tagline typed
       const dk = win(t, B.end + .35, B.end + 1.35, .2, .25); dots.style.opacity = dk;
       [...dots.children].forEach((d, i) => { const ph2 = ((t - B.end) * 2.6 - i * .18) % 1; d.style.transform = `translateY(${-Math.max(0, Math.sin(ph2 * Math.PI)) * 26}px) scale(${1 + Math.max(0, Math.sin(ph2 * Math.PI)) * .15})`; });
-      const ek = prog(t, B.end + 1.3, .7, E.outQuint); end.style.opacity = ek; endImg.style.transform = `scale(${lerp(.82, 1, ek)})`; endImg.style.filter = ek < 1 ? `blur(${(1 - ek) * 14}px)` : 'none';
-      endTg.textContent = tagline.slice(0, Math.floor(clamp((t - B.end - 1.9) * 28, 0, tagline.length)));
+      // logo reveal: a clean light veil, ÉLITE letters pop one by one, MAILLOT rises letter by letter, then the offer and the URL
+      const L0 = B.end + 1.25;
+      veil.style.opacity = prog(t, B.end + .9, .5);
+      end.style.opacity = t > L0 - .05 ? 1 : 0;
+      LE.forEach((pth, i) => { const k = prog(t, L0 + i * .07, .5, E.back), o = clamp(prog(t, L0 + i * .07, .18)); pth.style.opacity = o; pth.style.transform = `translateY(${(1 - k) * 60}px) scale(${Math.max(.01, lerp(.35, 1, k))})`; });
+      LM.forEach((pth, i) => { const k = prog(t, L0 + .4 + i * .045, .45, E.outQuint); pth.style.opacity = k; pth.style.transform = `translateY(${(1 - k) * 50}px)`; });
+      logoSvg.style.transform = `scale(${1 + prog(t, L0, 3, E.out) * .04})`;
+      const tg2 = prog(t, L0 + .85, .45, E.outQuint); endTg2.style.opacity = tg2; endTg2.style.transform = `translateY(${(1 - tg2) * 24}px)`;
+      const pl2 = prog(t, L0 + 1.1, .45, E.back); endPill.style.opacity = clamp(pl2 * 2); endPill.style.transform = `scale(${lerp(.7, 1, pl2)})`;
     };
   };
 })();
