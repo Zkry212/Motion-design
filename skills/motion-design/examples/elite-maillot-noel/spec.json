@@ -1,59 +1,43 @@
 {
   "name": "elite-maillot-noel",
-  "width": 1080, "height": 1920, "fps": 30, "duration": 22,
-  "accent": "#5ce1e6", "accent2": "#a8f1f3", "bg": "#f2fbfc",
-  "bgCss": "linear-gradient(180deg, #fbfefe 0%, #eef9fa 60%, #dff4f6 100%)",
+  "width": 1080, "height": 1920, "fps": 30, "duration": 24,
+  "accent": "#5ce1e6", "accent2": "#a8f1f3", "bg": "#e9eaee",
+  "bgCss": "radial-gradient(120% 80% at 50% 38%, #f7f8fa 0%, #e6e8ec 55%, #cfd3da 100%)",
   "glow": false, "grain": false,
-  "script": "vitrine.js",
+  "script": "troiscoups.js",
   "voice": { "id": "REPLACE_WITH_VOICE_ID", "model": "eleven_multilingual_v2", "stability": 0.5, "similarity": 0.8, "style": 0.2, "speed": 0.95, "language": "fr" },
   "audio": {
     "voice": "assets/voice.mp3", "voiceAt": 0.3,
     "music": "assets/music.mp3", "musicGain": -13, "duck": true,
     "sfx": [
-      { "at": 2.9,  "src": "tick", "gain": -15 },
-      { "at": 3.4,  "src": "tick", "gain": -15 },
-      { "at": 3.9,  "src": "tick", "gain": -15 },
-      { "at": 4.8,  "src": "whoosh", "gain": -18 },
-      { "at": 8.35, "src": "click", "gain": -12 },
-      { "at": 9.5,  "src": "click", "gain": -12 },
-      { "at": 9.8,  "src": "tick", "gain": -13 },
-      { "at": 10.4, "src": "tick", "gain": -13 },
-      { "at": 11.0, "src": "tick", "gain": -13 },
-      { "at": 12.4, "src": "pop-back", "gain": -11 },
-      { "at": 15.4, "src": "riser", "endAt": 17.75, "gain": -17 },
-      { "at": 17.85, "src": "impact-boom", "peak": true, "gain": -10 },
-      { "at": 17.85, "src": "sub", "gain": -9 }
+      { "at": 2.95, "src": "tick", "gain": -16 },
+      { "at": 3.5,  "src": "tick", "gain": -16 },
+      { "at": 4.05, "src": "tick", "gain": -16 },
+      { "at": 5.0,  "src": "whoosh", "gain": -18 },
+      { "at": 7.6,  "src": "click", "gain": -12 },
+      { "at": 10.85, "src": "click", "gain": -12 },
+      { "at": 12.3, "src": "click", "gain": -12 },
+      { "at": 13.5, "src": "pop-back", "gain": -11 },
+      { "at": 13.7, "src": "whoosh", "gain": -17 },
+      { "at": 16.4, "src": "whoosh", "gain": -17 },
+      { "at": 17.3, "src": "riser", "endAt": 19.8, "gain": -18 },
+      { "at": 21.0, "src": "impact-boom", "peak": true, "gain": -10 },
+      { "at": 21.0, "src": "sub", "gain": -9 }
     ]
   },
   "scenes": [
-    { "type": "vitrine", "at": 0, "dur": 22, "duration": 22, "kicker": "ÉLITE MAILLOT · NOËL",
-      "beats": { "open": 5.0, "scroll": 6.6, "add": 9.5, "four": 11.6, "zoom": 11.8, "ship": 13.6, "family": 15.4, "end": 17.6 },
-      "ghosts": [
-        { "text": "NOËL", "at": 0, "out": 5.3, "y": 260 },
-        { "text": "26/27", "at": 5.0, "out": 11.7, "y": 300 },
-        { "text": "3+1", "at": 11.5, "out": 15.5, "y": 300 },
-        { "text": "NOËL", "at": 15.3, "out": 17.8, "y": 300 }
-      ],
+    { "type": "troiscoups", "at": 0, "dur": 24, "duration": 24, "query": "elite maillot",
+      "tagline": "Maillots de foot · 3 achetés = 1 offert",
+      "beats": { "chat": 2.85, "phone": 5.1, "choose": 9.3, "add": 11.4, "four": 13.5, "zoom": 13.7, "bento": 16.4, "end": 19.8 },
       "headlines": [
-        { "text": "Noël, dans *3 semaines.*", "at": 0.35, "out": 2.65, "br": 2 },
-        { "text": "Ils veulent *tous* un maillot.", "at": 2.8, "out": 4.9, "br": 3 },
-        { "text": "Tout est sur *Élite Maillot.*", "at": 5.15, "out": 6.85, "br": 3 },
-        { "text": "Vous choisissez, *en deux clics.*", "at": 7.0, "out": 9.6, "br": 2 },
-        { "text": "Barça. France. *Real.*", "at": 9.8, "stagger": 0.6, "out": 11.5 },
-        { "text": "Le 4ème est *offert.*", "at": 11.7, "out": 13.5 },
-        { "text": "Et la livraison *aussi.*", "at": 13.7, "out": 15.3 },
-        { "text": "Toute la famille, *servie.*", "at": 15.5, "out": 17.5, "br": 3 }
-      ],
-      "notifs": [
-        { "from": "Frérot", "text": "Pour Noël je veux le maillot du Barça 🙏", "at": 2.9, "x": 60, "y": 560, "r": -2 },
-        { "from": "Papa", "text": "Moi celui de la France, bien sûr", "at": 3.4, "x": 300, "y": 830, "r": 1.5 },
-        { "from": "Le petit", "text": "LE REAL !!! 🤍", "at": 3.9, "x": 110, "y": 1090, "r": -1 }
-      ],
-      "jerseys": [
-        { "img": "barca.png", "x0": 860, "y0": 560, "s0": 0.72, "r0": 12, "inAt": 0.3, "at": 9.8, "x1": 170, "y1": 700, "s1": 0.55, "r1": -10, "x2": 195, "y2": 780, "s2": 0.62 },
-        { "img": "france.png", "x0": 220, "y0": 1480, "s0": 0.85, "r0": -10, "inAt": 0.6, "front": true, "at": 10.4, "x1": 910, "y1": 760, "s1": 0.55, "r1": 8, "x2": 885, "y2": 780, "s2": 0.62 },
-        { "img": "real.png", "x0": 880, "y0": 1380, "s0": 0.6, "r0": 8, "b0": 3, "inAt": 0.9, "at": 11.0, "x1": 175, "y1": 1260, "s1": 0.55, "r1": -6, "x2": 195, "y2": 1280, "s2": 0.62 },
-        { "img": "city.png", "x0": -400, "y0": -400, "s0": 0.5, "inAt": 99, "at": 11.65, "x1": 905, "y1": 1310, "s1": 0.55, "r1": 6, "x2": 885, "y2": 1280, "s2": 0.62 }
+        { "text": "Noël, dans *3 semaines.*", "at": 0.35, "out": 2.7 },
+        { "text": "Ils veulent *un maillot.*", "at": 2.85, "out": 5.0 },
+        { "text": "Vous tapez *Élite Maillot.*", "at": 5.2, "out": 7.55 },
+        { "text": "Le site *s'ouvre.*", "at": 7.7, "out": 9.15 },
+        { "text": "Vous *choisissez.*", "at": 9.3, "out": 11.3 },
+        { "text": "Vous *ajoutez.*", "at": 11.45, "out": 13.35 },
+        { "text": "Le 4ème est *offert.*", "at": 13.5, "out": 16.2 },
+        { "text": "*4 maillots,* 3 payés.", "at": 16.6, "out": 19.7, "y": 690 }
       ]
     }
   ]
