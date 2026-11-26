@@ -1,8 +1,6 @@
-<break time="0.7s" /> Noël… dans trois semaines. <break time="1.0s" />
-Et ils veulent tous… un maillot. <break time="1.3s" />
-Vous tapez Élite Maillot. <break time="1.3s" />
-Le site s'ouvre. <break time="0.5s" /> Vous choisissez. <break time="0.5s" /> Vous ajoutez. <break time="0.2s" />
-Et le quatrième… est offert. <break time="0.2s" />
-Vous payez avec Apple Pay. <break time="2.2s" />
-Quatre maillots. <break time="0.3s" /> Trois payés. <break time="3.0s" /> <break time="0.6s" />
+<break time="0.8s" /> Noël, c'est dans trois semaines… et toute la famille veut un maillot.
+<break time="0.6s" /> Alors vous tapez Élite Maillot. <break time="1.0s" />
+Le site s'ouvre, vous choisissez, vous ajoutez au panier… et le quatrième est offert.
+Vous payez avec Apple Pay, en un geste. <break time="1.0s" />
+Quatre maillots, trois payés, livrés chez vous. <break time="1.5s" />
 Élite Maillot.
