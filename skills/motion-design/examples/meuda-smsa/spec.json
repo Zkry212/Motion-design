@@ -20,97 +20,92 @@
    {
     "at": 1.84,
     "src": "assets/sfx/whoosh-short.wav",
+    "gain": -19
+   },
+   {
+    "at": 2.29,
+    "src": "assets/sfx/key.wav",
+    "gain": -17
+   },
+   {
+    "at": 2.77,
+    "src": "assets/sfx/key.wav",
+    "gain": -17
+   },
+   {
+    "at": 3.25,
+    "src": "assets/sfx/key.wav",
+    "gain": -17
+   },
+   {
+    "at": 3.73,
+    "src": "assets/sfx/key.wav",
+    "gain": -17
+   },
+   {
+    "at": 4.21,
+    "src": "assets/sfx/key.wav",
     "gain": -17
    },
    {
     "at": 5.68,
     "src": "assets/sfx/whoosh-short.wav",
-    "gain": -17
+    "gain": -19
    },
    {
-    "at": 6.13,
-    "src": "assets/sfx/key.wav",
-    "gain": -17
-   },
-   {
-    "at": 6.61,
-    "src": "assets/sfx/key.wav",
-    "gain": -17
-   },
-   {
-    "at": 7.09,
-    "src": "assets/sfx/key.wav",
-    "gain": -17
-   },
-   {
-    "at": 7.57,
-    "src": "assets/sfx/key.wav",
-    "gain": -17
-   },
-   {
-    "at": 8.05,
-    "src": "assets/sfx/key.wav",
-    "gain": -17
-   },
-   {
-    "at": 9.52,
-    "src": "assets/sfx/whoosh-short.wav",
-    "gain": -17
-   },
-   {
-    "at": 13.18,
+    "at": 7.42,
     "src": "assets/sfx/tap.wav",
     "gain": -12
    },
    {
-    "at": 13.36,
+    "at": 7.6,
     "src": "assets/sfx/whoosh-short.wav",
-    "gain": -17
+    "gain": -19
    },
    {
-    "at": 24.88,
+    "at": 26.8,
     "src": "assets/sfx/whoosh-short.wav",
-    "gain": -17
-   },
-   {
-    "at": 27.1,
-    "src": "assets/sfx/pop-1.wav",
-    "gain": -19
-   },
-   {
-    "at": 27.34,
-    "src": "assets/sfx/pop-2.wav",
-    "gain": -19
-   },
-   {
-    "at": 27.58,
-    "src": "assets/sfx/pop-3.wav",
-    "gain": -19
-   },
-   {
-    "at": 27.82,
-    "src": "assets/sfx/pop-4.wav",
-    "gain": -19
-   },
-   {
-    "at": 28.06,
-    "src": "assets/sfx/pop-5.wav",
-    "gain": -19
-   },
-   {
-    "at": 28.3,
-    "src": "assets/sfx/pop-6.wav",
     "gain": -19
    },
    {
     "at": 28.54,
-    "src": "assets/sfx/pop-7.wav",
-    "gain": -19
+    "src": "assets/sfx/pop-1.wav",
+    "gain": -20
    },
    {
     "at": 28.78,
+    "src": "assets/sfx/pop-2.wav",
+    "gain": -20
+   },
+   {
+    "at": 29.02,
+    "src": "assets/sfx/pop-3.wav",
+    "gain": -20
+   },
+   {
+    "at": 29.26,
+    "src": "assets/sfx/pop-4.wav",
+    "gain": -20
+   },
+   {
+    "at": 29.5,
+    "src": "assets/sfx/pop-5.wav",
+    "gain": -20
+   },
+   {
+    "at": 29.74,
+    "src": "assets/sfx/pop-6.wav",
+    "gain": -20
+   },
+   {
+    "at": 29.98,
+    "src": "assets/sfx/pop-7.wav",
+    "gain": -20
+   },
+   {
+    "at": 30.22,
     "src": "assets/sfx/pop-8.wav",
-    "gain": -19
+    "gain": -20
    }
   ]
  },
@@ -124,14 +119,14 @@
    "beatOffset": 0.216,
    "beats": {
     "menu": 2.14,
-    "search": 5.98,
-    "album": 9.82,
-    "play": 13.18,
-    "np": 13.66,
-    "out": 25.18,
-    "end": 25.18
+    "search": 2.14,
+    "album": 5.98,
+    "play": 7.42,
+    "np": 7.9,
+    "out": 27.1,
+    "end": 27.1
    },
-   "trackStart": 13.66,
+   "trackStart": 7.9,
    "trackLen": 161
   }
  ]

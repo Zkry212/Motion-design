@@ -152,30 +152,24 @@
 
     // camera: translate x/y, zoom, rotateY, rotateX, rotateZ — whip moves between shots, slow drifts inside a shot
     const BAR = 4 * 60 / (s.bpm || 125);
+    // calm camera: soft eased moves, no whips; long slow drifts on the Now Playing screen
+    const io = E.inOut, N = B.np, S = (B.out - B.np - .6) / 4;
     const CAM = [
-      [0, [0, 0, 1.12, 0, 0, 0]],
-      [B.menu - .3, [0, 0, 1.0, 0, 0, 0], whip],
-      [B.menu, [-60, 180, 1.18, 26, 10, -4]],
-      [B.menu + BAR, [-40, 100, 1.1, 20, 8, -3]],
-      [B.search - .3, [40, -40, 1.05, 14, 6, -2], whip],
-      [B.search, [0, 160, 1.12, -20, 8, 3]],
-      [B.search + BAR * 2 - .3, [0, 120, 1.06, -12, 6, 2], whip],
-      [B.album, [0, 0, .92, 32, 0, -3]],
-      [B.play - .45, [0, 0, 1.0, 6, 0, 0], whip],
-      [B.play, [0, -380, 1.25, 0, 6, 0]],
-      [B.np - .05, [0, -380, 1.25, 0, 6, 0], whip],
-      [B.np + .3, [0, 0, .84, -28, 0, 3]],
-      [B.np + BAR - .3, [0, 60, .95, -12, 2, 1], whip],
-      [B.np + BAR, [0, -300, 1.45, 10, 6, -2]],
-      [B.np + BAR * 2 - .3, [0, -240, 1.38, 6, 5, -1], whip],
-      [B.np + BAR * 2, [0, 220, 1.3, -10, 4, 1]],
-      [B.np + BAR * 3 - .3, [0, 180, 1.25, -6, 3, 1], whip],
-      [B.np + BAR * 3, [0, -40, 1.0, 24, 0, -2]],
-      [B.np + BAR * 4 - .3, [0, 0, .96, 14, 0, -1], whip],
-      [B.np + BAR * 4, [0, 340, 1.4, -8, 6, 2]],
-      [B.out - .3, [0, 300, 1.35, -4, 5, 1], whip],
-      [B.out, [0, 0, .72, 0, 0, 0]],
-      [s.duration, [0, 0, .74, 0, 0, 0]],
+      [0, [0, 0, 1.06, 0, 0, 0], io],
+      [B.search - .35, [0, 0, 1.0, 0, 0, 0], io],
+      [B.search, [0, 120, 1.06, -6, 3, 0]],
+      [B.album - .35, [0, 100, 1.04, -4, 2, 0], io],
+      [B.album, [0, 0, .95, 6, 0, 0]],
+      [B.play - .4, [0, 0, 1.0, 2, 0, 0], io],
+      [B.play, [0, -150, 1.06, 0, 2, 0]],
+      [N - .1, [0, -150, 1.06, 0, 2, 0], io],
+      [N + .5, [0, 0, .88, 0, 0, 0], io],
+      [N + .5 + S, [0, -220, 1.12, 3, 2, 0], io],
+      [N + .5 + S * 2, [0, 200, 1.1, -3, 2, 0], io],
+      [N + .5 + S * 3, [0, 0, .92, 2, 0, 0], io],
+      [B.out - .1, [0, 60, 1.0, 0, 1, 0], io],
+      [B.out + .4, [0, 0, .74, 0, 0, 0]],
+      [s.duration, [0, 0, .76, 0, 0, 0]],
     ];
     const camAt = t => kf(t, CAM);
     const camCss = c => `translate(${c[0]}px, ${c[1]}px) scale(${c[2]}) rotateY(${c[3]}deg) rotateX(${c[4]}deg) rotateZ(${c[5]}deg)`;
@@ -186,16 +180,16 @@
       cam.style.transform = camCss(c);
       const v = Math.hypot(c[0] - p[0], c[1] - p[1]) + Math.abs(Math.log(c[2] / p[2])) * 600 + Math.abs(c[3] - p[3]) * 14 + Math.abs(c[4] - p[4]) * 14;
       const bxy = Math.min(5, Math.max(0, v - 8) * .12), horiz = Math.abs(c[3] - p[3]) * 14 + Math.abs(c[0] - p[0]), vert = Math.abs(c[4] - p[4]) * 14 + Math.abs(c[1] - p[1]);
-      const tot = horiz + vert + 1e-6, eb = prog(t, B.out - .2, .4) * (1 - prog(t, B.end - .1, .4)) * 6;
+      const tot = horiz + vert + 1e-6, eb = 0;
       if (bxy + eb > .4) { mbg.setAttribute('stdDeviation', `${(bxy * (.3 + horiz / tot) + eb).toFixed(2)} ${(bxy * (.3 + vert / tot) + eb).toFixed(2)}`); stage.style.filter = 'url(#zmb)'; } else stage.style.filter = 'none';
       const bt = beat(t);
       FL.forEach((f, i) => { f.style.transform = `translate(${Math.sin(t * .7 + i * 2) * 140}px, ${Math.cos(t * .55 + i) * 120}px) scale(${1 + Math.sin(t * .9 + i) * .15 + bt * .08 * (t > B.np ? 1 : 0)}) rotate(${t * 12 + i * 40}deg)`; f.style.opacity = .55 + .25 * Math.sin(t * .8 + i); });
       const show = (el, a, b) => {
         const w2 = el._w || el, ki = a < 0 ? 1 : prog(t, a, .38, E.outQuint), ko = prog(t, b - .22, .22, k => k * k * k), k = Math.min(ki, 1 - ko);
         w2.style.display = k > .001 ? '' : 'none'; w2.style.opacity = clamp(ki * 1.6) * (1 - ko);
-        w2.style.transform = `translateZ(${(1 - ki) * -700 + ko * 900}px)`; w2.style.filter = (1 - ki) + ko > .02 ? `blur(${((1 - ki) * 10 + ko * 12).toFixed(1)}px)` : 'none';
+        w2.style.transform = `translateZ(${(1 - ki) * -320 + ko * 380}px)`; w2.style.filter = (1 - ki) + ko > .02 ? `blur(${((1 - ki) * 6 + ko * 6).toFixed(1)}px)` : 'none';
         return k; };
-      const fl = Math.max(...[B.menu, B.search, B.album, B.np, B.out, B.end].map(x => clamp(1 - Math.abs(t - x) / .12))); flare.style.opacity = fl * .7;
+      const fl = Math.max(...[B.menu, B.search, B.album, B.np, B.out, B.end].map(x => clamp(1 - Math.abs(t - x) / .12))); flare.style.opacity = fl * .35;
       // 1. opener
       show(logo, -1, B.menu);
       const mk2 = prog(t, .05, .6, E.outQuint); hMW.style.opacity = mk2; hMW.style.transform = `scale(${lerp(1.3, 1, mk2) * (1 + bt * .035)})`; hMW.style.filter = mk2 < 1 ? `blur(${(1 - mk2) * 22}px)` : `drop-shadow(0 0 ${20 + bt * 40}px rgba(250,45,72,.6))`;
@@ -213,7 +207,7 @@
       const rk = prog(t, B.search + 1.92, .5, E.back); res.style.transform = `translateY(${(1 - rk) * 80}px) translateZ(${(1 - rk) * -200}px)`;
       // 4. album card turns in 3D, cursor clicks Play
       show(albc, B.album, B.np);
-      const ak = prog(t, B.album - .3, .9, E.outQuint); albc.style.transform = `rotateY(${(1 - ak) * -40}deg) translateZ(${(1 - ak) * -400}px)`;
+      const ak = prog(t, B.album - .3, .9, E.outQuint); albc.style.transform = `rotateY(${(1 - ak) * -14}deg) translateZ(${(1 - ak) * -150}px)`;
       [bPlay, bShuf].forEach((b2, i) => LG.sheen(b2, t * .3 + i * .4));
       bPlay.style.transform = `scale(${1 - .06 * clamp(1 - Math.abs(t - B.play) / .12)})`; bPlay.style.boxShadow = t > B.play ? '0 0 50px rgba(250,45,72,.6)' : '';
       const ck = prog(t, B.play - .8, .7, E.inOut), cv2 = win(t, B.play - .9, B.play + .5, .2, .2);
@@ -221,7 +215,7 @@
       const rpk = clamp((t - B.play) / .45); rip.style.opacity = t > B.play ? (1 - rpk) : 0; rip.style.left = '340px'; rip.style.top = '1310px'; rip.style.transform = `scale(${.2 + rpk * 1.6})`;
       // 5. now playing: art pulses on the beat, glowing waveform, time runs
       show(np, B.np, B.out);
-      const nk = prog(t, B.np - .05, .6, E.outQuint); np.style.transform = `translateZ(${(1 - nk) * -600}px) rotateX(${(1 - nk) * 25}deg)`;
+      const nk = prog(t, B.np - .05, .6, E.outQuint); np.style.transform = `translateZ(${(1 - nk) * -200}px)`;
       npArt.style.transform = `scale(${1 + bt * .03})`; npBg.style.transform = `scale(${1.1 + bt * .05}) rotate(${t * 4}deg)`;
       wv.forEach((b2, i) => { b2.style.height = (14 + 130 * Math.abs(Math.sin(t * 6 + i * .55) * Math.cos(t * 2.3 + i * .21)) * (.45 + bt * .55)) + 'px'; });
       const el = Math.max(0, t - B.np + (s.trackStart || 0)), fm = x => `${Math.floor(x / 60)}:${String(Math.floor(x % 60)).padStart(2, '0')}`; t1.textContent = fm(el); t2.textContent = '-' + fm(Math.max(0, (s.trackLen || 161) - el));
@@ -229,10 +223,10 @@
       // end card: letters fall into place, the platform marks arrive in Liquid Glass tiles
       const ek = prog(t, B.end, .3); end.style.opacity = ek; end.style.display = ek > 0 ? '' : 'none';
       if (ek > 0 && !plGlassDone) { PL.forEach(pl => { pl.style.position = 'relative'; LG.make(pl, { w: pl.offsetWidth || 200, h: 200, r: 40, tint: 'rgba(255,255,255,.06)' }); pl.style.position = 'relative'; }); plGlassDone = true; }
-      l1.forEach((sp, i) => { const k = prog(t, B.end + i * .06, .45, E.back); sp.style.opacity = clamp(k * 2); sp.style.transform = `translateY(${(1 - k) * -120}px) rotate(${(1 - k) * (i % 2 ? 20 : -20)}deg)`; });
-      l2.forEach((sp, i) => { const k = prog(t, B.end + 1.2 + i * .02, .45, E.outQuint); sp.style.opacity = k; sp.style.filter = k < 1 ? `blur(${(1 - k) * 10}px)` : 'none'; });
-      PL.forEach((pl, i) => { const k = prog(t, B.end + 1.92 + i * .24, .45, E.back); pl.style.opacity = clamp(k * 2); pl.style.transform = `translateY(${(1 - k) * 60}px) scale(${lerp(.6, 1, k)})`; LG.sheen(pl, t * .3 + i * .2); });
-      const mk = prog(t, B.end + 3.84, .6, E.outQuint); eMW.style.opacity = mk; eMW.style.transform = `scale(${lerp(1.2, 1, mk) * (1 + bt * .03 * mk)})`; eSM.style.opacity = prog(t, B.end + 4.32, .5); eLab.style.opacity = prog(t, B.end + 4.8, .5);
+      l1.forEach((sp, i) => { const k = prog(t, B.end + i * .04, .4, E.outQuint); sp.style.opacity = clamp(k * 2); sp.style.transform = `translateY(${(1 - k) * -40}px)`; });
+      l2.forEach((sp, i) => { const k = prog(t, B.end + .96 + i * .02, .45, E.outQuint); sp.style.opacity = k; sp.style.filter = k < 1 ? `blur(${(1 - k) * 10}px)` : 'none'; });
+      PL.forEach((pl, i) => { const k = prog(t, B.end + 1.44 + i * .24, .45, E.outQuint); pl.style.opacity = clamp(k * 2); pl.style.transform = `translateY(${(1 - k) * 60}px) scale(${lerp(.6, 1, k)})`; LG.sheen(pl, t * .3 + i * .2); });
+      const mk = prog(t, B.end + 3.36, .6, E.outQuint); eMW.style.opacity = mk; eMW.style.transform = `scale(${lerp(1.2, 1, mk) * (1 + bt * .03 * mk)})`; eSM.style.opacity = prog(t, B.end + 3.6, .5); eLab.style.opacity = prog(t, B.end + 3.84, .5);
     };
   };
 })();
