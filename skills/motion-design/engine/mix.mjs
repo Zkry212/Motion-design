@@ -52,7 +52,7 @@ export async function mix(proj, spec, video, outFile, D) {
   if (A.music && fs.existsSync(P(A.music))) {
     inputs.push('-stream_loop', '-1', '-i', P(A.music)); const i = idx();
     chains.push(`[${i}:a]aformat=channel_layouts=stereo,aresample=48000,atrim=0:${D},loudnorm=I=${-16 + (A.musicGain ?? -12)}:TP=-3,` +
-      `afade=t=in:d=.6,afade=t=out:st=${Math.max(0, D - 1.5)}:d=1.5[mraw]`);
+      `afade=t=in:d=0.6,afade=t=out:st=${Math.max(0, D - 1.5)}:d=1.5[mraw]`);
     if (voiceLabel && A.duck !== false) { chains.push(`[mraw][vsc]sidechaincompress=threshold=0.03:ratio=6:attack=40:release=450:makeup=1[mus]`); mixIn.push('[mus]'); }
     else { mixIn.push('[mraw]'); if (voiceLabel) chains.push('[vsc]anullsink'); }
   } else if (voiceLabel) chains.push('[vsc]anullsink');

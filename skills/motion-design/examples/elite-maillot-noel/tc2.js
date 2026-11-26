@@ -107,15 +107,16 @@
   .t2 .ical .dd { position:relative; height: 34px; overflow:hidden; } .t2 .ical .dd div { position:absolute; left:0; top:0; }
   /* Apple Pay */
   .t2 .dim { position:absolute; inset:0; background: rgba(0,0,0,.58); z-index: 34; }
-  .t2 .ap { position:absolute; left: 6px; right: 6px; bottom: 6px; height: 490px; border-radius: 40px; background:#fff; z-index: 35; padding: 18px 20px; box-sizing:border-box; box-shadow: 0 -10px 40px rgba(0,0,0,.25); }
-  .t2 .ap .hd { display:flex; justify-content:space-between; align-items:center; margin-bottom: 10px; } .t2 .ap .hd b { font-size: 22px; } .t2 .ap .x { width: 30px; height: 30px; border-radius: 50%; background:#eee; display:grid; place-items:center; font-size: 14px; color:#666; }
-  .t2 .ap .row { display:flex; align-items:center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #eee; } .t2 .ap .row b { display:block; font-size: 15px; } .t2 .ap .row small { font-size: 13px; color:#8a8a8e; }
-  .t2 .ap .row > div { flex:1; } .t2 .ap .chev { color:#c7c7cc; font-size: 22px; }
-  .t2 .ap .card { width: 52px; height: 34px; border-radius: 6px; background: linear-gradient(135deg,#1c3d6e,#0c1a33); position:relative; } .t2 .ap .card i { position:absolute; right: 5px; bottom: 3px; font-size: 9px; font-weight: 900; font-style: italic; color:#fff; }
-  .t2 .ap .ico { width: 52px; text-align:center; font-size: 22px; }
-  .t2 .ap .sum { padding: 10px 0 6px; font-size: 14px; color:#3a3a3c; } .t2 .ap .sum div { display:flex; justify-content:space-between; padding: 3px 0; } .t2 .ap .sum .off3 { color:#12a3ad; font-weight: 700; }
-  .t2 .ap .tot { display:flex; justify-content:space-between; align-items:baseline; border-top: 1px solid #eee; padding-top: 10px; } .t2 .ap .tot small { font-size: 12px; color:#8a8a8e; font-weight: 600; } .t2 .ap .tot b { font-size: 26px; }
-  .t2 .ap .st { position:relative; height: 110px; margin-top: 10px; } .t2 .ap .st > div { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap: 8px; font-size: 14px; color:#3a3a3c; }
+  .t2 .ap { position:absolute; left: 10px; right: 10px; bottom: 10px; height: 405px; border-radius: 38px; background:#fff; z-index: 35; padding: 20px 22px; box-sizing:border-box; box-shadow: 0 -6px 30px rgba(0,0,0,.25); }
+  .t2 .ap .hd { display:flex; align-items:center; gap: 12px; margin-bottom: 14px; } .t2 .ap .hd b { font-size: 21px; flex:1; letter-spacing:-.01em; }
+  .t2 .ap .mer { width: 38px; height: 38px; border-radius: 10px; background:#111; display:grid; place-items:center; color:#5ce1e6; font: 400 28px 'Instrument Serif', serif; }
+  .t2 .ap .x { width: 30px; height: 30px; border-radius: 50%; background:#ececef; display:grid; place-items:center; font-size: 14px; color:#666; }
+  .t2 .ap .row { display:flex; align-items:center; gap: 14px; padding: 10px 0 14px; border-bottom: 1px solid #ececec; } .t2 .ap .row b { display:block; font-size: 17px; } .t2 .ap .row small { font-size: 14px; color:#8a8a8e; }
+  .t2 .ap .row > div { flex:1; } .t2 .ap .chev { color:#c7c7cc; font-size: 24px; }
+  .t2 .ap .card { width: 62px; height: 40px; border-radius: 6px; background: linear-gradient(135deg,#2c2f45,#11131f 70%); position:relative; box-shadow: 0 1px 2px rgba(0,0,0,.3); } .t2 .ap .card .chip { position:absolute; left: 8px; top: 12px; width: 13px; height: 10px; border-radius: 2px; background: linear-gradient(135deg,#e9cf7b,#b8913a); }
+  .t2 .ap .lbl { margin-top: 14px; font-size: 13px; font-weight: 600; color:#8a8a8e; letter-spacing:.04em; }
+  .t2 .ap .val { font-size: 16px; color:#1c1c1e; margin-top: 4px; } .t2 .ap .val em { font-style: normal; color:#12a3ad; font-weight: 700; } .t2 .ap .val.sub { color:#3a3a3c; font-size: 15px; padding-bottom: 14px; border-bottom: 1px solid #ececec; }
+  .t2 .ap .st { position:relative; height: 120px; margin-top: 6px; } .t2 .ap .st > div { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap: 8px; font-size: 14px; color:#3a3a3c; }
   .t2 .ap .side { width: 22px; height: 40px; border: 2px solid #0a84ff; border-radius: 6px; display:block; } .t2 .ap .s2 svg { width: 54px; }
   .t2 .ap .spin { width: 46px; height: 46px; border-radius: 50%; border: 3.5px solid #e5e5ea; border-top-color: #0a84ff; display:block; }
   .t2 .ap .ok { width: 52px; height: 52px; border-radius: 50%; border: 3.5px solid #0a84ff; color:#0a84ff; display:grid; place-items:center; font-size: 28px; font-weight: 700; }
@@ -205,11 +206,9 @@
     const saf = h('div', 'saf', scr, `<div class="url"><span class="u">🔍 Rechercher</span><i class="pg"></i></div><div class="home"></div>`);
     const url = saf.querySelector('.u'), pg = saf.querySelector('.pg');
     const dim = h('div', 'dim', scr);
-    const ap = h('div', 'ap', scr, `<div class="hd"><b>Apple Pay</b><span class="x">✕</span></div>
-      <div class="row"><span class="card"><i>VISA</i></span><div><b>Carte bancaire</b><small>•••• 4021</small></div><span class="chev">›</span></div>
-      <div class="row"><span class="ico">🏠</span><div><b>Livraison</b><small>Domicile · offerte</small></div><span class="chev">›</span></div>
-      <div class="sum"><div><span>Sous-total (4 maillots)</span><span>79,96 €</span></div><div class="off3"><span>3 achetés = 1 offert</span><span>−19,99 €</span></div><div><span>Livraison</span><span>Offerte</span></div></div>
-      <div class="tot"><small>PAYER ÉLITE MAILLOT</small><b>59,97 €</b></div>
+    const ap = h('div', 'ap', scr, `<div class="hd"><span class="mer">É</span><b>Élite Maillot</b><span class="x">✕</span></div>
+      <div class="row"><span class="card"><i class="chip"></i></span><div><b>Carte bancaire</b><small>•••• 4021</small></div><span class="chev">›</span></div>
+      <div class="lbl">COMMANDE</div><div class="val">4 maillots · 3 achetés = <em>1 offert</em></div><div class="val sub">Total 59,97 € · Livraison offerte</div>
       <div class="st"><div class="s1"><span class="side"></span>Confirmer avec le bouton latéral</div><div class="s2"><svg viewBox="0 0 40 40"><g fill="none" stroke="#0a84ff" stroke-width="2.4" stroke-linecap="round"><path d="M4 12V7a3 3 0 0 1 3-3h5M28 4h5a3 3 0 0 1 3 3v5M36 28v5a3 3 0 0 1-3 3h-5M12 36H7a3 3 0 0 1-3-3v-5"/><path d="M14 14v3M26 14v3M20 15v7h-2M15 27q5 4 10 0"/></g></svg>Face ID</div><div class="s3"><span class="spin"></span></div><div class="s4"><span class="ok">✓</span>Terminé</div></div>`);
     const dbl = h('div', 'dbl', scr, '<span>Double-cliquer<br>pour payer</span><i></i>');
     const apS = [...ap.querySelectorAll('.st > div')], spin = ap.querySelector('.spin'), okc = ap.querySelector('.ok');
@@ -252,8 +251,8 @@
       [B.pay - .55, [city[0] - 8, city[1] + 6, 3.6, -8.5, 11], sexy],
       [B.pay - .05, [140, FCY + 6, FZ * 1.02, 0, 0]],
       [B.pay + .35, [140, FCY + 4, FZ * 1.03, .3, 0], sexy],
-      [B.pay + .95, [SX + 205, SY + 440, 2.45, 6, 9]],
-      [B.bento - .55, [SX + 195, SY + 455, 2.6, 7.5, 10], sexy],
+      [B.pay + .95, [SX + 230, SY + 470, 2.4, 3, 5]],
+      [B.bento - .55, [SX + 200, SY + 560, 3.1, 4.5, 6], sexy],
       [B.bento + .45, [140, 0, .8, 0, 0]],
       [B.end, [140, 10, .78, 0, 0]],
       [s.duration, [140, 30, .74, 0, 0]],
@@ -329,7 +328,7 @@
       } else pill.style.display = 'none';
 
       // ----- in the phone
-      const typeAt = B.phone + 1.2, cps = 9, typed = Math.floor(clamp((t - typeAt) * cps, 0, query.length));
+      const typeAt = B.phone + .8, cps = 9, typed = Math.floor(clamp((t - typeAt) * cps, 0, query.length));
       tx.textContent = query.slice(0, typed); ph.style.display = typed ? 'none' : '';
       const hasRes = typed >= 5; hitc.style.opacity = prog(t, typeAt + 5 / cps, .25); hitc.style.transform = `translateY(${(1 - prog(t, typeAt + 5 / cps, .35, E.outQuint)) * 20}px)`;
       sugBox.style.opacity = 1 - prog(t, typeAt + 5 / cps, .2); hint.textContent = hasRes ? 'MEILLEUR RÉSULTAT' : 'SUGGESTIONS';
@@ -365,11 +364,13 @@
       // Apple Pay: checkout tap, sheet slides up, double-click hint, Face ID, spinner, Terminé
       const tPay = tp(B.pay);
       const sk = prog(t, B.pay + .15, .5, E.outQuint), sOut = prog(t, B.bento - .3, .3);
-      ap.style.transform = `translateY(${(1 - sk) * 110}%)`; ap.style.opacity = t > B.pay + .1 ? 1 - sOut : 0;
+      ap.style.transform = `translateY(${(1 - sk) * 115 + sOut * 60}%)`; ap.style.opacity = t > B.pay + .1 ? 1 - sOut : 0;
       dim.style.opacity = sk * (1 - sOut) * (t > B.pay ? 1 : 0);
-      const st = t < B.pay + 1.7 ? 0 : t < B.pay + 2.2 ? 1 : t < B.pay + 2.6 ? 2 : 3;
-      apS.forEach((el, i) => { el.style.opacity = i === st ? prog(t, [0, B.pay + 1.7, B.pay + 2.2, B.pay + 2.6][i], .15) : 0; });
-      spin.style.transform = `rotate(${t * 720}deg)`; okc.style.transform = `scale(${lerp(.4, 1, prog(t, B.pay + 2.6, .35, E.back))})`;
+      const P1 = B.pay + 1.7, P2 = B.pay + 2.15, P3 = B.pay + 2.55;
+      const st = t < P1 ? 0 : t < P2 ? 1 : t < P3 ? 2 : 3;
+      apS.forEach((el, i) => { el.style.opacity = i === st ? (i ? prog(t, [0, P1, P2, P3][i], .12) : .45) : 0; });
+      apS[1].firstChild.style.transform = `scale(${1 + Math.sin(prog(t, P1, .45) * Math.PI) * .12})`;
+      spin.style.transform = `rotate(${t * 720}deg)`; okc.style.transform = `scale(${lerp(.4, 1, prog(t, P3, .35, E.back))})`;
       const dk2 = win(t, B.pay + .7, B.pay + 1.75, .25, .2); dbl.style.opacity = dk2;
       dbl.lastChild.style.transform = `scaleY(${1 + Math.max(0, Math.sin((t - B.pay) * 9)) * .25})`; dbl.style.transform = `translateX(${(1 - prog(t, B.pay + .7, .35, E.outQuint)) * 40}px)`;
       const ro = win(t, B.zoom + .6, B.pay - .6, .3, .2);

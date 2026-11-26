@@ -3,7 +3,7 @@
  "width": 1080,
  "height": 1920,
  "fps": 30,
- "duration": 28,
+ "duration": 25.5,
  "accent": "#5ce1e6",
  "accent2": "#a8f1f3",
  "bg": "#e9eaee",
@@ -23,111 +23,309 @@
  "audio": {
   "voice": "assets/voice.mp3",
   "voiceAt": 0.3,
-  "music": "assets/music.mp3",
-  "musicGain": -13,
+  "music": "assets/music.wav",
+  "musicGain": -23,
   "duck": true,
   "sfx": [
    {
-    "at": 0.3,
-    "src": "whoosh",
-    "gain": -20
+    "at": 0.0,
+    "src": "assets/sfx/whoosh-rise.wav",
+    "gain": -12
    },
    {
-    "at": 1.7,
-    "src": "whoosh",
-    "gain": -15
-   },
-   {
-    "at": 3.9,
-    "src": "whoosh",
-    "gain": -15
-   },
-   {
-    "at": 4.4,
-    "src": "tick",
+    "at": 0.22,
+    "src": "assets/sfx/pop-1.wav",
     "gain": -13
    },
    {
-    "at": 4.95,
-    "src": "tick",
+    "at": 0.55,
+    "src": "assets/sfx/pop-2.wav",
     "gain": -13
    },
    {
-    "at": 5.5,
-    "src": "tick",
+    "at": 0.63,
+    "src": "assets/sfx/pop-3.wav",
     "gain": -13
    },
    {
-    "at": 6.2,
-    "src": "whoosh",
-    "gain": -16
+    "at": 0.7,
+    "src": "assets/sfx/pop-4.wav",
+    "gain": -13
    },
    {
-    "at": 9.45,
-    "src": "click",
-    "gain": -12
+    "at": 0.78,
+    "src": "assets/sfx/pop-5.wav",
+    "gain": -13
    },
    {
-    "at": 11.3,
-    "src": "click",
-    "gain": -12
+    "at": 0.86,
+    "src": "assets/sfx/pop-6.wav",
+    "gain": -13
    },
    {
-    "at": 14.6,
-    "src": "click",
-    "gain": -12
+    "at": 0.98,
+    "src": "assets/sfx/pop-7.wav",
+    "gain": -13
    },
    {
-    "at": 15.3,
-    "src": "pop-back",
-    "gain": -11
+    "at": 1.12,
+    "src": "assets/sfx/pop-8.wav",
+    "gain": -13
    },
    {
-    "at": 15.5,
-    "src": "whoosh",
-    "gain": -15
+    "at": 1.24,
+    "src": "assets/sfx/pop-9.wav",
+    "gain": -13
    },
    {
-    "at": 17.9,
-    "src": "click",
-    "gain": -12
-   },
-   {
-    "at": 18.4,
-    "src": "whoosh",
-    "gain": -16
-   },
-   {
-    "at": 19.6,
-    "src": "tick",
-    "gain": -12
-   },
-   {
-    "at": 20.5,
-    "src": "pop-back",
-    "gain": -9
-   },
-   {
-    "at": 20.9,
-    "src": "whoosh",
-    "gain": -14
-   },
-   {
-    "at": 21.7,
-    "src": "riser",
-    "endAt": 24.0,
-    "gain": -18
-   },
-   {
-    "at": 25.3,
-    "src": "impact-boom",
-    "peak": true,
+    "at": 1.0,
+    "src": "assets/sfx/whoosh-med.wav",
     "gain": -10
    },
    {
-    "at": 25.3,
-    "src": "sub",
+    "at": 2.35,
+    "src": "assets/sfx/thud.wav",
+    "gain": -11
+   },
+   {
+    "at": 2.35,
+    "src": "assets/sfx/key.wav",
+    "gain": -16
+   },
+   {
+    "at": 3.15,
+    "src": "assets/sfx/whoosh-med.wav",
     "gain": -9
+   },
+   {
+    "at": 4.2,
+    "src": "assets/sfx/msg.wav",
+    "gain": -11
+   },
+   {
+    "at": 4.7,
+    "src": "assets/sfx/msg.wav",
+    "gain": -11
+   },
+   {
+    "at": 5.2,
+    "src": "assets/sfx/msg.wav",
+    "gain": -11
+   },
+   {
+    "at": 6.0,
+    "src": "assets/sfx/whoosh-long.wav",
+    "gain": -8
+   },
+   {
+    "at": 6.2,
+    "src": "assets/sfx/whoosh-short.wav",
+    "gain": -13
+   },
+   {
+    "at": 7.4,
+    "src": "assets/sfx/thud.wav",
+    "gain": -13
+   },
+   {
+    "at": 7.3,
+    "src": "assets/sfx/key.wav",
+    "gain": -15
+   },
+   {
+    "at": 7.411,
+    "src": "assets/sfx/key.wav",
+    "gain": -15
+   },
+   {
+    "at": 7.522,
+    "src": "assets/sfx/key.wav",
+    "gain": -15
+   },
+   {
+    "at": 7.633,
+    "src": "assets/sfx/key.wav",
+    "gain": -15
+   },
+   {
+    "at": 7.744,
+    "src": "assets/sfx/key.wav",
+    "gain": -15
+   },
+   {
+    "at": 7.856,
+    "src": "assets/sfx/key.wav",
+    "gain": -15
+   },
+   {
+    "at": 7.967,
+    "src": "assets/sfx/key.wav",
+    "gain": -15
+   },
+   {
+    "at": 8.078,
+    "src": "assets/sfx/key.wav",
+    "gain": -15
+   },
+   {
+    "at": 8.189,
+    "src": "assets/sfx/key.wav",
+    "gain": -15
+   },
+   {
+    "at": 8.3,
+    "src": "assets/sfx/key.wav",
+    "gain": -15
+   },
+   {
+    "at": 8.411,
+    "src": "assets/sfx/key.wav",
+    "gain": -15
+   },
+   {
+    "at": 8.522,
+    "src": "assets/sfx/key.wav",
+    "gain": -15
+   },
+   {
+    "at": 8.633,
+    "src": "assets/sfx/key.wav",
+    "gain": -15
+   },
+   {
+    "at": 9.35,
+    "src": "assets/sfx/tap.wav",
+    "gain": -11
+   },
+   {
+    "at": 9.4,
+    "src": "assets/sfx/whoosh-rise.wav",
+    "gain": -11
+   },
+   {
+    "at": 10.2,
+    "src": "assets/sfx/whoosh-short.wav",
+    "gain": -15
+   },
+   {
+    "at": 11.6,
+    "src": "assets/sfx/tap.wav",
+    "gain": -11
+   },
+   {
+    "at": 11.65,
+    "src": "assets/sfx/whoosh-med.wav",
+    "gain": -12
+   },
+   {
+    "at": 12.9,
+    "src": "assets/sfx/tap.wav",
+    "gain": -11
+   },
+   {
+    "at": 13.05,
+    "src": "assets/sfx/whoosh-short.wav",
+    "gain": -12
+   },
+   {
+    "at": 13.3,
+    "src": "assets/sfx/pop-7.wav",
+    "gain": -11
+   },
+   {
+    "at": 13.4,
+    "src": "assets/sfx/whoosh-med.wav",
+    "gain": -10
+   },
+   {
+    "at": 13.95,
+    "src": "assets/sfx/whoosh-short.wav",
+    "gain": -13
+   },
+   {
+    "at": 14.45,
+    "src": "assets/sfx/tap.wav",
+    "gain": -11
+   },
+   {
+    "at": 14.6,
+    "src": "assets/sfx/whoosh-med.wav",
+    "gain": -9
+   },
+   {
+    "at": 16.0,
+    "src": "assets/sfx/side.wav",
+    "gain": -9
+   },
+   {
+    "at": 16.15,
+    "src": "assets/sfx/thud.wav",
+    "gain": -12
+   },
+   {
+    "at": 17.0,
+    "src": "assets/sfx/pay-ok.wav",
+    "gain": -7
+   },
+   {
+    "at": 17.7,
+    "src": "assets/sfx/whoosh-long.wav",
+    "gain": -7
+   },
+   {
+    "at": 18.3,
+    "src": "assets/sfx/pop-4.wav",
+    "gain": -14
+   },
+   {
+    "at": 18.37,
+    "src": "assets/sfx/pop-5.wav",
+    "gain": -14
+   },
+   {
+    "at": 18.44,
+    "src": "assets/sfx/pop-6.wav",
+    "gain": -14
+   },
+   {
+    "at": 18.51,
+    "src": "assets/sfx/pop-7.wav",
+    "gain": -14
+   },
+   {
+    "at": 18.58,
+    "src": "assets/sfx/pop-8.wav",
+    "gain": -14
+   },
+   {
+    "at": 18.65,
+    "src": "assets/sfx/pop-9.wav",
+    "gain": -14
+   },
+   {
+    "at": 21.9,
+    "src": "assets/sfx/whoosh-long.wav",
+    "gain": -9
+   },
+   {
+    "at": 22.75,
+    "src": "assets/sfx/blip.wav",
+    "gain": -16
+   },
+   {
+    "at": 22.93,
+    "src": "assets/sfx/blip.wav",
+    "gain": -16
+   },
+   {
+    "at": 23.11,
+    "src": "assets/sfx/blip.wav",
+    "gain": -16
+   },
+   {
+    "at": 23.6,
+    "src": "assets/sfx/logo-sting.wav",
+    "gain": -5
    }
   ]
  },
@@ -135,68 +333,68 @@
   {
    "type": "tc2",
    "at": 0,
-   "dur": 28,
-   "duration": 28,
+   "dur": 25.5,
+   "duration": 25.5,
    "query": "elite maillot",
    "tagline": "Maillots de foot · 3 achetés = 1 offert",
    "beats": {
-    "clock": 1.9,
-    "chat": 4.1,
-    "phone": 6.2,
-    "open": 9.9,
-    "choose": 11.8,
-    "add": 13.6,
-    "four": 15.3,
-    "zoom": 15.5,
-    "pay": 17.9,
-    "bento": 21.0,
-    "end": 24.0
+    "clock": 1.4,
+    "chat": 3.9,
+    "phone": 6.5,
+    "open": 9.8,
+    "choose": 10.1,
+    "add": 11.9,
+    "four": 13.3,
+    "zoom": 13.4,
+    "pay": 14.45,
+    "bento": 18.3,
+    "end": 22.3
    },
    "headlines": [
     {
      "text": "Noël, dans *3 semaines.*",
-     "at": 1.5,
-     "out": 3.9
+     "at": 1.0,
+     "out": 3.5
     },
     {
      "text": "Ils veulent *un maillot.*",
-     "at": 4.05,
-     "out": 6.0
+     "at": 3.65,
+     "out": 6.1
     },
     {
      "text": "Vous tapez *Élite Maillot.*",
-     "at": 6.6,
-     "out": 9.7
+     "at": 6.9,
+     "out": 9.6
     },
     {
      "text": "Le site *s'ouvre.*",
-     "at": 9.85,
-     "out": 11.6
+     "at": 9.75,
+     "out": 11.0
     },
     {
      "text": "Vous *choisissez.*",
-     "at": 11.8,
-     "out": 13.45
+     "at": 11.1,
+     "out": 12.3
     },
     {
      "text": "Vous *ajoutez.*",
-     "at": 13.6,
-     "out": 15.2
+     "at": 12.4,
+     "out": 13.25
     },
     {
      "text": "Le 4ème est *offert.*",
-     "at": 15.35,
-     "out": 17.75
+     "at": 13.35,
+     "out": 14.4
     },
     {
      "text": "Vous payez *avec Apple Pay.*",
-     "at": 17.95,
-     "out": 20.8
+     "at": 14.55,
+     "out": 17.9
     },
     {
      "text": "*4 maillots,* 3 payés.",
-     "at": 21.3,
-     "out": 23.9,
+     "at": 18.8,
+     "out": 22.1,
      "y": 830
     }
    ],
@@ -209,12 +407,12 @@
     {
      "from": "Frérot",
      "text": "Le maillot du Barça stp 🙏",
-     "at": 4.75
+     "at": 4.7
     },
     {
      "from": "Papa",
      "text": "Moi celui de la France 😄",
-     "at": 5.3
+     "at": 5.2
     }
    ],
    "pill": "Un maillot pour Noël ?"
