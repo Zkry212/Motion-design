@@ -298,49 +298,50 @@
     const phoneTop = 430, FZ = 1.82, FCY = PY + (960 - phoneTop) / FZ;      // frontal: phone top at y=430
     const ZP = (x, y) => [SX + x, SY + SB + y];                             // capture point -> world
     const city = ZP(300, 300);
-    const CAM = [
-      [0, [190, 200, .4, -17, 20], E.outQuint],
-      [.75, [220, -80, .62, -13, 15]],
-      [1.05, [120, -320, .95, -9, 11], sexy],
-      [B.clock - .05, [-20, -540, 1.5, -6, 6]],
-      [B.chat - .65, [90, -520, 1.42, -3.5, 4.5], sexy],
-      [B.chat, [460, -430, 1.42, -6, 6]],
-      [B.phone - .35, [445, -400, 1.32, -8, 8], sexy],
-      [B.phone + .35, [170, 260, .95, -5, 7]],
-      [B.phone + 1.0, [140, FCY, FZ, 0, 0]],
-      [B.open - .2, [140, FCY - 6, FZ * 1.03, .4, 0], sexy],
-      [B.open + .35, [140, FCY + 8, FZ * .985, -.5, 0]],
-      [B.choose, [140, FCY, FZ * 1.02, .3, 0]],
-      [B.choose + 1.4, [150, FCY + 10, FZ * 1.05, .7, 0], sexy],
-      [B.choose + 1.8, [138, FCY - 4, FZ * .99, -.4, 0]],
-      [B.add, [140, FCY, FZ * 1.02, 0, 0]],
-      [B.add + 1.2, [130, FCY + 8, FZ * 1.05, -.6, 0], sexy],
-      [B.add + 1.6, [140, FCY, FZ, .3, 0]],
-      [B.zoom - .15, [140, FCY + 10, FZ * 1.03, 0, 0], sexy],
-      [B.zoom + .55, [city[0], city[1], 3.4, -7, 10]],
-      [B.pay - .55, [city[0] - 8, city[1] + 6, 3.6, -8.5, 11], sexy],
-      [B.pay - .05, [140, FCY + 6, FZ * 1.02, 0, 0]],
-      [B.pay + .35, [140, FCY + 4, FZ * 1.03, .3, 0], sexy],
-      [B.pay + .95, [SX + 230, SY + 470, 2.4, 3, 5]],
-      [B.bento - .55, [SX + 200, SY + 560, 3.1, 4.5, 6], sexy],
-      [B.bento + .45, [140, 0, .8, 0, 0]],
-      [B.end, [140, 10, .78, 0, 0]],
-      [s.duration, [140, 30, .74, 0, 0]],
-    ];
-    const spline = (t, K, tension = .62) => {
-      const n = K.length; if (t <= K[0][0]) return K[0][1].slice(); if (t >= K[n - 1][0]) return K[n - 1][1].slice();
-      let i = 0; while (K[i + 1][0] < t) i++;
-      const P = j => { const v = K[Math.max(0, Math.min(n - 1, j))][1].slice(); v[2] = Math.log(v[2]); return v; }, Tt = j => K[Math.max(0, Math.min(n - 1, j))][0];
-      const p0 = P(i), p1 = P(i + 1), t0 = Tt(i), t1 = Tt(i + 1), h2 = t1 - t0, u = (t - t0) / h2;
-      const tan = j => { const a = P(j - 1), b = P(j + 1), dt = Tt(j + 1) - Tt(j - 1) || 1; return a.map((x, q) => (j <= 0 || j >= n - 1) ? 0 : (b[q] - x) / dt * tension); };
-      const m0 = tan(i), m1 = tan(i + 1), u2 = u * u, u3 = u2 * u;
-      const out = p0.map((x, q) => (2 * u3 - 3 * u2 + 1) * x + (u3 - 2 * u2 + u) * h2 * m0[q] + (-2 * u3 + 3 * u2) * p1[q] + (u3 - u2) * h2 * m1[q]);
-      out[2] = Math.exp(out[2]); return out;
+    // ---------- camera = the reference's measured moves (optical flow on its 30 fps): a few smooth moves with a
+    // measured velocity profile (peak position p), and an almost still camera in between (median 0.09 px/frame)
+    const bellCache = {};
+    const bell = p => {   // easing whose velocity is k^a (1-k)^b, peak at p
+      const key = p.toFixed(3); if (bellCache[key]) return bellCache[key];
+      const A = Math.max(.08, 4 * p), Bb = Math.max(.08, 4 * (1 - p)), N = 400, cum = [0];
+      for (let i = 1; i <= N; i++) { const k = (i - .5) / N; cum.push(cum[i - 1] + Math.pow(k, A) * Math.pow(1 - k, Bb)); }
+      const tot = cum[N]; const f = k => { const x = clamp(k) * N, i = Math.floor(x); return i >= N ? 1 : (cum[i] + (cum[i + 1] - cum[i]) * (x - i)) / tot; };
+      bellCache[key] = f; return f;
     };
+    const START = [90, -300, .85, -15, 16];
+    const MOVES = [
+      { t0: .37, t1: 1.87, p: .33, to: [-20, -540, 1.45, -6, 6] },                       // push in + roll onto the clock
+      { t0: 1.87, t1: 2.7, p: .5, to: [-14, -536, 1.48, -5.6, 6] },                      // (almost still)
+      { t0: 2.7, t1: 3.9, p: .61, to: [460, -410, 1.75, -6, 6] },                        // glide to the widgets / messages
+      { t0: 3.9, t1: 5.4, p: .5, to: [462, -408, 1.77, -6.2, 6] },                       // (almost still)
+      { t0: 5.4, t1: 7.3, p: .28, to: [140, FCY, FZ, 0, 0], zmid: .78, km: .45 },        // dive: pull out then into the phone
+      { t0: 14.8, t1: 15.45, p: .5, to: [SX + 200, SY + 430, 2.12, 1.5, 3] },             // into the Apple Pay sheet, pulse 1
+      { t0: 15.55, t1: 16.33, p: .62, to: [SX + 220, SY + 500, 2.95, 3.5, 5.5] },              // pulse 2
+      { t0: 16.63, t1: 17.2, p: .95, to: [SX + 212, SY + 515, 3.05, 3.8, 5.6] },          // small push on "Terminé"
+      { t0: 17.45, t1: 19.8, p: .2, to: [140, 0, .8, 0, 0] },                             // pull back, long settle on the bento
+      { t0: 19.8, t1: 21.65, p: .5, to: [140, 12, .78, 0, 0] },                           // (almost still)
+      { t0: 21.65, t1: 22.05, p: .3, to: [150, 0, .94, 3, 0] },                           // punch-in with the blur before the logo
+      { t0: 22.05, t1: s.duration, p: .5, to: [150, 0, .96, 3, 0] },
+    ];
+    const camRaw = t => {
+      let c = START.slice();
+      for (const m of MOVES) {
+        if (t <= m.t0) break;
+        const k = clamp((t - m.t0) / (m.t1 - m.t0)), e = bell(m.p)(k), from = c;
+        c = from.map((v, i) => lerp(v, m.to[i], e));
+        if (m.zmid) {   // zoom goes out to zmid then into the target, on its own smooth curve
+          const zk = k < m.km ? E.inOut(k / m.km) : E.inOut((k - m.km) / (1 - m.km));
+          c[2] = k < m.km ? Math.exp(lerp(Math.log(from[2]), Math.log(m.zmid), zk)) : Math.exp(lerp(Math.log(m.zmid), Math.log(m.to[2]), zk));
+        }
+        if (t < m.t1) return c;
+      }
+      return c;
+    };
+    const m8 = MOVES.find(m => m.t0 === 17.45);
     const camAt = t => {
-      const c = spline(t, CAM);
-      // a living camera: tiny handheld drift on top of the path (never fully still)
-      return [c[0] + Math.sin(t * .9) * 4 / c[2], c[1] + Math.cos(t * .7) * 4 / c[2], c[2] * (1 + Math.sin(t * .5) * .004), c[3] + Math.sin(t * .6) * .25, c[4], (-7 + Math.sin(t * .35) * 3) * (1 - prog(t, B.bento - .4, .9, E.inOut))];
+      const c = camRaw(t);
+      // 3/4 angle while on the desk, squared up for the bento (follows the snap-back move)
+      return [...c, -6 * (1 - bell(m8.p)(clamp((t - m8.t0) / (m8.t1 - m8.t0))))];
     };
     const camCss = c => `translate(540px, 960px) rotateX(${Math.max(c[4], 9)}deg) rotateY(${c[5] || 0}deg) rotateZ(${c[3]}deg) scale(${c[2]}) translate(${-c[0]}px, ${-c[1]}px)`;
 
@@ -368,7 +369,7 @@
         const d0 = .16 + (o.d - .15) * .55, k = prog(t, d0, .5, E.back), out = o.near ? prog(t, B.bento - .25, .4) : 0;
         o.el.style.opacity = clamp(prog(t, d0, .12)) * (1 - out * (o.near === 1 ? 1 : 0));
         const kz = prog(t, d0, .7, E.outQuint), sgn = (o.el.offsetLeft % 2 ? 1 : -1);
-        o.el.style.transform = `translateZ(${(1 - kz) * 900}px) translateY(${(1 - kz) * -120}px) rotate(${(1 - kz) * 14 * sgn}deg) scale(${lerp(.9, 1, Math.max(0, k)) * (1 - out * .1)})`;
+        o.el.style.transform = `translateZ(${(1 - kz) * 260}px) translateY(${(1 - kz) * -40}px) rotate(${(1 - kz) * 5 * sgn}deg) scale(${lerp(.9, 1, Math.max(0, k)) * (1 - out * .1)})`;
       });
       // phone lies on the desk, then lifts toward the camera when it stands up
       const lift = win(t, B.phone, B.zoom + .1, .9, .6);
@@ -427,14 +428,14 @@
       best.style.background = t > tapHit - .08 && t < tapHit + .25 ? '#e5e5ea' : '#fff';
       kb.style.opacity = 1 - prog(t, tapHit + .05, .25); bar.style.opacity = 1 - prog(t, tapHit + .05, .25);
       // shared element: the result card expands into the site, the site rises into place
-      const x1 = prog(t, tapHit + .08, .45, E.inOut), x2 = prog(t, B.open + .05, .55, E.inOut);
-      if (t > tapHit + .08 && t < B.open + .62) {
-        const R0 = [26, 54, 52, 52, 12], R1 = [0, 0, SW, VH, 0], R2 = [16, 218, 358, 478, 14];
-        const rr = R0.map((v0, j) => lerp(lerp(v0, R1[j], x1), R2[j], x2));
+      const x1 = prog(t, tapHit + .03, .42, E.outQuint);
+      if (t > tapHit + .03 && t < B.open + .75) {
+        const R0 = [26, 54, 52, 52, 12], R1 = [0, 0, SW, VH, 0];
+        const rr = R0.map((v0, j) => lerp(v0, R1[j], x1));
         xp.style.display = ''; Object.assign(xp.style, { left: rr[0] + 'px', top: rr[1] + 'px', width: rr[2] + 'px', height: rr[3] + 'px', borderRadius: rr[4] + 'px', opacity: 1 });
       } else xp.style.display = 'none';
       srch.style.display = t < B.open + .2 ? '' : 'none'; srch.style.opacity = 1 - prog(t, tapHit + .2, .3); saf.style.opacity = prog(t, tapHit + .25, .3);
-      L.home.d.style.opacity = prog(t, B.open + .05, .3);
+      const rise = prog(t, B.open + .1, .6, E.outQuint); L.home.d.style.opacity = t > B.open + .1 ? 1 : 0; L.home.d.style.transform = `translateY(${(1 - rise) * VH}px)`;
       const hr = prog(t, B.open + .1, .7, E.outQuint);
       url.textContent = t < tapHit + .1 ? '🔍 Rechercher' : 'elite-maillot.fr';
       pg.style.width = prog(t, tapHit + .1, .9, E.out) * 100 + '%'; pg.style.opacity = t > tapHit + .1 && t < tapHit + 1.1 ? 1 : 0;
@@ -465,7 +466,7 @@
       spin.style.transform = `rotate(${t * 720}deg)`; okc.style.transform = `scale(${lerp(.4, 1, prog(t, P3, .35, E.back))})`;
       const dk2 = win(t, B.pay + .7, B.pay + 1.75, .25, .2); dbl.style.opacity = dk2;
       dbl.lastChild.style.transform = `scaleY(${1 + Math.max(0, Math.sin((t - B.pay) * 9)) * .25})`; dbl.style.transform = `translateX(${(1 - prog(t, B.pay + .7, .35, E.outQuint)) * 40}px)`;
-      const ro = win(t, B.zoom + .6, B.pay - .6, .3, .2);
+      const ro = win(t, B.four + .25, B.pay - .1, .3, .2);
       ring.style.opacity = ro; Object.assign(ring.style, { left: '228px', top: SB + 254 + 'px', width: '150px', height: '78px', transform: `scale(${lerp(1.2, 1, ro)})` });
 
       // the Christmas list gets ticked off in the finale
@@ -488,7 +489,7 @@
       const dk = win(t, B.end + .35, B.end + 1.35, .2, .25); dots.style.opacity = dk;
       [...dots.children].forEach((d, i) => { const ph2 = ((t - B.end) * 2.6 - i * .18) % 1; d.style.transform = `translateY(${-Math.max(0, Math.sin(ph2 * Math.PI)) * 26}px) scale(${1 + Math.max(0, Math.sin(ph2 * Math.PI)) * .15})`; });
       // logo reveal: a clean light veil, ÉLITE letters pop one by one, MAILLOT rises letter by letter, then the offer and the URL
-      const L0 = B.end + 1.25;
+      const L0 = B.end + 1.7;
       veil.style.opacity = prog(t, B.end + .9, .5);
       end.style.opacity = t > L0 - .05 ? 1 : 0;
       LE.forEach((pth, i) => { const k = prog(t, L0 + i * .07, .5, E.back), o = clamp(prog(t, L0 + i * .07, .18)); pth.style.opacity = o; pth.style.transform = `translateY(${(1 - k) * 60}px) scale(${Math.max(.01, lerp(.35, 1, k))})`; });
