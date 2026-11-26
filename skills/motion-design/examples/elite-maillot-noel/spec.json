@@ -1,0 +1,59 @@
+{
+  "name": "elite-maillot-noel",
+  "width": 1080, "height": 1920, "fps": 30, "duration": 20,
+  "accent": "#d8341f", "accent2": "#ff8a5c", "bg": "#0a0606",
+  "voice": { "id": "REPLACE_WITH_VOICE_ID", "model": "eleven_multilingual_v2", "stability": 0.5, "similarity": 0.8, "style": 0.25, "speed": 0.97, "language": "fr" },
+  "words": "assets/voice.words.json",
+  "audio": {
+    "voice": "assets/voice.mp3", "voiceAt": 0.3,
+    "music": "assets/music.mp3", "musicGain": -13, "duck": true,
+    "sfx": [
+      { "at": 0.0,  "src": "riser", "endAt": 1.7, "gain": -16 },
+      { "at": 2.05, "src": "click", "gain": -12 },
+      { "at": 3.75, "src": "click", "gain": -12 },
+      { "at": 5.35, "src": "click", "gain": -12 },
+      { "at": 7.4,  "src": "tick", "gain": -14 },
+      { "at": 7.8,  "src": "tick", "gain": -14 },
+      { "at": 8.2,  "src": "tick", "gain": -14 },
+      { "at": 8.7,  "src": "pop-back", "gain": -10 },
+      { "at": 11.8, "src": "impact-boom", "peak": true, "gain": -10 },
+      { "at": 13.6, "src": "tick", "gain": -14 },
+      { "at": 15.1, "src": "impact-boom", "peak": true, "gain": -8 },
+      { "at": 15.1, "src": "sub", "gain": -8 }
+    ]
+  },
+  "scenes": [
+    { "type": "snow", "at": 0, "dur": 20, "count": 80 },
+    { "type": "title", "at": 0.15, "dur": 1.75, "text": "Noël *approche.*", "size": 150, "y": 46 },
+
+    { "type": "chat", "at": 1.7, "dur": 5.4, "title": "La famille", "subtitle": "maintenant",
+      "bubbles": [
+        { "from": "Frérot", "text": "Moi je veux le Barça", "dot": "#a50044", "at": 2.0 },
+        { "from": "Papa", "text": "La France, évidemment", "dot": "#1b2f6b", "at": 3.7 },
+        { "from": "Le petit", "text": "LE REAL !!!", "dot": "#f4f4f4", "at": 5.3 },
+        { "from": "Toi", "text": "Ok je m'en occupe", "side": "r", "at": 6.3 }
+      ] },
+
+    { "type": "cart", "at": 7.0, "dur": 3.3, "title": "Mon panier", "steps": 8,
+      "items": [
+        { "name": "Barcelone domicile", "colors": ["#a50044", "#004d98", "#004d98"], "at": 7.4 },
+        { "name": "France extérieur", "colors": ["#f2f2f2", "#1b2f6b"], "at": 7.8 },
+        { "name": "Real Madrid domicile", "colors": ["#f6f6f6", "#c9a227"], "at": 8.2, "size": "8-9 ans", "price": "23,99 €" },
+        { "name": "Et un pour toi", "colors": ["#d8341f", "#111"], "at": 8.7, "price": "OFFERT" }
+      ],
+      "milestones": [ { "n": 2, "label": "Livraison offerte" }, { "n": 4, "label": "1 maillot offert" } ],
+      "reward": { "at": 8.75, "text": "3 achetés = 1 offert" },
+      "footer": "Le 4<sup>e</sup> s'ajoute <b>gratuitement</b>" },
+    { "type": "flash", "at": 10.15, "dur": 0.4, "max": 0.55 },
+
+    { "type": "price", "at": 10.3, "dur": 3.0, "from": 19.99, "to": 14.99, "countAt": 10.7, "caption": "le maillot", "note": "4 maillots = 59,97 €" },
+
+    { "type": "jersey", "at": 13.2, "dur": 1.85, "name": "PAPA", "number": "10", "colors": ["#1b2f6b", "#d8341f"], "nameAt": 13.4,
+      "chip": "Livraison <b>offerte</b> dès 2 maillots", "chipAt": 13.7 },
+    { "type": "flash", "at": 14.9, "dur": 0.4, "max": 0.6 },
+
+    { "type": "logo", "at": 15.05, "dur": 4.95, "sans": true, "y": 40, "name": "ÉLITE MAILLOT", "mark": "jersey", "markColors": ["#d8341f", "#fff"],
+      "tagline": "<b>3 achetés = 1 offert</b><br>elite-maillot.fr · @elite.maillot", "tagY": 56 },
+    { "type": "title", "at": 16.1, "dur": 3.9, "text": "Le cadeau qui met tout le monde *d'accord.*", "size": 66, "y": 74, "stagger": 0.08 }
+  ]
+}

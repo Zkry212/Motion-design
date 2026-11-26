@@ -35,8 +35,13 @@ A spec (`spec.json`) describes the scenes on a timeline; the engine renders it f
 | `pills` | `items[]`, `pick`, `clickAt` | row of glass buttons, one clicked |
 | `stat` | `label`, `value`, `unit`, `bars[]` (0-1), `hi` | number counts up, hero bar glows |
 | `phone` | `img` or `html` | iPhone mockup slides up |
-| `logo` | `name`, `mark` (html, default spark), `tagline` | mark spins in, name writes |
+| `logo` | `name`, `mark` (html, `'jersey'`, default spark), `markColors`, `tagline` (html), `tagY`, `y`, `sans` | mark spins in, name writes |
 | `flash` | `max` (0-1) | light flash transition |
+| `chat` | `title`, `subtitle`, `bubbles[]` ({from, text, at, side, dot}) | message thread that drops in |
+| `cart` | `items[]` ({name, colors, at, size, price}), `steps`, `milestones[]` ({n, label}), `reward` ({at, text}), `footer` | cart fills, reward bar climbs |
+| `price` | `from`, `to`, `countAt`, `caption`, `note` | old price struck, new one counts down |
+| `jersey` | `name`, `number`, `colors` [body, sleeves, stripes?], `nameAt`, `chip`, `chipAt` | jersey back gets its name and number (no crest) |
+| `snow` | `count` | soft snowfall over the whole piece |
 
 Global: `width`, `height` (1080×1920 for vertical), `fps`, `duration`, `accent`, `accent2`, `bg`, `font`.
 New scene type: add a function to `SCENES` in `engine/runtime.js` (pure function of `t`, never use real time) and its CSS in `engine/scene.html`.

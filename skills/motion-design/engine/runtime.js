@@ -122,8 +122,9 @@
     },
     // the logo reveal: a mark spins in, the name writes itself next to it (refs: Claude, Spotify 2.0, Opal)
     logo(s, root) {
-      const box = h('div', 'logo', root), mark = h('div', 'mark', box, s.mark || '<span class="spark big"></span>'), name = wordsEl(box, s.name, 'name');
-      const tag = s.tagline ? h('div', 'tagline', root, esc(s.tagline)) : null;
+      const box = h('div', 'logo' + (s.sans ? ' sans' : ''), root); if (s.y != null) box.style.top = s.y + '%';
+      const mark = h('div', 'mark', box, s.mark === 'jersey' ? jersey(s.markColors) : s.mark || '<span class="spark big"></span>'), name = wordsEl(box, s.name, 'name');
+      const tag = s.tagline ? h('div', 'tagline', root, s.tagline) : null; if (tag && s.tagY != null) tag.style.top = s.tagY + '%';
       return t => {
         const e = env(t, s, .3, .5), k = prog(t, s.at, .9, E.back);
         box.style.opacity = e; mark.style.transform = `rotate(${lerp(-120, 0, k)}deg) scale(${lerp(.2, 1, k)})`;
@@ -131,12 +132,91 @@
         if (tag) { const q = prog(t, s.at + 1.1, .6); tag.style.opacity = q * e; tag.style.transform = `translate(-50%, ${(1 - q) * 14}px)`; }
       };
     },
+    // ---------- e-commerce scenes (first used by the elite-maillot Christmas ad) ----------
+    // message bubbles that drop in one by one. {title, bubbles: [{from, text, at, side: 'l'|'r', dot: '#hex'}]}
+    chat(s, root) {
+      const box = h('div', 'chat glass', root);
+      if (s.title) h('div', 'chat-head', box, `<span class="av"></span><b>${esc(s.title)}</b><small>${esc(s.subtitle || '')}</small>`);
+      const B = s.bubbles.map(b => { const el = h('div', 'bubble ' + (b.side || 'l'), box, `<small>${esc(b.from || '')}</small><span>${esc(b.text)}${b.dot ? `<i class="dot" style="background:${b.dot}"></i>` : ''}</span>`); return [el, b]; });
+      return t => {
+        const e = env(t, s, .5, .4); box.style.opacity = e; box.style.filter = `blur(${(1 - e) * 14}px)`;
+        box.style.transform = `translate(-50%,-50%) scale(${lerp(.95, 1.03, prog(t, s.at, s.dur, E.inOut))})`;
+        B.forEach(([el, b]) => { const k = prog(t, b.at, .45, E.back); el.style.opacity = clamp(k * 2); el.style.transform = `translateY(${(1 - k) * 40}px) scale(${lerp(.7, 1, k)})`; el.style.display = t < b.at - .02 ? 'none' : ''; });
+      };
+    },
+    // cart that fills with jerseys while a reward bar climbs its milestones. {items: [{name, colors:[body, sleeves], at}], steps: 8,
+    //   milestones: [{n: 2, label}, {n: 4, label}], reward: {at, text}, footer}
+    cart(s, root) {
+      const card = h('div', 'cart glass', root);
+      h('div', 'cart-head', card, `<b>${esc(s.title || 'Mon panier')}</b><span class="cnt">0</span>`);
+      const list = h('div', 'cart-list', card), cnt = card.querySelector('.cnt');
+      const I = s.items.map(it => { const row = h('div', 'cart-row', list, `${jersey(it.colors)}<div><b>${esc(it.name)}</b><small>${esc(it.size || 'Taille M')}</small></div><span class="pr">${esc(it.price || '19,99 €')}</span>`); return [row, it]; });
+      const bar = h('div', 'reward', card), fill = h('i', 'fill', bar), steps = s.steps || 8;
+      const M = (s.milestones || []).map(m => { const el = h('span', 'ms', bar, `<em>${esc(m.label)}</em>`); el.style.left = (m.n / steps * 100) + '%'; return [el, m]; });
+      const rw = s.reward ? h('div', 'reward-pop', card, esc(s.reward.text)) : null;
+      if (s.footer) h('div', 'cart-foot', card, s.footer);
+      return t => {
+        const e = env(t, s, .45, .4); card.style.opacity = e; card.style.filter = `blur(${(1 - e) * 14}px)`;
+        card.style.transform = `translate(-50%,-50%) perspective(1600px) rotateX(${lerp(12, 0, prog(t, s.at, 1))}deg) scale(${lerp(.94, 1.03, prog(t, s.at, s.dur, E.inOut))})`;
+        let n = 0; I.forEach(([row, it]) => { const k = prog(t, it.at, .5, E.back); if (t >= it.at) n++; row.style.opacity = clamp(k * 1.5); row.style.transform = `translateX(${(1 - k) * 120}px)`; row.style.display = t < it.at - .02 ? 'none' : ''; });
+        cnt.textContent = n; cnt.style.transform = `scale(${1 + .35 * (1 - clamp((t - (I[n - 1]?.[1].at ?? -9)) / .3))})`;
+        const last = I[n - 1]?.[1].at ?? s.at, prevW = (Math.max(0, n - 1) / steps) * 100, k = prog(t, last, .45, E.outQuint);
+        fill.style.width = lerp(prevW, n / steps * 100, k) + '%';
+        M.forEach(([el, m]) => el.classList.toggle('on', n >= m.n));
+        if (rw) { const q = prog(t, s.reward.at, .5, E.back); rw.style.opacity = clamp(q * 2); rw.style.transform = `translateX(-50%) scale(${lerp(.5, 1, q)}) rotate(${lerp(-8, -2, q)}deg)`; }
+      };
+    },
+    // old price gets struck, the new one counts down to it. {from: 19.99, to: 14.99, currency: '€', caption, note}
+    price(s, root) {
+      const box = h('div', 'price', root, `<div class="old">${fmt(s.from)} ${esc(s.currency || '€')}<i class="strike"></i></div><div class="new"><span class="v">${fmt(s.from)}</span><span class="cur"> ${esc(s.currency || '€')}</span></div><div class="cap">${esc(s.caption || '')}</div><div class="note">${esc(s.note || '')}</div>`);
+      const old = box.querySelector('.old'), strike = box.querySelector('.strike'), v = box.querySelector('.v'), nw = box.querySelector('.new'), cap = box.querySelector('.cap'), note = box.querySelector('.note');
+      const countAt = s.countAt ?? s.at + .5;
+      return t => {
+        const e = env(t, s, .35, .4); box.style.opacity = e;
+        box.style.transform = `translate(-50%,-50%) scale(${lerp(.96, 1.05, prog(t, s.at, s.dur, E.inOut))})`;
+        const o = prog(t, s.at, .4); old.style.opacity = o; old.style.filter = `blur(${(1 - o) * 10}px)`;
+        strike.style.width = prog(t, s.at + .35, .3, E.inOut) * 108 + '%';
+        const k = prog(t, countAt, 1.1, E.expo); v.textContent = fmt(lerp(s.from, s.to, k));
+        const land = 1 - clamp((t - countAt - 1.1) / .35); nw.style.transform = `scale(${1 + (t > countAt + 1.1 ? land * .12 : 0)})`;
+        const nk = prog(t, countAt - .2, .4); nw.style.opacity = nk;
+        const c = prog(t, countAt + .9, .5); cap.style.opacity = c; cap.style.transform = `translateY(${(1 - c) * 20}px)`;
+        const q = prog(t, countAt + 1.3, .5); note.style.opacity = q;
+      };
+    },
+    // back of a jersey: the name types in, the number lands, a size chip pops. {name, number, colors, chip, chipAt}
+    jersey(s, root) {
+      const box = h('div', 'jback', root, `${jersey(s.colors || ['#c4301c', '#111'], 'big')}<div class="jname"></div><div class="jnum"></div>`);
+      const nm = box.querySelector('.jname'), nu = box.querySelector('.jnum'), chip = s.chip ? h('div', 'chip-size glass', root, s.chip) : null;
+      const nameAt = s.nameAt ?? s.at + .4, numAt = nameAt + s.name.length * .07 + .15;
+      return t => {
+        const e = env(t, s, .4, .4), k = prog(t, s.at, .8, E.outQuint);
+        box.style.opacity = e; box.style.transform = `translate(-50%,-50%) translateY(${(1 - k) * 160}px) rotate(${lerp(8, 0, k)}deg) scale(${lerp(.96, 1.04, prog(t, s.at, s.dur, E.inOut))})`;
+        nm.textContent = s.name.slice(0, Math.floor(clamp((t - nameAt) / .07, 0, s.name.length)));
+        const q = prog(t, numAt, .45, E.back); nu.textContent = s.number; nu.style.opacity = clamp(q * 2); nu.style.transform = `translateX(-50%) scale(${lerp(2.2, 1, q)})`;
+        if (chip) { const c = prog(t, s.chipAt ?? numAt + .4, .45, E.back); chip.style.opacity = clamp(c * 2) * e; chip.style.transform = `translateX(-50%) scale(${lerp(.6, 1, c)})`; }
+      };
+    },
+    // soft deterministic snowfall over the whole piece. {count: 70}
+    snow(s, root) {
+      const n = s.count || 70, F = Array.from({ length: n }, (_, i) => { const r = k => { const x = Math.sin(i * 127.1 + k * 311.7) * 43758.5453; return x - Math.floor(x); }; const el = h('i', 'flake', root); const z = r(3); el.style.width = el.style.height = (3 + z * 9) + 'px'; el.style.filter = `blur(${(1 - z) * 2.5}px)`; return { el, x: r(1) * 100, y: r(2), v: .03 + z * .05, a: r(4) * 6.28, z }; });
+      return t => { const e = env(t, s, 1, 1); F.forEach(f => { const y = ((f.y + t * f.v) % 1.1) - .05; f.el.style.transform = `translate(${f.x * 10.8 + Math.sin(t * .8 + f.a) * 18}px, ${y * (root.clientHeight || 1920)}px)`; f.el.style.opacity = e * (.25 + f.z * .55); }); };
+    },
     // white flash / blur wipe between two scenes (the troiscoups transition)
     flash(s, root) {
       const f = h('div', 'flash', root);
       return t => { const k = prog(t, s.at, (s.dur || .5) / 2, E.out) - prog(t, s.at + (s.dur || .5) / 2, (s.dur || .5) / 2, E.inOut); f.style.opacity = clamp(k) * (s.max ?? .85); };
     },
   };
+
+  // generic jersey (no crest, no maker logo): body + sleeves colors, optional vertical stripes as a 3rd color
+  function jersey([body, sleeves, stripes] = ['#c4301c', '#111'], cls = '') {
+    const id = 'j' + Math.random().toString(36).slice(2, 8);
+    return `<svg class="jersey ${cls}" viewBox="0 0 200 215"><defs><clipPath id="${id}"><path d="M62 8 82 2q18 14 36 0l20 6 52 32-20 42-22-12v145H52V70L30 82 10 40z"/></clipPath>
+      <linearGradient id="${id}g" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity=".18"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".25"/></linearGradient></defs>
+      <g clip-path="url(#${id})"><rect width="200" height="215" fill="${body}"/>${stripes ? [70, 100, 130].map(x => `<rect x="${x - 9}" width="18" height="215" fill="${stripes}"/>`).join('') : ''}
+      <path d="M0 0h52v215H0zM148 0h52v215h-52z" fill="${sleeves}" opacity=".95"/><path d="M82 2q18 14 36 0" stroke="${sleeves}" stroke-width="8" fill="none"/><rect width="200" height="215" fill="url(#${id}g)"/></g></svg>`;
+  }
+  const fmt = x => x.toFixed(2).replace('.', ',');
 
   // ---------- cursor
   function cursor(root) { const c = h('div', 'cursor', root, '<svg viewBox="0 0 24 24"><path d="M5 3l14 8-6 1.6L10 19z" fill="#fff" stroke="#000" stroke-width="1.2" stroke-linejoin="round"/></svg>'); h('div', 'ripple', c); return c; }

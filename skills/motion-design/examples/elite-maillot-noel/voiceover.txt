@@ -1,0 +1,5 @@
+Noël approche. <break time="0.3s" />
+Ton frère veut le Barça. Ton père… la France. Le petit… le Real. <break time="0.5s" />
+Quatre maillots ? Tu n'en paies que trois. <break time="0.3s" />
+Quatorze euros quatre-vingt-dix-neuf le maillot. Livraison offerte. <break time="0.5s" />
+Élite Maillot. <break time="0.3s" /> Le cadeau qui met tout le monde d'accord.
