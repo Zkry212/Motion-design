@@ -109,7 +109,7 @@
   const mark = (name, fill, size = 104) => `<svg class="mk" viewBox="0 0 24 24" width="${size}" height="${size}"><path fill="${fill}" d="${SI(name)}"/></svg>`;
   SCENES.meuda2 = (s, root) => {
     const st = document.createElement('style'); st.textContent = CSS; document.head.appendChild(st);
-    const R = h('div', 'z2', root), B = s.beats, COVER = IMG('img/cover.svg');
+    const R = h('div', 'z2', root), B = s.beats, COVER = IMG('img/cover.jpg');
     // glow flames (Apple Music red / pink / warm)
     const FL = [['#fa2d48', 900, 30, 12], ['#ff6a3d', 700, 75, 20], ['#c3125f', 800, 60, 88], ['#ff2d55', 600, 20, 70]].map(([c, d, x, y]) => { const f = h('div', 'flame', R); Object.assign(f.style, { width: d + 'px', height: d * .7 + 'px', background: `radial-gradient(closest-side, ${c}, transparent)`, left: x + '%', top: y + '%', marginLeft: -d / 2 + 'px', marginTop: -d * .35 + 'px' }); return f; });
     const stage = h('div', 'stage', R), cam = h('div', 'cam', stage);
@@ -137,6 +137,12 @@
       <div class="nm"><b>Meuda</b><span>SMSA</span></div><div class="wv">${Array.from({ length: 42 }, () => '<i></i>').join('')}</div><div class="tm"><span class="t1">0:00</span><span class="t2">-2:41</span></div>`);
     const ctl = h('div', 'ctl', np, `<span class="s">${I.back}</span><span class="m">${I.pause}</span><span class="s">${I.fwd}</span>`); glassify(ctl, 680, 160, { tint: 'rgba(255,255,255,.08)' });
     const npArt = np.querySelector('.art'), wv = [...np.querySelectorAll('.wv i')], t1 = np.querySelector('.t1'), t2 = np.querySelector('.t2'), npBg = np.querySelector('.bg');
+    // 3D: every card is a thick slab (stacked edge layers behind it), the cover floats in front of the player
+    const SLABS = [];
+    const slab = (el, depth, rad) => { const n = 6, L = []; for (let k = 0; k < n; k++) { const d = document.createElement('div'); Object.assign(d.style, { position: 'absolute', left: el.style.left, top: el.style.top, width: el.style.width, height: el.style.height, borderRadius: rad + 'px', background: `rgb(${46 - k * 5},${12 - k},${20 - k * 2})`, border: '2px solid rgba(250,45,72,.22)' }); el._w.insertBefore(d, el); L.push([d, -(k + 1) * depth / n]); } SLABS.push([el, L]); };
+    slab(res, 40, 40); slab(albc, 70, 60); slab(np, 80, 60);
+    const pop = h('div', '', np._w); Object.assign(pop.style, { position: 'absolute', left: 90 + 70 + 'px', top: 210 + 70 + 'px', width: '760px', height: '760px', borderRadius: '28px', background: `#000 url(${COVER}) center/cover`, boxShadow: '0 30px 60px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.15)', transformOrigin: '380px 380px' });
+    npArt.style.visibility = 'hidden';
     const cur = h('div', 'cur', R, I.cursor), rip = h('div', 'ripple', R), flare = h('div', 'flare', R);
     // end card
     const end = h('div', 'end', R, `<div class="l1">${'DISPONIBLE'.split('').map(c => `<span>${c}</span>`).join('')}<br>${'MAINTENANT'.split('').map(c => `<span class="acc">${c}</span>`).join('')}</div>
@@ -153,21 +159,21 @@
     // camera: translate x/y, zoom, rotateY, rotateX, rotateZ — whip moves between shots, slow drifts inside a shot
     const BAR = 4 * 60 / (s.bpm || 125);
     // calm camera: soft eased moves, no whips; long slow drifts on the Now Playing screen
-    const io = E.inOut, N = B.np, S = (B.out - B.np - .6) / 4;
+    const io = E.inOut, N = B.np, S = (B.out - B.np - .7) / 4;
     const CAM = [
       [0, [0, 0, 1.06, 0, 0, 0], io],
       [B.search - .35, [0, 0, 1.0, 0, 0, 0], io],
-      [B.search, [0, 120, 1.06, -6, 3, 0]],
-      [B.album - .35, [0, 100, 1.04, -4, 2, 0], io],
-      [B.album, [0, 0, .95, 6, 0, 0]],
-      [B.play - .4, [0, 0, 1.0, 2, 0, 0], io],
-      [B.play, [0, -150, 1.06, 0, 2, 0]],
-      [N - .1, [0, -150, 1.06, 0, 2, 0], io],
-      [N + .5, [0, 0, .88, 0, 0, 0], io],
-      [N + .5 + S, [0, -220, 1.12, 3, 2, 0], io],
-      [N + .5 + S * 2, [0, 200, 1.1, -3, 2, 0], io],
-      [N + .5 + S * 3, [0, 0, .92, 2, 0, 0], io],
-      [B.out - .1, [0, 60, 1.0, 0, 1, 0], io],
+      [B.search, [0, 120, 1.02, -22, 10, 2]],
+      [B.album - .35, [0, 100, 1.0, -16, 8, 1], io],
+      [B.album, [0, 0, .9, 24, 8, -2]],
+      [B.play - .4, [0, 0, .96, 16, 6, -1], io],
+      [B.play, [0, -150, 1.02, 6, 4, 0]],
+      [N - .1, [0, -150, 1.02, 6, 4, 0], io],
+      [N + .6, [0, 0, .84, -26, 10, 2], io],
+      [N + .6 + S, [0, -200, 1.04, 22, 8, -2], io],
+      [N + .6 + S * 2, [0, 180, 1.02, -22, 12, 2], io],
+      [N + .6 + S * 3, [0, 0, .88, 24, 6, -1], io],
+      [B.out - .1, [0, 40, .94, 8, 4, 0], io],
       [B.out + .4, [0, 0, .74, 0, 0, 0]],
       [s.duration, [0, 0, .76, 0, 0, 0]],
     ];
@@ -200,11 +206,11 @@
       const selI = kf(t, [[B.menu + .2, 4], [B.menu + .9, 2], [B.search - .7, 0]]); sel.style.top = (50 + 74 + selI * 110) + 'px'; LG.sheen(sel, t * .4);
       side.style.transform = `translateZ(${(1 - prog(t, B.menu - .3, .5, E.outQuint)) * -500}px)`;
       // 3. search: typing with lit last letters, result rises
-      show(sbar, B.search, B.album); show(res, B.search + 1.92, B.album);
-      const q = 'Meuda', n = Math.floor(clamp((t - B.search - .15) / (60 / (s.bpm || 125)) + 1, 0, q.length));
+      show(sbar, B.search, B.album); show(res, B.search + 1.2, B.album);
+      const q = 'Meuda', n = Math.floor(clamp((t - B.search - .15) / (30 / (s.bpm || 125)) + 1, 0, q.length));
       tx.innerHTML = n ? `${esc(q.slice(0, Math.max(0, n - 2)))}<span class="lit">${esc(q.slice(Math.max(0, n - 2), n))}</span>` : ''; ph.style.display = n ? 'none' : ''; caret.style.opacity = Math.floor(t * 3) % 2 || n < q.length ? 1 : 0;
       LG.sheen(sbar, t * .35);
-      const rk = prog(t, B.search + 1.92, .5, E.back); res.style.transform = `translateY(${(1 - rk) * 80}px) translateZ(${(1 - rk) * -200}px)`;
+      const rk = prog(t, B.search + 1.2, .5, E.back); res.style.transform = `translateY(${(1 - rk) * 80}px) translateZ(${(1 - rk) * -200}px)`;
       // 4. album card turns in 3D, cursor clicks Play
       show(albc, B.album, B.np);
       const ak = prog(t, B.album - .3, .9, E.outQuint); albc.style.transform = `rotateY(${(1 - ak) * -14}deg) translateZ(${(1 - ak) * -150}px)`;
@@ -216,10 +222,12 @@
       // 5. now playing: art pulses on the beat, glowing waveform, time runs
       show(np, B.np, B.out);
       const nk = prog(t, B.np - .05, .6, E.outQuint); np.style.transform = `translateZ(${(1 - nk) * -200}px)`;
-      npArt.style.transform = `scale(${1 + bt * .03})`; npBg.style.transform = `scale(${1.1 + bt * .05}) rotate(${t * 4}deg)`;
+      npBg.style.transform = `scale(${1.1 + bt * .05}) rotate(${t * 4}deg)`;
       wv.forEach((b2, i) => { b2.style.height = (14 + 130 * Math.abs(Math.sin(t * 6 + i * .55) * Math.cos(t * 2.3 + i * .21)) * (.45 + bt * .55)) + 'px'; });
       const el = Math.max(0, t - B.np + (s.trackStart || 0)), fm = x => `${Math.floor(x / 60)}:${String(Math.floor(x % 60)).padStart(2, '0')}`; t1.textContent = fm(el); t2.textContent = '-' + fm(Math.max(0, (s.trackLen || 161) - el));
       LG.sheen(ctl, t * .3);
+      pop.style.transform = `${np.style.transform || ''} translateZ(150px) scale(${1 + bt * .03})`;
+      SLABS.forEach(([el, L]) => L.forEach(([d, z]) => { d.style.transform = `${el.style.transform || ''} translateZ(${z}px)`; }));
       // end card: letters fall into place, the platform marks arrive in Liquid Glass tiles
       const ek = prog(t, B.end, .3); end.style.opacity = ek; end.style.display = ek > 0 ? '' : 'none';
       if (ek > 0 && !plGlassDone) { PL.forEach(pl => { pl.style.position = 'relative'; LG.make(pl, { w: pl.offsetWidth || 200, h: 200, r: 40, tint: 'rgba(255,255,255,.06)' }); pl.style.position = 'relative'; }); plGlassDone = true; }
