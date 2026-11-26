@@ -3,7 +3,7 @@
  "width": 1080,
  "height": 1920,
  "fps": 30,
- "duration": 32.3,
+ "duration": 20.0,
  "bg": "#050506",
  "bgCss": "#050506",
  "glow": false,
@@ -22,8 +22,8 @@
   {
    "type": "meuda2",
    "at": 0,
-   "dur": 32.3,
-   "duration": 32.3,
+   "dur": 20.0,
+   "duration": 20.0,
    "bpm": 125,
    "beatOffset": 0.216,
    "beats": {
@@ -32,8 +32,8 @@
     "album": 4.06,
     "play": 5.5,
     "np": 5.98,
-    "out": 27.1,
-    "end": 27.1
+    "out": 15.0,
+    "end": 15.0
    },
    "trackStart": 5.98,
    "trackLen": 161
