@@ -46,8 +46,8 @@
   .z2 .rim { box-shadow: 0 0 0 1.5px rgba(255,255,255,.22), 0 0 40px rgba(250,45,72,.35), 0 0 120px rgba(250,45,72,.18), inset 0 1px 0 rgba(255,255,255,.25); }
   .z2 .dark { background: linear-gradient(160deg, rgba(36,36,40,.95), rgba(10,10,12,.97)); border-radius: 44px; }
   /* opener */
-  .z2 .amlogo { position:absolute; left: 50%; top: 50%; width: 220px; height: 220px; margin: -110px 0 0 -110px; border-radius: 52px; background: linear-gradient(180deg,#ff5e73,#fa2d48 55%,#e01d3c); display:grid; place-items:center; box-shadow: 0 0 80px rgba(250,45,72,.8), 0 0 220px rgba(250,45,72,.45); }
-  .z2 .amlogo svg { width: 60%; }
+  .z2 .amlogo { position:absolute; left: 50%; top: 50%; width: 220px; height: 220px; margin: -110px 0 0 -110px; filter: drop-shadow(0 0 40px rgba(250,36,60,.9)) drop-shadow(0 0 120px rgba(250,36,60,.5)); }
+  .z2 .amlogo svg { width: 100%; height: 100%; display:block; }
   .z2 .amname { position:absolute; left: 0; right:0; top: 1110px; text-align:center; font-size: 104px; font-weight: 700; letter-spacing: -.03em; }
   .z2 .amname span { display:inline-block; }
   /* sidebar */
@@ -95,11 +95,14 @@
   .z2 .end .row { position:absolute; left: 70px; right: 70px; top: 850px; display:grid; grid-template-columns: repeat(4, 1fr); gap: 34px 28px; }
   .z2 .end .pl { height: 200px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap: 14px; font-size: 24px; font-weight: 600; color: rgba(255,255,255,.85); }
   .z2 .end .pl > * { position:relative; z-index: 6; }
+  .z2 .pmk { display:grid; place-items:center; width: 104px; height: 104px; } .z2 .pmk svg { display:block; filter: drop-shadow(0 6px 18px rgba(0,0,0,.5)); }
   .z2 .pm { display:grid; place-items:center; width: 104px; height: 104px; border-radius: 26px; } .z2 .pm svg { width: 64%; }
   .z2 .end .mw { position:absolute; left: 50%; width: 560px; margin-left: -280px; top: 1420px; } .z2 .end .sm { position:absolute; left:50%; width: 190px; margin-left:-95px; top: 1340px; }
   .z2 .end .lab { position:absolute; left:0; right:0; top: 1640px; text-align:center; font-size: 26px; letter-spacing: .3em; color: rgba(255,255,255,.5); font-weight: 600; }
   `;
 
+  const SI = name => { const x = new XMLHttpRequest(); x.open('GET', IMG('logos/' + name + '.svg'), false); x.send(); return (x.responseText.match(/ d="([^"]+)"/) || [])[1] || ''; };
+  const mark = (name, fill, size = 104) => `<svg class="mk" viewBox="0 0 24 24" width="${size}" height="${size}"><path fill="${fill}" d="${SI(name)}"/></svg>`;
   SCENES.meuda2 = (s, root) => {
     const st = document.createElement('style'); st.textContent = CSS; document.head.appendChild(st);
     const R = h('div', 'z2', root), B = s.beats, COVER = IMG('img/cover.svg');
@@ -110,10 +113,10 @@
     const glassify = (el, w, hh, o = {}) => LG.make(el, { w, h: hh, r: o.r, tint: o.tint ?? 'rgba(255,255,255,.07)', scale: o.scale ?? 50, depth: o.depth });
 
     // 1. opener: Apple Music icon blooms, the name types in
-    const logo = pane('', 0, 0, 1080, 1920, `<div class="amlogo">${NOTE}</div><div class="amname">${'Apple Music'.split('').map(c => `<span>${c === ' ' ? '&nbsp;' : c}</span>`).join('')}</div>`);
+    const logo = pane('', 0, 0, 1080, 1920, `<div class="amlogo"><svg viewBox="0 0 24 24" width="220" height="220"><defs><linearGradient id="amg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff5e73"/><stop offset=".55" stop-color="#fa243c"/><stop offset="1" stop-color="#e01d3c"/></linearGradient></defs><path fill="url(#amg)" d="${SI('applemusic')}"/></svg></div><div class="amname">${'Apple Music'.split('').map(c => `<span>${c === ' ' ? '&nbsp;' : c}</span>`).join('')}</div>`);
     const amIcon = logo.querySelector('.amlogo'), amL = [...logo.querySelectorAll('.amname span')];
     // 2. sidebar (dark panel, glass selection capsule)
-    const side = pane('side dark rim', 160, 560, 760, 900, `<div class="hd"><i>${NOTE}</i>Apple Music</div>
+    const side = pane('side dark rim', 160, 560, 760, 900, `<div class="hd">${mark('applemusic', '#fa243c', 56)}Apple Music</div>
       ${[['search', 'Rechercher'], ['house', 'Accueil'], ['grid', 'Nouveautés'], ['radio', 'Radio'], ['lib', 'Bibliothèque']].map(([ic, n]) => `<div class="it">${I[ic]}${n}</div>`).join('')}`);
     const sel = h('div', 'sel', side); glassify(sel, 668, 110, { r: 30, tint: 'rgba(250,45,72,.16)' }); sel.style.boxShadow = '0 0 40px rgba(250,45,72,.5)';
     // 3. search bar + result
@@ -136,8 +139,8 @@
       <div class="l2">${'SUR TOUTES LES PLATEFORMES'.split('').map(c => `<span>${c === ' ' ? '&nbsp;' : c}</span>`).join('')}</div><div class="row"></div>
       <img class="sm" src="${IMG('img/smsa.svg')}"><img class="mw" src="${IMG('img/meuda.svg')}"><div class="lab">L.A.P RECORDS</div>`);
     const l1 = [...end.querySelectorAll('.l1 span')], l2 = [...end.querySelectorAll('.l2 span')], row = end.querySelector('.row');
-    const PL = [['apple', 'Apple Music'], ['spotify', 'Spotify'], ['deezer', 'Deezer'], ['youtube', 'YouTube Music'], ['amazon', 'Amazon Music'], ['tidal', 'TIDAL'], ['napster', 'Napster'], ['more', 'et plus']].map(([k, n]) => {
-      const el = h('div', 'pl', row, `${k === 'more' ? '<span class="pm" style="background:rgba(255,255,255,.12);font-size:48px;font-weight:700">…</span>' : PLAT[k]}<span>${n}</span>`); return el; });
+    const PL = [['applemusic', '#fa243c', 'Apple Music'], ['spotify', '#1ed760', 'Spotify'], ['deezer', '#a238ff', 'Deezer'], ['youtubemusic', '#ff0000', 'YouTube Music'], ['tidal', '#ffffff', 'TIDAL'], ['napster', '#2259ff', 'Napster'], ['soundcloud', '#ff5500', 'SoundCloud'], ['audiomack', '#ffa200', 'Audiomack']].map(([k, c, n]) => {
+      const el = h('div', 'pl', row, `<span class="pmk">${mark(k, c, 96)}</span><span>${n}</span>`); return el; });
     const eSM = end.querySelector('.sm'), eMW = end.querySelector('.mw'), eLab = end.querySelector('.lab');
     let plGlassDone = false;
     R.insertAdjacentHTML('beforeend', `<svg width="0" height="0" style="position:absolute"><filter id="zmb" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur id="zmbg" stdDeviation="0 0" edgeMode="duplicate"/></filter></svg>`);
