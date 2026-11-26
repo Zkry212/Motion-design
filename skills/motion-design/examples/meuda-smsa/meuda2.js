@@ -43,6 +43,10 @@
   .z2 .stage { position:absolute; inset:0; perspective: 1800px; perspective-origin: 540px 960px; }
   .z2 .cam { position:absolute; inset:0; transform-style: preserve-3d; transform-origin: 540px 960px; }
   .z2 .pane { position:absolute; transform-style: preserve-3d; }
+  .z2 .trn { position:absolute; inset:0; transform-style: preserve-3d; }
+  .z2 .flare { position:absolute; inset:0; z-index: 25; pointer-events:none; background: radial-gradient(60% 40% at 50% 50%, rgba(255,255,255,.9), rgba(250,45,72,.55) 40%, rgba(250,45,72,0) 75%); mix-blend-mode: screen; opacity: 0; }
+  .z2 .hookmw { position:absolute; left: 60px; width: 960px; top: 830px; } .z2 .hooksm { position:absolute; left: 50%; width: 300px; margin-left: -150px; top: 700px; }
+  .z2 .hookam { position:absolute; left: 50%; top: 1150px; width: 96px; height: 96px; margin-left: -48px; filter: drop-shadow(0 0 30px rgba(250,36,60,.9)); }
   .z2 .rim { box-shadow: 0 0 0 1.5px rgba(255,255,255,.22), 0 0 40px rgba(250,45,72,.35), 0 0 120px rgba(250,45,72,.18), inset 0 1px 0 rgba(255,255,255,.25); }
   .z2 .dark { background: linear-gradient(160deg, rgba(36,36,40,.95), rgba(10,10,12,.97)); border-radius: 44px; }
   /* opener */
@@ -109,12 +113,12 @@
     // glow flames (Apple Music red / pink / warm)
     const FL = [['#fa2d48', 900, 30, 12], ['#ff6a3d', 700, 75, 20], ['#c3125f', 800, 60, 88], ['#ff2d55', 600, 20, 70]].map(([c, d, x, y]) => { const f = h('div', 'flame', R); Object.assign(f.style, { width: d + 'px', height: d * .7 + 'px', background: `radial-gradient(closest-side, ${c}, transparent)`, left: x + '%', top: y + '%', marginLeft: -d / 2 + 'px', marginTop: -d * .35 + 'px' }); return f; });
     const stage = h('div', 'stage', R), cam = h('div', 'cam', stage);
-    const pane = (cls, x, y, w, hh, html = '') => { const el = h('div', 'pane ' + cls, cam, html); Object.assign(el.style, { left: x + 'px', top: y + 'px', width: w + 'px', height: hh + 'px' }); return el; };
+    const pane = (cls, x, y, w, hh, html = '') => { const wr = h('div', 'trn', cam); const el = h('div', 'pane ' + cls, wr, html); el._w = wr; Object.assign(el.style, { left: x + 'px', top: y + 'px', width: w + 'px', height: hh + 'px' }); return el; };
     const glassify = (el, w, hh, o = {}) => LG.make(el, { w, h: hh, r: o.r, tint: o.tint ?? 'rgba(255,255,255,.07)', scale: o.scale ?? 50, depth: o.depth });
 
     // 1. opener: Apple Music icon blooms, the name types in
-    const logo = pane('', 0, 0, 1080, 1920, `<div class="amlogo"><svg viewBox="0 0 24 24" width="220" height="220"><defs><linearGradient id="amg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff5e73"/><stop offset=".55" stop-color="#fa243c"/><stop offset="1" stop-color="#e01d3c"/></linearGradient></defs><path fill="url(#amg)" d="${SI('applemusic')}"/></svg></div><div class="amname">${'Apple Music'.split('').map(c => `<span>${c === ' ' ? '&nbsp;' : c}</span>`).join('')}</div>`);
-    const amIcon = logo.querySelector('.amlogo'), amL = [...logo.querySelectorAll('.amname span')];
+    const logo = pane('', 0, 0, 1080, 1920, `<img class="hooksm" src="${IMG('img/smsa.svg')}"><img class="hookmw" src="${IMG('img/meuda.svg')}"><div class="hookam">${mark('applemusic', '#fa243c', 96)}</div>`);
+    const hMW = logo.querySelector('.hookmw'), hSM = logo.querySelector('.hooksm'), hAM = logo.querySelector('.hookam');
     // 2. sidebar (dark panel, glass selection capsule)
     const side = pane('side dark rim', 160, 560, 760, 900, `<div class="hd">${mark('applemusic', '#fa243c', 56)}Apple Music</div>
       ${[['search', 'Rechercher'], ['house', 'Accueil'], ['grid', 'Nouveautés'], ['radio', 'Radio'], ['lib', 'Bibliothèque']].map(([ic, n]) => `<div class="it">${I[ic]}${n}</div>`).join('')}`);
@@ -133,7 +137,7 @@
       <div class="nm"><b>Meuda</b><span>SMSA</span></div><div class="wv">${Array.from({ length: 42 }, () => '<i></i>').join('')}</div><div class="tm"><span class="t1">0:00</span><span class="t2">-2:41</span></div>`);
     const ctl = h('div', 'ctl', np, `<span class="s">${I.back}</span><span class="m">${I.pause}</span><span class="s">${I.fwd}</span>`); glassify(ctl, 680, 160, { tint: 'rgba(255,255,255,.08)' });
     const npArt = np.querySelector('.art'), wv = [...np.querySelectorAll('.wv i')], t1 = np.querySelector('.t1'), t2 = np.querySelector('.t2'), npBg = np.querySelector('.bg');
-    const cur = h('div', 'cur', R, I.cursor), rip = h('div', 'ripple', R);
+    const cur = h('div', 'cur', R, I.cursor), rip = h('div', 'ripple', R), flare = h('div', 'flare', R);
     // end card
     const end = h('div', 'end', R, `<div class="l1">${'DISPONIBLE'.split('').map(c => `<span>${c}</span>`).join('')}<br>${'MAINTENANT'.split('').map(c => `<span class="acc">${c}</span>`).join('')}</div>
       <div class="l2">${'SUR TOUTES LES PLATEFORMES'.split('').map(c => `<span>${c === ' ' ? '&nbsp;' : c}</span>`).join('')}</div><div class="row"></div>
@@ -147,23 +151,31 @@
     const mbg = R.querySelector('#zmbg');
 
     // camera: translate x/y, zoom, rotateY, rotateX, rotateZ — whip moves between shots, slow drifts inside a shot
+    const BAR = 4 * 60 / (s.bpm || 125);
     const CAM = [
-      [0, [0, 0, 1.25, 0, 0, 0]],
-      [B.menu - .35, [0, 0, 1.0, 0, 0, 0], whip],
-      [B.menu + .05, [-60, 180, 1.18, 28, 10, -4]],
-      [B.search - .35, [40, -80, 1.05, 18, 6, -2], whip],
-      [B.search + .05, [0, 160, 1.12, -22, 8, 3]],
-      [B.album - .35, [0, -40, 1.0, -10, 4, 1], whip],
-      [B.album + .1, [0, 0, .9, 35, 0, -3]],
-      [B.play - .5, [0, 0, 1.0, 8, 0, 0]],
-      [B.play + .1, [0, -380, 1.25, 0, 6, 0], whip],
-      [B.np - .1, [0, -380, 1.25, 0, 6, 0]],
-      [B.np + .35, [0, 0, .82, -30, 0, 3], whip],
-      [B.np + 1.6, [0, 120, 1.15, -6, 4, 0]],
-      [B.np + 2.6, [0, -300, 1.5, 12, 6, -2], whip],
-      [B.np + 3.8, [0, 200, 1.3, -10, 4, 1]],
-      [B.out, [0, 0, .7, 0, 0, 0], whip],
-      [s.duration, [0, 0, .72, 0, 0, 0]],
+      [0, [0, 0, 1.12, 0, 0, 0]],
+      [B.menu - .3, [0, 0, 1.0, 0, 0, 0], whip],
+      [B.menu, [-60, 180, 1.18, 26, 10, -4]],
+      [B.menu + BAR, [-40, 100, 1.1, 20, 8, -3]],
+      [B.search - .3, [40, -40, 1.05, 14, 6, -2], whip],
+      [B.search, [0, 160, 1.12, -20, 8, 3]],
+      [B.search + BAR * 2 - .3, [0, 120, 1.06, -12, 6, 2], whip],
+      [B.album, [0, 0, .92, 32, 0, -3]],
+      [B.play - .45, [0, 0, 1.0, 6, 0, 0], whip],
+      [B.play, [0, -380, 1.25, 0, 6, 0]],
+      [B.np - .05, [0, -380, 1.25, 0, 6, 0], whip],
+      [B.np + .3, [0, 0, .84, -28, 0, 3]],
+      [B.np + BAR - .3, [0, 60, .95, -12, 2, 1], whip],
+      [B.np + BAR, [0, -300, 1.45, 10, 6, -2]],
+      [B.np + BAR * 2 - .3, [0, -240, 1.38, 6, 5, -1], whip],
+      [B.np + BAR * 2, [0, 220, 1.3, -10, 4, 1]],
+      [B.np + BAR * 3 - .3, [0, 180, 1.25, -6, 3, 1], whip],
+      [B.np + BAR * 3, [0, -40, 1.0, 24, 0, -2]],
+      [B.np + BAR * 4 - .3, [0, 0, .96, 14, 0, -1], whip],
+      [B.np + BAR * 4, [0, 340, 1.4, -8, 6, 2]],
+      [B.out - .3, [0, 300, 1.35, -4, 5, 1], whip],
+      [B.out, [0, 0, .72, 0, 0, 0]],
+      [s.duration, [0, 0, .74, 0, 0, 0]],
     ];
     const camAt = t => kf(t, CAM);
     const camCss = c => `translate(${c[0]}px, ${c[1]}px) scale(${c[2]}) rotateY(${c[3]}deg) rotateX(${c[4]}deg) rotateZ(${c[5]}deg)`;
@@ -173,28 +185,34 @@
       const c = camAt(t), p = camAt(t - 1 / 30);
       cam.style.transform = camCss(c);
       const v = Math.hypot(c[0] - p[0], c[1] - p[1]) + Math.abs(Math.log(c[2] / p[2])) * 600 + Math.abs(c[3] - p[3]) * 14 + Math.abs(c[4] - p[4]) * 14;
-      const bxy = Math.min(16, Math.max(0, v - 4) * .35), horiz = Math.abs(c[3] - p[3]) * 14 + Math.abs(c[0] - p[0]), vert = Math.abs(c[4] - p[4]) * 14 + Math.abs(c[1] - p[1]);
-      const tot = horiz + vert + 1e-6, eb = prog(t, B.out - .2, .4) * (1 - prog(t, B.end - .1, .4)) * 10;
+      const bxy = Math.min(5, Math.max(0, v - 8) * .12), horiz = Math.abs(c[3] - p[3]) * 14 + Math.abs(c[0] - p[0]), vert = Math.abs(c[4] - p[4]) * 14 + Math.abs(c[1] - p[1]);
+      const tot = horiz + vert + 1e-6, eb = prog(t, B.out - .2, .4) * (1 - prog(t, B.end - .1, .4)) * 6;
       if (bxy + eb > .4) { mbg.setAttribute('stdDeviation', `${(bxy * (.3 + horiz / tot) + eb).toFixed(2)} ${(bxy * (.3 + vert / tot) + eb).toFixed(2)}`); stage.style.filter = 'url(#zmb)'; } else stage.style.filter = 'none';
       const bt = beat(t);
       FL.forEach((f, i) => { f.style.transform = `translate(${Math.sin(t * .7 + i * 2) * 140}px, ${Math.cos(t * .55 + i) * 120}px) scale(${1 + Math.sin(t * .9 + i) * .15 + bt * .08 * (t > B.np ? 1 : 0)}) rotate(${t * 12 + i * 40}deg)`; f.style.opacity = .55 + .25 * Math.sin(t * .8 + i); });
-      const show = (el, a, b) => { const k = win(t, a, b, .25, .25); el.style.opacity = k; el.style.display = k > 0 ? '' : 'none'; return k; };
+      const show = (el, a, b) => {
+        const w2 = el._w || el, ki = a < 0 ? 1 : prog(t, a, .38, E.outQuint), ko = prog(t, b - .22, .22, k => k * k * k), k = Math.min(ki, 1 - ko);
+        w2.style.display = k > .001 ? '' : 'none'; w2.style.opacity = clamp(ki * 1.6) * (1 - ko);
+        w2.style.transform = `translateZ(${(1 - ki) * -700 + ko * 900}px)`; w2.style.filter = (1 - ki) + ko > .02 ? `blur(${((1 - ki) * 10 + ko * 12).toFixed(1)}px)` : 'none';
+        return k; };
+      const fl = Math.max(...[B.menu, B.search, B.album, B.np, B.out, B.end].map(x => clamp(1 - Math.abs(t - x) / .12))); flare.style.opacity = fl * .7;
       // 1. opener
-      show(logo, -1, B.menu - .1);
-      const ik = prog(t, .1, .6, E.back); amIcon.style.transform = `scale(${lerp(.3, 1, ik)})`; amIcon.style.filter = `blur(${(1 - clamp(ik)) * 20}px) brightness(${1 + bt * .2})`;
-      amL.forEach((sp, i) => { const k = prog(t, .55 + i * .06, .35, E.outQuint); sp.style.opacity = k; sp.style.filter = `blur(${(1 - k) * 14}px)`; sp.style.transform = `translateY(${(1 - k) * 30}px)`; });
+      show(logo, -1, B.menu);
+      const mk2 = prog(t, .05, .6, E.outQuint); hMW.style.opacity = mk2; hMW.style.transform = `scale(${lerp(1.3, 1, mk2) * (1 + bt * .035)})`; hMW.style.filter = mk2 < 1 ? `blur(${(1 - mk2) * 22}px)` : `drop-shadow(0 0 ${20 + bt * 40}px rgba(250,45,72,.6))`;
+      const sk2 = prog(t, .22 + .48, .4, E.outQuint); hSM.style.opacity = sk2; hSM.style.transform = `translateY(${(1 - sk2) * 30}px)`;
+      const ak2 = prog(t, .22 + .96, .4, E.back); hAM.style.opacity = clamp(ak2 * 2); hAM.style.transform = `scale(${lerp(.4, 1, ak2) * (1 + bt * .06)})`;
       // 2. sidebar: capsule slides down then back up to "Rechercher"
-      show(side, B.menu - .3, B.search - .1);
+      show(side, B.menu, B.search);
       const selI = kf(t, [[B.menu + .2, 4], [B.menu + .9, 2], [B.search - .7, 0]]); sel.style.top = (50 + 74 + selI * 110) + 'px'; LG.sheen(sel, t * .4);
       side.style.transform = `translateZ(${(1 - prog(t, B.menu - .3, .5, E.outQuint)) * -500}px)`;
       // 3. search: typing with lit last letters, result rises
-      show(sbar, B.search - .3, B.album - .1); show(res, B.search + 1.0, B.album - .1);
-      const q = 'Meuda', n = Math.floor(clamp((t - B.search - .1) * 8, 0, q.length));
+      show(sbar, B.search, B.album); show(res, B.search + 1.92, B.album);
+      const q = 'Meuda', n = Math.floor(clamp((t - B.search - .15) / (60 / (s.bpm || 125)) + 1, 0, q.length));
       tx.innerHTML = n ? `${esc(q.slice(0, Math.max(0, n - 2)))}<span class="lit">${esc(q.slice(Math.max(0, n - 2), n))}</span>` : ''; ph.style.display = n ? 'none' : ''; caret.style.opacity = Math.floor(t * 3) % 2 || n < q.length ? 1 : 0;
       LG.sheen(sbar, t * .35);
-      const rk = prog(t, B.search + 1.0, .5, E.back); res.style.transform = `translateY(${(1 - rk) * 80}px) translateZ(${(1 - rk) * -200}px)`;
+      const rk = prog(t, B.search + 1.92, .5, E.back); res.style.transform = `translateY(${(1 - rk) * 80}px) translateZ(${(1 - rk) * -200}px)`;
       // 4. album card turns in 3D, cursor clicks Play
-      show(albc, B.album - .3, B.np - .05);
+      show(albc, B.album, B.np);
       const ak = prog(t, B.album - .3, .9, E.outQuint); albc.style.transform = `rotateY(${(1 - ak) * -40}deg) translateZ(${(1 - ak) * -400}px)`;
       [bPlay, bShuf].forEach((b2, i) => LG.sheen(b2, t * .3 + i * .4));
       bPlay.style.transform = `scale(${1 - .06 * clamp(1 - Math.abs(t - B.play) / .12)})`; bPlay.style.boxShadow = t > B.play ? '0 0 50px rgba(250,45,72,.6)' : '';
@@ -202,7 +220,7 @@
       cur.style.opacity = cv2; cur.style.left = lerp(820, 330, ck) + 'px'; cur.style.top = lerp(1500, 1300, ck) + 'px'; cur.style.transform = `scale(${t > B.play && t < B.play + .1 ? .85 : 1})`;
       const rpk = clamp((t - B.play) / .45); rip.style.opacity = t > B.play ? (1 - rpk) : 0; rip.style.left = '340px'; rip.style.top = '1310px'; rip.style.transform = `scale(${.2 + rpk * 1.6})`;
       // 5. now playing: art pulses on the beat, glowing waveform, time runs
-      show(np, B.np - .05, B.out + .4);
+      show(np, B.np, B.out);
       const nk = prog(t, B.np - .05, .6, E.outQuint); np.style.transform = `translateZ(${(1 - nk) * -600}px) rotateX(${(1 - nk) * 25}deg)`;
       npArt.style.transform = `scale(${1 + bt * .03})`; npBg.style.transform = `scale(${1.1 + bt * .05}) rotate(${t * 4}deg)`;
       wv.forEach((b2, i) => { b2.style.height = (14 + 130 * Math.abs(Math.sin(t * 6 + i * .55) * Math.cos(t * 2.3 + i * .21)) * (.45 + bt * .55)) + 'px'; });
@@ -211,10 +229,10 @@
       // end card: letters fall into place, the platform marks arrive in Liquid Glass tiles
       const ek = prog(t, B.end, .3); end.style.opacity = ek; end.style.display = ek > 0 ? '' : 'none';
       if (ek > 0 && !plGlassDone) { PL.forEach(pl => { pl.style.position = 'relative'; LG.make(pl, { w: pl.offsetWidth || 200, h: 200, r: 40, tint: 'rgba(255,255,255,.06)' }); pl.style.position = 'relative'; }); plGlassDone = true; }
-      l1.forEach((sp, i) => { const k = prog(t, B.end + .1 + i * .035, .5, E.back); sp.style.opacity = clamp(k * 2); sp.style.transform = `translateY(${(1 - k) * -120}px) rotate(${(1 - k) * (i % 2 ? 20 : -20)}deg)`; });
-      l2.forEach((sp, i) => { const k = prog(t, B.end + .7 + i * .025, .45, E.outQuint); sp.style.opacity = k; sp.style.filter = k < 1 ? `blur(${(1 - k) * 10}px)` : 'none'; });
-      PL.forEach((pl, i) => { const k = prog(t, B.end + 1.3 + i * .08, .5, E.back); pl.style.opacity = clamp(k * 2); pl.style.transform = `translateY(${(1 - k) * 60}px) scale(${lerp(.6, 1, k)})`; LG.sheen(pl, t * .3 + i * .2); });
-      const mk = prog(t, B.end + 2.2, .6, E.outQuint); eMW.style.opacity = mk; eMW.style.transform = `scale(${lerp(1.2, 1, mk)})`; eSM.style.opacity = prog(t, B.end + 2.45, .5); eLab.style.opacity = prog(t, B.end + 2.7, .5);
+      l1.forEach((sp, i) => { const k = prog(t, B.end + i * .06, .45, E.back); sp.style.opacity = clamp(k * 2); sp.style.transform = `translateY(${(1 - k) * -120}px) rotate(${(1 - k) * (i % 2 ? 20 : -20)}deg)`; });
+      l2.forEach((sp, i) => { const k = prog(t, B.end + 1.2 + i * .02, .45, E.outQuint); sp.style.opacity = k; sp.style.filter = k < 1 ? `blur(${(1 - k) * 10}px)` : 'none'; });
+      PL.forEach((pl, i) => { const k = prog(t, B.end + 1.92 + i * .24, .45, E.back); pl.style.opacity = clamp(k * 2); pl.style.transform = `translateY(${(1 - k) * 60}px) scale(${lerp(.6, 1, k)})`; LG.sheen(pl, t * .3 + i * .2); });
+      const mk = prog(t, B.end + 3.84, .6, E.outQuint); eMW.style.opacity = mk; eMW.style.transform = `scale(${lerp(1.2, 1, mk) * (1 + bt * .03 * mk)})`; eSM.style.opacity = prog(t, B.end + 4.32, .5); eLab.style.opacity = prog(t, B.end + 4.8, .5);
     };
   };
 })();

@@ -3,7 +3,7 @@
  "width": 1080,
  "height": 1920,
  "fps": 30,
- "duration": 20.0,
+ "duration": 32.3,
  "bg": "#050506",
  "bgCss": "#050506",
  "glow": false,
@@ -13,219 +13,104 @@
   "meuda2.js"
  ],
  "audio": {
-  "music": "assets/pad.wav",
-  "musicGain": -16,
+  "music": "assets/meuda-track.wav",
+  "musicGain": 1,
   "duck": false,
   "sfx": [
    {
-    "at": 0.1,
-    "src": "assets/sfx/whoosh-rise.wav",
-    "gain": -10
-   },
-   {
-    "at": 0.12,
-    "src": "assets/sfx/thud.wav",
-    "gain": -11
-   },
-   {
-    "at": 0.4,
-    "src": "assets/sfx/pop-9.wav",
-    "gain": -11
-   },
-   {
-    "at": 0.55,
-    "src": "assets/sfx/key.wav",
-    "gain": -18
-   },
-   {
-    "at": 0.61,
-    "src": "assets/sfx/key.wav",
-    "gain": -18
-   },
-   {
-    "at": 0.67,
-    "src": "assets/sfx/key.wav",
-    "gain": -18
-   },
-   {
-    "at": 0.73,
-    "src": "assets/sfx/key.wav",
-    "gain": -18
-   },
-   {
-    "at": 0.79,
-    "src": "assets/sfx/key.wav",
-    "gain": -18
-   },
-   {
-    "at": 0.85,
-    "src": "assets/sfx/key.wav",
-    "gain": -18
-   },
-   {
-    "at": 0.91,
-    "src": "assets/sfx/key.wav",
-    "gain": -18
-   },
-   {
-    "at": 0.97,
-    "src": "assets/sfx/key.wav",
-    "gain": -18
-   },
-   {
-    "at": 1.03,
-    "src": "assets/sfx/key.wav",
-    "gain": -18
-   },
-   {
-    "at": 1.09,
-    "src": "assets/sfx/key.wav",
-    "gain": -18
-   },
-   {
-    "at": 1.15,
-    "src": "assets/sfx/key.wav",
-    "gain": -18
-   },
-   {
-    "at": 1.85,
-    "src": "assets/sfx/whoosh-med.wav",
-    "gain": -10
-   },
-   {
-    "at": 2.4,
-    "src": "assets/sfx/pop-4.wav",
-    "gain": -14
-   },
-   {
-    "at": 3.1,
-    "src": "assets/sfx/pop-5.wav",
-    "gain": -14
-   },
-   {
-    "at": 3.7,
-    "src": "assets/sfx/pop-6.wav",
-    "gain": -13
-   },
-   {
-    "at": 4.05,
-    "src": "assets/sfx/whoosh-med.wav",
-    "gain": -10
-   },
-   {
-    "at": 4.5,
-    "src": "assets/sfx/key.wav",
-    "gain": -13
-   },
-   {
-    "at": 4.625,
-    "src": "assets/sfx/key.wav",
-    "gain": -13
-   },
-   {
-    "at": 4.75,
-    "src": "assets/sfx/key.wav",
-    "gain": -13
-   },
-   {
-    "at": 4.875,
-    "src": "assets/sfx/key.wav",
-    "gain": -13
-   },
-   {
-    "at": 5.0,
-    "src": "assets/sfx/key.wav",
-    "gain": -13
-   },
-   {
-    "at": 5.4,
-    "src": "assets/sfx/pop-7.wav",
-    "gain": -12
-   },
-   {
-    "at": 6.25,
-    "src": "assets/sfx/whoosh-med.wav",
-    "gain": -10
-   },
-   {
-    "at": 8.3,
-    "src": "assets/sfx/tap.wav",
-    "gain": -9
-   },
-   {
-    "at": 8.35,
-    "src": "assets/sfx/thud.wav",
-    "gain": -12
-   },
-   {
-    "at": 8.7,
-    "src": "assets/sfx/whoosh-med.wav",
-    "gain": -10
-   },
-   {
-    "at": 10.4,
-    "src": "assets/sfx/whoosh-med.wav",
-    "gain": -10
-   },
-   {
-    "at": 11.4,
-    "src": "assets/sfx/whoosh-med.wav",
-    "gain": -10
-   },
-   {
-    "at": 13.6,
-    "src": "assets/sfx/whoosh-med.wav",
-    "gain": -10
-   },
-   {
-    "at": 15.1,
+    "at": 1.84,
     "src": "assets/sfx/whoosh-short.wav",
+    "gain": -17
+   },
+   {
+    "at": 5.68,
+    "src": "assets/sfx/whoosh-short.wav",
+    "gain": -17
+   },
+   {
+    "at": 6.13,
+    "src": "assets/sfx/key.wav",
+    "gain": -17
+   },
+   {
+    "at": 6.61,
+    "src": "assets/sfx/key.wav",
+    "gain": -17
+   },
+   {
+    "at": 7.09,
+    "src": "assets/sfx/key.wav",
+    "gain": -17
+   },
+   {
+    "at": 7.57,
+    "src": "assets/sfx/key.wav",
+    "gain": -17
+   },
+   {
+    "at": 8.05,
+    "src": "assets/sfx/key.wav",
+    "gain": -17
+   },
+   {
+    "at": 9.52,
+    "src": "assets/sfx/whoosh-short.wav",
+    "gain": -17
+   },
+   {
+    "at": 13.18,
+    "src": "assets/sfx/tap.wav",
     "gain": -12
    },
    {
-    "at": 16.3,
+    "at": 13.36,
+    "src": "assets/sfx/whoosh-short.wav",
+    "gain": -17
+   },
+   {
+    "at": 24.88,
+    "src": "assets/sfx/whoosh-short.wav",
+    "gain": -17
+   },
+   {
+    "at": 27.1,
     "src": "assets/sfx/pop-1.wav",
-    "gain": -15
+    "gain": -19
    },
    {
-    "at": 16.38,
+    "at": 27.34,
     "src": "assets/sfx/pop-2.wav",
-    "gain": -15
+    "gain": -19
    },
    {
-    "at": 16.46,
+    "at": 27.58,
     "src": "assets/sfx/pop-3.wav",
-    "gain": -15
+    "gain": -19
    },
    {
-    "at": 16.54,
+    "at": 27.82,
     "src": "assets/sfx/pop-4.wav",
-    "gain": -15
+    "gain": -19
    },
    {
-    "at": 16.62,
+    "at": 28.06,
     "src": "assets/sfx/pop-5.wav",
-    "gain": -15
+    "gain": -19
    },
    {
-    "at": 16.7,
+    "at": 28.3,
     "src": "assets/sfx/pop-6.wav",
-    "gain": -15
+    "gain": -19
    },
    {
-    "at": 16.78,
+    "at": 28.54,
     "src": "assets/sfx/pop-7.wav",
-    "gain": -15
+    "gain": -19
    },
    {
-    "at": 16.86,
+    "at": 28.78,
     "src": "assets/sfx/pop-8.wav",
-    "gain": -15
-   },
-   {
-    "at": 17.2,
-    "src": "assets/sfx/logo-sting.wav",
-    "gain": -6
+    "gain": -19
    }
   ]
  },
@@ -233,18 +118,21 @@
   {
    "type": "meuda2",
    "at": 0,
-   "dur": 20.0,
-   "duration": 20.0,
-   "bpm": 140,
+   "dur": 32.3,
+   "duration": 32.3,
+   "bpm": 125,
+   "beatOffset": 0.216,
    "beats": {
-    "menu": 2.2,
-    "search": 4.4,
-    "album": 6.6,
-    "play": 8.3,
-    "np": 8.8,
-    "out": 14.0,
-    "end": 15.0
-   }
+    "menu": 2.14,
+    "search": 5.98,
+    "album": 9.82,
+    "play": 13.18,
+    "np": 13.66,
+    "out": 25.18,
+    "end": 25.18
+   },
+   "trackStart": 13.66,
+   "trackLen": 161
   }
  ]
 }
