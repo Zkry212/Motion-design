@@ -62,7 +62,7 @@
   .t2 .glare { position:absolute; inset:0; z-index: 45; pointer-events:none; border-radius: 54px; background: linear-gradient(118deg, rgba(255,255,255,.16) 0%, rgba(255,255,255,.05) 22%, rgba(255,255,255,0) 38%); mix-blend-mode: screen; }
   .t2 .off { position:absolute; inset:0; background:#050506; z-index: 40; }
   .t2 .isl { position:absolute; top: 11px; left:50%; width: 120px; height: 34px; margin-left:-60px; border-radius: 20px; background:#000; z-index: 41; }
-  .t2 .stat { position:absolute; top:0; left:0; right:0; height:${SB}px; background:#fff; display:flex; justify-content:space-between; align-items:center; padding: 6px 30px 0 40px; font-size: 16.5px; font-weight: 650; letter-spacing: -.01em; z-index: 25; }
+  .t2 .stat { position:absolute; top:0; left:0; right:0; width:auto; transform:none; border-radius:0; box-sizing:border-box; height:${SB}px; background:#fff; display:flex; justify-content:space-between; align-items:center; padding: 6px 30px 0 40px; font-size: 16.5px; font-weight: 650; letter-spacing: -.01em; z-index: 25; }
   .t2 .stat .ic { display:flex; align-items:center; gap: 5px; } .t2 .stat svg { display:block; }
   .t2 .stat .bat { width: 26px; height: 12px; border: 1.5px solid #000; border-radius: 4px; position:relative; } .t2 .stat .bat i { position:absolute; inset: 1.5px; right: 5px; background:#000; border-radius: 2px; }
   .t2 .vp { position:absolute; top:${SB}px; left:0; width:${SW}px; height:${VH}px; overflow:hidden; background:#fff; }
@@ -157,6 +157,43 @@
   .t2 .jtag { position:absolute; left: 50%; bottom: 16px; transform: translateX(-50%); padding: 6px 18px; border-radius: 20px; background:#f0f1f4; color:#1d1f26; font-size: 21px; font-weight: 700; white-space:nowrap; }
   .t2 .bt.free .jtag { background: var(--ink); color:#fff; }
   .t2 .bt .okp { width: 64px; height: 64px; border-radius: 50%; background: var(--tq); color:#08343a; display:grid; place-items:center; font-size: 36px; font-weight: 800; margin: 10px 0; }
+  /* redrawn Élite Maillot store (clean iOS style) */
+  .t2 .app { position:absolute; inset:0; z-index: 24; background:#fff; overflow:hidden; font-family: Inter, system-ui, sans-serif; color:#111; }
+  .t2 .app .scrn { position:absolute; inset:0; background:#fff; }
+  .t2 .app .hd2 { height: 54px; display:flex; align-items:center; justify-content:space-between; padding: 0 18px; border-bottom: .5px solid #ececef; background:#fff; position:relative; z-index: 2; }
+  .t2 .app .hd2 img { height: 34px; } .t2 .app .hd2 .ic2 { width: 26px; height: 26px; position:relative; } .t2 .app .hd2 svg { width: 26px; height: 26px; }
+  .t2 .app .bdg { position:absolute; right: -7px; top: -6px; min-width: 18px; height: 18px; border-radius: 9px; background:#12b5c0; color:#fff; font-size: 11px; font-weight: 800; display:grid; place-items:center; }
+  .t2 .app .feed { position:absolute; left:0; right:0; top: 54px; }
+  .t2 .app .promo { margin: 14px 16px 0; border-radius: 18px; padding: 16px 18px; color:#fff; background: linear-gradient(120deg,#12b5c0,#5ce1e6); box-shadow: 0 8px 18px rgba(18,181,192,.25); }
+  .t2 .app .promo b { display:block; font-size: 19px; letter-spacing:-.01em; } .t2 .app .promo span { font-size: 13px; opacity: .92; }
+  .t2 .app .ttl { margin: 18px 18px 10px; font-size: 19px; font-weight: 750; letter-spacing:-.02em; }
+  .t2 .app .grid2 { display:grid; grid-template-columns: 1fr 1fr; gap: 14px 12px; padding: 0 16px; }
+  .t2 .app .pc .im { height: 168px; border-radius: 16px; background: radial-gradient(80% 80% at 50% 40%, #ffffff, #eef0f3); background-size: contain; position:relative; overflow:hidden; }
+  .t2 .app .pc .im i { position:absolute; inset: 8%; background-size: contain; background-repeat:no-repeat; background-position:center; filter: drop-shadow(0 8px 10px rgba(0,0,0,.15)); }
+  .t2 .app .pc b { display:block; font-size: 13.5px; font-weight: 600; margin-top: 8px; line-height: 1.25; } .t2 .app .pc span { display:block; font-size: 14.5px; font-weight: 750; margin-top: 3px; }
+  .t2 .app .pd .big { height: 300px; background: radial-gradient(70% 70% at 50% 42%, #ffffff, #e9ecf0); position:relative; }
+  .t2 .app .pd .big i { position:absolute; inset: 7% 12%; background-size: contain; background-repeat:no-repeat; background-position:center; filter: drop-shadow(0 18px 18px rgba(0,0,0,.18)); }
+  .t2 .app .pd .inf { padding: 16px 18px; } .t2 .app .pd h3 { margin: 0; font-size: 21px; font-weight: 750; letter-spacing:-.02em; line-height: 1.2; }
+  .t2 .app .pd .pr2 { font-size: 21px; font-weight: 800; margin-top: 6px; } .t2 .app .pd .of { display:inline-block; margin-top: 8px; padding: 5px 10px; border-radius: 10px; background:#e8fafb; color:#0e9aa4; font-size: 13px; font-weight: 700; }
+  .t2 .app .pd .lb { margin-top: 16px; font-size: 13px; color:#6c6c70; font-weight: 600; }
+  .t2 .app .chips { display:flex; gap: 8px; margin-top: 8px; } .t2 .app .chips span { flex:1; height: 40px; border-radius: 12px; border: 1.5px solid #e2e2e6; display:grid; place-items:center; font-size: 15px; font-weight: 650; }
+  .t2 .app .chips span.on { background:#111; color:#fff; border-color:#111; }
+  .t2 .app .cta { position:absolute; left: 16px; right: 16px; bottom: 16px; height: 52px; border-radius: 26px; background:#111; color:#fff; display:grid; place-items:center; font-size: 16px; font-weight: 700; }
+  .t2 .app .cartsh { position:absolute; inset: 0; background:#f6f7f9; border-radius: 26px 26px 0 0; box-shadow: 0 -10px 30px rgba(0,0,0,.18); }
+  .t2 .app .cartsh .hdl { width: 42px; height: 5px; border-radius: 3px; background:#d1d1d6; margin: 8px auto 6px; }
+  .t2 .app .cartsh h4 { margin: 4px 18px 10px; font-size: 21px; font-weight: 800; letter-spacing:-.02em; }
+  .t2 .app .ofc { margin: 0 14px 10px; background:#fff; border-radius: 16px; padding: 12px 14px; }
+  .t2 .app .ofc .r1 { display:flex; justify-content:space-between; font-size: 14px; font-weight: 700; } .t2 .app .ofc .r1 em { font-style:normal; color:#0e9aa4; }
+  .t2 .app .segs { display:flex; gap: 6px; margin-top: 10px; } .t2 .app .segs i { flex:1; height: 7px; border-radius: 4px; background:#e5e5ea; } .t2 .app .segs i.on { background: linear-gradient(90deg,#12b5c0,#5ce1e6); }
+  .t2 .app .rows2 { margin: 0 14px; background:#fff; border-radius: 16px; overflow:hidden; }
+  .t2 .app .rw { display:flex; align-items:center; gap: 12px; padding: 9px 12px; border-bottom: .5px solid #ececef; height: 64px; box-sizing:border-box; }
+  .t2 .app .rw .th2 { width: 48px; height: 48px; border-radius: 12px; background:#f0f1f4 center/80% no-repeat; flex:none; }
+  .t2 .app .rw b { display:block; font-size: 13.5px; font-weight: 650; } .t2 .app .rw small { font-size: 12px; color:#8a8a8e; }
+  .t2 .app .rw .p3 { margin-left:auto; text-align:right; font-size: 14px; font-weight: 750; white-space:nowrap; } .t2 .app .rw .p3 s { display:block; color:#a1a1a6; font-weight: 500; font-size: 12px; }
+  .t2 .app .rw .free2 { background:#12b5c0; color:#fff; border-radius: 8px; padding: 3px 8px; font-size: 12px; font-weight: 800; }
+  .t2 .app .tot2 { margin: 12px 18px; display:flex; justify-content:space-between; align-items:baseline; } .t2 .app .tot2 span { font-size: 16px; font-weight: 700; } .t2 .app .tot2 s { color:#a1a1a6; font-size: 14px; margin-right: 8px; } .t2 .app .tot2 b { font-size: 24px; font-weight: 800; }
+  .t2 .app .applebtn { position:absolute; left: 16px; right: 16px; bottom: 16px; height: 52px; border-radius: 26px; background:#000; color:#fff; display:grid; place-items:center; font-size: 16px; font-weight: 700; }
+  .t2 .tap2 { position:absolute; width: 46px; height: 46px; margin:-23px; border-radius:50%; background: rgba(90,90,100,.3); border: 1.5px solid rgba(255,255,255,.85); z-index: 30; }
   /* bento tiles (world) */
   .t2 .bt .in { position:absolute; inset:0; padding: 26px 28px; display:flex; flex-direction:column; justify-content:center; }
   .t2 .bt .big { font-size: 80px; font-weight: 700; letter-spacing:-.045em; line-height:1; font-variant-numeric: tabular-nums; }
@@ -274,7 +311,24 @@
       <div class="st"><div class="s1"><span class="side"></span>Confirmer avec le bouton latéral</div><div class="s2"><svg viewBox="0 0 40 40"><g fill="none" stroke="#0a84ff" stroke-width="2.4" stroke-linecap="round"><path d="M4 12V7a3 3 0 0 1 3-3h5M28 4h5a3 3 0 0 1 3 3v5M36 28v5a3 3 0 0 1-3 3h-5M12 36H7a3 3 0 0 1-3-3v-5"/><path d="M14 14v3M26 14v3M20 15v7h-2M15 27q5 4 10 0"/></g></svg>Face ID</div><div class="s3"><span class="spin"></span></div><div class="s4"><span class="ok">✓</span>Terminé</div></div>`);
     const dbl = h('div', 'dbl', scr, '<span>Double-cliquer<br>pour payer</span><i></i>');
     const apS = [...ap.querySelectorAll('.st > div')], spin = ap.querySelector('.spin'), okc = ap.querySelector('.ok');
-    const tap = h('div', 'tap', scr), ring = h('div', 'ring', scr), off = h('div', 'off', scr);
+    const app = h('div', 'app', vp);
+    const cartIco = '<svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.7"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>';
+    const ST = s.store;
+    const scHome = h('div', 'scrn', app, `<div class="hd2"><span class="ic2"><svg viewBox="0 0 24 24" stroke="#111" stroke-width="1.7"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><img src="${IMG('img/logo.svg')}"><span class="ic2">${cartIco}<span class="bdg">0</span></span></div>
+      <div class="feed"><div class="promo"><b>${emo('🎁')} 3 achetés = 1 offert</b><span>Le 4ème maillot est offert automatiquement</span></div><div class="ttl">Les plus demandés</div>
+      <div class="grid2">${ST.map(p2 => `<div class="pc"><div class="im"><i style="background-image:url(${IMG('img/' + p2.img)})"></i></div><b>${esc(p2.name)}</b><span>19,99€</span></div>`).join('')}</div></div>`);
+    const feed = scHome.querySelector('.feed'), pcs = [...scHome.querySelectorAll('.pc')], promo = scHome.querySelector('.promo'), bdg = scHome.querySelector('.bdg');
+    const scProd = h('div', 'scrn pd', app, `<div class="hd2"><span class="ic2"><svg viewBox="0 0 24 24" stroke="#111" stroke-width="2" fill="none"><path d="M15 5l-7 7 7 7"/></svg></span><img src="${IMG('img/logo.svg')}"><span class="ic2">${cartIco}</span></div>
+      <div class="big"><i style="background-image:url(${IMG('img/barca.png')})"></i></div><div class="inf"><h3>Maillot Barcelone domicile 26/27</h3><div class="pr2">19,99€</div><span class="of">${emo('🎁')} 3 achetés = 1 offert</span>
+      <div class="lb">Taille</div><div class="chips"><span>S</span><span class="m">M</span><span>L</span><span>XL</span><span>2XL</span></div></div><div class="cta">Ajouter au panier</div>`);
+    const chipM = scProd.querySelector('.chips .m'), cta = scProd.querySelector('.cta'), bigJ = scProd.querySelector('.big i');
+    const CR = [['barca.png', 'Barcelone domicile 26/27'], ['france.png', 'France extérieur 2026'], ['real.png', 'Real Madrid domicile 26/27'], ['city.png', 'Manchester City domicile 26/27']];
+    const scCart = h('div', 'cartsh', app, `<div class="hdl"></div><h4>Votre panier <span class="cc">(1)</span></h4>
+      <div class="ofc"><div class="r1"><span>${emo('🎁')} 3 achetés = 1 offert</span><em class="st2">1/4</em></div><div class="segs"><i></i><i></i><i></i><i></i></div></div>
+      <div class="rows2">${CR.map((c2, i) => `<div class="rw"><span class="th2" style="background-image:url(${IMG('img/' + c2[0])})"></span><div><b>${esc(c2[1])}</b><small>Taille M</small></div><span class="p3">${i === 3 ? '<s>19,99€</s><span class="free2">OFFERT</span>' : '19,99€'}</span></div>`).join('')}</div>
+      <div class="tot2"><span>Total</span><span><s class="oldt">79,96€</s><b class="tt">19,99€</b></span></div><div class="applebtn">Payer avec Apple Pay</div>`);
+    const rws = [...scCart.querySelectorAll('.rw')], segs = [...scCart.querySelectorAll('.segs i')], st2 = scCart.querySelector('.st2'), cc = scCart.querySelector('.cc'), tt = scCart.querySelector('.tt'), oldt = scCart.querySelector('.oldt'), abtn = scCart.querySelector('.applebtn');
+    const tap = h('div', 'tap2', scr), ring = h('div', 'ring', scr), off = h('div', 'off', scr);
 
     // ---------- overlays
     const HL = s.headlines.map(x => { const w = wordsEl(R, x.text, ''); w.box.className = 'hl'; if (x.y) w.box.style.top = x.y + 'px'; return { w, ...x }; });
@@ -405,7 +459,7 @@
       // a blue message pill leaves the stack and flies into the phone's search field while the camera dives
       const pf = prog(t, B.phone - .3, 1.35, E.inOut);
       if (t > B.phone - .35 && pf < 1) {
-        const tgt = toScreen(SX + 195, SY + SB + VH + SAF - 45), x = lerp(540, tgt[0], pf), y = lerp(560, tgt[1], pf) - Math.sin(pf * Math.PI) * 120;
+        const tgt = toScreen(SX + 195, SY + SB + 330), x = lerp(540, tgt[0], pf), y = lerp(560, tgt[1], pf) - Math.sin(pf * Math.PI) * 120;
         const xs = lerp(540, toScreen(SX + 195, SY + SB + 74 - 1)[0], 0);
         pill.style.display = ''; pill.style.opacity = clamp(prog(t, B.phone - .35, .15)) * (1 - prog(t, B.phone + .85, .2));
         pill.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%) scale(${lerp(1, .42, pf)}) rotate(${lerp(0, -8, Math.sin(pf * Math.PI))}deg)`;
@@ -437,7 +491,7 @@
       srch.style.display = t < B.open + .2 ? '' : 'none'; srch.style.opacity = 1 - prog(t, tapHit + .2, .3); saf.style.opacity = prog(t, tapHit + .25, .3);
       const rise = prog(t, B.open + .1, .6, E.outQuint); L.home.d.style.opacity = t > B.open + .1 ? 1 : 0; L.home.d.style.transform = `translateY(${(1 - rise) * VH}px)`;
       const hr = prog(t, B.open + .1, .7, E.outQuint);
-      url.textContent = t < tapHit + .1 ? '🔍 Rechercher' : 'elite-maillot.fr';
+      url.textContent = 'elite-maillot.fr';
       pg.style.width = prog(t, tapHit + .1, .9, E.out) * 100 + '%'; pg.style.opacity = t > tapHit + .1 && t < tapHit + 1.1 ? 1 : 0;
       const scrollY = kf(t, [[B.choose, 0], [B.choose + 1.3, 1650, sexy]]);
       const scrollPrev = kf(t - 1 / 30, [[B.choose, 0], [B.choose + 1.3, 1650, sexy]]);
@@ -467,7 +521,7 @@
       const dk2 = win(t, B.pay + .7, B.pay + 1.75, .25, .2); dbl.style.opacity = dk2;
       dbl.lastChild.style.transform = `scaleY(${1 + Math.max(0, Math.sin((t - B.pay) * 9)) * .25})`; dbl.style.transform = `translateX(${(1 - prog(t, B.pay + .7, .35, E.outQuint)) * 40}px)`;
       const ro = win(t, B.four + .25, B.pay - .1, .3, .2);
-      ring.style.opacity = ro; Object.assign(ring.style, { left: '228px', top: SB + 254 + 'px', width: '150px', height: '78px', transform: `scale(${lerp(1.2, 1, ro)})` });
+      ring.style.opacity = ro; Object.assign(ring.style, { left: '16px', top: SB + 326 + 'px', width: '358px', height: '62px', transform: `scale(${lerp(1.2, 1, ro)})` });
 
       // the Christmas list gets ticked off in the finale
       remRows.forEach((r2, i) => { const on = t > B.bento + .55 + i * .25; const cb = r2.querySelector('.cb'); cb.classList.toggle('on', on); cb.textContent = on ? '✓' : ''; r2.style.opacity = on ? .55 : 1; });
@@ -488,6 +542,30 @@
       // end: bouncing dots, the logo, the tagline typed
       const dk = win(t, B.end + .35, B.end + 1.35, .2, .25); dots.style.opacity = dk;
       [...dots.children].forEach((d, i) => { const ph2 = ((t - B.end) * 2.6 - i * .18) % 1; d.style.transform = `translateY(${-Math.max(0, Math.sin(ph2 * Math.PI)) * 26}px) scale(${1 + Math.max(0, Math.sin(ph2 * Math.PI)) * .15})`; });
+      // ----- redrawn store: opens with a cascade, scrolls, tap on the Barça card, product page, size, add, cart fills, Apple Pay
+      srch.style.display = 'none'; saf.style.opacity = 1;
+      const T0 = B.phone + .05, tCard = B.choose + 1.0, tSize = B.add - .2, tAdd = B.add + 1.0;
+      promo.style.opacity = prog(t, T0 + .15, .3); promo.style.transform = `translateY(${(1 - prog(t, T0 + .15, .5, E.outQuint)) * 24}px)`;
+      pcs.forEach((pc, i) => { const k = prog(t, T0 + .3 + i * .08, .5, E.back); pc.style.opacity = clamp(k * 2); pc.style.transform = `translateY(${(1 - k) * 40}px) scale(${lerp(.92, 1, k)})`; });
+      const fy = kf(t, [[B.open - .3, 0], [B.choose + .6, 230, sexy]]); feed.style.transform = `translateY(${-fy}px)`;
+      const pin = prog(t, tCard + .1, .45, E.outQuint); scProd.style.transform = `translateX(${(1 - pin) * 100}%)`; scProd.style.display = t > tCard ? '' : 'none';
+      scHome.style.transform = `translateX(${-pin * 30}%)`;
+      bigJ.style.transform = `translateY(${Math.sin(t * 1.6) * 4}px) scale(${lerp(.85, 1, prog(t, tCard + .3, .5, E.back))})`;
+      chipM.classList.toggle('on', t > tSize); chipM.style.transform = `scale(${1 - .08 * clamp(1 - Math.abs(t - tSize) / .12)})`;
+      cta.style.transform = `scale(${1 - .04 * clamp(1 - Math.abs(t - tAdd) / .15)})`;
+      const cin = prog(t, tAdd + .15, .5, E.outQuint); scCart.style.transform = `translateY(${(1 - cin) * 105}%)`; scCart.style.display = t > tAdd + .1 ? '' : 'none';
+      const addT = [tAdd + .3, B.four - .6, B.four - .3, B.four];
+      const nIn = addT.filter(x => t >= x).length;
+      rws.forEach((rw, i) => { const k = prog(t, addT[i], .4, E.back); rw.style.display = t >= addT[i] - .01 ? '' : 'none'; rw.style.opacity = clamp(k * 2); rw.style.transform = `translateX(${(1 - k) * 60}px)`; });
+      segs.forEach((sg, i) => sg.classList.toggle('on', i < nIn)); st2.textContent = nIn >= 4 ? 'Débloqué ✓' : nIn + '/4'; cc.textContent = `(${nIn})`;
+      const totV = nIn >= 4 ? lerp(79.96, 59.97, prog(t, B.four + .15, .6, E.outQuint)) : 19.99 * nIn; tt.textContent = totV.toFixed(2).replace('.', ',') + '€';
+      oldt.style.display = nIn >= 4 ? '' : 'none'; bdg.textContent = nIn;
+      abtn.style.transform = `scale(${1 - .04 * clamp(1 - Math.abs(t - B.pay) / .15)})`;
+      const tp2 = at => clamp((t - at + .2) / .2) * (1 - clamp((t - at - .15) / .25));
+      const q1 = tp2(tCard), q2 = tp2(tSize), q3 = tp2(tAdd), q4 = tp2(B.pay), mq = Math.max(q1, q2, q3, q4);
+      const ptq = q1 === mq ? [100, SB + 54 + 14 + 70 + 34 + 250 + 84 - 230 + 84] : q2 === mq ? [104, SB + 300 + 16 + 120 + 30] : q3 === mq ? [195, SB + VH - 42] : [195, SB + VH - 42];
+      tap.style.opacity = mq; tap.style.left = ptq[0] + 'px'; tap.style.top = ptq[1] + 'px'; tap.style.transform = `scale(${lerp(1.5, .85, mq)})`;
+
       // logo reveal: a clean light veil, ÉLITE letters pop one by one, MAILLOT rises letter by letter, then the offer and the URL
       const L0 = B.end + 1.62;
       veil.style.opacity = prog(t, B.end + .9, .5);

@@ -126,13 +126,28 @@
     "gain": -14
    },
    {
-    "at": 7.05,
-    "src": "assets/sfx/key.wav",
+    "at": 6.85,
+    "src": "assets/sfx/pop-3.wav",
     "gain": -15
    },
    {
-    "at": 7.15,
-    "src": "assets/sfx/key.wav",
+    "at": 6.93,
+    "src": "assets/sfx/pop-4.wav",
+    "gain": -15
+   },
+   {
+    "at": 7.01,
+    "src": "assets/sfx/pop-5.wav",
+    "gain": -15
+   },
+   {
+    "at": 7.09,
+    "src": "assets/sfx/pop-6.wav",
+    "gain": -15
+   },
+   {
+    "at": 7.17,
+    "src": "assets/sfx/pop-7.wav",
     "gain": -15
    },
    {
@@ -142,73 +157,18 @@
    },
    {
     "at": 7.25,
-    "src": "assets/sfx/key.wav",
+    "src": "assets/sfx/pop-8.wav",
     "gain": -15
-   },
-   {
-    "at": 7.35,
-    "src": "assets/sfx/key.wav",
-    "gain": -15
-   },
-   {
-    "at": 7.45,
-    "src": "assets/sfx/key.wav",
-    "gain": -15
-   },
-   {
-    "at": 7.55,
-    "src": "assets/sfx/key.wav",
-    "gain": -15
-   },
-   {
-    "at": 7.65,
-    "src": "assets/sfx/key.wav",
-    "gain": -15
-   },
-   {
-    "at": 7.75,
-    "src": "assets/sfx/key.wav",
-    "gain": -15
-   },
-   {
-    "at": 7.85,
-    "src": "assets/sfx/key.wav",
-    "gain": -15
-   },
-   {
-    "at": 7.95,
-    "src": "assets/sfx/key.wav",
-    "gain": -15
-   },
-   {
-    "at": 8.05,
-    "src": "assets/sfx/key.wav",
-    "gain": -15
-   },
-   {
-    "at": 8.15,
-    "src": "assets/sfx/key.wav",
-    "gain": -15
-   },
-   {
-    "at": 8.25,
-    "src": "assets/sfx/key.wav",
-    "gain": -15
-   },
-   {
-    "at": 9.2,
-    "src": "assets/sfx/tap.wav",
-    "gain": -11
-   },
-   {
-    "at": 9.25,
-    "src": "assets/sfx/whoosh-rise.wav",
-    "gain": -12
    },
    {
     "at": 10.0,
     "src": "assets/sfx/whoosh-short.wav",
     "gain": -16
+   },
+   {
+    "at": 10.9,
+    "src": "assets/sfx/tap.wav",
+    "gain": -11
    },
    {
     "at": 11.4,
@@ -381,18 +341,13 @@
      "out": 5.9
     },
     {
-     "text": "Vous tapez *Élite Maillot.*",
-     "at": 6.2,
-     "out": 8.9
-    },
-    {
-     "text": "Le site *s'ouvre.*",
-     "at": 9.1,
-     "out": 10.1
+     "text": "Vous ouvrez *Élite Maillot.*",
+     "at": 6.4,
+     "out": 9.3
     },
     {
      "text": "Vous *choisissez.*",
-     "at": 10.2,
+     "at": 9.45,
      "out": 11.35
     },
     {
@@ -434,7 +389,33 @@
      "at": 5.0
     }
    ],
-   "pill": "Un maillot pour Noël ?"
+   "pill": "Un maillot pour Noël ?",
+   "store": [
+    {
+     "img": "real.png",
+     "name": "Maillot Real Madrid domicile 26/27"
+    },
+    {
+     "img": "france.png",
+     "name": "Maillot France extérieur 2026"
+    },
+    {
+     "img": "barca.png",
+     "name": "Maillot Barcelone domicile 26/27"
+    },
+    {
+     "img": "city.png",
+     "name": "Maillot Manchester City domicile 26/27"
+    },
+    {
+     "img": "psg.png",
+     "name": "Maillot Paris extérieur 26/27"
+    },
+    {
+     "img": "barca-ext.png",
+     "name": "Maillot Barcelone extérieur 26/27"
+    }
+   ]
   }
  ]
 }
