@@ -1,5 +1,8 @@
-Noël approche. <break time="0.3s" />
-Ton frère veut le Barça. Ton père… la France. Le petit… le Real. <break time="0.5s" />
-Quatre maillots ? Tu n'en paies que trois. <break time="0.3s" />
-Quatorze euros quatre-vingt-dix-neuf le maillot. Livraison offerte. <break time="0.5s" />
-Élite Maillot. <break time="0.3s" /> Le cadeau qui met tout le monde d'accord.
+Noël… dans trois semaines. <break time="0.4s" />
+Et ils veulent tous un maillot. <break time="0.4s" />
+Vous ouvrez Élite Maillot. <break time="0.3s" /> Vous choisissez. <break time="0.3s" />
+Barça. <break time="0.3s" /> France. <break time="0.3s" /> Real. <break time="0.5s" />
+Le quatrième… est offert. <break time="0.3s" />
+Livré chez vous. <break time="0.5s" />
+Toute la famille, servie. <break time="0.8s" />
+Élite Maillot.

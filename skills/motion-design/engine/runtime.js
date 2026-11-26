@@ -236,17 +236,25 @@
     spec.scenes.forEach(s => { if (s.img) s.img = rel(s.img); });
     if (spec.preview) spec.preview = rel(spec.preview);
     if (spec.words && !window.VOICE_WORDS) { try { const off = spec.audio?.voiceAt || 0; window.VOICE_WORDS = (await (await fetch(rel(spec.words))).json()).map(w => ({ ...w, start: w.start + off, end: w.end + off })); } catch { /* no voice timings: scenes use their own times */ } }
+    // a project can ship its own scene types: spec.script (a JS file next to spec.json) adds to window.MOTION.SCENES
+    window.MOTION = { SCENES, h, esc, clamp, lerp, E, prog, env, wordsEl, wordsAt, voiceTimes, cursor, moveCursor, jersey, fmt, rel };
+    for (const src of [].concat(spec.script || [])) await new Promise((res, rej) => { const sc = document.createElement('script'); sc.src = rel(src); sc.onload = res; sc.onerror = () => rej(new Error('script not found: ' + src)); document.head.appendChild(sc); });
     const stage = document.getElementById('stage'), W = spec.width || 1920, H = spec.height || 1080;
     document.documentElement.style.setProperty('--accent', spec.accent || '#ff7a3d');
     document.documentElement.style.setProperty('--accent2', spec.accent2 || '#ffb36b');
     document.documentElement.style.setProperty('--bg', spec.bg || '#07070a');
     if (spec.font) document.documentElement.style.setProperty('--font', spec.font);
     stage.style.width = W + 'px'; stage.style.height = H + 'px'; stage.classList.toggle('vertical', H > W);
+    if (spec.bgCss) stage.style.background = spec.bgCss;
     const bgGlow = h('div', 'bgglow', stage), grain = h('div', 'grain', stage);
+    if (spec.glow === false) bgGlow.style.display = 'none';
+    if (spec.grain === false) grain.style.display = 'none';
     const updaters = spec.scenes.map(s => { const layer = h('div', 'layer', stage); layer.dataset.type = s.type; const u = SCENES[s.type](s, layer); return t => { const on = t >= s.at - .05 && t <= s.at + s.dur + .05; layer.style.display = on ? '' : 'none'; if (on) u(t); }; });
     window.DURATION = spec.duration || Math.max(...spec.scenes.map(s => s.at + s.dur));
     window.seek = t => { bgGlow.style.transform = `translate(${Math.sin(t * .35) * 4}%, ${Math.cos(t * .27) * 3}%) scale(1.15)`; grain.style.backgroundPosition = `${(t * 997) % 200}px ${(t * 613) % 200}px`; updaters.forEach(u => u(t)); };
-    await document.fonts.ready; window.seek(0); window.READY = true;
+    await document.fonts.ready;
+    await Promise.all([...stage.querySelectorAll('img')].map(i => i.complete ? 0 : new Promise(r => { i.onload = i.onerror = r; })));
+    window.seek(0); window.READY = true;
     // preview mode: open the page in a browser to watch it play (add ?t=3.2 to freeze a frame)
     if (!navigator.webdriver) {
       const q = new URLSearchParams(location.search); if (q.get('t')) return window.seek(+q.get('t'));
