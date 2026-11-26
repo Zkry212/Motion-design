@@ -10,3 +10,5 @@ skills/motion-design/examples/*/output/*
 !skills/motion-design/examples/demo-launch/output/demo-launch.mp4
 .env
 !skills/motion-design/examples/elite-maillot-noel/output/elite-maillot-noel.mp4
+skills/motion-design/examples/meuda-smsa/output/*
+!skills/motion-design/examples/meuda-smsa/output/meuda-smsa.mp4
