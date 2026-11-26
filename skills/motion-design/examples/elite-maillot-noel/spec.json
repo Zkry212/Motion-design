@@ -204,19 +204,20 @@
     {
      "from": "Maman",
      "text": "On offre quoi aux garçons pour Noël ?",
-     "at": 4.4
+     "at": 4.2
     },
     {
      "from": "Frérot",
      "text": "Le maillot du Barça stp 🙏",
-     "at": 4.95
+     "at": 4.75
     },
     {
      "from": "Papa",
      "text": "Moi celui de la France 😄",
-     "at": 5.5
+     "at": 5.3
     }
-   ]
+   ],
+   "pill": "Un maillot pour Noël ?"
   }
  ]
 }

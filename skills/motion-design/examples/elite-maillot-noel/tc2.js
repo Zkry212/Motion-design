@@ -78,7 +78,7 @@
   .t2 .srch .hitc .th { width: 54px; height: 54px; border-radius: 10px; background:#fff center/contain no-repeat; border: 1px solid #eee; flex:none; }
   .t2 .srch .hitc b { font-size: 16px; display:block; } .t2 .srch .hitc small { color:#8e8e93; font-size: 13px; }
   .t2 .xp { position:absolute; background:#fff; z-index: 6; overflow:hidden; }
-  .t2 .xp img { position:absolute; left:50%; top:50%; width: 160px; transform: translate(-50%,-50%); }
+  .t2 .xp img { position:absolute; inset:0; width:100%; height:100%; object-fit: cover; }
   .t2 .kb { position:absolute; left:0; right:0; bottom: 0; height: 290px; background:#d1d3d9; padding: 8px 3px 0; }
   .t2 .kb .r { display:flex; justify-content:center; gap: 6px; margin-bottom: 11px; }
   .t2 .kb .k { width: 33px; height: 44px; border-radius: 6px; background:#fff; box-shadow: 0 1px 0 #8a8a8e; display:grid; place-items:center; font-size: 22px; position:relative; }
@@ -94,12 +94,17 @@
   .t2 .wx .c { font-size: 26px; font-weight: 700; } .t2 .wx .c span { font-size: 16px; }
   .t2 .wx .tmp { font-size: 110px; font-weight: 300; line-height: 1; letter-spacing:-.04em; }
   .t2 .wx .ic { font-size: 30px; margin-top: 4px; } .t2 .wx .dsc { font-size: 24px; font-weight: 600; } .t2 .wx .hb { font-size: 22px; opacity: .9; }
-  .t2 .imsg { position:absolute; left: -60px; top: -1000px; width: 720px; height: 150px; box-sizing:border-box; border-radius: 44px; padding: 24px 28px; display:flex; gap: 20px; align-items:flex-start;
+  .t2 .imsg { position:absolute; left: 50px; top: 0; width: 980px; height: 168px; z-index: 12; box-sizing:border-box; border-radius: 44px; padding: 24px 28px; display:flex; gap: 20px; align-items:flex-start;
      background: rgba(246,246,248,.86); backdrop-filter: blur(20px); box-shadow: 0 24px 60px rgba(30,34,50,.22), 0 1px 0 rgba(255,255,255,.9) inset; transform-origin: 50% 0; }
   .t2 .imsg .mi { width: 70px; height: 70px; border-radius: 17px; background: linear-gradient(180deg,#67f27b,#1ac447); display:grid; place-items:center; flex:none; } .t2 .imsg .mi svg { width: 46px; }
   .t2 .imsg .bd { flex:1; min-width:0; } .t2 .imsg .top { display:flex; justify-content:space-between; align-items:baseline; }
   .t2 .imsg b { font-size: 29px; color:#111; } .t2 .imsg small { font-size: 22px; color:#8a8a8e; }
   .t2 .imsg p { margin: 4px 0 0; font-size: 28px; color:#1c1c1e; white-space: nowrap; overflow:hidden; text-overflow: ellipsis; }
+  .t2 .imsg { padding: 28px 32px; border-radius: 50px; } .t2 .imsg .mi { width: 80px; height: 80px; border-radius: 19px; } .t2 .imsg .mi svg { width: 52px; }
+  .t2 .imsg b { font-size: 32px; } .t2 .imsg small { font-size: 25px; } .t2 .imsg p { font-size: 31px; }
+  .t2 .pill { position:absolute; left:0; top:0; z-index: 13; padding: 20px 34px; border-radius: 40px; background:#0a84ff; color:#fff; font-size: 34px; font-weight: 600; white-space:nowrap; box-shadow: 0 20px 40px rgba(10,60,140,.3); transform-origin: 50% 50%; }
+  .t2 .ical .roll { position:relative; height: 150px; overflow:hidden; } .t2 .ical .roll div { position:absolute; left:0; top:0; }
+  .t2 .ical .dd { position:relative; height: 34px; overflow:hidden; } .t2 .ical .dd div { position:absolute; left:0; top:0; }
   /* Apple Pay */
   .t2 .dim { position:absolute; inset:0; background: rgba(0,0,0,.58); z-index: 34; }
   .t2 .ap { position:absolute; left: 6px; right: 6px; bottom: 6px; height: 490px; border-radius: 40px; background:#fff; z-index: 35; padding: 18px 20px; box-sizing:border-box; box-shadow: 0 -10px 40px rgba(0,0,0,.25); }
@@ -154,7 +159,7 @@
     const clockSvg = `<svg class="clock" viewBox="0 0 200 200"><circle cx="100" cy="100" r="97" fill="#fff"/>${Array.from({ length: 60 }, (_, i) => i % 5 ? `<line x1="100" y1="7" x2="100" y2="11" stroke="#bbb" stroke-width="1" transform="rotate(${i * 6} 100 100)"/>` : '').join('')}${Array.from({ length: 12 }, (_, i) => `<text x="${100 + 74 * Math.sin(i * Math.PI / 6)}" y="${108 - 74 * Math.cos(i * Math.PI / 6)}" font-size="22" font-family="Inter" font-weight="500" text-anchor="middle" fill="#222">${i || 12}</text>`).join('')}<line class="hh" x1="100" y1="100" x2="100" y2="52" stroke="#111" stroke-width="7" stroke-linecap="round"/><line class="mm" x1="100" y1="100" x2="100" y2="28" stroke="#111" stroke-width="5" stroke-linecap="round"/><line class="ss" x1="100" y1="114" x2="100" y2="24" stroke="#ff9500" stroke-width="2.5"/><circle cx="100" cy="100" r="6" fill="#ff9500"/></svg>`;
     const tClock = tile(-520, -1000, -100, -580, 0, clockSvg, { d: .3 });
     tile(-60, -1000, 660, -700, 0, '', { d: .38 });
-    tile(-60, -660, 280, -320, 0, `<div class="ical"><div class="d">JEUDI</div><div class="n">3</div><div class="ev"><i></i>Noël dans 21 jours</div></div>`, { d: .45 });
+    tile(-60, -660, 280, -320, 0, `<div class="ical"><div class="dd d"><div class="d0">MERCREDI</div><div class="d1">JEUDI</div></div><div class="roll n"><div class="n0">2</div><div class="n1">3</div></div><div class="ev"><i></i><span class="evt">Noël dans 22 jours</span></div></div>`, { d: .45 });
     tile(320, -660, 660, -320, 0, `<div class="wx"><div class="c">Paris <span>➤</span></div><div class="tmp">2°</div><div class="ic">❄️</div><div class="dsc">Neige</div><div class="hb">H:4° B:-1°</div></div>`, { d: .52 });
     tile(-520, -540, -100, -320, 0, '', { d: .6 });
     // around the phone (hidden for the bento)
@@ -165,10 +170,11 @@
      [700, -1000, 1120, -580, 0], [700, -540, 1120, -320, 1], [-980, -1000, -560, -580, 1], [-980, -540, -560, -40, 0], [-980, 0, -560, 500, 1], [-980, 540, -560, 1000, 0],
      [840, -280, 1260, 260, 1], [840, 300, 1260, 815, 0], [-520, 855, -100, 1275, 1], [-60, 855, 360, 1275, 0], [400, 855, 820, 1275, 1], [860, 855, 1280, 1275, 0], [-980, 1040, -560, 1440, 1]]
       .forEach(([a, b, c, d, k]) => tile(a, b, c, d, k, '', { near: (Math.abs((a + c) / 2 - 140) < 900 && (b + d) / 2 > -400) ? 2 : 0 }));
+    const CALr = { n0: cam.querySelector('.n0'), n1: cam.querySelector('.n1'), d0: cam.querySelector('.d0'), d1: cam.querySelector('.d1'), ev: cam.querySelector('.evt') };
     const hands = { h: tClock.el.querySelector('.hh'), m: tClock.el.querySelector('.mm'), s: tClock.el.querySelector('.ss') };
     // iMessage notifications (iOS banners) stacking over the desk
     const msgIcon = '<span class="mi"><svg viewBox="0 0 24 24"><path fill="#fff" d="M12 3.2C6.6 3.2 2.3 6.8 2.3 11.2c0 2.5 1.4 4.7 3.6 6.2-.2 1.3-.8 2.6-1.8 3.5 1.9 0 3.6-.7 4.8-1.7 1 .3 2 .4 3.1.4 5.4 0 9.7-3.6 9.7-8.2S17.4 3.2 12 3.2z"/></svg></span>';
-    const M = s.notifs.map(m => ({ el: h('div', 'imsg', cam, `${msgIcon}<div class="bd"><div class="top"><b>${esc(m.from)}</b><small>maintenant</small></div><p>${esc(m.text)}</p></div>`), ...m }));
+    const M = s.notifs.map(m => ({ el: h('div', 'imsg', R, `${msgIcon}<div class="bd"><div class="top"><b>${esc(m.from)}</b><small>maintenant</small></div><p>${esc(m.text)}</p></div>`), ...m }));
 
     // ---------- bento tiles (world, around the phone; they fly in at the end)
     const BTl = [
@@ -190,12 +196,12 @@
     const query = s.query || 'elite maillot';
     const srch = h('div', 'srch', vp, `<h2>Rechercher</h2><div class="fld">🔍 <span class="tx"></span><span class="caret"></span><span class="ph">Rechercher ou saisir un site</span></div>
       <div class="hint">SUGGESTIONS</div><div class="sug"><div><span class="ico" style="background:#ff9f0a">★</span>Maillots de foot pas chers</div><div><span class="ico" style="background:#34c759">⌁</span>Livraison rapide</div><div><span class="ico" style="background:#5e5ce6">✓</span>Les mieux notés</div></div>
-      <div class="hitc"><span class="th" style="background-image:url(${IMG('img/logo.png')})"></span><span><b>ÉLITE MAILLOT</b><small>elite-maillot.fr · Maillots dès 19,99€</small></span></div>`);
+      <div class="hitc"><span class="th" style="background-image:url(${IMG('site/hero.jpg')});background-size:cover"></span><span><b>ÉLITE MAILLOT</b><small>elite-maillot.fr · Maillots dès 19,99€</small></span></div>`);
     const rows = ['azertyuiop', 'qsdfghjklm', 'wxcvbn'];
     const kb = h('div', 'kb', srch, rows.map((r, i) => `<div class="r">${i === 2 ? '<span class="k wide">⇧</span>' : ''}${[...r].map(c => `<span class="k" data-c="${c}">${c.toUpperCase()}</span>`).join('')}${i === 2 ? '<span class="k wide">⌫</span>' : ''}</div>`).join('') + `<div class="r"><span class="k wide">123</span><span class="k wide">🙂</span><span class="k sp" data-c=" ">espace</span><span class="k go">aller</span></div>`);
     const keys = {}; kb.querySelectorAll('.k[data-c]').forEach(k => { keys[k.dataset.c] = k; });
     const tx = srch.querySelector('.tx'), ph = srch.querySelector('.ph'), sugBox = srch.querySelector('.sug'), hint = srch.querySelector('.hint'), hitc = srch.querySelector('.hitc');
-    const xp = h('div', 'xp', vp, `<img src="${IMG('img/logo.png')}">`);
+    const xp = h('div', 'xp', vp, `<img src="${IMG('site/hero.jpg')}">`);
     const saf = h('div', 'saf', scr, `<div class="url"><span class="u">🔍 Rechercher</span><i class="pg"></i></div><div class="home"></div>`);
     const url = saf.querySelector('.u'), pg = saf.querySelector('.pg');
     const dim = h('div', 'dim', scr);
@@ -213,6 +219,10 @@
     const HL = s.headlines.map(x => { const w = wordsEl(R, x.text, ''); w.box.className = 'hl'; if (x.y) w.box.style.top = x.y + 'px'; return { w, ...x }; });
     const dots = h('div', 'dots', R, '<i></i><i></i><i></i>');
     const end = h('div', 'end', R, `<img src="${IMG('img/logo.png')}"><div class="tg"></div>`);
+    const pill = h('div', 'pill', R, esc(s.pill || 'Un maillot pour Noël ?'));
+    const svgNS = 'http://www.w3.org/2000/svg';
+    R.insertAdjacentHTML('beforeend', `<svg width="0" height="0" style="position:absolute"><filter id="mbf" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB"><feGaussianBlur id="mbg" stdDeviation="0 0" edgeMode="duplicate"/></filter></svg>`);
+    const mbg = R.querySelector('#mbg');
     const endImg = end.querySelector('img'), endTg = end.querySelector('.tg'), tagline = s.tagline || '';
 
     // ---------- camera path [cx, cy, zoom, rotZ, tiltX]; third slot of a key = easing of the move that starts there
@@ -220,13 +230,14 @@
     const ZP = (x, y) => [SX + x, SY + SB + y];                             // capture point -> world
     const city = ZP(300, 300);
     const CAM = [
-      [0, [140, -150, .44, -17, 26]],
-      [B.clock - .45, [140, -230, .58, -13, 18], sexy],
-      [B.clock, [-300, -800, 1.55, -5, 7]],
-      [B.chat - .4, [-170, -760, 1.42, -3, 5], sexy],
-      [B.chat, [330, -720, 1.4, -7, 7]],
-      [B.phone - .5, [300, -650, 1.22, -9, 9], sexy],
-      [B.phone + .25, [140, 300, .62, -11, 16]],
+      [0, [150, 420, .3, -19, 22], E.outQuint],
+      [1.15, [140, 60, .6, -13, 15]],
+      [1.3, [120, -40, .66, -12, 14], sexy],
+      [B.clock - .05, [-285, -770, 1.52, -6, 6]],
+      [B.chat - .65, [-150, -735, 1.44, -3.5, 4.5], sexy],
+      [B.chat, [300, -560, 1.4, -6, 6]],
+      [B.phone - .35, [285, -520, 1.32, -8, 8], sexy],
+      [B.phone + .4, [140, 230, .64, -11, 15]],
       [B.phone + 1.0, [140, FCY, FZ, 0, 0]],
       [B.open - .2, [140, FCY - 6, FZ * 1.03, .4, 0], sexy],
       [B.open + .35, [140, FCY + 8, FZ * .985, -.5, 0]],
@@ -258,10 +269,14 @@
       const c = camAt(t), p = camAt(t - 1 / 30);
       cam.style.transform = camCss(c);
       // motion blur from the on-screen speed of the camera
-      const v = Math.hypot((c[0] - p[0]) * c[2], (c[1] - p[1]) * c[2]) + Math.abs(Math.log(c[2] / p[2])) * 900 + Math.abs(c[3] - p[3]) * 20;
+      // where does the world point under the screen centre go between two frames? -> blur along that direction
+      const scrOf = (wx, wy, q) => { const dx = (wx - q[0]) * q[2], dy = (wy - q[1]) * q[2], r = q[3] * Math.PI / 180; return [540 + dx * Math.cos(r) - dy * Math.sin(r), 960 + (dx * Math.sin(r) + dy * Math.cos(r)) * Math.cos(q[4] * Math.PI / 180)]; };
+      const sp = scrOf(c[0], c[1], p), dX = 540 - sp[0], dY = 960 - sp[1];
+      const zr = Math.abs(Math.log(c[2] / p[2])) * 520 + Math.abs(c[3] - p[3]) * 14;
       const endBlur = kf(t, [[B.end - .3, 0], [B.end + .5, 22]]);
-      const mb = Math.min(14, Math.max(0, v - 6) * .35) + endBlur;
-      persp.style.filter = mb > .3 ? `blur(${mb.toFixed(2)}px)` : 'none';
+      const bx = Math.min(30, Math.max(0, Math.abs(dX) - 2) * .55 + zr * .5) + endBlur, by = Math.min(30, Math.max(0, Math.abs(dY) - 2) * .55 + zr * .5) + endBlur;
+      if (bx + by > .5) { mbg.setAttribute('stdDeviation', `${bx.toFixed(2)} ${by.toFixed(2)}`); persp.style.filter = 'url(#mbf)'; } else persp.style.filter = 'none';
+      const toScreen = (wx, wy) => scrOf(wx, wy, c);
       persp.style.opacity = 1 - prog(t, B.end + .9, .6) * .55;
 
       // tiles assemble (slide in from their offsets), the wall near the phone gives way to the bento
@@ -271,29 +286,47 @@
           o.el.style.opacity = clamp(k * 1.6); o.el.style.transform = `translate(${(1 - k) * side * 380}px, ${(1 - k) * 140}px) scale(${lerp(.7, 1, k)}) rotate(${(1 - k) * side * 8}deg)`;
           return;
         }
-        const k = prog(t, o.d, .9, E.outQuint), out = o.near ? prog(t, B.bento - .25, .4) : 0;
-        o.el.style.opacity = clamp(k * 1.4) * (1 - out * (o.near === 1 ? 1 : .0));
-        o.el.style.transform = `translate(${(1 - k) * o.from[0]}px, ${(1 - k) * o.from[1]}px) scale(${lerp(.8, 1, k) * (1 - out * .1)})`;
+        const d0 = .42 + (o.d - .15) * .9, k = prog(t, d0, .5, E.back), out = o.near ? prog(t, B.bento - .25, .4) : 0;
+        o.el.style.opacity = clamp(prog(t, d0, .12)) * (1 - out * (o.near === 1 ? 1 : 0));
+        o.el.style.transform = `scale(${Math.max(0, k) * (1 - out * .1)})`;
       });
       // phone lies on the desk, then lifts toward the camera when it stands up
       const lift = win(t, B.phone, B.zoom + .1, .9, .6);
-      const pk = prog(t, .05, .9, E.outQuint);
-      iph.style.transform = `translate(${(1 - pk) * -60}px, ${(1 - pk) * 380}px) translateZ(${lift * 60}px)`; iph.style.opacity = clamp(pk * 1.4);
+      const pk = prog(t, .22, .55, E.back);
+      iph.style.transform = `translateZ(${lift * 70}px) scale(${Math.max(.01, pk)})`; iph.style.opacity = clamp(prog(t, .22, .1));
       off.style.opacity = 1 - prog(t, B.phone + .35, .35);
 
       // clock: time-lapse from 18:05 to 20:41 while the camera arrives on it
       const mins = kf(t, [[B.clock - .2, 18 * 60 + 5], [B.clock + 1.3, 20 * 60 + 41, E.outQuint], [s.duration, 20 * 60 + 41 + s.duration / 60]]);
       hands.m.setAttribute('transform', `rotate(${(mins % 60) * 6} 100 100)`); hands.h.setAttribute('transform', `rotate(${(mins / 60 % 12) * 30} 100 100)`);
       hands.s.setAttribute('transform', `rotate(${(t * 360 / 60 * 6 + mins * 30) % 360} 100 100)`);
-      // chat: typing dots, then the message
-      // iMessage banners: drop in from the top, older ones slide down and shrink (iOS stack)
+      // calendar: the day rolls over (MERCREDI 2 -> JEUDI 3) under the time-lapse
+      const rk = prog(t, B.clock + .95, .45, E.back);
+      CALr.n0.style.transform = `translateY(${-rk * 150}px)`; CALr.n1.style.transform = `translateY(${(1 - rk) * 150}px)`;
+      CALr.d0.style.transform = `translateY(${-rk * 34}px)`; CALr.d1.style.transform = `translateY(${(1 - rk) * 34}px)`;
+      CALr.ev.textContent = rk > .5 ? 'Noël dans 21 jours' : 'Noël dans 22 jours';
+      // iMessage banners: slide down from the top edge with a spring, the older ones are pushed down (iOS stack),
+      // then all leave upward when the camera goes to the phone; motion blur follows their speed
+      const leave = prog(t, B.phone - .45, .45, E.inOut);
       M.forEach((m, i) => {
-        const k = prog(t, m.at, .5, E.back); if (t < m.at - .02) { m.el.style.display = 'none'; return; } m.el.style.display = '';
-        const newer = M.filter(o => o.at > m.at && t >= o.at).map(o => prog(t, o.at, .45, E.outQuint)).reduce((a2, v2) => a2 + v2, 0);
-        m.el.style.opacity = clamp(k * 2) * (1 - prog(t, B.phone + .2, .5));
-        m.el.style.transform = `translateY(${(1 - k) * -120 + newer * 165}px) translateZ(40px) scale(${lerp(.9, 1, clamp(k)) * (1 - newer * .04)})`;
-        m.el.style.zIndex = 50 + i;
+        if (t < m.at - .02) { m.el.style.display = 'none'; return; } m.el.style.display = '';
+        const ky = q => prog(q, m.at, .55, E.back), newer = q => M.filter(o => o.at > m.at && q >= o.at).map(o => prog(q, o.at, .45, E.outQuint)).reduce((a2, v2) => a2 + v2, 0);
+        const yAt = q => lerp(-260, 300, ky(q)) + newer(q) * 192 - prog(q, B.phone - .45, .45, E.inOut) * 1300;
+        const y = yAt(t), vy = Math.abs(y - yAt(t - 1 / 30));
+        m.el.style.opacity = clamp(prog(t, m.at, .15)) * (1 - prog(t, B.phone - .2, .25));
+        m.el.style.transform = `translateY(${y}px) scale(${1 - newer(t) * .035})`;
+        m.el.style.filter = vy > 3 ? `blur(${Math.min(12, vy * .18).toFixed(1)}px)` : 'none';
+        m.el.style.zIndex = 12 + i;
       });
+      // a blue message pill leaves the stack and flies into the phone's search field while the camera dives
+      const pf = prog(t, B.phone - .3, 1.35, E.inOut);
+      if (t > B.phone - .35 && pf < 1) {
+        const tgt = toScreen(SX + 195, SY + SB + 74), x = lerp(540, tgt[0], pf), y = lerp(560, tgt[1], pf) - Math.sin(pf * Math.PI) * 120;
+        const xs = lerp(540, toScreen(SX + 195, SY + SB + 74 - 1)[0], 0);
+        pill.style.display = ''; pill.style.opacity = clamp(prog(t, B.phone - .35, .15)) * (1 - prog(t, B.phone + .85, .2));
+        pill.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%) scale(${lerp(1, .42, pf)}) rotate(${lerp(0, -8, Math.sin(pf * Math.PI))}deg)`;
+        pill.style.filter = pf > .05 && pf < .95 ? `blur(${(Math.sin(pf * Math.PI) * 4).toFixed(1)}px)` : 'none';
+      } else pill.style.display = 'none';
 
       // ----- in the phone
       const typeAt = B.phone + 1.2, cps = 9, typed = Math.floor(clamp((t - typeAt) * cps, 0, query.length));
@@ -306,16 +339,19 @@
       const tapHit = B.open - .45;
       hitc.style.background = t > tapHit - .08 && t < tapHit + .25 ? '#e5e5ea' : '#fff';
       // shared element: the result card expands into the site, the site rises into place
-      const xk = prog(t, tapHit + .1, .5, E.inOut);
-      if (t > tapHit + .1 && t < B.open + .7) { xp.style.display = ''; Object.assign(xp.style, { left: lerp(16, 0, xk) + 'px', top: lerp(128, 0, xk) + 'px', width: lerp(SW - 32, SW, xk) + 'px', height: lerp(74, VH, xk) + 'px', borderRadius: lerp(14, 0, xk) + 'px', opacity: 1 - prog(t, B.open + .25, .4) }); xp.firstChild.style.width = lerp(54, 220, xk) + 'px'; }
-      else xp.style.display = 'none';
+      const x1 = prog(t, tapHit + .08, .45, E.inOut), x2 = prog(t, B.open + .05, .55, E.inOut);
+      if (t > tapHit + .08 && t < B.open + .62) {
+        const R0 = [28, 138, 54, 54, 10], R1 = [0, 0, SW, VH, 0], R2 = [16, 218, 358, 478, 14];
+        const rr = R0.map((v0, j) => lerp(lerp(v0, R1[j], x1), R2[j], x2));
+        xp.style.display = ''; Object.assign(xp.style, { left: rr[0] + 'px', top: rr[1] + 'px', width: rr[2] + 'px', height: rr[3] + 'px', borderRadius: rr[4] + 'px', opacity: 1 });
+      } else xp.style.display = 'none';
       srch.style.display = t < B.open + .2 ? '' : 'none';
-      L.home.d.style.opacity = t > tapHit + .4 ? 1 : 0;
+      L.home.d.style.opacity = prog(t, B.open + .05, .3);
       const hr = prog(t, B.open + .1, .7, E.outQuint);
       url.textContent = t < tapHit + .1 ? '🔍 Rechercher' : '🔒 elite-maillot.fr';
       pg.style.width = prog(t, tapHit + .1, .9, E.out) * 100 + '%'; pg.style.opacity = t > tapHit + .1 && t < tapHit + 1.1 ? 1 : 0;
       const scrollY = kf(t, [[B.choose, 0], [B.choose + 1.3, 1650, sexy]]);
-      L.home.im.style.transform = `translateY(${(1 - hr) * 60 - scrollY}px)`;
+      L.home.im.style.transform = `translateY(${-scrollY}px)`;
       const tapCard = B.choose + 1.5, tapAtc = B.add + 1.0;
       const ppIn = prog(t, tapCard + .1, .45, E.outQuint); L.pp.d.style.transform = `translateX(${(1 - ppIn) * 100}%)`; L.pp.d.style.opacity = t > tapCard ? 1 : 0;
       L.pp.im.style.transform = `translateY(${-kf(t, [[B.add, 0], [tapAtc - .4, 650]])}px)`;
