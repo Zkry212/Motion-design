@@ -27,6 +27,10 @@
   .t2 { --ink:#12b5c0; --tq:#5ce1e6; position:absolute; inset:0; font-family: Inter, system-ui, sans-serif; color:#1d1f26; overflow:hidden; }
   .t2 .persp { position:absolute; inset:0; perspective: 2400px; perspective-origin: 540px 960px; }
   .t2 .cam { position:absolute; left:0; top:0; width:0; height:0; transform-origin: 0 0; transform-style: preserve-3d; }
+  .t2 .tw { position:absolute; transform-style: preserve-3d; }
+  .t2 .tw > .tsh { position:absolute; inset: 4% 3% -2% 3%; border-radius: 60px; background: rgba(22,26,40,.34); filter: blur(30px); transform: translateZ(-30px) translateY(26px); }
+  .t2 .tw > .tx { position:absolute; inset:0; border-radius: 56px; }
+  .t2 .tw > .tile { inset: 0; }
   .t2 .tile { position:absolute; border-radius: 56px; background: linear-gradient(160deg,#ffffff,#edeff2); box-shadow: 0 2px 0 rgba(255,255,255,.95) inset, 0 34px 60px rgba(40,44,60,.17), 0 6px 14px rgba(40,44,60,.10); overflow:hidden; }
   .t2 .tile.k { background: linear-gradient(160deg,#1d1e23,#0b0b0e); box-shadow: 0 1px 0 rgba(255,255,255,.08) inset, 0 34px 60px rgba(20,22,30,.3); color:#fff; }
   .t2 .clock { position:absolute; inset: 7%; }
@@ -149,6 +153,9 @@
   .t2 .ap .ok { width: 52px; height: 52px; border-radius: 50%; border: 3.5px solid #0a84ff; color:#0a84ff; display:grid; place-items:center; font-size: 28px; font-weight: 700; }
   .t2 .dbl { position:absolute; right: 0; top: 205px; z-index: 36; display:flex; align-items:center; gap: 10px; color:#fff; font-size: 15px; font-weight: 600; text-align:right; line-height: 1.2; text-shadow: 0 1px 6px rgba(0,0,0,.4); }
   .t2 .dbl i { width: 6px; height: 70px; border-radius: 3px; background:#fff; display:block; }
+  .t2 .bt .jt { inset: 6% 8% 16% 8%; }
+  .t2 .jtag { position:absolute; left: 50%; bottom: 16px; transform: translateX(-50%); padding: 6px 18px; border-radius: 20px; background:#f0f1f4; color:#1d1f26; font-size: 21px; font-weight: 700; white-space:nowrap; }
+  .t2 .bt.free .jtag { background: var(--ink); color:#fff; }
   .t2 .bt .okp { width: 64px; height: 64px; border-radius: 50%; background: var(--tq); color:#08343a; display:grid; place-items:center; font-size: 36px; font-weight: 800; margin: 10px 0; }
   /* bento tiles (world) */
   .t2 .bt .in { position:absolute; inset:0; padding: 26px 28px; display:flex; flex-direction:column; justify-content:center; }
@@ -186,8 +193,12 @@
     // ---------- the desk of widgets (world rects: x0, y0, x1, y1)
     const T = [];
     const tile = (x0, y0, x1, y1, k, html = '', o = {}) => {
-      const el = h('div', 'tile' + (k ? ' k' : '') + (o.cls ? ' ' + o.cls : ''), cam, html);
+      const el = h('div', 'tw', cam);
       Object.assign(el.style, { left: x0 + 'px', top: y0 + 'px', width: x1 - x0 + 'px', height: y1 - y0 + 'px' });
+      h('div', 'tsh', el);
+      const edge = k ? ['#050506', '#09090b', '#0e0e11'] : ['#b9bdc4', '#cdd0d5', '#dfe1e5'];
+      [26, 18, 10, 4].forEach((z, i) => { const e = h('div', 'tx', el); e.style.transform = `translateZ(${-z}px)`; e.style.background = edge[Math.min(2, i)]; });
+      h('div', 'tile' + (k ? ' k' : '') + (o.cls ? ' ' + o.cls : ''), el, html);
       const r = { el, d: o.d ?? (.15 + T.length * .035), from: o.from || [((T.length * 37) % 7 - 3) * 160, ((T.length * 53) % 5 - 2) * 200], bento: o.bento, wallNear: o.near, ...o };
       T.push(r); return r;
     };
@@ -197,12 +208,12 @@
     const tRem = tile(160, -760, 760, -520, 1, `<div class="rem"><div class="rh"><span class="ri"><i></i><i></i><i></i></span><b>Cadeaux de Noël</b><span class="rc">3</span></div>${['Maillot du Barça · Frérot', 'Maillot de la France · Papa', 'Maillot du Real · Le petit'].map(x => `<div class="rr"><span class="cb"></span>${esc(x)}</div>`).join('')}</div>`, { d: .38 });
     tile(160, -490, 445, -205, 1, `<div class="ical"><div class="dd d"><div class="d0">MERCREDI</div><div class="d1">JEUDI</div></div><div class="roll n"><div class="n0">2</div><div class="n1">3</div></div><div class="ev"><i></i><span>${emo('🎄')} Noël en famille<small class="evt">dans 22 jours</small></span></div></div>`, { d: .45 });
     tile(475, -490, 760, -205, 1, `<div class="wx"><div class="c">Paris <svg viewBox="0 0 16 16"><path fill="#fff" d="M14.6 1.4 1.8 7.1c-.6.3-.5 1.2.2 1.3l5.3.9.9 5.3c.1.7 1 .8 1.3.2z"/></svg></div><div class="tmp">2°</div><div class="ic"><svg viewBox="0 0 40 40"><path fill="#fff" d="M31 13.3A9.5 9.5 0 0 0 12.6 11 7.4 7.4 0 0 0 9.8 25.3h20.6a6 6 0 0 0 .6-12z"/><g fill="#fff"><circle cx="13" cy="31" r="2"/><circle cx="20" cy="35" r="2"/><circle cx="27" cy="31" r="2"/><circle cx="16.5" cy="38" r="1.6"/><circle cx="23.5" cy="38" r="1.6"/></g></svg></div><div class="dsc">Neige</div><div class="hb">H:4° B:-1°</div></div>`, { d: .52 });
-    tile(-300, -300, 120, -45, 0, '', { d: .6 });
+    tile(-300, -300, 120, -45, 0, '', { d: .6, near: 1 });
     // around the phone (hidden for the bento)
     tile(-520, 60, -110, 520, 0, '', { near: 1 }); tile(-520, 560, -110, 955, 1, '', { near: 1 });
     tile(390, -170, 800, 380, 1, '', { near: 1 }); tile(390, 420, 800, 955, 0, '', { near: 1 });
     tile(-520, 995, -110, 1300, 0, '', { near: 2 }); tile(-69, 995, 349, 1300, 1, '', { near: 2 }); tile(390, 995, 800, 1300, 0, '', { near: 2 });
-    tile(-760, -300, -340, 20, 1, '', { near: 0 }); tile(800, -760, 1100, -360, 0, '', { near: 0 });
+ tile(800, -760, 1100, -360, 0, '', { near: 0 });
     const remRows = [...tRem.el.querySelectorAll('.rr')], remCount = tRem.el.querySelector('.rc');
     const CALr = { n0: cam.querySelector('.n0'), n1: cam.querySelector('.n1'), d0: cam.querySelector('.d0'), d1: cam.querySelector('.d1'), ev: cam.querySelector('.evt') };
     const hands = { h: tClock.el.querySelector('.hh'), m: tClock.el.querySelector('.mm'), s: tClock.el.querySelector('.ss') };
@@ -212,17 +223,20 @@
     const M = s.notifs.map(m => ({ el: h('div', 'imsg', R, `<div class="av"><div class="mono">${esc(m.initials || m.from.slice(0, 1))}</div><span class="badge">${msgBadge}</span></div><div class="bd"><div class="top"><b>${esc(m.from)}</b><small>maintenant</small></div><p>${emo(m.text)}</p></div>`), ...m }));
 
     // ---------- bento tiles (world, around the phone; they fly in at the end)
+    const jt = (img, tag) => `<div class="jt" style="background-image:url(${IMG('img/' + img)})"></div>${tag ? `<span class="jtag">${tag}</span>` : ''}`;
     const BTl = [
-      tile(-380, 0, -100, 270, 0, `<div class="in"><small>Trustpilot</small><div class="big rate">4,1</div><div class="stars">★★★★★</div><small>avis clients</small></div>`, { cls: 'bt', bento: 0 }),
-      tile(-380, 300, -100, 545, 1, `<div class="in"><b style="font-size:34px">Apple Pay</b><div class="okp">✓</div><small>Paiement accepté</small></div>`, { cls: 'bt', bento: 1 }),
-      tile(-380, 575, -100, 815, 0, `<div class="jt" style="background-image:url(${IMG('img/barca.png')})"></div>`, { cls: 'bt', bento: 2 }),
-      tile(380, 0, 660, 270, 1, `<div class="in"><small>Total · 4 maillots</small><div class="big tq tot">59,97€</div><s>79,96€</s></div>`, { cls: 'bt', bento: 3 }),
-      tile(380, 300, 660, 545, 0, `<div class="jt" style="background-image:url(${IMG('img/france.png')})"></div>`, { cls: 'bt', bento: 4 }),
-      tile(380, 575, 660, 815, 0, `<div class="in"><b>Votre panier</b><ul><li>Barça</li><li>France</li><li>Real</li><li class="free">City · offert</li></ul></div>`, { cls: 'bt', bento: 5 }),
+      tile(-390, 0, -100, 250, 1, `<div class="in"><b style="font-size:32px">Apple Pay</b><div class="okp">✓</div><small>Paiement accepté</small></div>`, { cls: 'bt', bento: 0 }),
+      tile(-390, 280, -100, 540, 0, jt('barca.png', 'Frérot'), { cls: 'bt', bento: 1 }),
+      tile(-390, 570, -100, 815, 0, jt('france.png', 'Papa'), { cls: 'bt', bento: 2 }),
+      tile(380, 0, 670, 250, 1, `<div class="in"><small>Total · 4 maillots</small><div class="big tq tot" style="font-size:62px">59,97€</div><s>79,96€</s></div>`, { cls: 'bt', bento: 3 }),
+      tile(380, 280, 670, 540, 0, jt('real.png', 'Le petit'), { cls: 'bt', bento: 4 }),
+      tile(380, 570, 670, 815, 0, jt('city.png', 'OFFERT'), { cls: 'bt free', bento: 5 }),
     ];
-    const rateEl = BTl[0].el.querySelector('.rate'), totEl = BTl[3].el.querySelector('.tot'), lis = [...BTl[5].el.querySelectorAll('li')];
+    const totEl = BTl[3].el.querySelector('.tot'), jtags = BTl.map(b2 => b2.el.querySelector('.jtag')).filter(Boolean);
 
     // ---------- the phone (in the world)
+    const iphX = [30, 22, 14, 7].map((z, i) => { const e = h('div', 'iphx', cam); Object.assign(e.style, { position: 'absolute', left: PX + 'px', top: PY + 'px', width: PWW + 'px', height: PHH + 'px', borderRadius: '68px', background: ['#5d6168', '#7b7f86', '#9a9ea5', '#b4b8be'][i] }); return { e, z }; });
+    const iphSh = h('div', 'iphx', cam); Object.assign(iphSh.style, { position: 'absolute', left: PX + 20 + 'px', top: PY + 30 + 'px', width: PWW - 40 + 'px', height: PHH - 20 + 'px', borderRadius: '70px', background: 'rgba(22,26,40,.4)', filter: 'blur(36px)' });
     const iph = h('div', 'iph', cam), bez = h('div', 'bez', iph), scr = h('div', 'scr', bez);
     [['left', -3, 150, 30], ['left', -3, 215, 56], ['left', -3, 285, 56], ['right', -3, 240, 92]].forEach(([side, o, top, hh]) => { const b2 = h('div', 'btn', iph); b2.style[side] = o + 'px'; b2.style.top = top + 'px'; b2.style.height = hh + 'px'; });
     h('div', 'glare', scr);
@@ -326,9 +340,9 @@
     const camAt = t => {
       const c = spline(t, CAM);
       // a living camera: tiny handheld drift on top of the path (never fully still)
-      return [c[0] + Math.sin(t * .9) * 4 / c[2], c[1] + Math.cos(t * .7) * 4 / c[2], c[2] * (1 + Math.sin(t * .5) * .004), c[3] + Math.sin(t * .6) * .25, c[4]];
+      return [c[0] + Math.sin(t * .9) * 4 / c[2], c[1] + Math.cos(t * .7) * 4 / c[2], c[2] * (1 + Math.sin(t * .5) * .004), c[3] + Math.sin(t * .6) * .25, c[4], (-7 + Math.sin(t * .35) * 3) * (1 - prog(t, B.bento - .4, .9, E.inOut))];
     };
-    const camCss = c => `translate(540px, 960px) rotateX(${c[4]}deg) rotateZ(${c[3]}deg) scale(${c[2]}) translate(${-c[0]}px, ${-c[1]}px)`;
+    const camCss = c => `translate(540px, 960px) rotateX(${Math.max(c[4], 9)}deg) rotateY(${c[5] || 0}deg) rotateZ(${c[3]}deg) scale(${c[2]}) translate(${-c[0]}px, ${-c[1]}px)`;
 
     return t => {
       const c = camAt(t), p = camAt(t - 1 / 30);
@@ -359,7 +373,10 @@
       // phone lies on the desk, then lifts toward the camera when it stands up
       const lift = win(t, B.phone, B.zoom + .1, .9, .6);
       const pk = prog(t, .05, .5, E.back);
-      iph.style.transform = `translateZ(${lift * 70}px) scale(${Math.max(.01, pk)})`; iph.style.opacity = clamp(prog(t, .05, .1));
+      const iphT = `translateZ(${lift * 70}px) scale(${Math.max(.01, pk)})`;
+      iph.style.transform = iphT; iph.style.opacity = clamp(prog(t, .05, .1));
+      iphX.forEach(({ e, z }) => { e.style.transform = `${iphT} translateZ(${-z}px)`; e.style.opacity = iph.style.opacity; });
+      iphSh.style.transform = `${iphT} translateZ(${-40 - lift * 70}px) translateY(${30 + lift * 40}px)`; iphSh.style.opacity = iph.style.opacity * (1 - lift * .35);
       off.style.opacity = 1 - prog(t, B.phone - .05, .3);
 
       // clock: time-lapse from 18:05 to 20:41 while the camera arrives on it
@@ -455,9 +472,8 @@
       remRows.forEach((r2, i) => { const on = t > B.bento + .55 + i * .25; const cb = r2.querySelector('.cb'); cb.classList.toggle('on', on); cb.textContent = on ? '✓' : ''; r2.style.opacity = on ? .55 : 1; });
       remCount.textContent = String(3 - remRows.filter((_, i) => t > B.bento + .55 + i * .25).length);
       // bento counters
-      rateEl.textContent = (lerp(3.2, 4.1, prog(t, B.bento + .2, 1.1, E.outQuint))).toFixed(1).replace('.', ',');
       totEl.textContent = lerp(79.96, 59.97, prog(t, B.bento + .35, 1.2, E.outQuint)).toFixed(2).replace('.', ',') + '€';
-      lis.forEach((li, i) => { const k = prog(t, B.bento + .5 + i * .22, .3, E.back); li.style.opacity = k; li.style.transform = `translateX(${(1 - k) * 20}px)`; });
+      jtags.forEach((tg, i) => { const k = prog(t, B.bento + .6 + i * .15, .35, E.back); tg.style.opacity = clamp(k * 2); tg.style.transform = `translateX(-50%) scale(${lerp(.5, 1, k)})`; });
 
       // headlines (words out of a blur)
       HL.forEach(x => {
