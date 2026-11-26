@@ -115,7 +115,7 @@
   /* Apple Pay */
   .t2 .dim { position:absolute; inset:0; background: rgba(0,0,0,.58); z-index: 34; }
   .t2 .ap { position:absolute; left: 10px; right: 10px; bottom: 10px; height: 405px; border-radius: 38px; background:#fff; z-index: 35; padding: 20px 22px; box-sizing:border-box; box-shadow: 0 -6px 30px rgba(0,0,0,.25); }
-  .t2 .ap .hd { display:flex; align-items:center; gap: 12px; margin-bottom: 14px; } .t2 .ap .hd b { font-size: 21px; flex:1; letter-spacing:-.01em; }
+  .t2 .ap .hd { display:flex; align-items:center; justify-content:space-between; gap: 12px; margin-bottom: 10px; } .t2 .ap .aplogo { height: 46px; display:block; } .t2 .ap .hd b { font-size: 21px; flex:1; letter-spacing:-.01em; }
   .t2 .ap .mer { width: 38px; height: 38px; border-radius: 10px; background:#fff; border: 1px solid #e3e3e6; display:grid; place-items:center; overflow:hidden; }
   .t2 .ap .x { width: 30px; height: 30px; border-radius: 50%; background:#ececef; display:grid; place-items:center; font-size: 14px; color:#666; }
   .t2 .ap .row { display:flex; align-items:center; gap: 14px; padding: 10px 0 14px; border-bottom: 1px solid #ececec; } .t2 .ap .row b { display:block; font-size: 17px; } .t2 .ap .row small { font-size: 14px; color:#8a8a8e; }
@@ -224,7 +224,7 @@
     const saf = h('div', 'saf', scr, `<div class="url"><span class="aa">A<b>A</b></span><span class="u">🔍 Rechercher</span><svg class="rl" viewBox="0 0 16 16"><path d="M13.5 8A5.5 5.5 0 1 1 11.8 4" fill="none" stroke="#111" stroke-width="1.6" stroke-linecap="round"/><path d="M12.6 1.2v3.6H9" fill="none" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><i class="pg"></i></div><div class="home"></div>`);
     const url = saf.querySelector('.u'), pg = saf.querySelector('.pg');
     const dim = h('div', 'dim', scr);
-    const ap = h('div', 'ap', scr, `<div class="hd"><span class="mer"><img src="${IMG('img/logo.svg')}"></span><b>Élite Maillot</b><span class="x">✕</span></div>
+    const ap = h('div', 'ap', scr, `<div class="hd"><img class="aplogo" src="${IMG('img/logo.svg')}"><span class="x">✕</span></div>
       <div class="row"><span class="card"><i class="chip"></i></span><div><b>Carte bancaire</b><small>•••• 4021</small></div><span class="chev">›</span></div>
       <div class="lbl">COMMANDE</div><div class="val">4 maillots · 3 achetés = <em>1 offert</em></div><div class="val sub">Total 59,97 € · Livraison offerte</div>
       <div class="st"><div class="s1"><span class="side"></span>Confirmer avec le bouton latéral</div><div class="s2"><svg viewBox="0 0 40 40"><g fill="none" stroke="#0a84ff" stroke-width="2.4" stroke-linecap="round"><path d="M4 12V7a3 3 0 0 1 3-3h5M28 4h5a3 3 0 0 1 3 3v5M36 28v5a3 3 0 0 1-3 3h-5M12 36H7a3 3 0 0 1-3-3v-5"/><path d="M14 14v3M26 14v3M20 15v7h-2M15 27q5 4 10 0"/></g></svg>Face ID</div><div class="s3"><span class="spin"></span></div><div class="s4"><span class="ok">✓</span>Terminé</div></div>`);
@@ -307,9 +307,9 @@
       // where does the world point under the screen centre go between two frames? -> blur along that direction
       const scrOf = (wx, wy, q) => { const dx = (wx - q[0]) * q[2], dy = (wy - q[1]) * q[2], r = q[3] * Math.PI / 180; return [540 + dx * Math.cos(r) - dy * Math.sin(r), 960 + (dx * Math.sin(r) + dy * Math.cos(r)) * Math.cos(q[4] * Math.PI / 180)]; };
       const sp = scrOf(c[0], c[1], p), dX = 540 - sp[0], dY = 960 - sp[1];
-      const zr = Math.abs(Math.log(c[2] / p[2])) * 520 + Math.abs(c[3] - p[3]) * 14;
+      const zr = Math.abs(Math.log(c[2] / p[2])) * 260 + Math.abs(c[3] - p[3]) * 7;
       const endBlur = kf(t, [[B.end - .3, 0], [B.end + .5, 22]]);
-      const bx = Math.min(30, Math.max(0, Math.abs(dX) - 2) * .55 + zr * .5) + endBlur, by = Math.min(30, Math.max(0, Math.abs(dY) - 2) * .55 + zr * .5) + endBlur;
+      const bx = Math.min(9, Math.max(0, Math.abs(dX) - 6) * .2 + zr * .3) + endBlur, by = Math.min(9, Math.max(0, Math.abs(dY) - 6) * .2 + zr * .3) + endBlur;
       if (bx + by > .5) { mbg.setAttribute('stdDeviation', `${bx.toFixed(2)} ${by.toFixed(2)}`); persp.style.filter = 'url(#mbf)'; } else persp.style.filter = 'none';
       const toScreen = (wx, wy) => scrOf(wx, wy, c);
       persp.style.opacity = 1 - prog(t, B.end + .9, .6) * .55;
@@ -318,12 +318,13 @@
       T.forEach(o => {
         if (o.bento != null) {
           const k = prog(t, B.bento - .05 + o.bento * .07, .75, E.outQuint), side = o.bento < 3 ? -1 : 1;
-          o.el.style.opacity = clamp(k * 1.6); o.el.style.transform = `translate(${(1 - k) * side * 380}px, ${(1 - k) * 140}px) scale(${lerp(.7, 1, k)}) rotate(${(1 - k) * side * 8}deg)`;
+          o.el.style.opacity = clamp(k * 2); o.el.style.transform = `perspective(900px) translateY(${(1 - k) * 90}px) rotateY(${(1 - k) * side * -95}deg) scale(${lerp(.85, 1, k)})`;
           return;
         }
         const d0 = .42 + (o.d - .15) * .9, k = prog(t, d0, .5, E.back), out = o.near ? prog(t, B.bento - .25, .4) : 0;
         o.el.style.opacity = clamp(prog(t, d0, .12)) * (1 - out * (o.near === 1 ? 1 : 0));
-        o.el.style.transform = `scale(${Math.max(0, k) * (1 - out * .1)})`;
+        const kz = prog(t, d0, .7, E.outQuint), sgn = (o.el.offsetLeft % 2 ? 1 : -1);
+        o.el.style.transform = `translateZ(${(1 - kz) * 900}px) translateY(${(1 - kz) * -120}px) rotate(${(1 - kz) * 14 * sgn}deg) scale(${lerp(.9, 1, Math.max(0, k)) * (1 - out * .1)})`;
       });
       // phone lies on the desk, then lifts toward the camera when it stands up
       const lift = win(t, B.phone, B.zoom + .1, .9, .6);
@@ -350,7 +351,7 @@
         const y = yAt(t), vy = Math.abs(y - yAt(t - 1 / 30));
         m.el.style.opacity = clamp(prog(t, m.at, .15)) * (1 - prog(t, B.phone - .2, .25));
         m.el.style.transform = `translateY(${y}px) scale(${1 - newer(t) * .035})`;
-        m.el.style.filter = vy > 3 ? `blur(${Math.min(12, vy * .18).toFixed(1)}px)` : 'none';
+        m.el.style.filter = vy > 8 ? `blur(${Math.min(4, vy * .06).toFixed(1)}px)` : 'none';
         m.el.style.zIndex = 12 + i;
       });
       // a blue message pill leaves the stack and flies into the phone's search field while the camera dives
@@ -421,7 +422,12 @@
       lis.forEach((li, i) => { const k = prog(t, B.bento + .5 + i * .22, .3, E.back); li.style.opacity = k; li.style.transform = `translateX(${(1 - k) * 20}px)`; });
 
       // headlines (words out of a blur)
-      HL.forEach(x => { const k = win(t, x.at - .05, x.out, .05, .35); x.w.box.style.opacity = k; x.w.box.style.filter = k < 1 && t > x.at + .3 ? `blur(${(1 - k) * 12}px)` : 'none'; x.w.box.style.display = t < x.at - .1 || t > x.out + .05 ? 'none' : ''; wordsAt(x.w, t, x.at, x.stagger || .11, .55); });
+      HL.forEach(x => {
+        const vis = !(t < x.at - .1 || t > x.out + .05); x.w.box.style.display = vis ? '' : 'none'; if (!vis) return;
+        const o = 1 - prog(t, x.out - .3, .3, E.inOut); x.w.box.style.opacity = o; x.w.box.style.filter = 'none';
+        x.w.box.style.transform = `translateY(-50%) translateY(${(1 - o) * -40}px)`;
+        x.w.parts.forEach((p, i) => { const k = prog(t, x.at + i * (x.stagger || .08), .5, E.back), a = clamp(prog(t, x.at + i * (x.stagger || .08), .2)); p.style.opacity = a; p.style.filter = 'none'; p.style.transform = `translateY(${(1 - k) * 46}px) rotate(${(1 - k) * 6}deg) scale(${lerp(.92, 1, k)})`; p.style.transformOrigin = '0 100%'; });
+      });
       fog.style.opacity = (t < B.clock - .6 ? prog(t, B.clock - 1.1, .4) : 1) * (1 - prog(t, B.bento - .2, .4));
 
       // end: bouncing dots, the logo, the tagline typed
