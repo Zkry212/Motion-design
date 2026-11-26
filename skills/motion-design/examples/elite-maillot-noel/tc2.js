@@ -311,8 +311,8 @@
       <div class="st"><div class="s1"><span class="side"></span>Confirmer avec le bouton latéral</div><div class="s2"><svg viewBox="0 0 40 40"><g fill="none" stroke="#0a84ff" stroke-width="2.4" stroke-linecap="round"><path d="M4 12V7a3 3 0 0 1 3-3h5M28 4h5a3 3 0 0 1 3 3v5M36 28v5a3 3 0 0 1-3 3h-5M12 36H7a3 3 0 0 1-3-3v-5"/><path d="M14 14v3M26 14v3M20 15v7h-2M15 27q5 4 10 0"/></g></svg>Face ID</div><div class="s3"><span class="spin"></span></div><div class="s4"><span class="ok">✓</span>Terminé</div></div>`);
     const dbl = h('div', 'dbl', scr, '<span>Double-cliquer<br>pour payer</span><i></i>');
     const apS = [...ap.querySelectorAll('.st > div')], spin = ap.querySelector('.spin'), okc = ap.querySelector('.ok');
-    const useStore = s.screens === 'store';
-    const app = h('div', 'app', vp); if (!useStore) app.style.display = 'none';
+    const useStore = s.screens === 'store', useFly = s.screens === 'fly', useApp = useStore || useFly;
+    const app = h('div', 'app', vp); if (!useApp) app.style.display = 'none';
     const cartIco = '<svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.7"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>';
     const ST = s.store;
     const scHome = h('div', 'scrn', app, `<div class="hd2"><span class="ic2"><svg viewBox="0 0 24 24" stroke="#111" stroke-width="1.7"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><img src="${IMG('img/logo.svg')}"><span class="ic2">${cartIco}<span class="bdg">0</span></span></div>
@@ -330,6 +330,8 @@
       <div class="tot2"><span>Total</span><span><s class="oldt">79,96€</s><b class="tt">19,99€</b></span></div><div class="applebtn">Payer avec Apple Pay</div>`);
     const rws = [...scCart.querySelectorAll('.rw')], segs = [...scCart.querySelectorAll('.segs i')], st2 = scCart.querySelector('.st2'), cc = scCart.querySelector('.cc'), tt = scCart.querySelector('.tt'), oldt = scCart.querySelector('.oldt'), abtn = scCart.querySelector('.applebtn');
     const tap = h('div', 'tap2', scr), ring = h('div', 'ring', scr), off = h('div', 'off', scr);
+    const FLY = (s.fly || []).map(f2 => { const el = h('div', 'fj', cam); Object.assign(el.style, { position: 'absolute', left: '0', top: '0', width: '300px', height: '300px', backgroundImage: `url(${IMG('img/' + f2.img)})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', filter: 'drop-shadow(0 30px 30px rgba(20,30,50,.3))', opacity: 0 }); return { el, ...f2 }; });
+    const flyHint = h('div', 'flyhint', app.querySelector('.cartsh') || app);
 
     // ---------- overlays
     const HL = s.headlines.map(x => { const w = wordsEl(R, x.text, ''); w.box.className = 'hl'; if (x.y) w.box.style.top = x.y + 'px'; return { w, ...x }; });
@@ -370,6 +372,9 @@
       { t0: 2.7, t1: 3.9, p: .61, to: [460, -410, 1.75, -6, 6] },                        // glide to the widgets / messages
       { t0: 3.9, t1: 5.4, p: .5, to: [462, -408, 1.77, -6.2, 6] },                       // (almost still)
       { t0: 5.4, t1: 7.3, p: .28, to: [140, FCY, FZ, 0, 0], zmid: .78, km: .45 },        // dive: pull out then into the phone
+      ...(useFly ? (s.fly || []).flatMap((f2, i) => [
+        { t0: f2.land - .06, t1: f2.land + .22, p: .35, to: [140 + (i % 2 ? 6 : -6), FCY - 4, FZ * 1.035, i % 2 ? .7 : -.7, 0] },
+        { t0: f2.land + .22, t1: f2.land + .62, p: .5, to: [140, FCY, FZ, 0, 0] }]) : []),
       { t0: B.pay + .3, t1: B.pay + .95, p: .5, to: [SX + 200, SY + 430, 2.12, 1.5, 3] },   // into the Apple Pay sheet, pulse 1
       { t0: B.pay + 1.05, t1: B.pay + 1.83, p: .62, to: [SX + 220, SY + 500, 2.95, 3.5, 5.5] }, // pulse 2
       { t0: B.pay + 2.13, t1: B.pay + 2.7, p: .95, to: [SX + 212, SY + 515, 3.05, 3.8, 5.6] },          // small push on "Terminé"
@@ -522,7 +527,7 @@
       const dk2 = win(t, B.pay + .7, B.pay + 1.75, .25, .2); dbl.style.opacity = dk2;
       dbl.lastChild.style.transform = `scaleY(${1 + Math.max(0, Math.sin((t - B.pay) * 9)) * .25})`; dbl.style.transform = `translateX(${(1 - prog(t, B.pay + .7, .35, E.outQuint)) * 40}px)`;
       const ro = win(t, B.four + .25, B.pay - .1, .3, .2);
-      ring.style.opacity = ro; Object.assign(ring.style, useStore ? { left: '16px', top: SB + 326 + 'px', width: '358px', height: '62px' } : { left: '228px', top: SB + 254 + 'px', width: '150px', height: '78px' }, { transform: `scale(${lerp(1.2, 1, ro)})` });
+      ring.style.opacity = ro; Object.assign(ring.style, useApp ? { left: '16px', top: SB + 326 + 'px', width: '358px', height: '62px' } : { left: '228px', top: SB + 254 + 'px', width: '150px', height: '78px' }, { transform: `scale(${lerp(1.2, 1, ro)})` });
 
       // the Christmas list gets ticked off in the finale
       remRows.forEach((r2, i) => { const on = t > B.bento + .55 + i * .25; const cb = r2.querySelector('.cb'); cb.classList.toggle('on', on); cb.textContent = on ? '✓' : ''; r2.style.opacity = on ? .55 : 1; });
@@ -545,6 +550,29 @@
       [...dots.children].forEach((d, i) => { const ph2 = ((t - B.end) * 2.6 - i * .18) % 1; d.style.transform = `translateY(${-Math.max(0, Math.sin(ph2 * Math.PI)) * 26}px) scale(${1 + Math.max(0, Math.sin(ph2 * Math.PI)) * .15})`; });
       // ----- redrawn store: opens with a cascade, scrolls, tap on the Barça card, product page, size, add, cart fills, Apple Pay
       srch.style.display = 'none'; saf.style.opacity = 1;
+      if (useFly) {
+        scHome.style.display = 'none'; scProd.style.display = 'none';
+        const T0 = B.phone + .05;
+        const cin = prog(t, T0 + .1, .55, E.outQuint); scCart.style.display = ''; scCart.style.transform = `translateY(${(1 - cin) * 100}%)`;
+        const lands = FLY.map(f2 => f2.land);
+        const nIn = lands.filter(x => t >= x).length;
+        rws.forEach((rw, i) => { const k = prog(t, lands[i], .35, E.back); rw.style.display = t >= lands[i] - .01 ? '' : 'none'; rw.style.opacity = clamp(k * 2); rw.style.transform = `scale(${lerp(.85, 1, k)})`; rw.style.background = t > lands[i] && t < lands[i] + .35 ? '#eefcfd' : '#fff'; });
+        segs.forEach((sg, i) => sg.classList.toggle('on', i < nIn)); st2.textContent = nIn >= 4 ? 'Débloqué ✓' : nIn + '/4'; cc.textContent = `(${nIn})`;
+        const totV = nIn >= 4 ? lerp(79.96, 59.97, prog(t, lands[3] + .15, .6, E.outQuint)) : 19.99 * nIn; tt.textContent = totV.toFixed(2).replace('.', ',') + '€';
+        oldt.style.display = nIn >= 4 ? '' : 'none';
+        abtn.style.transform = `scale(${1 - .04 * clamp(1 - Math.abs(t - B.pay) / .15)})`;
+        // jerseys: pop in beside the phone, hover, then arc into their cart row (shrinking to the thumbnail)
+        FLY.forEach((f2, i) => {
+          const tin = f2.land - 1.0, kp = prog(t, tin, .35, E.back), kf2 = prog(t, f2.land - .55, .55, E.inOut);
+          const row = [SX + 14 + 12 + 24, SY + SB + 140 + i * 64 + 32];
+          const x = lerp(f2.x, row[0], kf2) + Math.sin(t * 2 + i) * 6 * (1 - kf2), y = lerp(f2.y, row[1], kf2) - Math.sin(kf2 * Math.PI) * 160 + Math.cos(t * 1.7 + i) * 6 * (1 - kf2);
+          const sc = lerp(lerp(.2, .78, kp), .17, kf2);
+          f2.el.style.opacity = t < tin ? 0 : (t > f2.land ? 0 : 1);
+          f2.el.style.transform = `translate(${x - 150}px, ${y - 150}px) translateZ(${100 + 60 * (1 - kf2)}px) scale(${Math.max(.01, sc)}) rotate(${lerp(f2.r || 0, (f2.r || 0) + 360 * (f2.spin || 0), kf2)}deg)`;
+        });
+        const q4 = clamp((t - B.pay + .2) / .2) * (1 - clamp((t - B.pay - .15) / .25));
+        tap.style.opacity = q4; tap.style.left = '195px'; tap.style.top = SB + VH - 42 + 'px'; tap.style.transform = `scale(${lerp(1.5, .85, q4)})`;
+      }
       if (useStore) {
       const T0 = B.phone + .05, tCard = B.choose + 1.0, tSize = B.add - .2, tAdd = B.add + 1.0;
       promo.style.opacity = prog(t, T0 + .15, .3); promo.style.transform = `translateY(${(1 - prog(t, T0 + .15, .5, E.outQuint)) * 24}px)`;
