@@ -1,6 +1,6 @@
-<break time="0.8s" /> Noël, c'est dans trois semaines… et toute la famille veut un maillot.
+<break time="0.8s" /> Noël approche… et toute la famille veut un maillot.
 <break time="0.6s" /> Alors vous tapez Élite Maillot. <break time="1.0s" />
 Le site s'ouvre, vous choisissez, vous ajoutez au panier… et le quatrième est offert.
 Vous payez avec Apple Pay, en un geste. <break time="1.0s" />
-Quatre maillots, trois payés, livrés chez vous. <break time="1.5s" />
+Trois maillots achetés, le quatrième offert. <break time="1.5s" />
 Élite Maillot.

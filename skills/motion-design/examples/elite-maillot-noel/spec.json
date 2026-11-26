@@ -357,7 +357,7 @@
    },
    "headlines": [
     {
-     "text": "Noël, dans *3 semaines.*",
+     "text": "Noël *approche.*",
      "at": 1.0,
      "out": 3.5
     },
@@ -397,7 +397,7 @@
      "out": 17.3
     },
     {
-     "text": "*4 maillots,* 3 payés.",
+     "text": "3 achetés, *le 4ème offert.*",
      "at": 18.4,
      "out": 21.6,
      "y": 880
