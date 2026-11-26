@@ -33,37 +33,37 @@
     "gain": -12
    },
    {
-    "at": 0.22,
+    "at": 0.05,
     "src": "assets/sfx/pop-1.wav",
     "gain": -13
    },
    {
-    "at": 0.55,
+    "at": 0.18,
     "src": "assets/sfx/pop-2.wav",
     "gain": -13
    },
    {
-    "at": 0.63,
+    "at": 0.24,
     "src": "assets/sfx/pop-3.wav",
     "gain": -13
    },
    {
-    "at": 0.7,
+    "at": 0.3,
     "src": "assets/sfx/pop-4.wav",
     "gain": -13
    },
    {
-    "at": 0.78,
+    "at": 0.36,
     "src": "assets/sfx/pop-5.wav",
     "gain": -13
    },
    {
-    "at": 0.86,
+    "at": 0.42,
     "src": "assets/sfx/pop-6.wav",
     "gain": -13
    },
    {
-    "at": 0.98,
+    "at": 0.5,
     "src": "assets/sfx/pop-7.wav",
     "gain": -13
    },
@@ -73,12 +73,12 @@
     "gain": -10
    },
    {
-    "at": 1.12,
+    "at": 0.58,
     "src": "assets/sfx/pop-8.wav",
     "gain": -13
    },
    {
-    "at": 1.24,
+    "at": 0.66,
     "src": "assets/sfx/pop-9.wav",
     "gain": -13
    },
@@ -405,7 +405,7 @@
      "text": "*4 maillots,* 3 payés.",
      "at": 18.8,
      "out": 22.1,
-     "y": 830
+     "y": 880
     }
    ],
    "notifs": [

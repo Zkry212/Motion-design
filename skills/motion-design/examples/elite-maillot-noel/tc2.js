@@ -103,16 +103,22 @@
   .t2 .kb .under { position:absolute; left: 0; right: 0; bottom: 0; height: 52px; display:flex; justify-content:space-between; align-items:center; padding: 0 26px 10px; }
   .t2 .kb .under img { width: 26px; } .t2 .kb .under svg { width: 18px; height: 26px; }
   .t2 .kb .hb { position:absolute; bottom: 7px; left:50%; width: 130px; height: 5px; margin-left:-65px; border-radius: 3px; background:#111; }
-  .t2 .ical { position:absolute; inset:0; padding: 34px 36px; background:#fff; }
+  .t2 .ical { position:absolute; inset:0; padding: 26px 28px; background: linear-gradient(160deg,#1f1f22,#0d0d0f); }
   .t2 .ical .d { font-size: 27px; font-weight: 700; letter-spacing:.02em; color:#ff3b30; }
-  .t2 .ical .n { font-size: 132px; font-weight: 300; line-height: 1.02; letter-spacing:-.05em; color:#000; }
-  .t2 .ical .ev { display:flex; align-items:stretch; gap: 10px; font-size: 21px; font-weight: 650; color:#111; margin-top: 8px; line-height: 1.2; } .t2 .ical .ev i { width: 5px; border-radius: 3px; background:#34c759; display:block; } .t2 .ical .ev small { display:block; font-size: 19px; color:#8a8a8e; font-weight: 500; }
+  .t2 .ical .n { font-size: 112px; font-weight: 300; line-height: 1.02; letter-spacing:-.05em; color:#fff; }
+  .t2 .ical .ev { display:flex; align-items:stretch; gap: 10px; font-size: 19px; font-weight: 650; color:#fff; margin-top: 8px; line-height: 1.2; } .t2 .ical .ev i { width: 5px; border-radius: 3px; background:#34c759; display:block; } .t2 .ical .ev small { display:block; font-size: 19px; color:#8a8a8e; font-weight: 500; }
   .t2 .ical .ev img { width: 22px; vertical-align: -3px; }
-  .t2 .wx { position:absolute; inset:0; padding: 30px 32px; color:#fff; background: linear-gradient(180deg,#59718f 0%,#7f95ae 100%); }
+  .t2 .wx { position:absolute; inset:0; padding: 26px 28px; color:#fff; background: linear-gradient(180deg,#0c1631 0%,#223b6b 100%); }
   .t2 .wx .c { font-size: 25px; font-weight: 650; display:flex; align-items:center; gap: 6px; } .t2 .wx .c svg { width: 15px; }
-  .t2 .wx .tmp { font-size: 100px; font-weight: 250; line-height: 1; letter-spacing:-.05em; margin-top: 2px; }
-  .t2 .wx .ic svg { width: 34px; margin-top: 18px; } .t2 .wx .dsc { font-size: 23px; font-weight: 650; margin-top: 4px; } .t2 .wx .hb { font-size: 22px; font-weight: 600; opacity: .95; }
+  .t2 .wx .tmp { font-size: 88px; font-weight: 250; line-height: 1; letter-spacing:-.05em; margin-top: 2px; }
+  .t2 .wx .ic svg { width: 30px; margin-top: 8px; } .t2 .wx .dsc { font-size: 23px; font-weight: 650; margin-top: 4px; } .t2 .wx .hb { font-size: 22px; font-weight: 600; opacity: .95; }
   /* iOS 18 communication notification: contact monogram + Messages badge */
+  .t2 .rem { position:absolute; inset:0; padding: 24px 30px; color:#fff; }
+  .t2 .rem .rh { display:flex; align-items:center; gap: 12px; margin-bottom: 10px; } .t2 .rem .rh b { font-size: 25px; color:#ff9f0a; flex:1; } .t2 .rem .rc { font-size: 44px; font-weight: 600; line-height: 1; }
+  .t2 .rem .ri { width: 38px; height: 38px; border-radius: 50%; background:#ff9f0a; display:grid; place-content:center; gap: 3px; } .t2 .rem .ri i { display:block; width: 16px; height: 2.5px; background:#fff; border-radius: 2px; }
+  .t2 .rem .rr { display:flex; align-items:center; gap: 14px; font-size: 22px; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,.1); }
+  .t2 .rem .cb { width: 24px; height: 24px; border-radius: 50%; border: 2.5px solid #636366; box-sizing:border-box; flex:none; display:grid; place-items:center; font-size: 15px; color:#fff; font-weight: 800; }
+  .t2 .rem .cb.on { background:#ff9f0a; border-color:#ff9f0a; }
   .t2 .imsg { position:absolute; left: 44px; top: 0; width: 992px; min-height: 160px; z-index: 12; box-sizing:border-box; border-radius: 54px; padding: 26px 30px; display:flex; gap: 24px; align-items:center;
      background: rgba(248,248,250,.82); backdrop-filter: blur(30px) saturate(1.6); box-shadow: 0 22px 50px rgba(30,34,50,.18), 0 0 0 1px rgba(255,255,255,.6) inset; }
   .t2 .imsg .av { position:relative; width: 92px; height: 92px; flex:none; }
@@ -124,7 +130,7 @@
   .t2 .imsg p { margin: 4px 0 0; font-size: 32px; color:#111; white-space: nowrap; overflow:hidden; text-overflow: ellipsis; letter-spacing: -.01em; }
   .t2 img.emo { height: 1.08em; width: auto; vertical-align: -.2em; margin: 0 .04em; }
   .t2 .pill { position:absolute; left:0; top:0; z-index: 13; padding: 20px 34px; border-radius: 40px; background:#0a84ff; color:#fff; font-size: 34px; font-weight: 600; white-space:nowrap; box-shadow: 0 20px 40px rgba(10,60,140,.3); transform-origin: 50% 50%; }
-  .t2 .ical .roll { position:relative; height: 150px; overflow:hidden; } .t2 .ical .roll div { position:absolute; left:0; top:0; }
+  .t2 .ical .roll { position:relative; height: 120px; overflow:hidden; } .t2 .ical .roll div { position:absolute; left:0; top:0; }
   .t2 .ical .dd { position:relative; height: 34px; overflow:hidden; } .t2 .ical .dd div { position:absolute; left:0; top:0; }
   /* Apple Pay */
   .t2 .dim { position:absolute; inset:0; background: rgba(0,0,0,.58); z-index: 34; }
@@ -186,19 +192,18 @@
       T.push(r); return r;
     };
     const clockSvg = `<svg class="clock" viewBox="0 0 200 200"><circle cx="100" cy="100" r="97" fill="#fff"/>${Array.from({ length: 60 }, (_, i) => i % 5 ? `<line x1="100" y1="7" x2="100" y2="11" stroke="#bbb" stroke-width="1" transform="rotate(${i * 6} 100 100)"/>` : '').join('')}${Array.from({ length: 12 }, (_, i) => `<text x="${100 + 74 * Math.sin(i * Math.PI / 6)}" y="${108 - 74 * Math.cos(i * Math.PI / 6)}" font-size="22" font-family="Inter" font-weight="500" text-anchor="middle" fill="#222">${i || 12}</text>`).join('')}<line class="hh" x1="100" y1="100" x2="100" y2="52" stroke="#111" stroke-width="7" stroke-linecap="round"/><line class="mm" x1="100" y1="100" x2="100" y2="28" stroke="#111" stroke-width="5" stroke-linecap="round"/><line class="ss" x1="100" y1="114" x2="100" y2="24" stroke="#ff9500" stroke-width="2.5"/><circle cx="100" cy="100" r="6" fill="#ff9500"/></svg>`;
-    const tClock = tile(-520, -1000, -100, -580, 0, clockSvg, { d: .3 });
-    tile(-60, -1000, 660, -700, 0, '', { d: .38 });
-    tile(-60, -660, 280, -320, 0, `<div class="ical"><div class="dd d"><div class="d0">MERCREDI</div><div class="d1">JEUDI</div></div><div class="roll n"><div class="n0">2</div><div class="n1">3</div></div><div class="ev"><i></i><span>${emo('🎄')} Noël en famille<small class="evt">dans 22 jours</small></span></div></div>`, { d: .45 });
-    tile(320, -660, 660, -320, 0, `<div class="wx"><div class="c">Paris <svg viewBox="0 0 16 16"><path fill="#fff" d="M14.6 1.4 1.8 7.1c-.6.3-.5 1.2.2 1.3l5.3.9.9 5.3c.1.7 1 .8 1.3.2z"/></svg></div><div class="tmp">2°</div><div class="ic"><svg viewBox="0 0 40 40"><path fill="#fff" d="M31 13.3A9.5 9.5 0 0 0 12.6 11 7.4 7.4 0 0 0 9.8 25.3h20.6a6 6 0 0 0 .6-12z"/><g fill="#fff"><circle cx="13" cy="31" r="2"/><circle cx="20" cy="35" r="2"/><circle cx="27" cy="31" r="2"/><circle cx="16.5" cy="38" r="1.6"/><circle cx="23.5" cy="38" r="1.6"/></g></svg></div><div class="dsc">Neige</div><div class="hb">H:4° B:-1°</div></div>`, { d: .52 });
-    tile(-520, -540, -100, -320, 0, '', { d: .6 });
+    // a compact desk like the reference: the widgets sit right above the phone, a few blocks around it, empty studio beyond
+    const tClock = tile(-300, -760, 120, -340, 0, clockSvg, { d: .3 });
+    const tRem = tile(160, -760, 760, -520, 1, `<div class="rem"><div class="rh"><span class="ri"><i></i><i></i><i></i></span><b>Cadeaux de Noël</b><span class="rc">3</span></div>${['Maillot du Barça · Frérot', 'Maillot de la France · Papa', 'Maillot du Real · Le petit'].map(x => `<div class="rr"><span class="cb"></span>${esc(x)}</div>`).join('')}</div>`, { d: .38 });
+    tile(160, -490, 445, -205, 1, `<div class="ical"><div class="dd d"><div class="d0">MERCREDI</div><div class="d1">JEUDI</div></div><div class="roll n"><div class="n0">2</div><div class="n1">3</div></div><div class="ev"><i></i><span>${emo('🎄')} Noël en famille<small class="evt">dans 22 jours</small></span></div></div>`, { d: .45 });
+    tile(475, -490, 760, -205, 1, `<div class="wx"><div class="c">Paris <svg viewBox="0 0 16 16"><path fill="#fff" d="M14.6 1.4 1.8 7.1c-.6.3-.5 1.2.2 1.3l5.3.9.9 5.3c.1.7 1 .8 1.3.2z"/></svg></div><div class="tmp">2°</div><div class="ic"><svg viewBox="0 0 40 40"><path fill="#fff" d="M31 13.3A9.5 9.5 0 0 0 12.6 11 7.4 7.4 0 0 0 9.8 25.3h20.6a6 6 0 0 0 .6-12z"/><g fill="#fff"><circle cx="13" cy="31" r="2"/><circle cx="20" cy="35" r="2"/><circle cx="27" cy="31" r="2"/><circle cx="16.5" cy="38" r="1.6"/><circle cx="23.5" cy="38" r="1.6"/></g></svg></div><div class="dsc">Neige</div><div class="hb">H:4° B:-1°</div></div>`, { d: .52 });
+    tile(-300, -300, 120, -45, 0, '', { d: .6 });
     // around the phone (hidden for the bento)
-    tile(-520, -280, -100, 300, 1, '', { near: 1 }); tile(-520, 340, -100, 815, 0, '', { near: 1 });
-    tile(380, -280, 800, 200, 0, '', { near: 1 }); tile(380, 240, 800, 815, 1, '', { near: 1 });
-    // outer ring
-    [[-980, -1460, -560, -1040, 1], [-520, -1460, -100, -1040, 0], [-60, -1460, 360, -1040, 1], [400, -1460, 820, -1040, 0], [860, -1460, 1280, -1040, 1],
-     [700, -1000, 1120, -580, 0], [700, -540, 1120, -320, 1], [-980, -1000, -560, -580, 1], [-980, -540, -560, -40, 0], [-980, 0, -560, 500, 1], [-980, 540, -560, 1000, 0],
-     [840, -280, 1260, 260, 1], [840, 300, 1260, 815, 0], [-520, 855, -100, 1275, 1], [-60, 855, 360, 1275, 0], [400, 855, 820, 1275, 1], [860, 855, 1280, 1275, 0], [-980, 1040, -560, 1440, 1]]
-      .forEach(([a, b, c, d, k]) => tile(a, b, c, d, k, '', { near: (Math.abs((a + c) / 2 - 140) < 900 && (b + d) / 2 > -400) ? 2 : 0 }));
+    tile(-520, 60, -110, 520, 0, '', { near: 1 }); tile(-520, 560, -110, 955, 1, '', { near: 1 });
+    tile(390, -170, 800, 380, 1, '', { near: 1 }); tile(390, 420, 800, 955, 0, '', { near: 1 });
+    tile(-520, 995, -110, 1300, 0, '', { near: 2 }); tile(-69, 995, 349, 1300, 1, '', { near: 2 }); tile(390, 995, 800, 1300, 0, '', { near: 2 });
+    tile(-760, -300, -340, 20, 1, '', { near: 0 }); tile(800, -760, 1100, -360, 0, '', { near: 0 });
+    const remRows = [...tRem.el.querySelectorAll('.rr')], remCount = tRem.el.querySelector('.rc');
     const CALr = { n0: cam.querySelector('.n0'), n1: cam.querySelector('.n1'), d0: cam.querySelector('.d0'), d1: cam.querySelector('.d1'), ev: cam.querySelector('.evt') };
     const hands = { h: tClock.el.querySelector('.hh'), m: tClock.el.querySelector('.mm'), s: tClock.el.querySelector('.ss') };
     // iMessage notifications (iOS banners) stacking over the desk
@@ -280,14 +285,14 @@
     const ZP = (x, y) => [SX + x, SY + SB + y];                             // capture point -> world
     const city = ZP(300, 300);
     const CAM = [
-      [0, [150, 420, .3, -19, 22], E.outQuint],
-      [1.15, [140, 60, .6, -13, 15]],
-      [1.3, [120, -40, .66, -12, 14], sexy],
-      [B.clock - .05, [-285, -770, 1.52, -6, 6]],
-      [B.chat - .65, [-150, -735, 1.44, -3.5, 4.5], sexy],
-      [B.chat, [300, -560, 1.4, -6, 6]],
-      [B.phone - .35, [285, -520, 1.32, -8, 8], sexy],
-      [B.phone + .4, [140, 230, .64, -11, 15]],
+      [0, [190, 200, .4, -17, 20], E.outQuint],
+      [.75, [220, -80, .62, -13, 15]],
+      [1.05, [120, -320, .95, -9, 11], sexy],
+      [B.clock - .05, [-20, -540, 1.5, -6, 6]],
+      [B.chat - .65, [90, -520, 1.42, -3.5, 4.5], sexy],
+      [B.chat, [460, -430, 1.42, -6, 6]],
+      [B.phone - .35, [445, -400, 1.32, -8, 8], sexy],
+      [B.phone + .35, [170, 260, .95, -5, 7]],
       [B.phone + 1.0, [140, FCY, FZ, 0, 0]],
       [B.open - .2, [140, FCY - 6, FZ * 1.03, .4, 0], sexy],
       [B.open + .35, [140, FCY + 8, FZ * .985, -.5, 0]],
@@ -346,16 +351,16 @@
           o.el.style.opacity = clamp(k * 2); o.el.style.transform = `perspective(900px) translateY(${(1 - k) * 90}px) rotateY(${(1 - k) * side * -95}deg) scale(${lerp(.85, 1, k)})`;
           return;
         }
-        const d0 = .42 + (o.d - .15) * .9, k = prog(t, d0, .5, E.back), out = o.near ? prog(t, B.bento - .25, .4) : 0;
+        const d0 = .16 + (o.d - .15) * .55, k = prog(t, d0, .5, E.back), out = o.near ? prog(t, B.bento - .25, .4) : 0;
         o.el.style.opacity = clamp(prog(t, d0, .12)) * (1 - out * (o.near === 1 ? 1 : 0));
         const kz = prog(t, d0, .7, E.outQuint), sgn = (o.el.offsetLeft % 2 ? 1 : -1);
         o.el.style.transform = `translateZ(${(1 - kz) * 900}px) translateY(${(1 - kz) * -120}px) rotate(${(1 - kz) * 14 * sgn}deg) scale(${lerp(.9, 1, Math.max(0, k)) * (1 - out * .1)})`;
       });
       // phone lies on the desk, then lifts toward the camera when it stands up
       const lift = win(t, B.phone, B.zoom + .1, .9, .6);
-      const pk = prog(t, .22, .55, E.back);
-      iph.style.transform = `translateZ(${lift * 70}px) scale(${Math.max(.01, pk)})`; iph.style.opacity = clamp(prog(t, .22, .1));
-      off.style.opacity = 1 - prog(t, B.phone + .35, .35);
+      const pk = prog(t, .05, .5, E.back);
+      iph.style.transform = `translateZ(${lift * 70}px) scale(${Math.max(.01, pk)})`; iph.style.opacity = clamp(prog(t, .05, .1));
+      off.style.opacity = 1 - prog(t, B.phone - .05, .3);
 
       // clock: time-lapse from 18:05 to 20:41 while the camera arrives on it
       const mins = kf(t, [[B.clock - .2, 18 * 60 + 5], [B.clock + 1.3, 20 * 60 + 41, E.outQuint], [s.duration, 20 * 60 + 41 + s.duration / 60]]);
@@ -446,6 +451,9 @@
       const ro = win(t, B.zoom + .6, B.pay - .6, .3, .2);
       ring.style.opacity = ro; Object.assign(ring.style, { left: '228px', top: SB + 254 + 'px', width: '150px', height: '78px', transform: `scale(${lerp(1.2, 1, ro)})` });
 
+      // the Christmas list gets ticked off in the finale
+      remRows.forEach((r2, i) => { const on = t > B.bento + .55 + i * .25; const cb = r2.querySelector('.cb'); cb.classList.toggle('on', on); cb.textContent = on ? '✓' : ''; r2.style.opacity = on ? .55 : 1; });
+      remCount.textContent = String(3 - remRows.filter((_, i) => t > B.bento + .55 + i * .25).length);
       // bento counters
       rateEl.textContent = (lerp(3.2, 4.1, prog(t, B.bento + .2, 1.1, E.outQuint))).toFixed(1).replace('.', ',');
       totEl.textContent = lerp(79.96, 59.97, prog(t, B.bento + .35, 1.2, E.outQuint)).toFixed(2).replace('.', ',') + '€';
