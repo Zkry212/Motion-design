@@ -22,7 +22,7 @@
  },
  "audio": {
   "voice": "assets/voice.mp3",
-  "voiceAt": 0.3,
+  "voiceAt": 1.0,
   "music": "assets/music.wav",
   "musicGain": -21,
   "duck": true,
@@ -93,17 +93,17 @@
     "gain": -9
    },
    {
-    "at": 4.2,
+    "at": 4.0,
     "src": "assets/sfx/msg.wav",
     "gain": -11
    },
    {
-    "at": 4.7,
+    "at": 4.5,
     "src": "assets/sfx/msg.wav",
     "gain": -11
    },
    {
-    "at": 5.2,
+    "at": 5.0,
     "src": "assets/sfx/msg.wav",
     "gain": -11
    },
@@ -118,72 +118,72 @@
     "gain": -14
    },
    {
+    "at": 7.05,
+    "src": "assets/sfx/key.wav",
+    "gain": -15
+   },
+   {
+    "at": 7.15,
+    "src": "assets/sfx/key.wav",
+    "gain": -15
+   },
+   {
     "at": 7.25,
     "src": "assets/sfx/thud.wav",
     "gain": -13
    },
    {
-    "at": 7.3,
+    "at": 7.25,
     "src": "assets/sfx/key.wav",
     "gain": -15
    },
    {
-    "at": 7.411,
+    "at": 7.35,
     "src": "assets/sfx/key.wav",
     "gain": -15
    },
    {
-    "at": 7.522,
+    "at": 7.45,
     "src": "assets/sfx/key.wav",
     "gain": -15
    },
    {
-    "at": 7.633,
+    "at": 7.55,
     "src": "assets/sfx/key.wav",
     "gain": -15
    },
    {
-    "at": 7.744,
+    "at": 7.65,
     "src": "assets/sfx/key.wav",
     "gain": -15
    },
    {
-    "at": 7.856,
+    "at": 7.75,
     "src": "assets/sfx/key.wav",
     "gain": -15
    },
    {
-    "at": 7.967,
+    "at": 7.85,
     "src": "assets/sfx/key.wav",
     "gain": -15
    },
    {
-    "at": 8.078,
+    "at": 7.95,
     "src": "assets/sfx/key.wav",
     "gain": -15
    },
    {
-    "at": 8.189,
+    "at": 8.05,
     "src": "assets/sfx/key.wav",
     "gain": -15
    },
    {
-    "at": 8.3,
+    "at": 8.15,
     "src": "assets/sfx/key.wav",
     "gain": -15
    },
    {
-    "at": 8.411,
-    "src": "assets/sfx/key.wav",
-    "gain": -15
-   },
-   {
-    "at": 8.522,
-    "src": "assets/sfx/key.wav",
-    "gain": -15
-   },
-   {
-    "at": 8.633,
+    "at": 8.25,
     "src": "assets/sfx/key.wav",
     "gain": -15
    },
@@ -198,107 +198,107 @@
     "gain": -12
    },
    {
-    "at": 10.2,
+    "at": 10.0,
     "src": "assets/sfx/whoosh-short.wav",
     "gain": -16
    },
    {
-    "at": 11.6,
+    "at": 11.4,
     "src": "assets/sfx/tap.wav",
     "gain": -11
    },
    {
-    "at": 11.65,
+    "at": 11.45,
     "src": "assets/sfx/whoosh-short.wav",
     "gain": -13
    },
    {
-    "at": 12.7,
-    "src": "assets/sfx/pop-5.wav",
-    "gain": -12
-   },
-   {
-    "at": 12.9,
+    "at": 12.6,
     "src": "assets/sfx/tap.wav",
     "gain": -11
    },
    {
-    "at": 13.0,
-    "src": "assets/sfx/pop-6.wav",
-    "gain": -12
-   },
-   {
-    "at": 13.05,
+    "at": 12.75,
     "src": "assets/sfx/whoosh-short.wav",
     "gain": -13
    },
    {
     "at": 13.3,
+    "src": "assets/sfx/pop-5.wav",
+    "gain": -12
+   },
+   {
+    "at": 13.6,
+    "src": "assets/sfx/pop-6.wav",
+    "gain": -12
+   },
+   {
+    "at": 13.9,
     "src": "assets/sfx/pop-7.wav",
     "gain": -12
    },
    {
-    "at": 14.5,
+    "at": 15.5,
     "src": "assets/sfx/tap.wav",
     "gain": -11
    },
    {
-    "at": 14.65,
+    "at": 15.65,
     "src": "assets/sfx/whoosh-short.wav",
     "gain": -13
    },
    {
-    "at": 14.8,
+    "at": 15.8,
     "src": "assets/sfx/whoosh-rise.wav",
     "gain": -10
    },
    {
-    "at": 16.05,
+    "at": 17.05,
     "src": "assets/sfx/side.wav",
     "gain": -9
    },
    {
-    "at": 16.2,
+    "at": 17.2,
     "src": "assets/sfx/thud.wav",
     "gain": -12
    },
    {
-    "at": 17.05,
+    "at": 18.05,
     "src": "assets/sfx/pay-ok.wav",
     "gain": -7
    },
    {
-    "at": 17.45,
+    "at": 18.45,
     "src": "assets/sfx/whoosh-long.wav",
     "gain": -7
    },
    {
-    "at": 17.9,
+    "at": 18.9,
     "src": "assets/sfx/pop-4.wav",
     "gain": -14
    },
    {
-    "at": 17.97,
+    "at": 18.97,
     "src": "assets/sfx/pop-5.wav",
     "gain": -14
    },
    {
-    "at": 18.04,
+    "at": 19.04,
     "src": "assets/sfx/pop-6.wav",
     "gain": -14
    },
    {
-    "at": 18.11,
+    "at": 19.11,
     "src": "assets/sfx/pop-7.wav",
     "gain": -14
    },
    {
-    "at": 18.18,
+    "at": 19.18,
     "src": "assets/sfx/pop-8.wav",
     "gain": -14
    },
    {
-    "at": 18.25,
+    "at": 19.25,
     "src": "assets/sfx/pop-9.wav",
     "gain": -14
    },
@@ -306,6 +306,11 @@
     "at": 21.6,
     "src": "assets/sfx/whoosh-long.wav",
     "gain": -9
+   },
+   {
+    "at": 21.65,
+    "src": "assets/sfx/whoosh-short.wav",
+    "gain": -11
    },
    {
     "at": 22.45,
@@ -323,14 +328,9 @@
     "gain": -16
    },
    {
-    "at": 23.7,
+    "at": 23.62,
     "src": "assets/sfx/logo-sting.wav",
     "gain": -5
-   },
-   {
-    "at": 21.65,
-    "src": "assets/sfx/whoosh-short.wav",
-    "gain": -11
    }
   ]
  },
@@ -347,59 +347,59 @@
     "chat": 3.9,
     "phone": 6.5,
     "open": 9.65,
-    "choose": 10.1,
-    "add": 11.9,
-    "four": 13.3,
+    "choose": 9.9,
+    "add": 11.6,
+    "four": 13.9,
     "zoom": 13.4,
-    "pay": 14.5,
-    "bento": 17.9,
+    "pay": 15.5,
+    "bento": 18.9,
     "end": 22.0
    },
    "headlines": [
     {
      "text": "Noël *approche.*",
-     "at": 1.0,
-     "out": 3.5
+     "at": 1.85,
+     "out": 3.4
     },
     {
      "text": "Ils veulent *un maillot.*",
-     "at": 3.65,
-     "out": 6.1
+     "at": 3.6,
+     "out": 5.9
     },
     {
      "text": "Vous tapez *Élite Maillot.*",
-     "at": 6.9,
-     "out": 9.55
+     "at": 6.2,
+     "out": 8.9
     },
     {
      "text": "Le site *s'ouvre.*",
-     "at": 9.7,
-     "out": 11.0
+     "at": 9.1,
+     "out": 10.1
     },
     {
      "text": "Vous *choisissez.*",
-     "at": 11.1,
-     "out": 12.3
+     "at": 10.2,
+     "out": 11.35
     },
     {
      "text": "Vous *ajoutez.*",
-     "at": 12.4,
-     "out": 13.25
+     "at": 11.45,
+     "out": 13.3
     },
     {
      "text": "Le 4ème est *offert.*",
-     "at": 13.35,
-     "out": 14.4
+     "at": 13.45,
+     "out": 15.6
     },
     {
      "text": "Vous payez *avec Apple Pay.*",
-     "at": 14.6,
-     "out": 17.3
+     "at": 15.75,
+     "out": 18.4
     },
     {
      "text": "3 achetés, *le 4ème offert.*",
-     "at": 18.4,
-     "out": 21.6,
+     "at": 19.6,
+     "out": 21.7,
      "y": 880
     }
    ],
@@ -407,17 +407,17 @@
     {
      "from": "Maman",
      "text": "On offre quoi aux garçons pour Noël ?",
-     "at": 4.2
+     "at": 4.0
     },
     {
      "from": "Frérot",
      "text": "Le maillot du Barça stp 🙏",
-     "at": 4.7
+     "at": 4.5
     },
     {
      "from": "Papa",
      "text": "Moi celui de la France 😄",
-     "at": 5.2
+     "at": 5.0
     }
    ],
    "pill": "Un maillot pour Noël ?"

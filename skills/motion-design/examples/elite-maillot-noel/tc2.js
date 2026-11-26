@@ -315,13 +315,13 @@
       { t0: 2.7, t1: 3.9, p: .61, to: [460, -410, 1.75, -6, 6] },                        // glide to the widgets / messages
       { t0: 3.9, t1: 5.4, p: .5, to: [462, -408, 1.77, -6.2, 6] },                       // (almost still)
       { t0: 5.4, t1: 7.3, p: .28, to: [140, FCY, FZ, 0, 0], zmid: .78, km: .45 },        // dive: pull out then into the phone
-      { t0: 14.8, t1: 15.45, p: .5, to: [SX + 200, SY + 430, 2.12, 1.5, 3] },             // into the Apple Pay sheet, pulse 1
-      { t0: 15.55, t1: 16.33, p: .62, to: [SX + 220, SY + 500, 2.95, 3.5, 5.5] },              // pulse 2
-      { t0: 16.63, t1: 17.2, p: .95, to: [SX + 212, SY + 515, 3.05, 3.8, 5.6] },          // small push on "Terminé"
-      { t0: 17.45, t1: 19.8, p: .2, to: [140, 0, .8, 0, 0] },                             // pull back, long settle on the bento
-      { t0: 19.8, t1: 21.65, p: .5, to: [140, 12, .78, 0, 0] },                           // (almost still)
-      { t0: 21.65, t1: 22.05, p: .3, to: [150, 0, .94, 3, 0] },                           // punch-in with the blur before the logo
-      { t0: 22.05, t1: s.duration, p: .5, to: [150, 0, .96, 3, 0] },
+      { t0: B.pay + .3, t1: B.pay + .95, p: .5, to: [SX + 200, SY + 430, 2.12, 1.5, 3] },   // into the Apple Pay sheet, pulse 1
+      { t0: B.pay + 1.05, t1: B.pay + 1.83, p: .62, to: [SX + 220, SY + 500, 2.95, 3.5, 5.5] }, // pulse 2
+      { t0: B.pay + 2.13, t1: B.pay + 2.7, p: .95, to: [SX + 212, SY + 515, 3.05, 3.8, 5.6] },          // small push on "Terminé"
+      { t0: B.bento - .45, t1: B.bento + 1.9, p: .2, to: [140, 0, .8, 0, 0] },                             // pull back, long settle on the bento
+      { t0: B.bento + 1.9, t1: B.end - .35, p: .5, to: [140, 12, .78, 0, 0] },                           // (almost still)
+      { t0: B.end - .35, t1: B.end + .05, p: .3, to: [150, 0, .94, 3, 0] },                           // punch-in with the blur before the logo
+      { t0: B.end + .05, t1: s.duration, p: .5, to: [150, 0, .96, 3, 0] },
     ];
     const camRaw = t => {
       let c = START.slice();
@@ -337,7 +337,7 @@
       }
       return c;
     };
-    const m8 = MOVES.find(m => m.t0 === 17.45);
+    const m8 = MOVES.find(m => m.t0 === B.bento - .45);
     const camAt = t => {
       const c = camRaw(t);
       // 3/4 angle while on the desk, squared up for the bento (follows the snap-back move)
@@ -413,7 +413,7 @@
       } else pill.style.display = 'none';
 
       // ----- in the phone
-      const typeAt = B.phone + .8, cps = 9, typed = Math.floor(clamp((t - typeAt) * cps, 0, query.length));
+      const typeAt = B.phone + .55, cps = 10, typed = Math.floor(clamp((t - typeAt) * cps, 0, query.length));
       // keyboard rises when the bar is focused, the bar rides on top of it, suggestions fill in as the query is typed
       const kU = prog(t, B.phone + .35, .45, E.outQuint), barY = lerp(VH + SAF - 68, VH + SAF - 300 - 56, kU);
       kb.style.transform = `translateY(${(1 - kU) * 105}%)`; bar.style.top = barY + 'px';
@@ -489,7 +489,7 @@
       const dk = win(t, B.end + .35, B.end + 1.35, .2, .25); dots.style.opacity = dk;
       [...dots.children].forEach((d, i) => { const ph2 = ((t - B.end) * 2.6 - i * .18) % 1; d.style.transform = `translateY(${-Math.max(0, Math.sin(ph2 * Math.PI)) * 26}px) scale(${1 + Math.max(0, Math.sin(ph2 * Math.PI)) * .15})`; });
       // logo reveal: a clean light veil, ÉLITE letters pop one by one, MAILLOT rises letter by letter, then the offer and the URL
-      const L0 = B.end + 1.7;
+      const L0 = B.end + 1.62;
       veil.style.opacity = prog(t, B.end + .9, .5);
       end.style.opacity = t > L0 - .05 ? 1 : 0;
       LE.forEach((pth, i) => { const k = prog(t, L0 + i * .07, .5, E.back), o = clamp(prog(t, L0 + i * .07, .18)); pth.style.opacity = o; pth.style.transform = `translateY(${(1 - k) * 60}px) scale(${Math.max(.01, lerp(.35, 1, k))})`; });
