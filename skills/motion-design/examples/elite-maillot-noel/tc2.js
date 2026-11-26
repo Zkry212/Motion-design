@@ -72,43 +72,57 @@
   .t2 .saf .home { position:absolute; bottom: 7px; left:50%; width: 130px; height: 5px; margin-left:-65px; border-radius: 3px; background:#111; }
   .t2 .tap { position:absolute; width: 46px; height: 46px; margin:-23px; border-radius:50%; background: rgba(90,90,100,.3); border: 1.5px solid rgba(255,255,255,.85); z-index: 28; }
   .t2 .ring { position:absolute; border: 2.5px solid var(--tq); border-radius: 10px; box-shadow: 0 0 0 4px rgba(92,225,230,.28); z-index: 27; }
-  .t2 .srch { position:absolute; inset:0; background:#f2f2f7; }
-  .t2 .srch h2 { margin: 16px 20px 12px; font-size: 32px; font-weight: 800; letter-spacing:-.02em; }
-  .t2 .srch .fld { margin: 0 16px; height: 40px; border-radius: 11px; background:#e3e3e8; display:flex; align-items:center; padding: 0 12px; gap: 8px; font-size: 17px; color:#111; }
-  .t2 .srch .fld .ph { color:#8e8e93; } .t2 .srch .caret { width: 2px; height: 20px; background:#0a84ff; }
-  .t2 .srch .hint { margin: 18px 22px 6px; font-size: 13px; color:#8e8e93; font-weight: 600; letter-spacing:.04em; }
-  .t2 .srch .sug { margin: 6px 16px 0; background:#fff; border-radius: 14px; overflow:hidden; }
-  .t2 .srch .sug > div { display:flex; align-items:center; gap: 12px; padding: 11px 14px; border-bottom: 1px solid #eee; font-size: 16px; }
-  .t2 .srch .sug .ico { width: 30px; height: 30px; border-radius: 50%; display:grid; place-items:center; font-size: 15px; color:#fff; }
-  .t2 .srch .hit { display:none !important; }
-  .t2 .srch .hitc { position:absolute; left: 16px; right: 16px; top: 128px; height: 74px; background:#fff; border-radius: 14px; display:flex; align-items:center; gap: 12px; padding: 0 12px; z-index: 3; overflow:hidden; }
-  .t2 .srch .hitc .th { width: 54px; height: 54px; border-radius: 10px; background:#fff center/contain no-repeat; border: 1px solid #eee; flex:none; }
-  .t2 .srch .hitc b { font-size: 16px; display:block; } .t2 .srch .hitc small { color:#8e8e93; font-size: 13px; }
+  /* Safari iOS 18: start page, bottom address bar, suggestions, keyboard */
+  .t2 .srch { position:absolute; left:0; right:0; top:${SB}px; height:${VH + SAF}px; background:#f2f2f7; z-index: 26; overflow:hidden; }
+  .t2 .srch .fav { position:absolute; left: 20px; right: 20px; top: 22px; }
+  .t2 .srch .fav h3 { margin: 0 0 14px; font-size: 22px; font-weight: 750; letter-spacing:-.02em; }
+  .t2 .srch .fav .g { display:grid; grid-template-columns: repeat(4, 1fr); gap: 18px 12px; }
+  .t2 .srch .fav .g div { text-align:center; font-size: 11.5px; color:#3a3a3c; } .t2 .srch .fav .g i { display:grid; place-items:center; width: 62px; height: 62px; margin: 0 auto 6px; border-radius: 14px; background:#fff; box-shadow: 0 1px 3px rgba(0,0,0,.08); font-style:normal; font-size: 26px; font-weight: 700; color:#fff; }
+  .t2 .srch .card2 { position:absolute; left: 20px; right: 20px; top: 300px; height: 96px; border-radius: 16px; background:#fff; padding: 14px 16px; box-sizing:border-box; font-size: 13px; color:#6c6c70; }
+  .t2 .srch .card2 b { display:block; font-size: 16px; color:#111; margin-bottom: 4px; }
+  .t2 .srch .sheet { position:absolute; left:0; right:0; top:0; bottom:0; background: rgba(250,250,252,.97); }
+  .t2 .srch .sec { font-size: 13px; font-weight: 650; color:#6c6c70; margin: 0 22px; letter-spacing: .01em; }
+  .t2 .srch .best { margin: 8px 14px 18px; background:#fff; border-radius: 14px; height: 70px; display:flex; align-items:center; gap: 12px; padding: 0 12px; box-shadow: 0 1px 2px rgba(0,0,0,.05); }
+  .t2 .srch .best .ic { width: 52px; height: 52px; border-radius: 12px; background:#fff center/86% no-repeat; border: 1px solid #e5e5ea; flex:none; }
+  .t2 .srch .best b { display:block; font-size: 16.5px; letter-spacing:-.01em; } .t2 .srch .best small { font-size: 13px; color:#8a8a8e; }
+  .t2 .srch .rows { margin: 6px 14px 0; background:#fff; border-radius: 14px; overflow:hidden; }
+  .t2 .srch .rows div { height: 44px; display:flex; align-items:center; gap: 12px; padding: 0 14px; font-size: 16px; border-bottom: .5px solid #e5e5ea; color:#111; }
+  .t2 .srch .rows svg { width: 16px; height: 16px; flex:none; }
+  .t2 .srch .bar { position:absolute; left: 14px; right: 14px; height: 46px; border-radius: 23px; background:#fff; box-shadow: 0 2px 12px rgba(0,0,0,.12), 0 0 0 .5px rgba(0,0,0,.06); display:flex; align-items:center; gap: 8px; padding: 0 14px; font-size: 16.5px; box-sizing:border-box; z-index: 3; }
+  .t2 .srch .bar .ph { color:#8a8a8e; } .t2 .srch .bar .caret { width: 2px; height: 21px; background:#0a84ff; border-radius: 1px; }
+  .t2 .srch .bar svg { width: 17px; height: 17px; flex:none; } .t2 .srch .bar .clr { margin-left:auto; width: 20px; height: 20px; border-radius: 50%; background:#c7c7cc; color:#fff; display:grid; place-items:center; font-size: 11px; }
+  .t2 .srch .bar .mic { margin-left:auto; }
   .t2 .xp { position:absolute; background:#fff; z-index: 6; overflow:hidden; }
   .t2 .xp img { position:absolute; inset:0; width:100%; height:100%; object-fit: cover; }
-  .t2 .kb { position:absolute; left:0; right:0; bottom: 0; height: 290px; background:#d1d3d9; padding: 8px 3px 0; }
-  .t2 .kb .r { display:flex; justify-content:center; gap: 6px; margin-bottom: 11px; }
-  .t2 .kb .k { width: 33px; height: 44px; border-radius: 6px; background:#fff; box-shadow: 0 1px 0 #8a8a8e; display:grid; place-items:center; font-size: 22px; position:relative; }
-  .t2 .kb .k.wide { width: 86px; font-size: 16px; background:#abb0ba; } .t2 .kb .k.sp { width: 180px; font-size: 16px; } .t2 .kb .k.go { width: 86px; background:#0a84ff; color:#fff; font-size: 16px; }
-  .t2 .kb .k.on::after { content: attr(data-c); position:absolute; bottom: 36px; left: -8px; width: 49px; height: 56px; border-radius: 10px; background:#fff; box-shadow: 0 2px 6px rgba(0,0,0,.25); display:grid; place-items:center; font-size: 30px; }
-
-  /* iOS widgets */
-  .t2 .ical { position:absolute; inset:0; padding: 28px 32px; }
-  .t2 .ical .d { font-size: 28px; font-weight: 800; letter-spacing:.04em; color:#ff3b30; }
-  .t2 .ical .n { font-size: 150px; font-weight: 400; line-height: 1; letter-spacing:-.05em; color:#111; }
-  .t2 .ical .ev { display:flex; align-items:center; gap: 10px; font-size: 22px; font-weight: 600; color:#333; margin-top: 10px; } .t2 .ical .ev i { width: 6px; height: 34px; border-radius: 3px; background:#34c759; display:block; }
-  .t2 .wx { position:absolute; inset:0; padding: 28px 32px; color:#fff; background: linear-gradient(180deg,#2f6db5,#5b9be0); }
-  .t2 .wx .c { font-size: 26px; font-weight: 700; } .t2 .wx .c span { font-size: 16px; }
-  .t2 .wx .tmp { font-size: 110px; font-weight: 300; line-height: 1; letter-spacing:-.04em; }
-  .t2 .wx .ic { font-size: 30px; margin-top: 4px; } .t2 .wx .dsc { font-size: 24px; font-weight: 600; } .t2 .wx .hb { font-size: 22px; opacity: .9; }
-  .t2 .imsg { position:absolute; left: 50px; top: 0; width: 980px; height: 168px; z-index: 12; box-sizing:border-box; border-radius: 44px; padding: 24px 28px; display:flex; gap: 20px; align-items:flex-start;
-     background: rgba(246,246,248,.86); backdrop-filter: blur(20px); box-shadow: 0 24px 60px rgba(30,34,50,.22), 0 1px 0 rgba(255,255,255,.9) inset; transform-origin: 50% 0; }
-  .t2 .imsg .mi { width: 70px; height: 70px; border-radius: 17px; background: linear-gradient(180deg,#67f27b,#1ac447); display:grid; place-items:center; flex:none; } .t2 .imsg .mi svg { width: 46px; }
+  .t2 .kb { position:absolute; left:0; right:0; bottom: 0; height: 300px; background:#d1d4da; padding: 9px 3px 0; box-sizing:border-box; z-index: 2; }
+  .t2 .kb .r { display:flex; justify-content:center; gap: 6px; margin-bottom: 12px; }
+  .t2 .kb .k { width: 33px; height: 43px; border-radius: 5.5px; background:#fff; box-shadow: 0 1px 0 #898a8d; display:grid; place-items:center; font-size: 23px; font-weight: 400; color:#000; position:relative; }
+  .t2 .kb .k.sp2 { width: 44px; background:#abb1ba; font-size: 18px; } .t2 .kb .k.n { width: 88px; background:#abb1ba; font-size: 16px; } .t2 .kb .k.sp { width: 186px; font-size: 16px; } .t2 .kb .k.go { width: 88px; background:#abb1ba; font-size: 16px; color:#000; }
+  .t2 .kb .k.go.on2 { background:#0a84ff; color:#fff; }
+  .t2 .kb .k.on::after { content: attr(data-c); position:absolute; bottom: 30px; left: -9px; width: 51px; height: 60px; border-radius: 10px 10px 8px 8px; background:#fff; box-shadow: 0 2px 6px rgba(0,0,0,.28); display:grid; place-items:center; font-size: 34px; padding-bottom: 14px; box-sizing:border-box; }
+  .t2 .kb .under { position:absolute; left: 0; right: 0; bottom: 0; height: 52px; display:flex; justify-content:space-between; align-items:center; padding: 0 26px 10px; }
+  .t2 .kb .under img { width: 26px; } .t2 .kb .under svg { width: 18px; height: 26px; }
+  .t2 .kb .hb { position:absolute; bottom: 7px; left:50%; width: 130px; height: 5px; margin-left:-65px; border-radius: 3px; background:#111; }
+  .t2 .ical { position:absolute; inset:0; padding: 34px 36px; background:#fff; }
+  .t2 .ical .d { font-size: 27px; font-weight: 700; letter-spacing:.02em; color:#ff3b30; }
+  .t2 .ical .n { font-size: 132px; font-weight: 300; line-height: 1.02; letter-spacing:-.05em; color:#000; }
+  .t2 .ical .ev { display:flex; align-items:stretch; gap: 10px; font-size: 21px; font-weight: 650; color:#111; margin-top: 8px; line-height: 1.2; } .t2 .ical .ev i { width: 5px; border-radius: 3px; background:#34c759; display:block; } .t2 .ical .ev small { display:block; font-size: 19px; color:#8a8a8e; font-weight: 500; }
+  .t2 .ical .ev img { width: 22px; vertical-align: -3px; }
+  .t2 .wx { position:absolute; inset:0; padding: 30px 32px; color:#fff; background: linear-gradient(180deg,#59718f 0%,#7f95ae 100%); }
+  .t2 .wx .c { font-size: 25px; font-weight: 650; display:flex; align-items:center; gap: 6px; } .t2 .wx .c svg { width: 15px; }
+  .t2 .wx .tmp { font-size: 100px; font-weight: 250; line-height: 1; letter-spacing:-.05em; margin-top: 2px; }
+  .t2 .wx .ic svg { width: 34px; margin-top: 18px; } .t2 .wx .dsc { font-size: 23px; font-weight: 650; margin-top: 4px; } .t2 .wx .hb { font-size: 22px; font-weight: 600; opacity: .95; }
+  /* iOS 18 communication notification: contact monogram + Messages badge */
+  .t2 .imsg { position:absolute; left: 44px; top: 0; width: 992px; min-height: 160px; z-index: 12; box-sizing:border-box; border-radius: 54px; padding: 26px 30px; display:flex; gap: 24px; align-items:center;
+     background: rgba(248,248,250,.82); backdrop-filter: blur(30px) saturate(1.6); box-shadow: 0 22px 50px rgba(30,34,50,.18), 0 0 0 1px rgba(255,255,255,.6) inset; }
+  .t2 .imsg .av { position:relative; width: 92px; height: 92px; flex:none; }
+  .t2 .imsg .av .mono { width: 92px; height: 92px; border-radius: 50%; background: linear-gradient(180deg,#a8aeb9,#858b98); color:#fff; display:grid; place-items:center; font-size: 38px; font-weight: 600; letter-spacing: .02em; }
+  .t2 .imsg .av .badge { position:absolute; right: -6px; bottom: -6px; width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(180deg,#6af27e,#18c045); display:grid; place-items:center; box-shadow: 0 0 0 3px rgba(248,248,250,.95); }
+  .t2 .imsg .av .badge svg { width: 26px; }
   .t2 .imsg .bd { flex:1; min-width:0; } .t2 .imsg .top { display:flex; justify-content:space-between; align-items:baseline; }
-  .t2 .imsg b { font-size: 29px; color:#111; } .t2 .imsg small { font-size: 22px; color:#8a8a8e; }
-  .t2 .imsg p { margin: 4px 0 0; font-size: 28px; color:#1c1c1e; white-space: nowrap; overflow:hidden; text-overflow: ellipsis; }
-  .t2 .imsg { padding: 28px 32px; border-radius: 50px; } .t2 .imsg .mi { width: 80px; height: 80px; border-radius: 19px; } .t2 .imsg .mi svg { width: 52px; }
-  .t2 .imsg b { font-size: 32px; } .t2 .imsg small { font-size: 25px; } .t2 .imsg p { font-size: 31px; }
+  .t2 .imsg b { font-size: 33px; color:#000; font-weight: 650; letter-spacing: -.01em; } .t2 .imsg small { font-size: 26px; color:#7d7d82; }
+  .t2 .imsg p { margin: 4px 0 0; font-size: 32px; color:#111; white-space: nowrap; overflow:hidden; text-overflow: ellipsis; letter-spacing: -.01em; }
+  .t2 img.emo { height: 1.08em; width: auto; vertical-align: -.2em; margin: 0 .04em; }
   .t2 .pill { position:absolute; left:0; top:0; z-index: 13; padding: 20px 34px; border-radius: 40px; background:#0a84ff; color:#fff; font-size: 34px; font-weight: 600; white-space:nowrap; box-shadow: 0 20px 40px rgba(10,60,140,.3); transform-origin: 50% 50%; }
   .t2 .ical .roll { position:relative; height: 150px; overflow:hidden; } .t2 .ical .roll div { position:absolute; left:0; top:0; }
   .t2 .ical .dd { position:relative; height: 34px; overflow:hidden; } .t2 .ical .dd div { position:absolute; left:0; top:0; }
@@ -154,7 +168,11 @@
   .t2 .ap .mer img { width: 30px; }
   `;
 
+  const EMO = { '🙏': '1f64f', '😄': '1f604', '🎁': '1f381', '🚚': '1f69a', '❄️': '2744-fe0f', '🎄': '1f384', '👌': '1f44c', '⚽': '26bd', '😍': '1f60d', '❤️': '2764-fe0f', '🔥': '1f525', '🏠': '1f3e0', '🔒': '1f512', '😀': '1f600' };
+  let emojiMode = 'apple';
+  const emo = txt => emojiMode === 'noto' ? esc(txt) : esc(txt).replace(/(❄️|❤️|[\u{1F300}-\u{1FAFF}]|[\u2600-\u27BF])/gu, m => EMO[m] ? `<img class="emo" src="${IMG('emoji/' + EMO[m] + '.png')}">` : m);
   SCENES.tc2 = (s, root) => {
+    emojiMode = s.emoji || 'apple';
     const st = document.createElement('style'); st.textContent = CSS; document.head.appendChild(st);
     const R = h('div', 't2', root), persp = h('div', 'persp', R), cam = h('div', 'cam', persp), B = s.beats;
     const fog = h('div', 'fog', R);
@@ -170,8 +188,8 @@
     const clockSvg = `<svg class="clock" viewBox="0 0 200 200"><circle cx="100" cy="100" r="97" fill="#fff"/>${Array.from({ length: 60 }, (_, i) => i % 5 ? `<line x1="100" y1="7" x2="100" y2="11" stroke="#bbb" stroke-width="1" transform="rotate(${i * 6} 100 100)"/>` : '').join('')}${Array.from({ length: 12 }, (_, i) => `<text x="${100 + 74 * Math.sin(i * Math.PI / 6)}" y="${108 - 74 * Math.cos(i * Math.PI / 6)}" font-size="22" font-family="Inter" font-weight="500" text-anchor="middle" fill="#222">${i || 12}</text>`).join('')}<line class="hh" x1="100" y1="100" x2="100" y2="52" stroke="#111" stroke-width="7" stroke-linecap="round"/><line class="mm" x1="100" y1="100" x2="100" y2="28" stroke="#111" stroke-width="5" stroke-linecap="round"/><line class="ss" x1="100" y1="114" x2="100" y2="24" stroke="#ff9500" stroke-width="2.5"/><circle cx="100" cy="100" r="6" fill="#ff9500"/></svg>`;
     const tClock = tile(-520, -1000, -100, -580, 0, clockSvg, { d: .3 });
     tile(-60, -1000, 660, -700, 0, '', { d: .38 });
-    tile(-60, -660, 280, -320, 0, `<div class="ical"><div class="dd d"><div class="d0">MERCREDI</div><div class="d1">JEUDI</div></div><div class="roll n"><div class="n0">2</div><div class="n1">3</div></div><div class="ev"><i></i><span class="evt">Noël dans 22 jours</span></div></div>`, { d: .45 });
-    tile(320, -660, 660, -320, 0, `<div class="wx"><div class="c">Paris <span>➤</span></div><div class="tmp">2°</div><div class="ic">❄️</div><div class="dsc">Neige</div><div class="hb">H:4° B:-1°</div></div>`, { d: .52 });
+    tile(-60, -660, 280, -320, 0, `<div class="ical"><div class="dd d"><div class="d0">MERCREDI</div><div class="d1">JEUDI</div></div><div class="roll n"><div class="n0">2</div><div class="n1">3</div></div><div class="ev"><i></i><span>${emo('🎄')} Noël en famille<small class="evt">dans 22 jours</small></span></div></div>`, { d: .45 });
+    tile(320, -660, 660, -320, 0, `<div class="wx"><div class="c">Paris <svg viewBox="0 0 16 16"><path fill="#fff" d="M14.6 1.4 1.8 7.1c-.6.3-.5 1.2.2 1.3l5.3.9.9 5.3c.1.7 1 .8 1.3.2z"/></svg></div><div class="tmp">2°</div><div class="ic"><svg viewBox="0 0 40 40"><path fill="#fff" d="M31 13.3A9.5 9.5 0 0 0 12.6 11 7.4 7.4 0 0 0 9.8 25.3h20.6a6 6 0 0 0 .6-12z"/><g fill="#fff"><circle cx="13" cy="31" r="2"/><circle cx="20" cy="35" r="2"/><circle cx="27" cy="31" r="2"/><circle cx="16.5" cy="38" r="1.6"/><circle cx="23.5" cy="38" r="1.6"/></g></svg></div><div class="dsc">Neige</div><div class="hb">H:4° B:-1°</div></div>`, { d: .52 });
     tile(-520, -540, -100, -320, 0, '', { d: .6 });
     // around the phone (hidden for the bento)
     tile(-520, -280, -100, 300, 1, '', { near: 1 }); tile(-520, 340, -100, 815, 0, '', { near: 1 });
@@ -185,7 +203,8 @@
     const hands = { h: tClock.el.querySelector('.hh'), m: tClock.el.querySelector('.mm'), s: tClock.el.querySelector('.ss') };
     // iMessage notifications (iOS banners) stacking over the desk
     const msgIcon = '<span class="mi"><svg viewBox="0 0 24 24"><path fill="#fff" d="M12 3.2C6.6 3.2 2.3 6.8 2.3 11.2c0 2.5 1.4 4.7 3.6 6.2-.2 1.3-.8 2.6-1.8 3.5 1.9 0 3.6-.7 4.8-1.7 1 .3 2 .4 3.1.4 5.4 0 9.7-3.6 9.7-8.2S17.4 3.2 12 3.2z"/></svg></span>';
-    const M = s.notifs.map(m => ({ el: h('div', 'imsg', R, `${msgIcon}<div class="bd"><div class="top"><b>${esc(m.from)}</b><small>maintenant</small></div><p>${esc(m.text)}</p></div>`), ...m }));
+    const msgBadge = '<svg viewBox="0 0 24 24"><path fill="#fff" d="M12 3.2C6.6 3.2 2.3 6.8 2.3 11.2c0 2.5 1.4 4.7 3.6 6.2-.2 1.3-.8 2.6-1.8 3.5 1.9 0 3.6-.7 4.8-1.7 1 .3 2 .4 3.1.4 5.4 0 9.7-3.6 9.7-8.2S17.4 3.2 12 3.2z"/></svg>';
+    const M = s.notifs.map(m => ({ el: h('div', 'imsg', R, `<div class="av"><div class="mono">${esc(m.initials || m.from.slice(0, 1))}</div><span class="badge">${msgBadge}</span></div><div class="bd"><div class="top"><b>${esc(m.from)}</b><small>maintenant</small></div><p>${emo(m.text)}</p></div>`), ...m }));
 
     // ---------- bento tiles (world, around the phone; they fly in at the end)
     const BTl = [
@@ -213,13 +232,19 @@
     L.home.fb = R.querySelector('#vbhome feGaussianBlur'); L.pp.fb = R.querySelector('#vbpp feGaussianBlur');
     lay('pps', 'product-M.jpg'); lay('c1', 'cart-1.jpg'); lay('c2', 'cart-2.jpg'); lay('c3', 'cart-3.jpg'); lay('c4', 'cart-4.jpg');
     const query = s.query || 'elite maillot';
-    const srch = h('div', 'srch', vp, `<h2>Rechercher</h2><div class="fld">🔍 <span class="tx"></span><span class="caret"></span><span class="ph">Rechercher ou saisir un site</span></div>
-      <div class="hint">SUGGESTIONS</div><div class="sug"><div><span class="ico" style="background:#ff9f0a">★</span>Maillots de foot pas chers</div><div><span class="ico" style="background:#34c759">⌁</span>Livraison rapide</div><div><span class="ico" style="background:#5e5ce6">✓</span>Les mieux notés</div></div>
-      <div class="hitc"><span class="th" style="background-image:url(${IMG('site/hero.jpg')});background-size:cover"></span><span><b>ÉLITE MAILLOT</b><small>elite-maillot.fr · Maillots dès 19,99€</small></span></div>`);
+    const mag = '<svg viewBox="0 0 17 17"><circle cx="7" cy="7" r="5.6" fill="none" stroke="#8a8a8e" stroke-width="1.9"/><path d="m11.2 11.2 4.4 4.4" stroke="#8a8a8e" stroke-width="1.9" stroke-linecap="round"/></svg>';
+    const micSvg = '<svg viewBox="0 0 12 18"><rect x="3" y="1" width="6" height="10" rx="3" fill="#8a8a8e"/><path d="M1 8.5a5 5 0 0 0 10 0M6 13.5V17" fill="none" stroke="#8a8a8e" stroke-width="1.6" stroke-linecap="round"/></svg>';
+    const favs = [['A', '#ff9f0a', 'Actus'], ['M', '#5e5ce6', 'Météo'], ['F', '#34c759', 'Foot'], ['S', '#ff375f', 'Shopping'], ['Y', '#ff3b30', 'Vidéos'], ['C', '#0a84ff', 'Cartes'], ['R', '#bf5af2', 'Recettes'], ['B', '#30b0c7', 'Banque']];
+    const srch = h('div', 'srch', scr, `<div class="fav"><h3>Favoris</h3><div class="g">${favs.map(([l, c, n]) => `<div><i style="background:${c}">${l}</i>${n}</div>`).join('')}</div></div>
+      <div class="card2"><b>Rapport de confidentialité</b>Safari a empêché 14 traqueurs de vous profiler au cours des 7 derniers jours.</div>
+      <div class="sheet"><div style="height:16px"></div><div class="sec">Meilleur résultat</div><div class="best"><span class="ic" style="background-image:url(${IMG('img/logo.svg')})"></span><span><b>Élite Maillot</b><small>elite-maillot.fr</small></span></div>
+        <div class="sec">Suggestions de recherche</div><div class="rows"><div>${mag}elite maillot</div><div>${mag}elite maillot avis</div><div>${mag}elite maillot noël</div></div></div>
+      <div class="bar">${mag}<span class="tx"></span><span class="caret"></span><span class="ph">Rechercher ou saisir un site</span><span class="mic">${micSvg}</span><span class="clr">✕</span></div>`);
     const rows = ['azertyuiop', 'qsdfghjklm', 'wxcvbn'];
-    const kb = h('div', 'kb', srch, rows.map((r, i) => `<div class="r">${i === 2 ? '<span class="k wide">⇧</span>' : ''}${[...r].map(c => `<span class="k" data-c="${c}">${c.toUpperCase()}</span>`).join('')}${i === 2 ? '<span class="k wide">⌫</span>' : ''}</div>`).join('') + `<div class="r"><span class="k wide">123</span><span class="k wide">🙂</span><span class="k sp" data-c=" ">espace</span><span class="k go">aller</span></div>`);
+    const kb = h('div', 'kb', srch, rows.map((r, i) => `<div class="r">${i === 2 ? '<span class="k sp2">⇧</span>' : ''}${[...r].map(c => `<span class="k" data-c="${c}">${c}</span>`).join('')}${i === 2 ? '<span class="k sp2">⌫</span>' : ''}</div>`).join('') + `<div class="r"><span class="k n">123</span><span class="k sp" data-c=" ">espace</span><span class="k go">aller</span></div><div class="under"><img src="${IMG('emoji/1f600.png')}">${micSvg.replace(/#8a8a8e/g, '#3a3a3c')}</div><div class="hb"></div>`);
     const keys = {}; kb.querySelectorAll('.k[data-c]').forEach(k => { keys[k.dataset.c] = k; });
-    const tx = srch.querySelector('.tx'), ph = srch.querySelector('.ph'), sugBox = srch.querySelector('.sug'), hint = srch.querySelector('.hint'), hitc = srch.querySelector('.hitc');
+    const goKey = kb.querySelector('.go');
+    const tx = srch.querySelector('.tx'), ph = srch.querySelector('.ph'), sheet = srch.querySelector('.sheet'), bar = srch.querySelector('.bar'), best = srch.querySelector('.best'), sRows = [...srch.querySelectorAll('.rows div')], micEl = srch.querySelector('.mic'), clr = srch.querySelector('.clr'), caretEl = srch.querySelector('.caret');
     const xp = h('div', 'xp', vp, `<img src="${IMG('site/hero.jpg')}">`);
     const saf = h('div', 'saf', scr, `<div class="url"><span class="aa">A<b>A</b></span><span class="u">🔍 Rechercher</span><svg class="rl" viewBox="0 0 16 16"><path d="M13.5 8A5.5 5.5 0 1 1 11.8 4" fill="none" stroke="#111" stroke-width="1.6" stroke-linecap="round"/><path d="M12.6 1.2v3.6H9" fill="none" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><i class="pg"></i></div><div class="home"></div>`);
     const url = saf.querySelector('.u'), pg = saf.querySelector('.pg');
@@ -340,7 +365,7 @@
       const rk = prog(t, B.clock + .95, .45, E.back);
       CALr.n0.style.transform = `translateY(${-rk * 150}px)`; CALr.n1.style.transform = `translateY(${(1 - rk) * 150}px)`;
       CALr.d0.style.transform = `translateY(${-rk * 34}px)`; CALr.d1.style.transform = `translateY(${(1 - rk) * 34}px)`;
-      CALr.ev.textContent = rk > .5 ? 'Noël dans 21 jours' : 'Noël dans 22 jours';
+      CALr.ev.textContent = rk > .5 ? 'dans 21 jours' : 'dans 22 jours';
       // iMessage banners: slide down from the top edge with a spring, the older ones are pushed down (iOS stack),
       // then all leave upward when the camera goes to the phone; motion blur follows their speed
       const leave = prog(t, B.phone - .45, .45, E.inOut);
@@ -357,7 +382,7 @@
       // a blue message pill leaves the stack and flies into the phone's search field while the camera dives
       const pf = prog(t, B.phone - .3, 1.35, E.inOut);
       if (t > B.phone - .35 && pf < 1) {
-        const tgt = toScreen(SX + 195, SY + SB + 74), x = lerp(540, tgt[0], pf), y = lerp(560, tgt[1], pf) - Math.sin(pf * Math.PI) * 120;
+        const tgt = toScreen(SX + 195, SY + SB + VH + SAF - 45), x = lerp(540, tgt[0], pf), y = lerp(560, tgt[1], pf) - Math.sin(pf * Math.PI) * 120;
         const xs = lerp(540, toScreen(SX + 195, SY + SB + 74 - 1)[0], 0);
         pill.style.display = ''; pill.style.opacity = clamp(prog(t, B.phone - .35, .15)) * (1 - prog(t, B.phone + .85, .2));
         pill.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%) scale(${lerp(1, .42, pf)}) rotate(${lerp(0, -8, Math.sin(pf * Math.PI))}deg)`;
@@ -366,22 +391,27 @@
 
       // ----- in the phone
       const typeAt = B.phone + .8, cps = 9, typed = Math.floor(clamp((t - typeAt) * cps, 0, query.length));
-      tx.textContent = query.slice(0, typed); ph.style.display = typed ? 'none' : '';
-      const hasRes = typed >= 5; hitc.style.opacity = prog(t, typeAt + 5 / cps, .25); hitc.style.transform = `translateY(${(1 - prog(t, typeAt + 5 / cps, .35, E.outQuint)) * 20}px)`;
-      sugBox.style.opacity = 1 - prog(t, typeAt + 5 / cps, .2); hint.textContent = hasRes ? 'MEILLEUR RÉSULTAT' : 'SUGGESTIONS';
-      sugBox.style.transform = `translateY(${hasRes ? 90 : 0}px)`;
+      // keyboard rises when the bar is focused, the bar rides on top of it, suggestions fill in as the query is typed
+      const kU = prog(t, B.phone + .35, .45, E.outQuint), barY = lerp(VH + SAF - 68, VH + SAF - 300 - 56, kU);
+      kb.style.transform = `translateY(${(1 - kU) * 105}%)`; bar.style.top = barY + 'px';
+      sheet.style.opacity = kU; sheet.style.transform = `translateY(${(1 - kU) * 30}px)`;
+      tx.textContent = query.slice(0, typed); ph.style.display = typed ? 'none' : ''; caretEl.style.opacity = kU > .5 && (typed < query.length || Math.floor(t * 2.2) % 2) ? 1 : 0;
+      micEl.style.display = typed ? 'none' : ''; clr.style.display = typed ? '' : 'none'; goKey.classList.toggle('on2', typed > 0);
+      const bk = prog(t, typeAt + 4 / cps, .35, E.outQuint); best.style.opacity = bk; best.style.transform = `translateY(${(1 - bk) * 14}px)`;
+      sRows.forEach((r2, i) => { const q = prog(t, typeAt + (6 + i * 2) / cps, .3); r2.style.opacity = q; });
       Object.values(keys).forEach(k => k.classList.remove('on'));
       const ci = Math.floor((t - typeAt) * cps); if (ci >= 0 && ci < query.length && (t - typeAt) * cps - ci < .65) { const kk = keys[query[ci]]; kk && kk.classList.add('on'); }
       const tapHit = B.open - .45;
-      hitc.style.background = t > tapHit - .08 && t < tapHit + .25 ? '#e5e5ea' : '#fff';
+      best.style.background = t > tapHit - .08 && t < tapHit + .25 ? '#e5e5ea' : '#fff';
+      kb.style.opacity = 1 - prog(t, tapHit + .05, .25); bar.style.opacity = 1 - prog(t, tapHit + .05, .25);
       // shared element: the result card expands into the site, the site rises into place
       const x1 = prog(t, tapHit + .08, .45, E.inOut), x2 = prog(t, B.open + .05, .55, E.inOut);
       if (t > tapHit + .08 && t < B.open + .62) {
-        const R0 = [28, 138, 54, 54, 10], R1 = [0, 0, SW, VH, 0], R2 = [16, 218, 358, 478, 14];
+        const R0 = [26, 54, 52, 52, 12], R1 = [0, 0, SW, VH, 0], R2 = [16, 218, 358, 478, 14];
         const rr = R0.map((v0, j) => lerp(lerp(v0, R1[j], x1), R2[j], x2));
         xp.style.display = ''; Object.assign(xp.style, { left: rr[0] + 'px', top: rr[1] + 'px', width: rr[2] + 'px', height: rr[3] + 'px', borderRadius: rr[4] + 'px', opacity: 1 });
       } else xp.style.display = 'none';
-      srch.style.display = t < B.open + .2 ? '' : 'none';
+      srch.style.display = t < B.open + .2 ? '' : 'none'; srch.style.opacity = 1 - prog(t, tapHit + .2, .3); saf.style.opacity = prog(t, tapHit + .25, .3);
       L.home.d.style.opacity = prog(t, B.open + .05, .3);
       const hr = prog(t, B.open + .1, .7, E.outQuint);
       url.textContent = t < tapHit + .1 ? '🔍 Rechercher' : 'elite-maillot.fr';
@@ -399,7 +429,7 @@
       [['c2', B.four - .6], ['c3', B.four - .3], ['c4', B.four]].forEach(([k, at]) => { const q = prog(t, at, .14); L[k].d.style.opacity = q; L[k].im.style.transform = `translateY(${(1 - q) * 10}px)`; });
       const tp = at => clamp((t - at + .2) / .2) * (1 - clamp((t - at - .15) / .25));
       const t1 = tp(tapHit), t2 = tp(tapCard), t3 = tp(tapAtc), t4 = tp(B.pay), m = Math.max(t1, t2, t3, t4);
-      const pt = t1 === m ? [200, SB + 165] : t2 === m ? [287, SB + 557] : t3 === m ? [195, SB + 494] : [195, SB + 615];
+      const pt = t1 === m ? [195, SB + 80] : t2 === m ? [287, SB + 557] : t3 === m ? [195, SB + 494] : [195, SB + 615];
       tap.style.opacity = m; tap.style.left = pt[0] + 'px'; tap.style.top = pt[1] + 'px'; tap.style.transform = `scale(${lerp(1.5, .85, m)})`;
       // Apple Pay: checkout tap, sheet slides up, double-click hint, Face ID, spinner, Terminé
       const tPay = tp(B.pay);
