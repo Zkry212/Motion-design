@@ -46,7 +46,11 @@
   .z2 .trn { position:absolute; inset:0; transform-style: preserve-3d; }
   .z2 .flare { position:absolute; inset:0; z-index: 25; pointer-events:none; background: radial-gradient(60% 40% at 50% 50%, rgba(255,255,255,.9), rgba(250,45,72,.55) 40%, rgba(250,45,72,0) 75%); mix-blend-mode: screen; opacity: 0; }
   .z2 .hookmw { position:absolute; left: 60px; width: 960px; top: 830px; } .z2 .hooksm { position:absolute; left: 50%; width: 300px; margin-left: -150px; top: 700px; }
-  .z2 .hookam { position:absolute; left: 50%; top: 1150px; width: 96px; height: 96px; margin-left: -48px; filter: drop-shadow(0 0 24px rgba(255,255,255,.35)); }
+  .z2 .hookam { position:absolute; left: 0; right: 0; top: 1170px; display:flex; justify-content:center; gap: 36px; }
+  .z2 .hookam > span { display:block; filter: drop-shadow(0 0 18px rgba(255,255,255,.25)); }
+  .z2 .hookdp { position:absolute; left: 0; right: 0; top: 400px; text-align:center; font-weight: 800; line-height: 1.05; }
+  .z2 .hookdp .a { font-size: 92px; letter-spacing: .02em; } .z2 .hookdp .b { font-size: 58px; letter-spacing: .06em; color: ${AM}; text-shadow: 0 0 40px rgba(250,45,72,.6); }
+  .z2 .hookdp span { display:inline-block; }
   .z2 .rim { box-shadow: 0 0 0 1.5px rgba(255,255,255,.22), 0 0 40px rgba(250,45,72,.35), 0 0 120px rgba(250,45,72,.18), inset 0 1px 0 rgba(255,255,255,.25); }
   .z2 .dark { background: linear-gradient(160deg, rgba(36,36,40,.95), rgba(10,10,12,.97)); border-radius: 44px; }
   /* opener */
@@ -121,7 +125,9 @@
     const glassify = (el, w, hh, o = {}) => LG.make(el, { w, h: hh, r: o.r, tint: o.tint ?? 'rgba(255,255,255,.07)', scale: o.scale ?? 50, depth: o.depth });
 
     // 1. opener: Apple Music icon blooms, the name types in
-    const logo = pane('', 0, 0, 1080, 1920, `<img class="hooksm" src="${IMG('img/smsa.svg')}"><img class="hookmw" src="${IMG('img/meuda.svg')}"><div class="hookam">${mark('applemusic', '#ffffff', 96)}</div>`);
+    const logo = pane('', 0, 0, 1080, 1920, `<img class="hooksm" src="${IMG('img/smsa.svg')}"><img class="hookmw" src="${IMG('img/meuda.svg')}"><div class="hookam">${[['applemusic', '#ffffff'], ['spotify', '#1ed760'], ['deezer', '#a238ff'], ['youtubemusic', '#ff0000'], ['soundcloud', '#ff5500']].map(([k, c]) => `<span>${mark(k, c, 84)}</span>`).join('')}</div>
+      <div class="hookdp"><div class="a">${'DISPONIBLE'.split('').map(c => `<span>${c}</span>`).join('')}</div><div class="b">${'SUR TOUTES LES PLATEFORMES'.split('').map(c => `<span>${c === ' ' ? '&nbsp;' : c}</span>`).join('')}</div></div>`);
+    const hDP = [...logo.querySelectorAll('.hookdp span')], hMk = [...logo.querySelectorAll('.hookam > span')];
     const hMW = logo.querySelector('.hookmw'), hSM = logo.querySelector('.hooksm'), hAM = logo.querySelector('.hookam');
     // 2. sidebar (dark panel, glass selection capsule)
     const side = pane('side dark rim', 160, 560, 760, 900, `<div class="hd">${mark('applemusic', '#ffffff', 56)}Apple Music</div>
@@ -212,7 +218,8 @@
       show(logo, -1, B.menu);
       const mk2 = prog(t, .05, .6, E.outQuint); hMW.style.opacity = mk2; hMW.style.transform = `scale(${lerp(1.15, 1, mk2)})`; hMW.style.clipPath = `inset(0 ${(1 - prog(t, .05, .7, E.inOut)) * 100}% 0 0)`; hMW.style.filter = mk2 < 1 ? `blur(${(1 - mk2) * 22}px)` : `drop-shadow(0 0 ${20 + bt * 40}px rgba(250,45,72,.6))`;
       const sk2 = prog(t, .22 + .48, .4, E.outQuint); hSM.style.opacity = sk2; hSM.style.transform = `translateY(${(1 - sk2) * -60}px) scale(${lerp(1.4, 1, sk2)})`; hSM.style.filter = sk2 < 1 ? `blur(${(1 - sk2) * 12}px)` : 'none';
-      const ak2 = prog(t, .22 + .96, .4, E.back); hAM.style.opacity = clamp(ak2 * 2); hAM.style.transform = `scale(${lerp(.4, 1, ak2) * (1 + bt * .06)})`;
+      const ak2 = prog(t, .22 + .96, .4, E.back); hAM.style.opacity = 1; hMk.forEach((m, i) => { const k = prog(t, .7 + i * .1, .4, E.back); m.style.opacity = clamp(k * 2); m.style.transform = `translateY(${(1 - k) * 40}px) scale(${lerp(.5, 1, k)})`; });
+      hDP.forEach((sp, i) => { const k = prog(t, .1 + i * .025, .35, E.outQuint); sp.style.opacity = clamp(k * 2); sp.style.transform = `translateY(${(1 - k) * -30}px)`; });
       // 2. sidebar: capsule slides down then back up to "Rechercher"
       show(side, B.menu, B.search);
       const selI = kf(t, [[B.menu + .2, 4], [B.menu + .9, 2], [B.search - .7, 0]]); sel.style.top = (50 + 74 + selI * 110) + 'px'; LG.sheen(sel, t * .4);
