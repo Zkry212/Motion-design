@@ -25,6 +25,19 @@ A spec (`spec.json`) describes the scenes on a timeline; the engine renders it f
 5. **Check frames**: `node engine/render.mjs <projet> --still 4.2`, look at 4-6 stills before the full render. Live preview: open `engine/scene.html?spec=<url of spec.json>` through any local server.
 6. **Render**: `node engine/render.mjs <projet>` (about 10 s of compute per second of video at 1080p/30).
 
+## House style (this user's brief, applies to every new video)
+
+Every new video starts from the reference videos the user sent at the start (zensu.visuals ChatGPT / Claude promos,
+Trois Coups iPhone ad and the others): app UI fragments as thick 3D slabs on a dark stage with big blurred glow
+"flames", Liquid Glass (`examples/meuda-smsa/liquidglass.js`), a cursor that taps, shared-element transitions (the
+tapped thing becomes the next screen), elements building in one by one, a Dynamic Island, a logo end card.
+A theme the user asks for ("GTA 6", "Noël", ...) changes the palette, the props and the copy, never this language.
+Validated on `examples/meuda-smsa` (the reference build). The user's rules:
+- the camera holds one 3D angle; no side-to-side swinging; moves are slow push-ins and vertical detail shots;
+- nothing pulses or bounces with the music;
+- no sound effects unless asked; real brand logos (Simple Icons, the client's own files), never redrawn;
+- 20 s by default for 9:16; light motion blur at most; no flashy cuts.
+
 ## Scene types (`scenes[]`, all take `at` and `dur` in seconds)
 
 | type | fields | from the refs |

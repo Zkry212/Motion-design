@@ -1,0 +1,9 @@
+{
+ "name": "elite-maillot-gta",
+ "width": 1080, "height": 1920, "fps": 30, "duration": 20.0,
+ "bg": "#05030a", "bgCss": "#05030a", "glow": false, "grain": false,
+ "script": ["liquidglass.js", "elitegta.js"],
+ "audio": { "music": "assets/music.wav", "musicGain": 0, "duck": false, "sfx": [] },
+ "scenes": [ { "type": "elitegta", "at": 0, "dur": 20.0, "duration": 20.0, "bpm": 108,
+   "beats": { "search": 2.222, "prod": 4.444, "add": 6.15, "cart": 6.667, "pay": 13.0, "end": 15.556 } } ]
+}
