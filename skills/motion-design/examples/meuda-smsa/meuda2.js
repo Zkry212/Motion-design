@@ -46,7 +46,7 @@
   .z2 .trn { position:absolute; inset:0; transform-style: preserve-3d; }
   .z2 .flare { position:absolute; inset:0; z-index: 25; pointer-events:none; background: radial-gradient(60% 40% at 50% 50%, rgba(255,255,255,.9), rgba(250,45,72,.55) 40%, rgba(250,45,72,0) 75%); mix-blend-mode: screen; opacity: 0; }
   .z2 .hookmw { position:absolute; left: 60px; width: 960px; top: 830px; } .z2 .hooksm { position:absolute; left: 50%; width: 300px; margin-left: -150px; top: 700px; }
-  .z2 .hookam { position:absolute; left: 50%; top: 1150px; width: 96px; height: 96px; margin-left: -48px; filter: drop-shadow(0 0 30px rgba(250,36,60,.9)); }
+  .z2 .hookam { position:absolute; left: 50%; top: 1150px; width: 96px; height: 96px; margin-left: -48px; filter: drop-shadow(0 0 24px rgba(255,255,255,.35)); }
   .z2 .rim { box-shadow: 0 0 0 1.5px rgba(255,255,255,.22), 0 0 40px rgba(250,45,72,.35), 0 0 120px rgba(250,45,72,.18), inset 0 1px 0 rgba(255,255,255,.25); }
   .z2 .dark { background: linear-gradient(160deg, rgba(36,36,40,.95), rgba(10,10,12,.97)); border-radius: 44px; }
   /* opener */
@@ -121,10 +121,10 @@
     const glassify = (el, w, hh, o = {}) => LG.make(el, { w, h: hh, r: o.r, tint: o.tint ?? 'rgba(255,255,255,.07)', scale: o.scale ?? 50, depth: o.depth });
 
     // 1. opener: Apple Music icon blooms, the name types in
-    const logo = pane('', 0, 0, 1080, 1920, `<img class="hooksm" src="${IMG('img/smsa.svg')}"><img class="hookmw" src="${IMG('img/meuda.svg')}"><div class="hookam">${mark('applemusic', '#fa243c', 96)}</div>`);
+    const logo = pane('', 0, 0, 1080, 1920, `<img class="hooksm" src="${IMG('img/smsa.svg')}"><img class="hookmw" src="${IMG('img/meuda.svg')}"><div class="hookam">${mark('applemusic', '#ffffff', 96)}</div>`);
     const hMW = logo.querySelector('.hookmw'), hSM = logo.querySelector('.hooksm'), hAM = logo.querySelector('.hookam');
     // 2. sidebar (dark panel, glass selection capsule)
-    const side = pane('side dark rim', 160, 560, 760, 900, `<div class="hd">${mark('applemusic', '#fa243c', 56)}Apple Music</div>
+    const side = pane('side dark rim', 160, 560, 760, 900, `<div class="hd">${mark('applemusic', '#ffffff', 56)}Apple Music</div>
       ${[['search', 'Rechercher'], ['house', 'Accueil'], ['grid', 'Nouveautés'], ['radio', 'Radio'], ['lib', 'Bibliothèque']].map(([ic, n]) => `<div class="it">${I[ic]}${n}</div>`).join('')}`);
     const sel = h('div', 'sel', side); glassify(sel, 668, 110, { r: 30, tint: 'rgba(250,45,72,.16)' }); sel.style.boxShadow = '0 0 40px rgba(250,45,72,.5)';
     // 3. search bar + result
@@ -158,7 +158,7 @@
       <div class="l2">${'SUR TOUTES LES PLATEFORMES'.split('').map(c => `<span>${c === ' ' ? '&nbsp;' : c}</span>`).join('')}</div><div class="row"></div>
       <img class="sm" src="${IMG('img/smsa.svg')}"><img class="mw" src="${IMG('img/meuda.svg')}"><div class="lab">L.A.P RECORDS</div>`);
     const l1 = [...end.querySelectorAll('.l1 span')], l2 = [...end.querySelectorAll('.l2 span')], row = end.querySelector('.row');
-    const PL = [['applemusic', '#fa243c', 'Apple Music'], ['spotify', '#1ed760', 'Spotify'], ['deezer', '#a238ff', 'Deezer'], ['youtubemusic', '#ff0000', 'YouTube Music'], ['tidal', '#ffffff', 'TIDAL'], ['napster', '#2259ff', 'Napster'], ['soundcloud', '#ff5500', 'SoundCloud'], ['audiomack', '#ffa200', 'Audiomack']].map(([k, c, n]) => {
+    const PL = [['applemusic', '#ffffff', 'Apple Music'], ['spotify', '#1ed760', 'Spotify'], ['deezer', '#a238ff', 'Deezer'], ['youtubemusic', '#ff0000', 'YouTube Music'], ['tidal', '#ffffff', 'TIDAL'], ['napster', '#2259ff', 'Napster'], ['soundcloud', '#ff5500', 'SoundCloud'], ['audiomack', '#ffa200', 'Audiomack']].map(([k, c, n]) => {
       const el = h('div', 'pl', row, `<span class="pmk">${mark(k, c, 96)}</span><span>${n}</span>`); return el; });
     const eSM = end.querySelector('.sm'), eMW = end.querySelector('.mw'), eLab = end.querySelector('.lab');
     let plGlassDone = false;
