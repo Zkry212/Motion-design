@@ -1,0 +1,9 @@
+{
+ "name": "elite-maillot-trailer",
+ "width": 1080, "height": 1920, "fps": 30, "duration": 20.0,
+ "bg": "#000", "bgCss": "#000", "glow": false, "grain": true,
+ "script": ["trailer.js"],
+ "audio": { "sfx": [] },
+ "scenes": [ { "type": "trailer", "at": 0, "dur": 20.0, "duration": 20.0,
+   "cuts": [0, 1.8, 4.4, 6.0, 7.8, 9.2, 11.0, 12.4, 15.2, 16.4] } ]
+}
