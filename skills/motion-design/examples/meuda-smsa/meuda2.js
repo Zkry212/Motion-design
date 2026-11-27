@@ -134,7 +134,7 @@
     // 4. album card
     const albc = pane('albc dark rim', 110, 230, 860, 1420, `<div class="cv" style="background-image:url(${COVER})"></div><div class="t"><b>Meuda</b><span>SMSA</span><small>SINGLE · L.A.P RECORDS</small></div><div class="btns"></div>`);
     const btns = albc.querySelector('.btns');
-    const bPlay = h('div', 'pbtn', btns, `${I.play}<span>Lecture</span>`); Object.assign(bPlay.style, { position: 'absolute', left: '0px', top: '0px', width: '365px', height: '130px' }); glassify(bPlay, 365, 130, { tint: 'rgba(255,255,255,.1)' });
+    const bPlay = h('div', 'pbtn', btns, `${I.play}${I.pause}<span>Lecture</span>`); Object.assign(bPlay.style, { position: 'absolute', left: '0px', top: '0px', width: '365px', height: '130px' }); glassify(bPlay, 365, 130, { tint: 'rgba(255,255,255,.1)' });
     const bShuf = h('div', 'pbtn', btns, `${I.shuffle}<span>Aléatoire</span>`); Object.assign(bShuf.style, { position: 'absolute', left: '395px', top: '0px', width: '365px', height: '130px' }); glassify(bShuf, 365, 130, { tint: 'rgba(255,255,255,.1)' });
     // 5. now playing
     const np = pane('np rim', 90, 210, 900, 1500, `<div class="bg" style="background-image:url(${COVER})"></div><div class="art" style="background-image:url(${COVER})"></div>
@@ -145,11 +145,13 @@
     const SLABS = [];
     const slab = (el, depth, rad) => { const n = 6, L = []; for (let k = 0; k < n; k++) { const d = document.createElement('div'); Object.assign(d.style, { position: 'absolute', left: el.style.left, top: el.style.top, width: el.style.width, height: el.style.height, borderRadius: rad + 'px', background: `rgb(${46 - k * 5},${12 - k},${20 - k * 2})`, border: '2px solid rgba(250,45,72,.22)' }); el._w.insertBefore(d, el); L.push([d, -(k + 1) * depth / n]); } SLABS.push([el, L]); };
     slab(res, 40, 40); slab(albc, 70, 60); slab(np, 80, 60);
-    const pop = h('div', '', np._w); Object.assign(pop.style, { position: 'absolute', left: 90 + 70 + 'px', top: 210 + 70 + 'px', width: '760px', height: '760px', borderRadius: '28px', background: `#000 url(${COVER}) center/cover`, boxShadow: '0 30px 60px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.15)', transformOrigin: '380px 380px' });
+    const popW = h('div', 'trn', cam), pop = h('div', '', popW); Object.assign(pop.style, { position: 'absolute', left: 90 + 70 + 'px', top: 210 + 70 + 'px', width: '760px', height: '760px', borderRadius: '28px', background: `#000 url(${COVER}) center/cover`, boxShadow: '0 30px 60px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.15)', transformOrigin: '380px 380px' });
     npArt.style.visibility = 'hidden';
     const isl = h('div', 'isl', R, `<div class="ic" style="background-image:url(${COVER})"></div><div class="it2"><b>Meuda</b><span>SMSA</span></div><div class="eq">${'<i></i>'.repeat(4)}</div>`);
     const islIn = [...isl.querySelectorAll('.ic,.it2,.eq')], eqB = [...isl.querySelectorAll('.eq i')];
     const npNm = np.querySelector('.nm'), npTm = np.querySelector('.tm');
+    const [pIco, pPau] = bPlay.querySelectorAll('svg'), pLab = bPlay.querySelector('span'), albCv = albc.querySelector('.cv');
+    const burst = h('div', '', R); Object.assign(burst.style, { position: 'absolute', width: '600px', height: '600px', marginLeft: '-300px', marginTop: '-300px', borderRadius: '50%', zIndex: 38, pointerEvents: 'none', background: 'radial-gradient(closest-side, rgba(255,255,255,.85), rgba(250,45,72,.55) 35%, rgba(250,45,72,0))', mixBlendMode: 'screen' });
     const cur = h('div', 'cur', R, I.cursor), rip = h('div', 'ripple', R), flare = h('div', 'flare', R);
     // end card
     const end = h('div', 'end', R, `<div class="l1">${'DISPONIBLE'.split('').map(c => `<span>${c}</span>`).join('')}<br>${'MAINTENANT'.split('').map(c => `<span class="acc">${c}</span>`).join('')}</div>
@@ -176,8 +178,8 @@
       [B.album - .35, [0, 110, 1.02, ...A], io],
       [B.album, [0, 0, .92, ...A]],
       [B.play - .4, [0, 0, .95, ...A], io],
-      [B.play, [0, -150, 1.0, ...A]],
-      [N - .1, [0, -150, 1.0, ...A], io],
+      [B.play, [0, -150, 1.0, ...A], io],
+      [N - .1, [0, -40, 1.07, ...A], io],
       [N + .6, [0, 0, .86, ...A], io],
       [N + 2.6, [0, 330, 1.18, ...A], io],
       [N + 4.6, [0, 300, 1.2, ...A], io],
@@ -226,6 +228,11 @@
       const ak = prog(t, B.album - .3, .9, E.outQuint); albc.style.transform = `rotateY(${(1 - ak) * -14}deg) translateZ(${(1 - ak) * -150}px)`;
       [bPlay, bShuf].forEach((b2, i) => LG.sheen(b2, t * .3 + i * .4));
       bPlay.style.transform = `scale(${1 - .06 * clamp(1 - Math.abs(t - B.play) / .12)})`; bPlay.style.boxShadow = t > B.play ? '0 0 50px rgba(250,45,72,.6)' : '';
+      const on = t > B.play; pIco.style.display = on ? 'none' : ''; pPau.style.display = on ? '' : 'none'; pLab.textContent = on ? 'En cours' : 'Lecture';
+      bPlay.style.background = on ? `rgba(250,45,72,${.35 * (1 - prog(t, B.play, .6))})` : '';
+      const bu = clamp((t - B.play) / .7); burst.style.opacity = on && bu < 1 ? (1 - bu) * .9 : 0; burst.style.left = '340px'; burst.style.top = '1310px'; burst.style.transform = `scale(${.1 + E.outQuint(bu) * 2.4})`;
+      // shared element: from the click, the album cover itself lifts off the card and becomes the player's cover
+      albCv.style.visibility = on ? 'hidden' : '';
       const ck = prog(t, B.play - .8, .7, E.inOut), cv2 = win(t, B.play - .9, B.play + .5, .2, .2);
       const TR = B.album - .4, ck1 = prog(t, TR - .7, .6, E.inOut), cv1 = win(t, TR - .8, TR + .3, .2, .2), first = t < TR + .3;
       cur.style.opacity = Math.max(cv1, cv2); cur.style.left = (first ? lerp(820, 520, ck1) : lerp(820, 330, ck)) + 'px'; cur.style.top = (first ? lerp(1400, 1010, ck1) : lerp(1500, 1300, ck)) + 'px';
@@ -242,7 +249,10 @@
       const pg = clamp((t - B.np + (s.trackStart || 0)) / (s.trackLen || 161)); wv.forEach((b2, i) => { b2.style.height = ((20 + 110 * Math.abs(Math.sin(i * 1.7) * Math.cos(i * .37))) * prog(t, B.np + .5 + i * .018, .35, E.outQuint) + 2) + 'px'; const on = i / wv.length < pg; b2.style.background = on ? '#fa2d48' : 'rgba(255,255,255,.28)'; b2.style.boxShadow = 'none'; });
       const el = Math.max(0, t - B.np + (s.trackStart || 0)), fm = x => `${Math.floor(x / 60)}:${String(Math.floor(x % 60)).padStart(2, '0')}`; t1.textContent = fm(el); t2.textContent = '-' + fm(Math.max(0, (s.trackLen || 161) - el));
       LG.sheen(ctl, t * .3);
-      const lk = prog(t, B.np + .1, .9, E.outQuint); pop.style.transform = `${np.style.transform || ''} translateZ(${lk * 150}px) rotateX(${(1 - lk) * 18}deg)`;
+      const up = prog(t, B.play, .55, E.outQuint), st2 = prog(t, B.np - .1, .8, E.inOut), out2 = prog(t, B.out - .22, .22, k => k * k * k);
+      popW.style.display = t > B.play && out2 < 1 ? '' : 'none'; popW.style.opacity = 1 - out2; popW.style.transform = `translateZ(${out2 * 380}px)`;
+      pop.style.transform = `translateZ(${up * 260 - st2 * 110}px) rotateX(${Math.sin(up * Math.PI) * 6}deg) scale(${1 + Math.sin(up * Math.PI) * .03})`;
+      pop.style.boxShadow = `0 ${30 + up * 60}px ${60 + up * 80}px rgba(0,0,0,.8), 0 0 ${up * (1 - st2) * 90}px rgba(250,45,72,.55), 0 0 0 1px rgba(255,255,255,.15)`;
       // Dynamic Island expands with the playing track, then folds back
       const ik = Math.min(prog(t, B.np + 1.4, .6, E.outQuint), 1 - prog(t, B.np + 4.2, .5, E.inOut)), iv = win(t, B.np + 1.2, B.np + 4.9, .2, .2);
       isl.style.opacity = iv; isl.style.width = lerp(250, 940, ik) + 'px'; isl.style.height = lerp(72, 180, ik) + 'px'; isl.style.marginLeft = -lerp(250, 940, ik) / 2 + 'px';
