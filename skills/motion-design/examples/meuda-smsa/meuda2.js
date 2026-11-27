@@ -88,6 +88,10 @@
   .z2 .np .tm { position:absolute; left: 70px; right: 70px; top: 1210px; display:flex; justify-content:space-between; font-size: 30px; color: rgba(255,255,255,.55); font-weight: 600; }
   .z2 .np .ctl { position:absolute; left: 110px; width: 680px; top: 1280px; height: 160px; display:flex; align-items:center; justify-content:space-around; color:#fff; }
   .z2 .np .ctl > * { position:relative; z-index: 6; } .z2 .np .ctl .s { width: 90px; height: 70px; } .z2 .np .ctl .m { width: 100px; height: 100px; } .z2 .np .ctl svg { width: 100%; height: 100%; }
+  .z2 .isl { position:absolute; left:50%; top: 46px; z-index: 36; background:#000; border-radius: 60px; overflow:hidden; box-shadow: 0 20px 60px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.06); }
+  .z2 .isl .ic { position:absolute; left: 26px; top: 50%; width: 120px; height: 120px; margin-top:-60px; border-radius: 22px; background:#000 center/cover; box-shadow: 0 0 0 1px rgba(255,255,255,.15); }
+  .z2 .isl .it2 { position:absolute; left: 170px; top: 50%; transform: translateY(-50%); white-space:nowrap; } .z2 .isl .it2 b { display:block; font-size: 42px; color:#fff; } .z2 .isl .it2 span { font-size: 32px; color: rgba(255,255,255,.55); }
+  .z2 .isl .eq { position:absolute; right: 40px; top: 50%; height: 50px; margin-top: -25px; display:flex; gap: 7px; align-items:center; } .z2 .isl .eq i { width: 9px; border-radius: 5px; background:#fa2d48; }
   .z2 .cur { position:absolute; width: 70px; height: 70px; z-index: 40; filter: drop-shadow(0 6px 10px rgba(0,0,0,.6)); }
   .z2 .ripple { position:absolute; width: 120px; height: 120px; margin: -60px; border-radius:50%; border: 4px solid rgba(255,255,255,.9); z-index: 39; }
   /* end card */
@@ -143,6 +147,9 @@
     slab(res, 40, 40); slab(albc, 70, 60); slab(np, 80, 60);
     const pop = h('div', '', np._w); Object.assign(pop.style, { position: 'absolute', left: 90 + 70 + 'px', top: 210 + 70 + 'px', width: '760px', height: '760px', borderRadius: '28px', background: `#000 url(${COVER}) center/cover`, boxShadow: '0 30px 60px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.15)', transformOrigin: '380px 380px' });
     npArt.style.visibility = 'hidden';
+    const isl = h('div', 'isl', R, `<div class="ic" style="background-image:url(${COVER})"></div><div class="it2"><b>Meuda</b><span>SMSA</span></div><div class="eq">${'<i></i>'.repeat(4)}</div>`);
+    const islIn = [...isl.querySelectorAll('.ic,.it2,.eq')], eqB = [...isl.querySelectorAll('.eq i')];
+    const npNm = np.querySelector('.nm'), npTm = np.querySelector('.tm');
     const cur = h('div', 'cur', R, I.cursor), rip = h('div', 'ripple', R), flare = h('div', 'flare', R);
     // end card
     const end = h('div', 'end', R, `<div class="l1">${'DISPONIBLE'.split('').map(c => `<span>${c}</span>`).join('')}<br>${'MAINTENANT'.split('').map(c => `<span class="acc">${c}</span>`).join('')}</div>
@@ -172,7 +179,11 @@
       [B.play, [0, -150, 1.0, ...A]],
       [N - .1, [0, -150, 1.0, ...A], io],
       [N + .6, [0, 0, .86, ...A], io],
-      [B.out - .1, [0, 0, .96, ...A], io],
+      [N + 2.6, [0, 330, 1.18, ...A], io],
+      [N + 4.6, [0, 300, 1.2, ...A], io],
+      [N + 6.4, [0, -360, 1.16, ...A], io],
+      [B.out - .6, [0, -330, 1.18, ...A], io],
+      [B.out - .1, [0, 0, .92, ...A], io],
       [B.out + .4, [0, 0, .74, 0, 0, 0]],
       [s.duration, [0, 0, .75, 0, 0, 0]],
     ];
@@ -197,8 +208,8 @@
       const fl = Math.max(...[B.menu, B.search, B.album, B.np, B.out, B.end].map(x => clamp(1 - Math.abs(t - x) / .12))); flare.style.opacity = fl * .35;
       // 1. opener
       show(logo, -1, B.menu);
-      const mk2 = prog(t, .05, .6, E.outQuint); hMW.style.opacity = mk2; hMW.style.transform = `scale(${lerp(1.3, 1, mk2) * (1 + bt * .035)})`; hMW.style.filter = mk2 < 1 ? `blur(${(1 - mk2) * 22}px)` : `drop-shadow(0 0 ${20 + bt * 40}px rgba(250,45,72,.6))`;
-      const sk2 = prog(t, .22 + .48, .4, E.outQuint); hSM.style.opacity = sk2; hSM.style.transform = `translateY(${(1 - sk2) * 30}px)`;
+      const mk2 = prog(t, .05, .6, E.outQuint); hMW.style.opacity = mk2; hMW.style.transform = `scale(${lerp(1.15, 1, mk2)})`; hMW.style.clipPath = `inset(0 ${(1 - prog(t, .05, .7, E.inOut)) * 100}% 0 0)`; hMW.style.filter = mk2 < 1 ? `blur(${(1 - mk2) * 22}px)` : `drop-shadow(0 0 ${20 + bt * 40}px rgba(250,45,72,.6))`;
+      const sk2 = prog(t, .22 + .48, .4, E.outQuint); hSM.style.opacity = sk2; hSM.style.transform = `translateY(${(1 - sk2) * -60}px) scale(${lerp(1.4, 1, sk2)})`; hSM.style.filter = sk2 < 1 ? `blur(${(1 - sk2) * 12}px)` : 'none';
       const ak2 = prog(t, .22 + .96, .4, E.back); hAM.style.opacity = clamp(ak2 * 2); hAM.style.transform = `scale(${lerp(.4, 1, ak2) * (1 + bt * .06)})`;
       // 2. sidebar: capsule slides down then back up to "Rechercher"
       show(side, B.menu, B.search);
@@ -216,24 +227,34 @@
       [bPlay, bShuf].forEach((b2, i) => LG.sheen(b2, t * .3 + i * .4));
       bPlay.style.transform = `scale(${1 - .06 * clamp(1 - Math.abs(t - B.play) / .12)})`; bPlay.style.boxShadow = t > B.play ? '0 0 50px rgba(250,45,72,.6)' : '';
       const ck = prog(t, B.play - .8, .7, E.inOut), cv2 = win(t, B.play - .9, B.play + .5, .2, .2);
-      cur.style.opacity = cv2; cur.style.left = lerp(820, 330, ck) + 'px'; cur.style.top = lerp(1500, 1300, ck) + 'px'; cur.style.transform = `scale(${t > B.play && t < B.play + .1 ? .85 : 1})`;
-      const rpk = clamp((t - B.play) / .45); rip.style.opacity = t > B.play ? (1 - rpk) : 0; rip.style.left = '340px'; rip.style.top = '1310px'; rip.style.transform = `scale(${.2 + rpk * 1.6})`;
+      const TR = B.album - .4, ck1 = prog(t, TR - .7, .6, E.inOut), cv1 = win(t, TR - .8, TR + .3, .2, .2), first = t < TR + .3;
+      cur.style.opacity = Math.max(cv1, cv2); cur.style.left = (first ? lerp(820, 520, ck1) : lerp(820, 330, ck)) + 'px'; cur.style.top = (first ? lerp(1400, 1010, ck1) : lerp(1500, 1300, ck)) + 'px';
+      const tapT = first ? TR : B.play; cur.style.transform = `scale(${t > tapT && t < tapT + .1 ? .85 : 1})`;
+      const rpk = clamp((t - tapT) / .45); rip.style.opacity = t > tapT && rpk < 1 ? (1 - rpk) : 0; rip.style.left = first ? '530px' : '340px'; rip.style.top = first ? '1020px' : '1310px'; rip.style.transform = `scale(${.2 + rpk * 1.6})`;
+      res.style.background = t > TR && first ? 'rgba(250,45,72,.18)' : '';
       // 5. now playing: art pulses on the beat, glowing waveform, time runs
       show(np, B.np, B.out);
       const nk = prog(t, B.np - .05, .6, E.outQuint); np.style.transform = `translateZ(${(1 - nk) * -200}px)`;
       npBg.style.transform = 'scale(1.1)';
-      const pg = clamp((t - B.np + (s.trackStart || 0)) / (s.trackLen || 161)); wv.forEach((b2, i) => { b2.style.height = (20 + 110 * Math.abs(Math.sin(i * 1.7) * Math.cos(i * .37))) + 'px'; const on = i / wv.length < pg; b2.style.background = on ? '#fa2d48' : 'rgba(255,255,255,.28)'; b2.style.boxShadow = 'none'; });
+      const bk = prog(t, B.np + .35, .5, E.outQuint); npNm.style.opacity = bk; npNm.style.transform = `translateY(${(1 - bk) * 50}px)`;
+      const tk = prog(t, B.np + .8, .5, E.outQuint); npTm.style.opacity = tk;
+      const ck3 = prog(t, B.np + .9, .55, E.back); ctl.style.opacity = clamp(ck3 * 2); ctl.style.transform = `translateY(${(1 - ck3) * 60}px) scale(${lerp(.85, 1, ck3)})`;
+      const pg = clamp((t - B.np + (s.trackStart || 0)) / (s.trackLen || 161)); wv.forEach((b2, i) => { b2.style.height = ((20 + 110 * Math.abs(Math.sin(i * 1.7) * Math.cos(i * .37))) * prog(t, B.np + .5 + i * .018, .35, E.outQuint) + 2) + 'px'; const on = i / wv.length < pg; b2.style.background = on ? '#fa2d48' : 'rgba(255,255,255,.28)'; b2.style.boxShadow = 'none'; });
       const el = Math.max(0, t - B.np + (s.trackStart || 0)), fm = x => `${Math.floor(x / 60)}:${String(Math.floor(x % 60)).padStart(2, '0')}`; t1.textContent = fm(el); t2.textContent = '-' + fm(Math.max(0, (s.trackLen || 161) - el));
       LG.sheen(ctl, t * .3);
-      pop.style.transform = `${np.style.transform || ''} translateZ(150px) scale(${1 + bt * .03})`;
+      const lk = prog(t, B.np + .1, .9, E.outQuint); pop.style.transform = `${np.style.transform || ''} translateZ(${lk * 150}px) rotateX(${(1 - lk) * 18}deg)`;
+      // Dynamic Island expands with the playing track, then folds back
+      const ik = Math.min(prog(t, B.np + 1.4, .6, E.outQuint), 1 - prog(t, B.np + 4.2, .5, E.inOut)), iv = win(t, B.np + 1.2, B.np + 4.9, .2, .2);
+      isl.style.opacity = iv; isl.style.width = lerp(250, 940, ik) + 'px'; isl.style.height = lerp(72, 180, ik) + 'px'; isl.style.marginLeft = -lerp(250, 940, ik) / 2 + 'px';
+      islIn.forEach(x => { x.style.opacity = clamp((ik - .6) * 2.5); }); eqB.forEach((b3, i) => { b3.style.height = (14 + 32 * Math.abs(Math.sin(t * 5 + i * 1.3))) + 'px'; });
       SLABS.forEach(([el, L]) => L.forEach(([d, z]) => { d.style.transform = `${el.style.transform || ''} translateZ(${z}px)`; }));
       // end card: letters fall into place, the platform marks arrive in Liquid Glass tiles
       const ek = prog(t, B.end, .3); end.style.opacity = ek; end.style.display = ek > 0 ? '' : 'none';
       if (ek > 0 && !plGlassDone) { PL.forEach(pl => { pl.style.position = 'relative'; LG.make(pl, { w: pl.offsetWidth || 200, h: 200, r: 40, tint: 'rgba(255,255,255,.06)' }); pl.style.position = 'relative'; }); plGlassDone = true; }
       l1.forEach((sp, i) => { const k = prog(t, B.end + i * .04, .4, E.outQuint); sp.style.opacity = clamp(k * 2); sp.style.transform = `translateY(${(1 - k) * -40}px)`; });
       l2.forEach((sp, i) => { const k = prog(t, B.end + .96 + i * .02, .45, E.outQuint); sp.style.opacity = k; sp.style.filter = k < 1 ? `blur(${(1 - k) * 10}px)` : 'none'; });
-      PL.forEach((pl, i) => { const k = prog(t, B.end + 1.44 + i * .24, .45, E.outQuint); pl.style.opacity = clamp(k * 2); pl.style.transform = `translateY(${(1 - k) * 60}px) scale(${lerp(.6, 1, k)})`; LG.sheen(pl, t * .3 + i * .2); });
-      const mk = prog(t, B.end + 3.36, .6, E.outQuint); eMW.style.opacity = mk; eMW.style.transform = `scale(${lerp(1.2, 1, mk) * (1 + bt * .03 * mk)})`; eSM.style.opacity = prog(t, B.end + 3.6, .5); eLab.style.opacity = prog(t, B.end + 3.84, .5);
+      PL.forEach((pl, i) => { const k = prog(t, B.end + 1.44 + i * .24, .45, E.outQuint); pl.style.opacity = clamp(k * 2); pl.style.transform = `perspective(900px) rotateX(${(1 - k) * -90}deg) translateY(${(1 - k) * 40}px)`; LG.sheen(pl, t * .3 + i * .2); });
+      const mk = prog(t, B.end + 3.36, .6, E.outQuint); eMW.style.opacity = mk; eMW.style.transform = `scale(${lerp(1.1, 1, mk)})`; eMW.style.clipPath = `inset(0 ${(1 - mk) * 100}% 0 0)`; eSM.style.opacity = prog(t, B.end + 3.6, .5); eLab.style.opacity = prog(t, B.end + 3.84, .5);
     };
   };
 })();
