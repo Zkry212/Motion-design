@@ -1,0 +1,509 @@
+{
+ "name": "elite-maillot-flow",
+ "width": 1080,
+ "height": 1920,
+ "fps": 30,
+ "duration": 25.0,
+ "bg": "#05070f",
+ "bgCss": "#05070f",
+ "glow": false,
+ "grain": false,
+ "script": [
+  "flow.js"
+ ],
+ "audio": {
+  "music": "assets/bed.wav",
+  "musicGain": -9,
+  "duck": false,
+  "sfx": [
+   {
+    "at": 0.2,
+    "src": "assets/sfx/pop-5.wav",
+    "gain": -16
+   },
+   {
+    "at": 0.7,
+    "src": "assets/sfx/whoosh-short.wav",
+    "gain": -20
+   },
+   {
+    "at": 1.1,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   },
+   {
+    "at": 1.17,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   },
+   {
+    "at": 1.24,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   },
+   {
+    "at": 1.31,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   },
+   {
+    "at": 1.38,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   },
+   {
+    "at": 1.45,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   },
+   {
+    "at": 1.52,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   },
+   {
+    "at": 1.59,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   },
+   {
+    "at": 1.66,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   },
+   {
+    "at": 1.73,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   },
+   {
+    "at": 1.8,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   },
+   {
+    "at": 2.6,
+    "src": "assets/sfx/whoosh-med.wav",
+    "gain": -18
+   },
+   {
+    "at": 3.6,
+    "src": "assets/sfx/pop-3.wav",
+    "gain": -18
+   },
+   {
+    "at": 4.6,
+    "src": "assets/sfx/whoosh-short.wav",
+    "gain": -17
+   },
+   {
+    "at": 5.4,
+    "src": "assets/sfx/blip.wav",
+    "gain": -15
+   },
+   {
+    "at": 6.7,
+    "src": "assets/sfx/pop-2.wav",
+    "gain": -17
+   },
+   {
+    "at": 6.8,
+    "src": "assets/sfx/pop-4.wav",
+    "gain": -17
+   },
+   {
+    "at": 6.9,
+    "src": "assets/sfx/pop-6.wav",
+    "gain": -17
+   },
+   {
+    "at": 7.5,
+    "src": "assets/sfx/whoosh-short.wav",
+    "gain": -19
+   },
+   {
+    "at": 8.2,
+    "src": "assets/sfx/pop-1.wav",
+    "gain": -22
+   },
+   {
+    "at": 8.29,
+    "src": "assets/sfx/pop-2.wav",
+    "gain": -22
+   },
+   {
+    "at": 8.38,
+    "src": "assets/sfx/pop-3.wav",
+    "gain": -22
+   },
+   {
+    "at": 8.47,
+    "src": "assets/sfx/pop-4.wav",
+    "gain": -22
+   },
+   {
+    "at": 8.56,
+    "src": "assets/sfx/pop-5.wav",
+    "gain": -22
+   },
+   {
+    "at": 8.65,
+    "src": "assets/sfx/pop-6.wav",
+    "gain": -22
+   },
+   {
+    "at": 8.74,
+    "src": "assets/sfx/pop-7.wav",
+    "gain": -22
+   },
+   {
+    "at": 8.83,
+    "src": "assets/sfx/pop-8.wav",
+    "gain": -22
+   },
+   {
+    "at": 10.0,
+    "src": "assets/sfx/whoosh-med.wav",
+    "gain": -18
+   },
+   {
+    "at": 10.4,
+    "src": "assets/sfx/pop-7.wav",
+    "gain": -18
+   },
+   {
+    "at": 11.2,
+    "src": "assets/sfx/tap.wav",
+    "gain": -14
+   },
+   {
+    "at": 11.8,
+    "src": "assets/sfx/thud.wav",
+    "gain": -18
+   },
+   {
+    "at": 11.8,
+    "src": "assets/sfx/whoosh-short.wav",
+    "gain": -21
+   },
+   {
+    "at": 12.6,
+    "src": "assets/sfx/whoosh-short.wav",
+    "gain": -21
+   },
+   {
+    "at": 12.65,
+    "src": "assets/sfx/thud.wav",
+    "gain": -18
+   },
+   {
+    "at": 13.45,
+    "src": "assets/sfx/thud.wav",
+    "gain": -18
+   },
+   {
+    "at": 13.8,
+    "src": "assets/sfx/whoosh-med.wav",
+    "gain": -18
+   },
+   {
+    "at": 15.2,
+    "src": "assets/sfx/pop-9.wav",
+    "gain": -16
+   },
+   {
+    "at": 15.7,
+    "src": "assets/sfx/pay-ok.wav",
+    "gain": -17
+   },
+   {
+    "at": 17.0,
+    "src": "assets/sfx/tap.wav",
+    "gain": -14
+   },
+   {
+    "at": 17.2,
+    "src": "assets/sfx/whoosh-short.wav",
+    "gain": -19
+   },
+   {
+    "at": 17.9,
+    "src": "assets/sfx/whoosh-long.wav",
+    "gain": -22
+   },
+   {
+    "at": 19.4,
+    "src": "assets/sfx/whoosh-rise.wav",
+    "gain": -19
+   },
+   {
+    "at": 20.7,
+    "src": "assets/sfx/logo-sting.wav",
+    "gain": -16
+   },
+   {
+    "at": 23.0,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   },
+   {
+    "at": 23.06,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   },
+   {
+    "at": 23.12,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   },
+   {
+    "at": 23.18,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   },
+   {
+    "at": 23.24,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   },
+   {
+    "at": 23.3,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   },
+   {
+    "at": 23.36,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   },
+   {
+    "at": 23.42,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   },
+   {
+    "at": 23.48,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   },
+   {
+    "at": 23.54,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   },
+   {
+    "at": 23.6,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   },
+   {
+    "at": 23.66,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   },
+   {
+    "at": 23.72,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   },
+   {
+    "at": 23.78,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   },
+   {
+    "at": 23.84,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   },
+   {
+    "at": 23.9,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   }
+  ]
+ },
+ "scenes": [
+  {
+   "type": "flow",
+   "at": 0,
+   "dur": 25.0,
+   "duration": 25.0,
+   "t": {
+    "p0": 0.2,
+    "p1": 0.9,
+    "type": 1.1,
+    "card": 2.6,
+    "priceFly": 4.6,
+    "split": 6.6,
+    "tiles": 7.5,
+    "wall": 8.2,
+    "grow": 10.0,
+    "basket": 10.4,
+    "add": 11.2,
+    "add2": 12.2,
+    "add3": 13.0,
+    "panel": 13.8,
+    "offer": 15.2,
+    "order": 17.0,
+    "ride": 17.9,
+    "fill": 19.8,
+    "end": 20.6
+   },
+   "caps": [
+    [
+     [
+      "Ton",
+      "maillot",
+      "*préféré",
+      "?"
+     ],
+     640,
+     100,
+     0.9,
+     2.6,
+     "#fff"
+    ],
+    [
+     [
+      "Chez",
+      "Élite",
+      "Maillot,"
+     ],
+     330,
+     84,
+     3.0,
+     4.6,
+     "#fff"
+    ],
+    [
+     [
+      "à",
+      "seulement"
+     ],
+     690,
+     90,
+     5.5,
+     6.6,
+     "#fff"
+    ],
+    [
+     [
+      "Tous",
+      "tes",
+      "clubs,"
+     ],
+     110,
+     88,
+     8.4,
+     9.9,
+     "#0d1a4a"
+    ],
+    [
+     [
+      "au",
+      "_même",
+      "_prix."
+     ],
+     215,
+     88,
+     8.8,
+     9.9,
+     "#0d1a4a"
+    ],
+    [
+     [
+      "Tu",
+      "en",
+      "prends",
+      "_trois",
+      "?"
+     ],
+     300,
+     92,
+     10.6,
+     13.6,
+     "#0d1a4a"
+    ],
+    [
+     [
+      "Le",
+      "4ème",
+      "est",
+      "_offert."
+     ],
+     200,
+     96,
+     15.0,
+     16.9,
+     "#fff"
+    ],
+    [
+     [
+      "Il",
+      "arrive",
+      "_chez",
+      "_toi."
+     ],
+     880,
+     100,
+     18.0,
+     19.9,
+     "#fff"
+    ]
+   ],
+   "bgKeys": [
+    [
+     0,
+     "#05070f"
+    ],
+    [
+     1.0,
+     "#0c1749"
+    ],
+    [
+     4.4,
+     "#0c1749"
+    ],
+    [
+     5.0,
+     "#2347e0"
+    ],
+    [
+     7.0,
+     "#2347e0"
+    ],
+    [
+     7.6,
+     "#e9ecfa"
+    ],
+    [
+     13.6,
+     "#e9ecfa"
+    ],
+    [
+     14.2,
+     "#2347e0"
+    ],
+    [
+     25,
+     "#2347e0"
+    ]
+   ],
+   "jerseys": [
+    "real",
+    "barca",
+    "psg",
+    "city",
+    "arsenal",
+    "milan",
+    "manu",
+    "argentine",
+    "france",
+    "bresil",
+    "portugal",
+    "maroc"
+   ]
+  }
+ ]
+}
