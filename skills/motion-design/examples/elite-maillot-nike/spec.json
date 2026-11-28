@@ -1,0 +1,118 @@
+{
+ "name": "elite-maillot-nike",
+ "width": 1080,
+ "height": 1920,
+ "fps": 30,
+ "duration": 20.0,
+ "bg": "#000",
+ "bgCss": "#000",
+ "glow": false,
+ "grain": true,
+ "script": [
+  "nike.js"
+ ],
+ "audio": {
+  "music": "assets/score.wav",
+  "musicGain": -2,
+  "duck": false,
+  "sfx": []
+ },
+ "scenes": [
+  {
+   "type": "nike",
+   "at": 0,
+   "dur": 20.0,
+   "duration": 20.0,
+   "cuts": [
+    0,
+    1.333,
+    2.667,
+    4.0,
+    8.0,
+    10.667,
+    16.0
+   ],
+   "allCuts": [
+    0,
+    1.333,
+    2.667,
+    4.0,
+    4.667,
+    5.333,
+    6.0,
+    6.667,
+    7.333,
+    8.0,
+    10.667,
+    16.0
+   ],
+   "rapid": [
+    [
+     "barca",
+     "BARÇA",
+     "FC Barcelone · domicile 26/27"
+    ],
+    [
+     "psg",
+     "PARIS",
+     "Paris · domicile 26/27"
+    ],
+    [
+     "city",
+     "CITY",
+     "Manchester City · domicile 26/27"
+    ],
+    [
+     "arsenal",
+     "ARSENAL",
+     "Arsenal · domicile 26/27"
+    ],
+    [
+     "milan",
+     "MILAN",
+     "AC Milan · domicile 26/27"
+    ],
+    [
+     "argentine",
+     "ARGENTINA",
+     "Argentine · 2026"
+    ]
+   ],
+   "offer": {
+    "j": [
+     10.8,
+     11.333,
+     12.0
+    ],
+    "w1": 10.8,
+    "w2": 12.667,
+    "stop": 13.333,
+    "off": 13.833
+   },
+   "hits": [
+    1.333,
+    2.667,
+    4.0,
+    4.667,
+    5.333,
+    6.0,
+    6.667,
+    7.333,
+    8.0,
+    10.667,
+    11.333,
+    12.0,
+    12.667,
+    16.0
+   ],
+   "big": [
+    13.833,
+    17.9
+   ],
+   "stop": [
+    13.333,
+    13.833
+   ]
+  }
+ ]
+}
