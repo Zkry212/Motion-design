@@ -1,0 +1,8 @@
+Ce maillot-là… <break time="0.4s" /> tu le veux. <break time="0.5s" />
+Mais le prix… <break time="0.3s" /> te freine. <break time="0.6s" />
+Chez Élite Maillot, <break time="0.2s" /> il est à dix-neuf euros quatre-vingt-dix-neuf. <break time="0.6s" />
+Real. <break time="0.2s" /> Barça. <break time="0.2s" /> PSG. <break time="0.3s" />
+Tous tes clubs, <break time="0.2s" /> au même prix. <break time="0.6s" />
+Tu en prends trois ? <break time="0.4s" /> Le quatrième est offert. <break time="0.6s" />
+Tu choisis. <break time="0.2s" /> Tu commandes. <break time="0.2s" /> Il arrive chez toi. <break time="0.7s" />
+Élite Maillot. <break time="0.4s" /> Le foot, <break time="0.2s" /> à ton prix.

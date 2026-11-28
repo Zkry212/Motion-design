@@ -1,0 +1,305 @@
+{
+ "name": "elite-maillot-vo",
+ "width": 1080,
+ "height": 1920,
+ "fps": 30,
+ "duration": 26.5,
+ "bg": "#05070f",
+ "bgCss": "#05070f",
+ "glow": false,
+ "grain": false,
+ "script": [
+  "vo.js"
+ ],
+ "audio": {
+  "voice": "assets/voice.mp3",
+  "voiceAt": 0,
+  "music": "assets/bed.wav",
+  "musicGain": -10,
+  "duck": true,
+  "sfx": [
+   {
+    "at": 2.18,
+    "src": "assets/sfx/whoosh-short.wav",
+    "gain": -15
+   },
+   {
+    "at": 3.3,
+    "src": "assets/sfx/pop-1.wav",
+    "gain": -19
+   },
+   {
+    "at": 3.6,
+    "src": "assets/sfx/pop-2.wav",
+    "gain": -19
+   },
+   {
+    "at": 3.9,
+    "src": "assets/sfx/pop-3.wav",
+    "gain": -19
+   },
+   {
+    "at": 4.48,
+    "src": "assets/sfx/whoosh-short.wav",
+    "gain": -15
+   },
+   {
+    "at": 6.4,
+    "src": "assets/sfx/blip.wav",
+    "gain": -16
+   },
+   {
+    "at": 8.58,
+    "src": "assets/sfx/whoosh-short.wav",
+    "gain": -15
+   },
+   {
+    "at": 9.0,
+    "src": "assets/sfx/whoosh-short.wav",
+    "gain": -20
+   },
+   {
+    "at": 9.6,
+    "src": "assets/sfx/whoosh-short.wav",
+    "gain": -20
+   },
+   {
+    "at": 10.2,
+    "src": "assets/sfx/whoosh-short.wav",
+    "gain": -20
+   },
+   {
+    "at": 10.68,
+    "src": "assets/sfx/whoosh-short.wav",
+    "gain": -15
+   },
+   {
+    "at": 10.95,
+    "src": "assets/sfx/pop-2.wav",
+    "gain": -22
+   },
+   {
+    "at": 11.07,
+    "src": "assets/sfx/pop-3.wav",
+    "gain": -22
+   },
+   {
+    "at": 11.19,
+    "src": "assets/sfx/pop-4.wav",
+    "gain": -22
+   },
+   {
+    "at": 11.31,
+    "src": "assets/sfx/pop-5.wav",
+    "gain": -22
+   },
+   {
+    "at": 11.43,
+    "src": "assets/sfx/pop-6.wav",
+    "gain": -22
+   },
+   {
+    "at": 11.55,
+    "src": "assets/sfx/pop-7.wav",
+    "gain": -22
+   },
+   {
+    "at": 13.08,
+    "src": "assets/sfx/whoosh-short.wav",
+    "gain": -15
+   },
+   {
+    "at": 14.15,
+    "src": "assets/sfx/thud.wav",
+    "gain": -19
+   },
+   {
+    "at": 14.35,
+    "src": "assets/sfx/thud.wav",
+    "gain": -19
+   },
+   {
+    "at": 14.55,
+    "src": "assets/sfx/thud.wav",
+    "gain": -19
+   },
+   {
+    "at": 15.8,
+    "src": "assets/sfx/pay-ok.wav",
+    "gain": -17
+   },
+   {
+    "at": 16.98,
+    "src": "assets/sfx/whoosh-short.wav",
+    "gain": -15
+   },
+   {
+    "at": 17.8,
+    "src": "assets/sfx/tap.wav",
+    "gain": -14
+   },
+   {
+    "at": 18.75,
+    "src": "assets/sfx/tap.wav",
+    "gain": -14
+   },
+   {
+    "at": 19.3,
+    "src": "assets/sfx/whoosh-med.wav",
+    "gain": -21
+   },
+   {
+    "at": 20.78,
+    "src": "assets/sfx/whoosh-short.wav",
+    "gain": -15
+   },
+   {
+    "at": 21.2,
+    "src": "assets/sfx/logo-sting.wav",
+    "gain": -16
+   },
+   {
+    "at": 24.1,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   },
+   {
+    "at": 24.16,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   },
+   {
+    "at": 24.22,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   },
+   {
+    "at": 24.28,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   },
+   {
+    "at": 24.34,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   },
+   {
+    "at": 24.4,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   },
+   {
+    "at": 24.46,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   },
+   {
+    "at": 24.52,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   },
+   {
+    "at": 24.58,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   },
+   {
+    "at": 24.64,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   },
+   {
+    "at": 24.7,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   },
+   {
+    "at": 24.76,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   },
+   {
+    "at": 24.82,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   },
+   {
+    "at": 24.88,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   },
+   {
+    "at": 24.94,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   },
+   {
+    "at": 25.0,
+    "src": "assets/sfx/key.wav",
+    "gain": -22
+   }
+  ]
+ },
+ "scenes": [
+  {
+   "type": "vo",
+   "at": 0,
+   "dur": 26.5,
+   "duration": 26.5,
+   "cuts": [
+    0,
+    2.4,
+    4.7,
+    8.8,
+    10.9,
+    13.3,
+    17.2,
+    21.0
+   ],
+   "t": {
+    "a1": 0.3,
+    "a2": 1.4,
+    "b1": 2.6,
+    "b2": 3.6,
+    "c1": 5.0,
+    "c2": 6.4,
+    "d1": 9.0,
+    "d2": 9.6,
+    "d3": 10.2,
+    "e1": 11.0,
+    "e2": 12.0,
+    "f1": 13.4,
+    "f2": 15.0,
+    "g1": 17.4,
+    "g2": 18.4,
+    "g3": 19.4,
+    "h1": 21.2,
+    "h2": 22.3,
+    "h3": 22.9
+   },
+   "trans": [
+    "b",
+    "r",
+    "b",
+    "l",
+    "b",
+    "r",
+    "b"
+   ],
+   "jerseys": [
+    "real",
+    "barca",
+    "psg",
+    "city",
+    "arsenal",
+    "milan",
+    "manu",
+    "argentine",
+    "france",
+    "bresil",
+    "portugal",
+    "maroc"
+   ]
+  }
+ ]
+}
