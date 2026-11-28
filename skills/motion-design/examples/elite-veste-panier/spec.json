@@ -1,0 +1,504 @@
+{
+ "name": "elite-veste-panier",
+ "width": 1080,
+ "height": 1920,
+ "fps": 30,
+ "duration": 21.0,
+ "bg": "#e9ecfa",
+ "bgCss": "#e9ecfa",
+ "glow": false,
+ "grain": false,
+ "script": [
+  "panier.js"
+ ],
+ "audio": {
+  "voice": "assets/voice.mp3",
+  "voiceAt": 0,
+  "music": "assets/music.wav",
+  "musicGain": -7,
+  "duck": true,
+  "sfx": [
+   {
+    "at": 2.7,
+    "src": "assets/sfx/tap.wav",
+    "gain": -16
+   },
+   {
+    "at": 3.2,
+    "src": "assets/sfx/tap.wav",
+    "gain": -16
+   },
+   {
+    "at": 3.7,
+    "src": "assets/sfx/tap.wav",
+    "gain": -16
+   },
+   {
+    "at": 4.2,
+    "src": "assets/sfx/tap.wav",
+    "gain": -16
+   },
+   {
+    "at": 4.7,
+    "src": "assets/sfx/tap.wav",
+    "gain": -16
+   },
+   {
+    "at": 5.2,
+    "src": "assets/sfx/tap.wav",
+    "gain": -16
+   },
+   {
+    "at": 5.9,
+    "src": "assets/sfx/tap.wav",
+    "gain": -17
+   },
+   {
+    "at": 6.3,
+    "src": "assets/sfx/tap.wav",
+    "gain": -14
+   },
+   {
+    "at": 6.4,
+    "src": "assets/sfx/whoosh-short.wav",
+    "gain": -20
+   },
+   {
+    "at": 6.9,
+    "src": "assets/sfx/tap.wav",
+    "gain": -17
+   },
+   {
+    "at": 7.05,
+    "src": "assets/sfx/pop-6.wav",
+    "gain": -16
+   },
+   {
+    "at": 7.3,
+    "src": "assets/sfx/tap.wav",
+    "gain": -14
+   },
+   {
+    "at": 7.4,
+    "src": "assets/sfx/whoosh-short.wav",
+    "gain": -20
+   },
+   {
+    "at": 7.8,
+    "src": "assets/sfx/tap.wav",
+    "gain": -17
+   },
+   {
+    "at": 8.05,
+    "src": "assets/sfx/pop-6.wav",
+    "gain": -16
+   },
+   {
+    "at": 8.2,
+    "src": "assets/sfx/tap.wav",
+    "gain": -14
+   },
+   {
+    "at": 8.3,
+    "src": "assets/sfx/whoosh-short.wav",
+    "gain": -20
+   },
+   {
+    "at": 8.95,
+    "src": "assets/sfx/pop-6.wav",
+    "gain": -16
+   },
+   {
+    "at": 9.2,
+    "src": "assets/sfx/blip.wav",
+    "gain": -17
+   },
+   {
+    "at": 10.75,
+    "src": "assets/sfx/thud.wav",
+    "gain": -15
+   },
+   {
+    "at": 10.8,
+    "src": "assets/sfx/pay-ok.wav",
+    "gain": -15
+   },
+   {
+    "at": 11.0,
+    "src": "assets/sfx/whoosh-med.wav",
+    "gain": -18
+   },
+   {
+    "at": 11.55,
+    "src": "assets/sfx/pop-2.wav",
+    "gain": -20
+   },
+   {
+    "at": 11.7,
+    "src": "assets/sfx/pop-3.wav",
+    "gain": -20
+   },
+   {
+    "at": 11.85,
+    "src": "assets/sfx/pop-4.wav",
+    "gain": -20
+   },
+   {
+    "at": 12.0,
+    "src": "assets/sfx/pop-5.wav",
+    "gain": -20
+   },
+   {
+    "at": 16.0,
+    "src": "assets/sfx/tap.wav",
+    "gain": -13
+   },
+   {
+    "at": 16.15,
+    "src": "assets/sfx/whoosh-rise.wav",
+    "gain": -18
+   },
+   {
+    "at": 17.0,
+    "src": "assets/sfx/logo-sting.wav",
+    "gain": -17
+   }
+  ]
+ },
+ "scenes": [
+  {
+   "type": "panier",
+   "at": 0,
+   "dur": 21.0,
+   "duration": 21.0,
+   "t": {
+    "colors": [
+     2.7,
+     3.2,
+     3.7,
+     4.2,
+     4.7,
+     5.2
+    ],
+    "fourth": 9.2,
+    "offer": 10.3,
+    "drawer": 11.0,
+    "total": 12.0,
+    "cmd": 16.0,
+    "end": 16.9
+   },
+   "adds": [
+    [
+     0,
+     6.3,
+     5.9
+    ],
+    [
+     2,
+     7.3,
+     6.9
+    ],
+    [
+     4,
+     8.2,
+     7.8
+    ]
+   ],
+   "cam": [
+    [
+     0,
+     {
+      "s": 1.8,
+      "fx": 540,
+      "fy": 640
+     }
+    ],
+    [
+     1.5,
+     {
+      "s": 1.6,
+      "fx": 540,
+      "fy": 660
+     }
+    ],
+    [
+     2.3,
+     {
+      "s": 1.15,
+      "fx": 540,
+      "fy": 1000
+     }
+    ],
+    [
+     5.5,
+     {
+      "s": 1.15,
+      "fx": 540,
+      "fy": 1000
+     }
+    ],
+    [
+     6.0,
+     {
+      "s": 1.4,
+      "fx": 540,
+      "fy": 1420
+     }
+    ],
+    [
+     8.4,
+     {
+      "s": 1.4,
+      "fx": 540,
+      "fy": 1420
+     }
+    ],
+    [
+     9.0,
+     {
+      "s": 2.1,
+      "fx": 800,
+      "fy": 230
+     }
+    ],
+    [
+     10.8,
+     {
+      "s": 2.1,
+      "fx": 800,
+      "fy": 230
+     }
+    ],
+    [
+     11.6,
+     {
+      "s": 1.0,
+      "fx": 540,
+      "fy": 960
+     }
+    ],
+    [
+     12.2,
+     {
+      "s": 1.25,
+      "fx": 540,
+      "fy": 880
+     }
+    ],
+    [
+     15.5,
+     {
+      "s": 1.25,
+      "fx": 540,
+      "fy": 880
+     }
+    ],
+    [
+     16.0,
+     {
+      "s": 1.0,
+      "fx": 540,
+      "fy": 960
+     }
+    ],
+    [
+     21.0,
+     {
+      "s": 1.0,
+      "fx": 540,
+      "fy": 960
+     }
+    ]
+   ],
+   "caps": [
+    [
+     [
+      "Une",
+      "_veste."
+     ],
+     110,
+     104,
+     0.3,
+     1.9,
+     "#0d1a4a"
+    ],
+    [
+     [
+      "Six",
+      "_couleurs."
+     ],
+     110,
+     104,
+     1.9,
+     2.7,
+     "#0d1a4a"
+    ],
+    [
+     [
+      "Rose."
+     ],
+     110,
+     110,
+     2.7,
+     3.2,
+     "#0d1a4a"
+    ],
+    [
+     [
+      "Bleu ciel."
+     ],
+     110,
+     110,
+     3.2,
+     3.7,
+     "#0d1a4a"
+    ],
+    [
+     [
+      "Bleu nuit."
+     ],
+     110,
+     110,
+     3.7,
+     4.2,
+     "#0d1a4a"
+    ],
+    [
+     [
+      "Noir."
+     ],
+     110,
+     110,
+     4.2,
+     4.7,
+     "#0d1a4a"
+    ],
+    [
+     [
+      "Vert."
+     ],
+     110,
+     110,
+     4.7,
+     5.2,
+     "#0d1a4a"
+    ],
+    [
+     [
+      "Beige."
+     ],
+     110,
+     110,
+     5.2,
+     5.8,
+     "#0d1a4a"
+    ],
+    [
+     [
+      "Tu",
+      "en",
+      "mets",
+      "une…"
+     ],
+     110,
+     96,
+     5.9,
+     7.0,
+     "#0d1a4a"
+    ],
+    [
+     [
+      "_deux…"
+     ],
+     110,
+     110,
+     7.0,
+     7.9,
+     "#0d1a4a"
+    ],
+    [
+     [
+      "_trois."
+     ],
+     110,
+     110,
+     7.9,
+     8.9,
+     "#0d1a4a"
+    ],
+    [
+     [
+      "Et",
+      "la",
+      "4ème",
+      "?"
+     ],
+     110,
+     104,
+     8.9,
+     10.2,
+     "#0d1a4a"
+    ],
+    [
+     [
+      "_Offerte."
+     ],
+     110,
+     130,
+     10.2,
+     11.3,
+     "#2347e0"
+    ],
+    [
+     [
+      "4",
+      "vestes",
+      ":"
+     ],
+     110,
+     104,
+     11.3,
+     13.6,
+     "#0d1a4a"
+    ],
+    [
+     [
+      "au",
+      "lieu",
+      "de",
+      "_159,96",
+      "€"
+     ],
+     110,
+     90,
+     13.7,
+     15.7,
+     "#0d1a4a"
+    ],
+    [
+     [
+      "Le",
+      "foot,"
+     ],
+     1040,
+     110,
+     17.5,
+     22.0,
+     "#fff"
+    ],
+    [
+     [
+      "à",
+      "ton",
+      "_prix."
+     ],
+     1170,
+     110,
+     17.8,
+     22.0,
+     "#fff"
+    ]
+   ]
+  }
+ ]
+}
