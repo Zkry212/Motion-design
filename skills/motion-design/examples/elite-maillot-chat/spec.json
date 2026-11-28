@@ -1,9 +1,39 @@
 {
  "name": "elite-maillot-chat",
- "width": 1080, "height": 1920, "fps": 30, "duration": 20.0,
- "bg": "#020509", "bgCss": "#020509", "glow": false, "grain": false,
- "script": ["liquidglass.js", "elitechat.js"],
- "audio": { "music": "assets/music.wav", "musicGain": 0, "duck": false, "sfx": [] },
- "scenes": [ { "type": "elitechat", "at": 0, "dur": 20.0, "duration": 20.0, "bpm": 120,
-   "beats": { "chat": 2.0, "send": 4.0, "reply": 6.0, "buy": 9.6, "pay": 10.0, "fid": 12.0, "end": 16.0 } } ]
+ "width": 1080,
+ "height": 1920,
+ "fps": 30,
+ "duration": 20.0,
+ "bg": "#020509",
+ "bgCss": "#020509",
+ "glow": false,
+ "grain": false,
+ "script": [
+  "liquidglass.js",
+  "elitechat.js"
+ ],
+ "audio": {
+  "music": "assets/music.wav",
+  "musicGain": 0,
+  "duck": false,
+  "sfx": []
+ },
+ "scenes": [
+  {
+   "type": "elitechat",
+   "at": 0,
+   "dur": 20.0,
+   "duration": 20.0,
+   "bpm": 140,
+   "beats": {
+    "chat": 3.429,
+    "send": 5.143,
+    "reply": 6.6,
+    "buy": 10.6,
+    "pay": 11.0,
+    "fid": 12.5,
+    "end": 15.429
+   }
+  }
+ ]
 }
