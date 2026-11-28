@@ -1,0 +1,9 @@
+Une veste. <break time="0.5s" />
+Six couleurs. <break time="0.4s" />
+Rose. <break time="0.15s" /> Bleu ciel. <break time="0.15s" /> Bleu nuit. <break time="0.15s" /> Noir. <break time="0.15s" /> Vert. <break time="0.15s" /> Beige. <break time="0.5s" />
+Tu en mets une… <break time="0.3s" /> deux… <break time="0.3s" /> trois. <break time="0.5s" />
+Et la quatrième ? <break time="0.6s" />
+Offerte. <break time="0.6s" />
+Quatre vestes : <break time="0.2s" /> cent dix-neuf euros quatre-vingt-dix-sept. <break time="0.3s" />
+Au lieu de cent cinquante-neuf. <break time="0.6s" />
+Élite Maillot. <break time="0.3s" /> Le foot, <break time="0.2s" /> à ton prix.

@@ -1,0 +1,246 @@
+{
+ "name": "elite-veste-3c",
+ "width": 1080,
+ "height": 1920,
+ "fps": 30,
+ "duration": 21.0,
+ "bg": "#2a4fe6",
+ "bgCss": "#2a4fe6",
+ "glow": false,
+ "grain": false,
+ "script": [
+  "tcv.js"
+ ],
+ "audio": {
+  "voice": "assets/voice.mp3",
+  "voiceAt": 0,
+  "music": "assets/music.wav",
+  "musicGain": -7,
+  "duck": true,
+  "sfx": [
+   {
+    "at": 0.4,
+    "src": "assets/sfx/pop-4.wav",
+    "gain": -19
+   },
+   {
+    "at": 1.9,
+    "src": "assets/sfx/whoosh-med.wav",
+    "gain": -16
+   },
+   {
+    "at": 2.5,
+    "src": "assets/sfx/pop-1.wav",
+    "gain": -23
+   },
+   {
+    "at": 2.57,
+    "src": "assets/sfx/pop-2.wav",
+    "gain": -23
+   },
+   {
+    "at": 2.64,
+    "src": "assets/sfx/pop-3.wav",
+    "gain": -23
+   },
+   {
+    "at": 2.7,
+    "src": "assets/sfx/tap.wav",
+    "gain": -17
+   },
+   {
+    "at": 2.71,
+    "src": "assets/sfx/pop-4.wav",
+    "gain": -23
+   },
+   {
+    "at": 2.78,
+    "src": "assets/sfx/pop-5.wav",
+    "gain": -23
+   },
+   {
+    "at": 2.85,
+    "src": "assets/sfx/pop-6.wav",
+    "gain": -23
+   },
+   {
+    "at": 3.2,
+    "src": "assets/sfx/tap.wav",
+    "gain": -17
+   },
+   {
+    "at": 3.7,
+    "src": "assets/sfx/tap.wav",
+    "gain": -17
+   },
+   {
+    "at": 4.2,
+    "src": "assets/sfx/tap.wav",
+    "gain": -17
+   },
+   {
+    "at": 4.7,
+    "src": "assets/sfx/tap.wav",
+    "gain": -17
+   },
+   {
+    "at": 5.2,
+    "src": "assets/sfx/tap.wav",
+    "gain": -17
+   },
+   {
+    "at": 5.7,
+    "src": "assets/sfx/whoosh-med.wav",
+    "gain": -16
+   },
+   {
+    "at": 6.8,
+    "src": "assets/sfx/thud.wav",
+    "gain": -16
+   },
+   {
+    "at": 7.7,
+    "src": "assets/sfx/thud.wav",
+    "gain": -16
+   },
+   {
+    "at": 8.6,
+    "src": "assets/sfx/thud.wav",
+    "gain": -16
+   },
+   {
+    "at": 8.7,
+    "src": "assets/sfx/whoosh-med.wav",
+    "gain": -16
+   },
+   {
+    "at": 9.0,
+    "src": "assets/sfx/blip.wav",
+    "gain": -17
+   },
+   {
+    "at": 10.3,
+    "src": "assets/sfx/pop-9.wav",
+    "gain": -15
+   },
+   {
+    "at": 10.85,
+    "src": "assets/sfx/pay-ok.wav",
+    "gain": -15
+   },
+   {
+    "at": 11.6,
+    "src": "assets/sfx/whoosh-med.wav",
+    "gain": -16
+   },
+   {
+    "at": 12.3,
+    "src": "assets/sfx/whoosh-short.wav",
+    "gain": -21
+   },
+   {
+    "at": 15.9,
+    "src": "assets/sfx/whoosh-med.wav",
+    "gain": -16
+   },
+   {
+    "at": 16.5,
+    "src": "assets/sfx/logo-sting.wav",
+    "gain": -17
+   }
+  ]
+ },
+ "scenes": [
+  {
+   "type": "tcv",
+   "at": 0,
+   "dur": 21.0,
+   "duration": 21.0,
+   "t": {
+    "s0": 0.4,
+    "s1": 2.3,
+    "colors": [
+     2.7,
+     3.2,
+     3.7,
+     4.2,
+     4.7,
+     5.2
+    ],
+    "s2": 6.0,
+    "adds": [
+     6.4,
+     7.3,
+     8.2
+    ],
+    "fourth": 9.0,
+    "offer": 10.3,
+    "total": 12.0,
+    "instead": 14.0,
+    "end": 16.4
+   },
+   "z": [
+    0,
+    -1600,
+    -3200,
+    -4800,
+    -6400,
+    -8000
+   ],
+   "cam": [
+    [
+     0,
+     500
+    ],
+    [
+     1.1,
+     0
+    ],
+    [
+     1.9,
+     -40
+    ],
+    [
+     2.45,
+     -1600
+    ],
+    [
+     5.7,
+     -1630
+    ],
+    [
+     6.15,
+     -3200
+    ],
+    [
+     8.7,
+     -3230
+    ],
+    [
+     9.2,
+     -4800
+    ],
+    [
+     11.6,
+     -4830
+    ],
+    [
+     12.05,
+     -6400
+    ],
+    [
+     15.9,
+     -6450
+    ],
+    [
+     16.35,
+     -8000
+    ],
+    [
+     21.0,
+     -8040
+    ]
+   ]
+  }
+ ]
+}
