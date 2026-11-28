@@ -53,7 +53,7 @@
     // ---- 0: dark silk + grey jacket cards floating in depth
     const silk = el(R, 'q-silk'); silk.innerHTML = `<svg viewBox="0 0 1400 2400" width="100%" height="100%" preserveAspectRatio="none"><defs><linearGradient id="qsg" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#cfd6ff" stop-opacity=".5"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><filter id="qsb"><feGaussianBlur stdDeviation="14"/></filter></defs>${Array.from({ length: 7 }, (_, i) => `<path d="M-100 ${300 + i * 300} C 400 ${100 + i * 300}, 900 ${600 + i * 300}, 1500 ${250 + i * 300}" stroke="url(#qsg)" stroke-width="${70 - i * 6}" fill="none" filter="url(#qsb)" opacity="${.5 - i * .04}"/>`).join('')}</svg>`;
     const FLOAT = COL.concat(COL.slice(0, 3)).map(([f], i) => { const sz = [200, 160, 230, 150, 190, 170, 210, 140, 180][i]; const c = el(R, 'q-abs q-card', { width: sz + 'px', height: sz * 1.15 + 'px', borderRadius: '20px', left: [40, 840, 780, 60, 880, 380, 620, 280, 30][i] + 'px', top: [150, 130, 1560, 1480, 880, 80, 1300, 1720, 980][i] + 'px', background: '#e8e8ea' }, `<div class="q-img" style="inset:10px;background-image:url(${IMG('bw-' + f + '.png')})"></div>`); c._d = i % 3; return c; });
-    F.push(t => { const out = prog(t, T.veste - .3, .6, io); silk.style.opacity = 1 - out; silk.style.transform = `translate(${Math.sin(t * .3) * 40}px, ${-t * 20}px) rotate(-8deg)`;
+    silk.style.display = 'none'; FLOAT.forEach(c => c.remove()); if (0) F.push(t => { const out = prog(t, T.veste - .3, .6, io); silk.style.opacity = 1 - out; silk.style.transform = `translate(${Math.sin(t * .3) * 40}px, ${-t * 20}px) rotate(-8deg)`;
       FLOAT.forEach((c, i) => { const k = prog(t, .5 + i * .05, .6, oq); c.style.opacity = k * .55 * (1 - out); c.style.display = (1 - out) <= 0 ? 'none' : ''; c.style.transform = `translate(${Math.sin(t * .4 + i) * 20}px, ${-t * (14 + c._d * 14) - out * 300 * (c._d + 1)}px) scale(${lerp(.6, 1, k)})`; c.style.filter = `blur(${[1, 4, 7][c._d]}px)`; }); });
 
     // ---- the main jacket card (close-up → floating card → hero → colours → into its tile)
@@ -63,11 +63,23 @@
     const MJ = COL.map(([f]) => el(M, 'q-img', { inset: '6%', backgroundImage: `url(${IMG('v-' + f + '.png')})` }));
     const B1 = el(R, 'q-badge', {}, '1');
     const tileXY = i => [[60, 390, 720][i % 3], [560, 980][Math.floor(i / 3)]];
-    const MK = [[0, { x: 0, y: 0, w: 1080, h: 1920, r: 0 }], [.25, { x: 0, y: 0, w: 1080, h: 1920, r: 0 }], [1.0, { x: 330, y: 560, w: 420, h: 520, r: 30 }], [T.veste, { x: 330, y: 560, w: 420, h: 520, r: 30 }],
+    const MK = [[0, { x: 330, y: 560, w: 420, h: 520, r: 30 }], [T.veste, { x: 330, y: 560, w: 420, h: 520, r: 30 }],
       [T.veste + .7, { x: 220, y: 420, w: 640, h: 780, r: 40 }], [T.six, { x: 220, y: 420, w: 640, h: 780, r: 40 }], [T.six + .7, { x: tileXY(5)[0], y: tileXY(5)[1], w: 300, h: 380, r: 30, o: 1 }], [T.six + .75, { x: tileXY(5)[0], y: tileXY(5)[1], w: 300, h: 380, r: 30, o: 0 }]];
     const CI = t => { let c = 0; T.colors.forEach((x, i) => { if (t >= x) c = i; }); return c; };
-    F.push(t => { const g = kfo(t, MK); place(M, g); const ck = prog(t, .25, .75, io); close.style.opacity = 1 - prog(t, .9, .5); warm.style.opacity = 1 - prog(t, .9, .5); close.style.backgroundSize = `auto ${lerp(130, 100, ck)}%`;
-      const ci = CI(t); MJ.forEach((m, i) => { const on = t > .9 && i === ci; const since = t - (i ? T.colors[i] : .9); m.style.opacity = on ? clamp(since / .25) : 0; m.style.transform = on ? `scale(${lerp(.88, 1, E.outQuint(clamp(since / .4)))})` : ''; });
+    close.style.display = warm.style.display = 'none';
+    const DOT = el(R, 'q-abs', { width: '34px', height: '34px', margin: '-17px', borderRadius: '50%', background: '#fff', boxShadow: '0 0 0 8px rgba(255,255,255,.25), 0 0 40px 10px rgba(255,255,255,.7)', zIndex: 25 });
+    const OLs = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); OLs.setAttribute('class', 'q-path'); OLs.setAttribute('viewBox', '0 0 1080 1920'); R.appendChild(OLs); OLs.style.zIndex = 24;
+    OLs.innerHTML = '<rect x="330" y="560" width="420" height="520" rx="30" fill="none" stroke="#fff" stroke-width="6" pathLength="1000" stroke-dasharray="1000" style="filter:drop-shadow(0 0 12px rgba(255,255,255,.9))"/>'; const OLr = OLs.querySelector('rect');
+    const RIP0 = el(R, 'q-abs', { borderRadius: '50%', border: '4px solid rgba(255,255,255,.8)', zIndex: 24 });
+    F.push(t => { const g = kfo(t, MK); place(M, g);
+      // the dot appears, runs once round the card drawing its outline, then the card fills and the jacket rises in
+      const dk = prog(t, .05, .3, bk), run = prog(t, .3, .55, io), fillk = prog(t, .8, .3, io); const per = 2 * (420 + 520), d = run * per;
+      let px, py; if (d < 420) { px = 330 + d; py = 560; } else if (d < 940) { px = 750; py = 560 + (d - 420); } else if (d < 1360) { px = 750 - (d - 940); py = 1080; } else { px = 330; py = 1080 - (d - 1360); }
+      if (t < .3) { px = 540; py = 820; } DOT.style.left = px + 'px'; DOT.style.top = py + 'px'; DOT.style.display = t < 1.15 ? '' : 'none'; DOT.style.transform = `scale(${dk * (1 - prog(t, .85, .3))})`;
+      OLr.setAttribute('stroke-dashoffset', 1000 - run * 1000); OLs.style.display = t < T.veste + .1 ? '' : 'none'; OLs.style.opacity = 1 - fillk;
+      M.style.background = `rgba(255,255,255,${t < T.veste + .5 ? fillk : 1})`; M.style.boxShadow = fillk > .5 ? '' : 'none';
+      const rp = clamp((t - T.premier) / .6); RIP0.style.display = rp > 0 && rp < 1 ? '' : 'none'; Object.assign(RIP0.style, { left: (750 - 20 - rp * 80) + 'px', top: (560 - 20 - rp * 80) + 'px', width: (40 + rp * 160) + 'px', height: (40 + rp * 160) + 'px', opacity: 1 - rp });
+      const ci = CI(t); MJ.forEach((m, i) => { const on = t > .7 && i === ci; const since = t - (i ? T.colors[i] : .7); m.style.opacity = on ? clamp(since / .3) : 0; m.style.transform = on ? (i ? `scale(${lerp(.88, 1, E.outQuint(clamp(since / .4)))})` : `translateY(${(1 - E.outQuint(clamp(since / .6))) * 120}px)`) : ''; m.style.filter = on && !i && since < .6 ? `blur(${(1 - since / .6) * 10}px)` : 'none'; });
       const bk1 = prog(t, T.premier, .35, bk), bo = prog(t, T.veste, .3); B1.style.display = bk1 > 0 && bo < 1 ? '' : 'none'; B1.style.left = (g.x + g.w - 40) + 'px'; B1.style.top = (g.y - 20) + 'px'; B1.style.transform = `scale(${bk1 * (1 - bo)})`; });
 
     // ---- chips (colours) → grid tiles
@@ -97,7 +109,7 @@
     const BADGE = PICK.map((_, i) => el(R, 'q-badge', {}, i + 1));
     const BK = el(R, 'q-abs q-card', { zIndex: 19, borderRadius: '40px' });
     const SLOTS = [0, 1, 2, 3].map(i => el(BK, 'q-abs', { left: (30 + i * 230) + 'px', top: '30px', width: '210px', height: '270px', borderRadius: '24px', border: '3px dashed #cfd6f2' }));
-    const SN = [0, 1, 2, 3].map(i => el(BK, 'q-badge', { left: (30 + i * 230 + 160) + 'px', top: '8px', width: '48px', height: '48px', fontSize: '24px' }, i < 3 ? i + 1 : '+1')); SN[3].style.background = TEAL; SN[3].style.color = INK;
+    const SN = [0, 1, 2, 3].map(i => el(R, 'q-badge', { width: '52px', height: '52px', fontSize: '24px', zIndex: 47 }, i < 3 ? i + 1 : '+1')); SN[3].style.background = TEAL; SN[3].style.color = INK;
     const TL = el(BK, 'q-txt', { left: '40px', top: '345px', fontSize: '40px', color: '#6b7397', fontWeight: 600 }, '4 vestes');
     const OLD = el(BK, 'q-txt', { right: '40px', top: '330px', fontSize: '40px', color: '#9aa2c4', textDecoration: 'line-through' }, '159,96 €');
     const TOT = el(BK, 'q-txt', { right: '40px', top: '380px', fontSize: '96px', fontWeight: 800, letterSpacing: '-.03em', fontVariantNumeric: 'tabular-nums' }, '159,96 €');
@@ -106,15 +118,15 @@
     const BIG = el(R, 'q-cap', { top: '520px', fontSize: '330px', fontWeight: 900, letterSpacing: '-.05em', color: INK, zIndex: 35 }, `<span class="w">3</span><span class="w" style="color:${BLUE}">+</span><span class="w" style="color:${TEAL};text-shadow:0 0 50px rgba(92,225,230,.6)">1</span>`); const BW = [...BIG.querySelectorAll('.w')];
     const PRICE = el(R, 'q-cap', { top: '640px', fontSize: '190px', color: '#fff', zIndex: 36 }, '<span class="q-pill">39,99 €</span>'); const PRp = PRICE.firstChild;
     const LAV = el(R, 'q-cap', { top: '880px', fontSize: '70px', color: '#fff', zIndex: 36 }, 'la veste');
-    const BKK = [[T.trois - .4, { x: 60, y: 1960, w: 960, h: 520, r: 40, o: 1 }], [T.trois, { x: 60, y: 1300, w: 960, h: 520, r: 40 }, oq], [T.end, { x: 60, y: 1300, w: 960, h: 520, r: 40 }], [T.end + .7, { x: 160, y: 1440, w: 760, h: 120, r: 60 }]];
+    const BKK = [[T.trois - .4, { x: 60, y: 1960, w: 960, h: 520, r: 40, o: 1 }], [T.trois, { x: 60, y: 1300, w: 960, h: 520, r: 40 }, oq], [T.end, { x: 60, y: 1300, w: 960, h: 520, r: 40 }], [T.end + .45, { x: 160, y: 1440, w: 760, h: 120, r: 60 }]];
     F.push(t => { const bg2 = kfo(t, BKK); if (t > T.trois - .4) place(BK, bg2); else BK.style.display = 'none';
-      const ek = prog(t, T.end, .4); [...SLOTS, ...SN, TL, OLD, TOT].forEach(x => { x.style.opacity = 1 - ek; }); URL.style.opacity = prog(t, T.end + .5, .3);
-      SN.forEach((n, i) => { n.style.transform = `scale(${i < 3 ? prog(t, T.trois + .3 + i * .15, .3, bk) : prog(t, T.offerte + .5, .35, bk)})`; });
+      const ek = prog(t, T.end, .25); [...SLOTS, ...SN, TL, OLD, TOT].forEach(x => { x.style.opacity = 1 - ek; }); URL.style.opacity = prog(t, T.end + .25, .3);
+      SN.forEach((n, i) => { const k = i < 3 ? prog(t, T.trois + .45 + i * .15, .3, bk) : prog(t, T.offerte + .6, .35, bk); n.style.display = k > 0 && ek < 1 && t > T.trois - .4 ? '' : 'none'; n.style.left = (60 + 30 + i * 230 + 175) + 'px'; n.style.top = (bg2.y + 8) + 'px'; n.style.transform = `scale(${k})`; });
       const tk = prog(t, T.price + .8, 1.0, io); TOT.textContent = lerp(159.96, 119.97, tk).toFixed(2).replace('.', ',') + ' €'; TOT.style.color = tk >= 1 ? BLUE : INK; TOT.style.opacity = (1 - ek) * prog(t, T.price + .5, .3); OLD.style.opacity = (1 - ek) * prog(t, T.price + 1.6, .3); TL.style.opacity = (1 - ek) * prog(t, T.price + .5, .3);
       // tiles: picks get badges, then slide into slots; the 4th (beige, tile 5) flies in OFFERTE; the others fade
       CH.forEach((c, i) => { if (t < T.pick) return; const [tx, ty] = tileXY(i), slot = PICK.indexOf(i), by = bg2.y;
         if (slot >= 0) { const k = prog(t, T.trois + slot * .15, .55, io); place(c, { x: lerp(tx, 90 + slot * 230, k), y: lerp(ty, by + 30, k), w: lerp(300, 210, k), h: lerp(380, 270, k), r: lerp(30, 24, k), o: 1 - ek }); c.style.zIndex = 30; c.style.opacity = (1 - ek) * (t > T.end + .3 ? 0 : 1); c.style.filter = 'none'; }
-        else if (i === 5) { const k = prog(t, T.offerte + .1, .6, bk); const fromY = ty; place(c, { x: lerp(tx, 90 + 3 * 230, k), y: lerp(fromY, by + 30, k) - Math.sin(clamp(k) * Math.PI) * 260, w: lerp(300, 210, clamp(k)), h: lerp(380, 270, clamp(k)), r: 24, o: 1 - ek }); c.style.zIndex = 31; c.style.filter = 'none'; c.style.boxShadow = t > T.offerte + .7 ? `0 0 0 5px ${TEAL}, 0 0 40px rgba(92,225,230,.6)` : ''; const dim = t > T.pick && t < T.offerte + .1 ? .35 : 1; c.style.opacity = (1 - ek) * dim; }
+        else if (i === 5) { const k = prog(t, T.offerte + .1, .6, bk); const fromY = -420; if (t < T.offerte + .1) { const q = prog(t, T.pick + .2, .4); place(c, { x: tx, y: ty, w: 300, h: 380, r: 30, o: (1 - q * .65) * (1 - prog(t, T.trois, .4)) }); return; } place(c, { x: 90 + 3 * 230, y: lerp(fromY, by + 30, k) - Math.sin(clamp(k) * Math.PI) * 260, w: lerp(300, 210, clamp(k)), h: lerp(380, 270, clamp(k)), r: 24, o: 1 - ek }); c.style.zIndex = 31; c.style.filter = 'none'; c.style.boxShadow = t > T.offerte + .7 ? `0 0 0 5px ${TEAL}, 0 0 40px rgba(92,225,230,.6)` : ''; const dim = t > T.pick && t < T.offerte + .1 ? .35 : 1; c.style.opacity = (1 - ek) * dim; }
         else { const k = prog(t, T.pick + .2, .4); place(c, { x: tx, y: ty, w: 300, h: 380, r: 30, o: (1 - k * .65) * (1 - prog(t, T.trois, .4)) }); } });
       BADGE.forEach((b, i) => { const [x, y] = tileXY(PICK[i]), k = prog(t, T.pick + .15 + i * .2, .35, bk), out = prog(t, T.trois, .3); b.style.display = k > 0 && out < 1 ? '' : 'none'; b.style.left = (x + 260) + 'px'; b.style.top = (y - 22) + 'px'; b.style.transform = `scale(${k * (1 - out)})`; });
       const rk = prog(t, T.offerte + .7, .35, bk), ro = prog(t, T.end, .3); RIB.style.display = rk > 0 && ro < 1 ? '' : 'none'; RIB.style.left = '800px'; RIB.style.top = (bg2.y + 250) + 'px'; RIB.style.transform = `rotate(-8deg) scale(${rk})`; RIB.style.opacity = 1 - ro;
@@ -129,7 +141,7 @@
     const CAPS = [cap(["Tu", "l'as", 'remarquée'], 1500, 96, [T.c1, T.c1 + .25, T.c1 + .45], T.veste, '#fff'), cap(['_en', '_premier.'], 1620, 110, [T.premier, T.premier + .2], T.veste, '#fff'),
       cap(['La', 'veste', 'du', '*Brésil.'], 200, 110, [T.veste, T.veste + .2, T.veste + .4, T.veste + .55], T.colors[0], '#fff')];
     COL.forEach(([, n], i) => CAPS.push(cap([n + '.'], 1540, 100, T.colors[i], T.colors[i + 1] ?? T.six, '#fff')));
-    CAPS.push(cap(['Six', '*couleurs.'], 200, 120, [T.six, T.six + .3], T.hesit, ink), cap(['Et', 'tu', "n'arrives", 'pas', 'à', '_choisir.'], 260, 80, T.hesit, T.pick, INK),
+    CAPS.push(cap(['Six', '*couleurs.'], 200, 120, [T.six + .35, T.six + .55], T.hesit, INK), cap(['Et', 'tu', "n'arrives", 'pas', 'à', '_choisir.'], 260, 80, T.hesit, T.pick, INK),
       cap(['Alors', 'ne', 'choisis', '_pas.'], 260, 96, [T.pick, T.pick + .2, T.pick + .4, T.pick + .6], T.trois, INK), cap(['Prends-en', '_trois,'], 260, 110, [T.trois, T.trois + .35], T.offerte, INK),
       cap(['la', '4ème', 'est', '_offerte.'], 260, 110, [T.offerte, T.offerte + .25, T.offerte + .5, T.offerte + .7], T.price, INK),
       cap(['Le', 'foot,'], 1040, 110, [T.foot, T.foot + .2], D + 1, '#fff'), cap(['à', 'ton', '*prix.'], 1170, 110, [T.prix, T.prix + .15, T.prix + .3], D + 1, '#fff'));
