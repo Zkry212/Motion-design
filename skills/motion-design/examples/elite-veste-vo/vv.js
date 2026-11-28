@@ -48,6 +48,11 @@
           if (sp._u) sp._u.style.transform = `scaleX(${prog(t, at(i) + .2, .4, oq)})`; }); };
     };
     const bg = el(R, 'q-bg'), glow = el(R, 'q-glow');
+    // ambient: soft blurred cards drifting up in depth, all the time
+    const AMB = Array.from({ length: 16 }, (_, i) => { const w = 90 + (i * 37) % 120; const a = el(R, 'q-abs', { width: w + 'px', height: w * .75 + 'px', borderRadius: '22px', background: 'rgba(255,255,255,.55)', left: ((i * 263) % 1000) + 'px' }); a._s = .5 + (i % 4) * .35; a._y = (i * 431) % 1920; a._b = 4 + (i % 3) * 5; return a; });
+    // colour splash behind the card on every colour word
+    const SPL = [0, 1, 2, 3, 4, 5].map(() => el(R, 'q-abs', { borderRadius: '50%', zIndex: 15 }));
+    const PAST = ['#f4c6d0', '#b7d3d8', '#5b7fc0', '#5a5a66', '#b4d3be', '#eee3cf'];
     const F = [];
 
     // ---- 0: dark silk + grey jacket cards floating in depth
@@ -137,6 +142,28 @@
     const LG = el(R, 'q-abs', { left: '190px', top: '500px', width: '700px', zIndex: 50 }, `<img src="${IMG('logo-light.svg')}" style="width:100%;display:block;filter:drop-shadow(0 0 30px rgba(92,225,230,.55))">`);
     F.push(t => { const k = prog(t, T.end + .1, .9, io); LG.style.display = t > T.end ? '' : 'none'; LG.style.clipPath = `inset(0 ${(1 - k) * 100}% 0 0)`; LG.style.transform = `scale(${lerp(1.06, 1, prog(t, T.end, 1.3, oq))})`; });
 
+    // ---- extra motion layer
+    const SPK = Array.from({ length: 16 }, (_, i) => el(R, 'q-abs', { width: '16px', height: '16px', margin: '-8px', borderRadius: '50%', background: i % 3 ? TEAL : '#fff', zIndex: 48 }));
+    const SPK2 = Array.from({ length: 12 }, (_, i) => el(R, 'q-abs', { width: '12px', height: '12px', margin: '-6px', borderRadius: '50%', background: '#fff', zIndex: 48 }));
+    PRp.style.position = 'relative'; PRp.style.overflow = 'hidden'; const shine = el(PRp, 'q-abs', { top: '-20%', bottom: '-20%', width: '30%', background: 'linear-gradient(100deg, transparent, rgba(255,255,255,.7), transparent)', filter: 'blur(4px)' });
+    LG.style.overflow = 'hidden'; const lshine = el(LG, 'q-abs', { top: '-20%', bottom: '-20%', width: '30%', background: 'linear-gradient(100deg, transparent, rgba(255,255,255,.75), transparent)', mixBlendMode: 'overlay', filter: 'blur(6px)' });
+    F.push(t => {
+      const light = t > T.six + .3 && t < T.price - .2;
+      AMB.forEach((a, i) => { const y = ((a._y - t * 60 * a._s) % 2100 + 2100) % 2100 - 120; a.style.top = y + 'px'; a.style.transform = `translateX(${Math.sin(t * .4 + i) * 30}px) rotate(${Math.sin(t * .3 + i) * 8}deg)`; a.style.filter = `blur(${a._b}px)`; a.style.opacity = light ? .5 : .14; a.style.background = light ? 'rgba(120,140,255,.18)' : 'rgba(255,255,255,.55)'; });
+      // splash + card wiggle on each colour word
+      T.colors.forEach((c, i) => { const k = clamp((t - c) / .9), sp = SPL[i]; sp.style.display = k > 0 && k < 1 ? '' : 'none'; const r = 60 + E.outQuint(k) * 700; Object.assign(sp.style, { left: (540 - r) + 'px', top: (810 - r) + 'px', width: r * 2 + 'px', height: r * 2 + 'px', background: PAST[i], opacity: (1 - k) * .55 }); });
+      const lastC = Math.max(-9, ...T.colors.filter(c => c <= t)), wk = clamp((t - lastC) / .5), wig = t < T.six && t > T.colors[0] ? Math.sin(wk * Math.PI * 2) * (1 - wk) * 14 : 0;
+      M.style.transform = `perspective(1400px) rotateY(${wig + (t > 1 && t < T.six ? Math.sin(t * .9) * 5 : 0)}deg) rotateX(${t > 1 && t < T.six ? Math.cos(t * .7) * 3 : 0}deg)`;
+      // grid: tiles float in a wave
+      if (t > T.six + .7 && t < T.pick) CH.forEach((c, i) => { c.style.transform = `translateY(${Math.sin(t * 2.2 + i * .9) * 10}px) rotate(${Math.sin(t * 1.4 + i) * 1.2}deg)`; });
+      // landing squash in the basket
+      CH.forEach((c, i) => { const slot = PICK.indexOf(i), land = slot >= 0 ? T.trois + slot * .15 + .55 : i === 5 ? T.offerte + .7 : null; if (land == null || t < land || t > land + .4) return; const q = (t - land) / .4; c.style.transform = `scaleY(${1 - Math.sin(q * Math.PI) * .12}) scaleX(${1 + Math.sin(q * Math.PI) * .06})`; c.style.transformOrigin = '50% 100%'; });
+      // burst on the offered jacket
+      const bt = T.offerte + .7; SPK.forEach((p, i) => { const k = clamp((t - bt) / .8), a = i / 16 * Math.PI * 2, r = E.outQuint(k) * (140 + (i % 3) * 50), cx = 60 + 30 + 3 * 230 + 105, cy = 1300 + 165; p.style.display = k > 0 && k < 1 ? '' : 'none'; p.style.left = cx + Math.cos(a) * r + 'px'; p.style.top = cy + Math.sin(a) * r + 'px'; p.style.opacity = 1 - k; p.style.transform = `scale(${1 - k * .6})`; });
+      // sparkles round the price pill + shine sweeps
+      SPK2.forEach((p, i) => { const k = clamp((t - T.price - .2 - (i % 4) * .08) / .9), a = i / 12 * Math.PI * 2, r = 330 + E.outQuint(k) * 120; p.style.display = k > 0 && k < 1 ? '' : 'none'; p.style.left = 540 + Math.cos(a) * r * 1.2 + 'px'; p.style.top = 740 + Math.sin(a) * r * .45 + 'px'; p.style.opacity = Math.sin(k * Math.PI); });
+      shine.style.left = lerp(-40, 130, prog(t, T.price + .4, .8, io)) + '%'; lshine.style.left = lerp(-40, 130, prog(t, T.end + 1.1, .9, io)) + '%';
+    });
     const ink = t => (t < T.six + .2 || t > T.price - .3 ? '#fff' : INK);
     const CAPS = [cap(["Tu", "l'as", 'remarquée'], 1500, 96, [T.c1, T.c1 + .25, T.c1 + .45], T.veste, '#fff'), cap(['_en', '_premier.'], 1620, 110, [T.premier, T.premier + .2], T.veste, '#fff'),
       cap(['La', 'veste', 'du', '*Brésil.'], 200, 110, [T.veste, T.veste + .2, T.veste + .4, T.veste + .55], T.colors[0], '#fff')];
