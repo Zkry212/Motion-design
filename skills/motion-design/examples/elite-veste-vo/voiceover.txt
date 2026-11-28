@@ -1,0 +1,8 @@
+Tu l'as remarquée en premier. <break time="0.4s" />
+La veste du Brésil. <break time="0.5s" />
+Rose, <break time="0.15s" /> bleu ciel, <break time="0.15s" /> bleu nuit, <break time="0.15s" /> noir, <break time="0.15s" /> vert, <break time="0.15s" /> beige. <break time="0.5s" />
+Six couleurs. <break time="0.3s" /> Et tu n'arrives pas à choisir. <break time="0.6s" />
+Alors ne choisis pas. <break time="0.5s" />
+Prends-en trois, <break time="0.3s" /> la quatrième est offerte. <break time="0.6s" />
+Trente-neuf quatre-vingt-dix-neuf la veste. <break time="0.6s" />
+Élite Maillot. <break time="0.3s" /> Le foot, <break time="0.2s" /> à ton prix.
