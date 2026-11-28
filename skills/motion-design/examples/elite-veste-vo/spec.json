@@ -1,0 +1,266 @@
+{
+ "name": "elite-veste-vo",
+ "width": 1080,
+ "height": 1920,
+ "fps": 30,
+ "duration": 27.0,
+ "bg": "#07080d",
+ "bgCss": "#07080d",
+ "glow": false,
+ "grain": false,
+ "script": [
+  "vv.js"
+ ],
+ "audio": {
+  "voice": "assets/voice.mp3",
+  "voiceAt": 0,
+  "music": "assets/music.wav",
+  "musicGain": -12,
+  "duck": true,
+  "sfx": [
+   {
+    "at": 0.3,
+    "src": "assets/sfx/whoosh-short.wav",
+    "gain": -20
+   },
+   {
+    "at": 0.85,
+    "src": "assets/sfx/pop-4.wav",
+    "gain": -18
+   },
+   {
+    "at": 2.2,
+    "src": "assets/sfx/whoosh-med.wav",
+    "gain": -19
+   },
+   {
+    "at": 3.98,
+    "src": "assets/sfx/pop-1.wav",
+    "gain": -23
+   },
+   {
+    "at": 4.04,
+    "src": "assets/sfx/pop-2.wav",
+    "gain": -23
+   },
+   {
+    "at": 4.1,
+    "src": "assets/sfx/pop-3.wav",
+    "gain": -23
+   },
+   {
+    "at": 4.16,
+    "src": "assets/sfx/pop-4.wav",
+    "gain": -23
+   },
+   {
+    "at": 4.22,
+    "src": "assets/sfx/pop-5.wav",
+    "gain": -23
+   },
+   {
+    "at": 4.28,
+    "src": "assets/sfx/pop-6.wav",
+    "gain": -23
+   },
+   {
+    "at": 5.16,
+    "src": "assets/sfx/blip.wav",
+    "gain": -21
+   },
+   {
+    "at": 6.2,
+    "src": "assets/sfx/blip.wav",
+    "gain": -21
+   },
+   {
+    "at": 7.2,
+    "src": "assets/sfx/blip.wav",
+    "gain": -21
+   },
+   {
+    "at": 8.06,
+    "src": "assets/sfx/blip.wav",
+    "gain": -21
+   },
+   {
+    "at": 8.94,
+    "src": "assets/sfx/blip.wav",
+    "gain": -21
+   },
+   {
+    "at": 10.15,
+    "src": "assets/sfx/whoosh-med.wav",
+    "gain": -19
+   },
+   {
+    "at": 11.56,
+    "src": "assets/sfx/key.wav",
+    "gain": -21
+   },
+   {
+    "at": 11.838,
+    "src": "assets/sfx/key.wav",
+    "gain": -21
+   },
+   {
+    "at": 12.115,
+    "src": "assets/sfx/key.wav",
+    "gain": -21
+   },
+   {
+    "at": 12.393,
+    "src": "assets/sfx/key.wav",
+    "gain": -21
+   },
+   {
+    "at": 12.67,
+    "src": "assets/sfx/key.wav",
+    "gain": -21
+   },
+   {
+    "at": 12.948,
+    "src": "assets/sfx/key.wav",
+    "gain": -21
+   },
+   {
+    "at": 13.225,
+    "src": "assets/sfx/key.wav",
+    "gain": -21
+   },
+   {
+    "at": 13.503,
+    "src": "assets/sfx/key.wav",
+    "gain": -21
+   },
+   {
+    "at": 14.03,
+    "src": "assets/sfx/pop-5.wav",
+    "gain": -18
+   },
+   {
+    "at": 14.23,
+    "src": "assets/sfx/pop-6.wav",
+    "gain": -18
+   },
+   {
+    "at": 14.43,
+    "src": "assets/sfx/pop-7.wav",
+    "gain": -18
+   },
+   {
+    "at": 15.56,
+    "src": "assets/sfx/whoosh-short.wav",
+    "gain": -19
+   },
+   {
+    "at": 16.06,
+    "src": "assets/sfx/thud.wav",
+    "gain": -20
+   },
+   {
+    "at": 16.21,
+    "src": "assets/sfx/thud.wav",
+    "gain": -20
+   },
+   {
+    "at": 16.36,
+    "src": "assets/sfx/thud.wav",
+    "gain": -20
+   },
+   {
+    "at": 17.31,
+    "src": "assets/sfx/thud.wav",
+    "gain": -16
+   },
+   {
+    "at": 17.41,
+    "src": "assets/sfx/pay-ok.wav",
+    "gain": -17
+   },
+   {
+    "at": 19.09,
+    "src": "assets/sfx/pop-9.wav",
+    "gain": -17
+   },
+   {
+    "at": 22.0,
+    "src": "assets/sfx/whoosh-short.wav",
+    "gain": -19
+   },
+   {
+    "at": 22.2,
+    "src": "assets/sfx/logo-sting.wav",
+    "gain": -18
+   }
+  ]
+ },
+ "scenes": [
+  {
+   "type": "vv",
+   "at": 0,
+   "dur": 27.0,
+   "duration": 27.0,
+   "t": {
+    "c1": 0.09,
+    "premier": 0.85,
+    "veste": 2.2,
+    "colors": [
+     4.13,
+     5.16,
+     6.2,
+     7.2,
+     8.06,
+     8.94
+    ],
+    "six": 10.15,
+    "hesit": 11.56,
+    "pick": 13.88,
+    "trois": 15.56,
+    "offerte": 16.71,
+    "price": 19.09,
+    "end": 22.0,
+    "foot": 23.2,
+    "prix": 24.16
+   },
+   "bg": [
+    [
+     0,
+     "#07080d"
+    ],
+    [
+     2.0,
+     "#07080d"
+    ],
+    [
+     2.7,
+     "#2347e0"
+    ],
+    [
+     10.1,
+     "#2347e0"
+    ],
+    [
+     10.8,
+     "#e9ecfa"
+    ],
+    [
+     18.8,
+     "#e9ecfa"
+    ],
+    [
+     19.3,
+     "#2347e0"
+    ],
+    [
+     21.8,
+     "#2347e0"
+    ],
+    [
+     22.4,
+     "#0c1749"
+    ]
+   ]
+  }
+ ]
+}
