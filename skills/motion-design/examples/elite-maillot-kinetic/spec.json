@@ -1,0 +1,10 @@
+{
+ "name": "elite-maillot-kinetic",
+ "width": 1080, "height": 1920, "fps": 30, "duration": 20.0,
+ "bg": "#0a1440", "bgCss": "#0a1440", "glow": false, "grain": false,
+ "script": ["kinetic.js"],
+ "audio": { "music": "assets/music.wav", "musicGain": 0, "duck": false, "sfx": [] },
+ "scenes": [ { "type": "kinetic", "at": 0, "dur": 20.0, "duration": 20.0, "bpm": 140,
+   "jerseys": ["real", "barca", "psg", "city", "arsenal", "milan", "manu", "argentine", "france", "bresil", "portugal", "maroc"],
+   "cuts": [0, 1.714, 3.429, 5.143, 6.857, 8.571, 10.286, 12.0, 13.714, 15.429] } ]
+}
