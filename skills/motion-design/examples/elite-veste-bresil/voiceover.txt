@@ -1,0 +1,9 @@
+Regarde ici. <break time="0.5s" />
+Tu l'as vue ? <break time="0.4s" />
+La veste du Brésil. <break time="0.5s" />
+Rose. <break time="0.2s" /> Bleu ciel. <break time="0.2s" /> Bleu nuit. <break time="0.2s" /> Noir. <break time="0.2s" /> Vert. <break time="0.2s" /> Beige. <break time="0.5s" />
+Six couleurs… <break time="0.3s" /> une seule question : <break time="0.3s" /> laquelle ? <break time="0.6s" />
+Et si tu ne choisissais pas ? <break time="0.4s" />
+Prends-en trois… <break time="0.4s" /> la quatrième est offerte. <break time="0.6s" />
+Trente-neuf euros quatre-vingt-dix-neuf la veste. <break time="0.6s" />
+Élite Maillot. <break time="0.3s" /> Ton regard a déjà choisi.
